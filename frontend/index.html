@@ -1,13 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + React + TS</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+	<head>
+		<meta charset="UTF-8" />
+
+		<link
+			rel="icon"
+			type="image/svg+xml"
+			href="/vite.svg"
+		/>
+
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0"
+		/>
+
+		<title>Vite + React + TS</title>
+
+		<style>
+			@font-face {
+				font-family: Poppins;
+				src: url('/src/assets/fonts/PoppinsRegular.woff2') format('woff2'),
+					url('/src/assets/fonts/PoppinsRegular.woff') format('woff');
+				font-weight: 400;
+			}
+
+			@font-face {
+				font-family: Roboto;
+				src: url('/src/assets/fonts/PoppinsMedium.woff2') format('woff2'),
+					url('/src/assets/fonts/PoppinsMedium.woff') format('woff');
+				font-weight: 500;
+			}
+
+			@font-face {
+				font-family: Roboto;
+				src: url('/src/assets/fonts/PoppinsSemiBold.woff2') format('woff2'),
+					url('/src/assets/fonts/PoppinsSemiBold.woff') format('woff');
+				font-weight: 600;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="root"></div>
+
+		<script
+			type="module"
+			src="/src/main.tsx"
+		></script>
+	</body>
 </html>
