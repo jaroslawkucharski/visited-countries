@@ -14,17 +14,20 @@
 	],
 	"overrides": [],
 	"parser": "@typescript-eslint/parser",
+	"ignorePatterns": ["vite.config.ts"],
 	"parserOptions": {
 		"ecmaVersion": "latest",
 		"project": ["tsconfig.json"],
 		"tsconfigRootDir": "frontend",
-		"sourceType": "module"
+		"sourceType": "module",
+		"parser": "@typescript-eslint/parser"
 	},
 	"plugins": ["react", "@typescript-eslint", "prettier"],
 	"rules": {
 		"react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx", ".ts", ".tsx"] }],
 		"react/react-in-jsx-scope": "off",
 		"react/function-component-definition": "off",
-		"import/prefer-default-export": "off"
+		"import/prefer-default-export": "off",
+		"react/require-default-props": "off"
 	}
 }
