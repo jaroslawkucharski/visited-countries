@@ -33,6 +33,7 @@ specifiers:
   react-is: ^18.2.0
   react-redux: ^8.0.5
   react-router-dom: ^6.4.5
+  simple-flexbox: ^2.3.3
   styled-components: ^5.3.6
   typescript: ^4.9.4
   vite: ^3.2.3
@@ -50,6 +51,7 @@ dependencies:
   react-is: 18.2.0
   react-redux: 8.0.5_yqqa5ithnjtlkxisuaub7c4kpa
   react-router-dom: 6.4.5_biqbaboplfbrettd7655fr4n2y
+  simple-flexbox: 2.3.3_react@18.2.0
   styled-components: 5.3.6_7i5myeigehqah43i5u7wbekgba
 
 devDependencies:
@@ -4350,6 +4352,16 @@ packages:
   /signal-exit/3.0.7:
     resolution: {integrity: sha512-wnD2ZE+l+SPC/uoS0vXeE9L1+0wuaMqKlfz9AMUo38JsyLSBWSFcHR1Rri62LZc12vLr1gb3jl7iwQhgwpAbGQ==}
     dev: true
+
+  /simple-flexbox/2.3.3_react@18.2.0:
+    resolution: {integrity: sha512-5INKo4u1m5LDWBeEZXcAesIRxamrMCbcYInLg9Dz0A/7lwLMbIBKIon+71qVw91m3ivSB/5fA5KDObrt+VT6vg==}
+    peerDependencies:
+      prop-types: ^15.7.2
+      react: ^17.0.2
+      webpack-cli: ^4.7.2
+    dependencies:
+      react: 18.2.0
+    dev: false
 
   /sisteransi/1.0.5:
     resolution: {integrity: sha512-bLGGlR1QxBcynn2d5YmDX4MGjlZvy2MRBDRNHLJ8VI6l6+9FUiyTFNJ0IveOSP0bcXgVDPRcfGqA0pjaqUpfVg==}
