@@ -1,10 +1,6 @@
 import styled, { DefaultTheme, css } from 'styled-components'
 
-interface ButtonComponentProps {
-	variant?: 'primary' | 'secondary' | 'alert'
-	hasFullWidth?: boolean
-	hasOnlyIcon?: boolean
-}
+import { ButtonProps } from './Button.types'
 
 const variantStyles = (theme: DefaultTheme, variant = 'primary') =>
 	({
@@ -43,7 +39,7 @@ const variantStyles = (theme: DefaultTheme, variant = 'primary') =>
 		`,
 	}[variant])
 
-export const ButtonComponent = styled.button<ButtonComponentProps>`
+export const ButtonComponent = styled.button<ButtonProps>`
 	cursor: pointer;
 	padding: ${({ theme, hasOnlyIcon }) =>
 		hasOnlyIcon

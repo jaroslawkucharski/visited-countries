@@ -1,18 +1,9 @@
-import { FC, ReactEventHandler, ReactNode } from 'react'
+import { FC } from 'react'
 
 import { Loader } from 'components/ui'
 
 import { ButtonComponent } from './Button.styles'
-
-interface ButtonProps {
-	variant?: 'primary' | 'secondary' | 'alert'
-	children: ReactNode
-	action: ReactEventHandler<HTMLButtonElement>
-	hasFullWidth?: boolean
-	hasOnlyIcon?: boolean
-	isLoading?: boolean
-	isDisabled?: boolean
-}
+import { ButtonProps } from './Button.types'
 
 export const Button: FC<ButtonProps> = ({
 	variant = 'primary',
