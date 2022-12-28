@@ -1,7 +1,12 @@
-import { FC } from 'react'
+import { FC, ReactNode } from 'react'
 
 import { HeadingComponent } from './Heading.styles'
-import { HeadingProps } from './Heading.types'
+
+interface HeadingProps {
+	level?: 1 | 2
+	children: ReactNode
+	align?: 'left' | 'center' | 'right'
+}
 
 export const Heading: FC<HeadingProps> = ({ level = 1, children, align = 'center' }) => (
 	<HeadingComponent

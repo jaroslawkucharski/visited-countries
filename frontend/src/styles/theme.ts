@@ -9,12 +9,6 @@ const Colors = {
 	Red100: '#F75252',
 }
 
-const weights = {
-	regular: 400,
-	medium: 500,
-	bold: 600,
-}
-
 const spaces = {
 	tiny: '8px',
 	small: '12px',
@@ -24,22 +18,30 @@ const spaces = {
 	huge: '80px',
 }
 
-const fontSizes = {
-	default: '16px',
-	h1: '28px',
-	h2: '18px',
-}
+const font = {
+	weights: {
+		regular: 400,
+		medium: 500,
+		bold: 600,
+	},
 
-const lineHeight = {
-	default: '24px',
-	h1: '54px',
-	h2: '36px',
-}
+	sizes: {
+		default: '16px',
+		h1: '28px',
+		h2: '18px',
+	},
 
-const letterSpacing = {
-	default: 'normal',
-	h1: '0.2em',
-	h2: '0.05em',
+	lineHeight: {
+		default: '24px',
+		h1: '54px',
+		h2: '36px',
+	},
+
+	letterSpacing: {
+		default: 'normal',
+		h1: '0.2em',
+		h2: '0.05em',
+	},
 }
 
 export const lightTheme = {
@@ -53,11 +55,8 @@ export const lightTheme = {
 		color5: Colors.Grey400,
 		alert: Colors.Red100,
 	},
-	weights,
+	font,
 	spaces,
-	fontSizes,
-	lineHeight,
-	letterSpacing,
 }
 
 export const darkTheme = {
@@ -71,9 +70,6 @@ export const darkTheme = {
 		color5: Colors.Grey400,
 		alert: Colors.Red100,
 	},
-	weights,
+	font,
 	spaces,
-	fontSizes,
-	lineHeight,
-	letterSpacing,
 }
