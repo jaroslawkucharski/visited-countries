@@ -1,34 +1,53 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import './App.css'
+import { HiMoon, HiSun } from 'react-icons/hi'
+import { Column, Row } from 'simple-flexbox'
+import { ThemeProvider } from 'styled-components'
 
-function App() {
-  const [count, setCount] = useState(0)
+import { Button } from 'components/ui'
 
-  return (
-    <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </div>
-  )
+import { useThemeColorContext } from './context/ThemeContext'
+import { GlobalStyles } from './styles/global'
+
+const App = () => {
+	const { theme, themeColor, toggleTheme } = useThemeColorContext()
+
+	const colummStyles = {
+		paddingBottom: 80,
+		margin: '0 auto',
+		width: 500,
+		height: '100vh',
+		gap: 10,
+	}
+
+	const rowStyles = {
+		gap: 10,
+	}
+
+	return (
+		<ThemeProvider theme={themeColor}>
+			<GlobalStyles />
+
+			<Column
+				horizontal="center"
+				vertical="center"
+				style={{ ...colummStyles }}
+			>
+				<p className="read-the-docs">Hello world!</p>
+
+				<Row style={{ ...rowStyles }}>
+					<Button action={() => null}>{theme === 'dark' ? <HiSun /> : <HiMoon />} Log In</Button>
+
+					<Button
+						variant="secondary"
+						action={() => toggleTheme()}
+						hasOnlyIcon
+					>
+						{theme === 'dark' ? <HiSun /> : <HiMoon />}
+					</Button>
+				</Row>
+			</Column>
+			<div />
+		</ThemeProvider>
+	)
 }
 
 export default App
