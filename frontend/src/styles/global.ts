@@ -17,7 +17,7 @@ export const GlobalStyles = styled.createGlobalStyle`
 	}
 
 	html {
-		line-height: 1.15;
+		line-height: ${({ theme }) => theme.lineHeight.default};
 		-webkit-text-size-adjust: 100%;
 		-webkit-font-smoothing: antialiased;
 	}
@@ -37,13 +37,13 @@ export const GlobalStyles = styled.createGlobalStyle`
 	html,
 	body {
 		height: 100%;
-		font-size: 16px;
+		font-size: ${({ theme }) => theme.fontSizes.default}
 		height: 100vh;
 		color: ${({ theme }) => theme.colors.secondary};
 		background-color: ${({ theme }) => theme.colors.main};
 	}
 	body {
-		line-height: 1.5;
+		line-height: ${({ theme }) => theme.lineHeight.default};
 		-webkit-font-smoothing: antialiased;
 	}
 	img,
