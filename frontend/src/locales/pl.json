@@ -1,0 +1,9 @@
+{
+	"hello.world": "Cześć świecie!",
+	"pages": {
+		"login": {
+			"heading": "Logowanie",
+			"description": "Witaj w aplikacji Visited Countries."
+		}
+	}
+}
