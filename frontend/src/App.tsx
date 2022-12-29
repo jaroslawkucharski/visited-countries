@@ -2,7 +2,7 @@ import { HiMoon, HiSun } from 'react-icons/hi'
 import { Column, Row } from 'simple-flexbox'
 import { ThemeProvider } from 'styled-components'
 
-import { Button } from 'components/ui'
+import { Button, Heading } from 'components/ui'
 
 import { useThemeColorContext } from './context/ThemeContext'
 import { GlobalStyles } from './styles/global'
@@ -13,12 +13,13 @@ const App = () => {
 	const colummStyles = {
 		paddingBottom: 80,
 		margin: '0 auto',
-		width: 500,
+		width: 300,
 		height: '100vh',
 		gap: 10,
 	}
 
 	const rowStyles = {
+		width: '100%',
 		gap: 10,
 	}
 
@@ -31,11 +32,24 @@ const App = () => {
 				vertical="center"
 				style={{ ...colummStyles }}
 			>
-				<p className="read-the-docs">Hello world!</p>
+				<Heading>Log in!</Heading>
+				<Heading level={2}>Welcome in Visited Countries app.</Heading>
 
-				<Row style={{ ...rowStyles }}>
-					<Button action={() => null}>{theme === 'dark' ? <HiSun /> : <HiMoon />} Log In</Button>
-
+				<Row
+					horizontal="center"
+					style={{ ...rowStyles }}
+				>
+					<Button
+						action={() => null}
+						hasFullWidth
+					>
+						{theme === 'dark' ? <HiSun /> : <HiMoon />} Log In
+					</Button>
+				</Row>
+				<Row
+					horizontal="center"
+					style={{ ...rowStyles }}
+				>
 					<Button
 						variant="secondary"
 						action={() => toggleTheme()}
