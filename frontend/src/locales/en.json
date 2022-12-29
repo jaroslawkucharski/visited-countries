@@ -3,7 +3,13 @@
 	"pages": {
 		"login": {
 			"heading": "Log in",
-			"description": "Welcome to the Visited Countries app."
+			"description": "Welcome again to the Visited Countries app.",
+			"action": "Log in"
+		},
+		"register": {
+			"heading": "Register",
+			"description": "Welcome to the Visited Countries app.",
+			"action": "Register"
 		}
 	}
 }
