@@ -1,4 +1,5 @@
 import { useThemeColorContext } from 'context/ThemeContext'
+import { Login } from 'pages'
 import { ThemeProvider } from 'styled-components'
 
 import { GlobalStyles } from 'styles/global'
@@ -9,6 +10,8 @@ const App = () => {
 	return (
 		<ThemeProvider theme={themeColor}>
 			<GlobalStyles />
+
+			<Login />
 		</ThemeProvider>
 	)
 }
