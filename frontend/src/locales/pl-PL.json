@@ -4,7 +4,17 @@
 		"login": {
 			"heading": "Logowanie",
 			"description": "Witaj ponownie w aplikacji Visited Countries.",
-			"action": "Zaloguj się"
+			"action": "Zaloguj się",
+			"fields": {
+				"labels": {
+					"email": "Email",
+					"password": "Hasło"
+				},
+				"placeholders": {
+					"email": "twójmail@domena.pl",
+					"password": "hasło"
+				}
+			}
 		},
 		"register": {
 			"heading": "Rejestracja",

@@ -4,7 +4,17 @@
 		"login": {
 			"heading": "Log in",
 			"description": "Welcome again to the Visited Countries app.",
-			"action": "Log in"
+			"action": "Log in",
+			"fields": {
+				"labels": {
+					"email": "Email",
+					"password": "Password"
+				},
+				"placeholders": {
+					"email": "yourmail@domain.com",
+					"password": "password"
+				}
+			}
 		},
 		"register": {
 			"heading": "Register",
