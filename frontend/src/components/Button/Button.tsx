@@ -5,8 +5,9 @@ import { ButtonComponent } from './Button.styles'
 
 interface ButtonProps {
 	variant?: 'primary' | 'secondary' | 'alert'
+	type?: 'button' | 'submit' | 'reset'
 	children: ReactNode
-	action: ReactEventHandler<HTMLButtonElement>
+	action?: ReactEventHandler<HTMLButtonElement>
 	hasFullWidth?: boolean
 	hasOnlyIcon?: boolean
 	isLoading?: boolean
@@ -15,6 +16,7 @@ interface ButtonProps {
 
 export const Button: FC<ButtonProps> = ({
 	variant = 'primary',
+	type = 'button',
 	children,
 	action,
 	hasFullWidth = false,
@@ -24,6 +26,7 @@ export const Button: FC<ButtonProps> = ({
 }) => (
 	<ButtonComponent
 		variant={variant}
+		type={type}
 		onClick={action}
 		hasFullWidth={hasFullWidth}
 		hasOnlyIcon={hasOnlyIcon}
