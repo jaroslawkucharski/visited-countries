@@ -1,6 +1,5 @@
+import { Loader } from 'components'
 import { FC, ReactEventHandler, ReactNode } from 'react'
-
-import { Loader } from 'components/ui'
 
 import { ButtonComponent } from './Button.styles'
 
