@@ -3,12 +3,18 @@ import styled, { css } from 'styled-components'
 export const TopBarComponent = styled.div`
 	width: 100%;
 
-	${({ theme: { spaces } }) =>
+	${({ theme: { spaces, breakpoints } }) =>
 		css`
 			padding: ${spaces.medium} ${spaces.big};
 			display: flex;
 			justify-content: space-between;
 			align-items: center;
+
+			${breakpoints.mobile} {
+				justify-content: center;
+				flex-direction: column;
+				gap: ${spaces.tiny};
+			}
 		`}
 `
 

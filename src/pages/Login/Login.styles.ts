@@ -1,18 +1,20 @@
 import styled, { css } from 'styled-components'
 
 export const LoginColumnComponent = styled.div`
-	width: 100%;
-
-	${({ theme: { spaces } }) =>
+	${({ theme: { spaces, breakpoints } }) =>
 		css`
 			width: 400px;
 			margin: 0 auto;
-			padding: 0 ${spaces.big};
+			padding: ${spaces.medium} ${spaces.big};
 			display: flex;
 			flex-direction: column;
 			justify-content: center;
 			align-items: center;
 			gap: ${spaces.tiny};
+
+			${breakpoints.mobile} {
+				width: 100%;
+			}
 		`}
 `
 
