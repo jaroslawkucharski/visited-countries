@@ -3,7 +3,7 @@
 	"pages": {
 		"login": {
 			"heading": "Logowanie",
-			"description": "Witaj ponownie w aplikacji Visited Countries.",
+			"description": "Witaj ponownie w aplikacji VisitedCountries.",
 			"action": "Zaloguj się",
 			"label.email": "Email",
 			"label.password": "Hasło",
@@ -13,7 +13,7 @@
 		},
 		"register": {
 			"heading": "Rejestracja",
-			"description": "Witaj w aplikacji Visited Countries.",
+			"description": "Witaj w aplikacji VisitedCountries.",
 			"action": "Zarejestruj się"
 		}
 	}
