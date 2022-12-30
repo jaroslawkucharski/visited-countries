@@ -37,32 +37,29 @@ export const Form = () => {
 			<Input
 				id={uuid()}
 				type="email"
-				label={t('pages.login.fields.labels.email')}
+				label={t('pages.login.label.email')}
 				name="email"
-				placeholder={t('pages.login.fields.placeholders.email')}
-				field={{
-					name: 'email',
-					value: values.email,
-					onChange: handleChange,
-					onBlur: handleBlur,
-				}}
-				form={{ errors, touched }}
+				placeholder={t('pages.login.placeholder.email')}
+				value={values.email}
+				onChange={handleChange}
+				onBlur={handleBlur}
+				errors={errors}
+				touched={touched}
+				autoFocus
 				hasFullWidth
 			/>
 
 			<Input
 				id={uuid()}
 				type="password"
-				label={t('pages.login.fields.labels.password')}
+				label={t('pages.login.label.password')}
 				name="password"
-				placeholder={t('pages.login.fields.placeholders.password')}
-				field={{
-					name: 'password',
-					value: values.password,
-					onChange: handleChange,
-					onBlur: handleBlur,
-				}}
-				form={{ errors, touched }}
+				placeholder={t('pages.login.placeholder.password')}
+				value={values.password}
+				onChange={handleChange}
+				onBlur={handleBlur}
+				errors={errors}
+				touched={touched}
 				hasFullWidth
 			/>
 
