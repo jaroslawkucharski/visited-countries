@@ -9,21 +9,11 @@ import { FormComponent } from './Form.styles'
 export const Form = () => {
 	const { t } = useTranslation()
 
-	const initialValues = { email: '', password: '' }
+	const initialValues: { email: string; password: string } = { email: '', password: '' }
 
 	const onSubmit = () => console.log('submit')
 
-	const {
-		values,
-		handleChange,
-		handleBlur,
-		errors,
-		touched,
-		handleSubmit,
-		isValid,
-		dirty,
-		isSubmitting,
-	} = useFormik({
+	const { values, handleChange, handleBlur, handleSubmit, isSubmitting } = useFormik({
 		initialValues,
 		validationSchema: formSchema,
 		onSubmit,
@@ -37,14 +27,11 @@ export const Form = () => {
 			<Input
 				id={uuid()}
 				type="email"
-				label={t('pages.login.label.email')}
+				label={`${t('pages.login.label.email')}`}
 				name="email"
-				placeholder={t('pages.login.placeholder.email')}
 				value={values.email}
 				onChange={handleChange}
 				onBlur={handleBlur}
-				errors={errors}
-				touched={touched}
 				autoFocus
 				hasFullWidth
 			/>
@@ -52,14 +39,11 @@ export const Form = () => {
 			<Input
 				id={uuid()}
 				type="password"
-				label={t('pages.login.label.password')}
+				label={`${t('pages.login.label.password')}`}
 				name="password"
-				placeholder={t('pages.login.placeholder.password')}
 				value={values.password}
 				onChange={handleChange}
 				onBlur={handleBlur}
-				errors={errors}
-				touched={touched}
 				hasFullWidth
 			/>
 
@@ -67,7 +51,7 @@ export const Form = () => {
 				type="submit"
 				hasFullWidth
 				isLoading={isSubmitting}
-				isDisabled={!isValid || !dirty || isSubmitting}
+				isDisabled={isSubmitting}
 			>
 				{t('pages.login.action')}
 			</Button>
