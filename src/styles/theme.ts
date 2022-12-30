@@ -46,6 +46,10 @@ const font = {
 	},
 }
 
+const breakpoints = {
+	mobile: '@media (max-width: 700px)',
+}
+
 export const lightTheme = {
 	colors: {
 		main: Colors.White100,
@@ -59,6 +63,7 @@ export const lightTheme = {
 	},
 	font,
 	spaces,
+	breakpoints,
 }
 
 export const darkTheme = {
@@ -74,4 +79,5 @@ export const darkTheme = {
 	},
 	font,
 	spaces,
+	breakpoints,
 }
