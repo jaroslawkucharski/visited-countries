@@ -1,4 +1,4 @@
-import { Button, Heading } from 'components'
+import { Heading } from 'components'
 import { TopBar } from 'layouts'
 import { useTranslation } from 'react-i18next'
 
@@ -12,26 +12,13 @@ export const Login = () => {
 		<>
 			<TopBar />
 
-			<LoginColumnComponent
-				horizontal="center"
-				vertical="center"
-			>
+			<LoginColumnComponent>
 				<Heading>{t('pages.login.heading')}</Heading>
 
 				<Heading level={2}>{t('pages.login.description')}</Heading>
 
-				<LoginRowComponent horizontal="center">
+				<LoginRowComponent>
 					<Form />
-				</LoginRowComponent>
-
-				<LoginRowComponent horizontal="center">
-					<Button
-						variant="secondary"
-						action={() => null}
-						hasFullWidth
-					>
-						{t('pages.register.action')}
-					</Button>
 				</LoginRowComponent>
 			</LoginColumnComponent>
 		</>

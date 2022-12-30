@@ -1,8 +1,9 @@
 import { FormikErrors, FormikTouched } from 'formik'
-import { ChangeEventHandler, FC, FocusEventHandler } from 'react'
+import { ChangeEventHandler, FC, FocusEventHandler, useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import { HiEye, HiEyeOff } from 'react-icons/hi'
 
-import { ErrorComponent, InputComponent, LabelComponent } from './Input.styles'
+import { ErrorComponent, IconComponent, InputComponent, LabelComponent } from './Input.styles'
 
 interface InputProps {
 	type?: 'text' | 'email' | 'password'
@@ -10,9 +11,9 @@ interface InputProps {
 	name: string
 	id: string
 	value?: string | number
-	placeholder: string
+	placeholder?: string
 	touched?: FormikTouched<{
-		[field: string]: any
+		[field: string]: boolean
 	}>
 	errors?: FormikErrors<{
 		[field: string]: string
@@ -27,7 +28,7 @@ export const Input: FC<InputProps> = ({
 	type = 'text',
 	label,
 	name,
-	placeholder,
+	placeholder = '',
 	id,
 	value = '',
 	touched = {},
@@ -39,7 +40,12 @@ export const Input: FC<InputProps> = ({
 }) => {
 	const { t } = useTranslation()
 
+	const [showPassword, setShowPassword] = useState(false)
+
 	const isError = (errors[name] && touched[name]) as boolean
+	const isPassword = (type === 'password') as boolean
+
+	const handleShowPassword = () => setShowPassword(!showPassword)
 
 	return (
 		<div>
@@ -47,15 +53,13 @@ export const Input: FC<InputProps> = ({
 				htmlFor={id}
 				hasFullWidth={hasFullWidth}
 			>
-				{label}
+				{label} {isError && <ErrorComponent>{t(`${errors[name]}`)}</ErrorComponent>}
 			</LabelComponent>
-
-			<br />
 
 			<InputComponent
 				id={id}
 				name={name}
-				type={type}
+				type={showPassword ? 'text' : type}
 				value={value}
 				placeholder={placeholder}
 				onChange={onChange}
@@ -63,9 +67,14 @@ export const Input: FC<InputProps> = ({
 				hasFullWidth={hasFullWidth}
 				autoFocus={autoFocus}
 				isError={isError}
+				isPassword={isPassword}
 			/>
 
-			{isError && <ErrorComponent>{t(`${errors[name]}`)}</ErrorComponent>}
+			{isPassword && (
+				<IconComponent onClick={handleShowPassword}>
+					{showPassword ? <HiEyeOff /> : <HiEye />}
+				</IconComponent>
+			)}
 		</div>
 	)
 }

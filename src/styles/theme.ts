@@ -10,6 +10,7 @@ const Colors = {
 }
 
 const spaces = {
+	mini: '4px',
 	tiny: '8px',
 	small: '12px',
 	medium: '20px',
@@ -34,14 +35,14 @@ const font = {
 
 	lineHeight: {
 		default: '24px',
-		h1: '54px',
-		h2: '36px',
+		h1: '44px',
+		h2: '28px',
 	},
 
 	letterSpacing: {
 		default: 'normal',
-		h1: '0.2em',
-		h2: '0.05em',
+		h1: '0.1em',
+		h2: '0.02em',
 	},
 }
 
