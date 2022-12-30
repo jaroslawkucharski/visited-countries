@@ -35,7 +35,7 @@ const variantStyles = ({ colors }: DefaultTheme, variant = 'primary') =>
 		`,
 		alert: css`
 			color: ${colors.secondary};
-			background: ${colors.alert};
+			background: ${colors.error};
 
 			&:hover {
 				background: ${colors.color5};
