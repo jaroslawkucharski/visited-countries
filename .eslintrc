@@ -13,12 +13,10 @@
 		"plugin:prettier/recommended"
 	],
 	"overrides": [],
-	"parser": "@typescript-eslint/parser",
 	"ignorePatterns": ["vite.config.ts"],
 	"parserOptions": {
 		"ecmaVersion": "latest",
 		"project": ["tsconfig.json"],
-		// "tsconfigRootDir": "./",
 		"sourceType": "module",
 		"parser": "@typescript-eslint/parser"
 	},
