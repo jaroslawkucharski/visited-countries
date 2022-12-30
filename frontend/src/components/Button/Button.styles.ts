@@ -57,7 +57,7 @@ export const ButtonComponent = styled.button<ButtonComponentProps>`
 
 	${({ theme: { spaces, font }, hasOnlyIcon, hasFullWidth }) =>
 		css`
-			width: ${!!hasFullWidth && '100%'};
+			width: ${hasFullWidth && '100%'};
 			font-weight: ${font.weights.bold};
 			padding: ${hasOnlyIcon ? `${spaces.tiny} ${spaces.small}` : `${spaces.tiny} ${spaces.big}`};
 		`}
