@@ -1,14 +1,14 @@
 import i18next from 'i18next'
 import LanguageDetector from 'i18next-browser-languagedetector'
-import en from 'locales/en.json'
-import pl from 'locales/pl.json'
+import en from 'locales/en-US.json'
+import pl from 'locales/pl-PL.json'
 import { initReactI18next } from 'react-i18next'
 
 const resources = {
-	en: {
+	'en-US': {
 		translation: en,
 	},
-	pl: {
+	'pl-PL': {
 		translation: pl,
 	},
 }
@@ -18,7 +18,7 @@ i18next
 	.use(initReactI18next)
 	.init({
 		resources,
-		fallbackLng: 'en',
+		fallbackLng: 'en-US',
 		interpolation: {
 			escapeValue: false,
 		},

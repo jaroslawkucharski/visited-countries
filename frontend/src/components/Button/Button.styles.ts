@@ -35,7 +35,7 @@ const variantStyles = ({ colors }: DefaultTheme, variant = 'primary') =>
 		`,
 		alert: css`
 			color: ${colors.secondary};
-			background: ${colors.alert};
+			background: ${colors.error};
 
 			&:hover {
 				background: ${colors.color5};
@@ -57,7 +57,7 @@ export const ButtonComponent = styled.button<ButtonComponentProps>`
 
 	${({ theme: { spaces, font }, hasOnlyIcon, hasFullWidth }) =>
 		css`
-			width: ${!!hasFullWidth && '100%'};
+			width: ${hasFullWidth && '100%'};
 			font-weight: ${font.weights.bold};
 			padding: ${hasOnlyIcon ? `${spaces.tiny} ${spaces.small}` : `${spaces.tiny} ${spaces.big}`};
 		`}

@@ -2,6 +2,7 @@ import { Button, Heading } from 'components'
 import { TopBar } from 'layouts'
 import { useTranslation } from 'react-i18next'
 
+import { Form } from './Form'
 import { LoginColumnComponent, LoginRowComponent } from './Login.styles'
 
 export const Login = () => {
@@ -20,12 +21,7 @@ export const Login = () => {
 				<Heading level={2}>{t('pages.login.description')}</Heading>
 
 				<LoginRowComponent horizontal="center">
-					<Button
-						action={() => null}
-						hasFullWidth
-					>
-						{t('pages.login.action')}
-					</Button>
+					<Form />
 				</LoginRowComponent>
 
 				<LoginRowComponent horizontal="center">

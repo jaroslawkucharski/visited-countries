@@ -26,6 +26,7 @@ const font = {
 	},
 
 	sizes: {
+		error: '12px',
 		default: '16px',
 		h1: '28px',
 		h2: '18px',
@@ -53,7 +54,7 @@ export const lightTheme = {
 		color3: Colors.White200,
 		color4: Colors.Grey300,
 		color5: Colors.Grey400,
-		alert: Colors.Red100,
+		error: Colors.Red100,
 	},
 	font,
 	spaces,
@@ -68,7 +69,7 @@ export const darkTheme = {
 		color3: Colors.Grey200,
 		color4: Colors.Grey300,
 		color5: Colors.Grey400,
-		alert: Colors.Red100,
+		error: Colors.Red100,
 	},
 	font,
 	spaces,

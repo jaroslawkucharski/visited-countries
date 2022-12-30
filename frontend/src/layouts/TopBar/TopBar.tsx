@@ -7,13 +7,13 @@ import { HiMoon, HiSun } from 'react-icons/hi'
 import { TopBarComponent } from './TopBar.styles'
 
 export const TopBar = () => {
-	const { t, i18n } = useTranslation()
+	const { i18n } = useTranslation()
 
 	const { theme, toggleTheme } = useThemeColorContext()
 
-	const handleLanguageChangeToEN = useCallback(() => i18n.changeLanguage('en'), [])
+	const handleLanguageChangeToEN = useCallback(() => i18n.changeLanguage('en-US'), [])
 
-	const handleLanguageChangeToPL = useCallback(() => i18n.changeLanguage('pl'), [])
+	const handleLanguageChangeToPL = useCallback(() => i18n.changeLanguage('pl-PL'), [])
 
 	const handleThemeColorChange = useCallback(() => toggleTheme(), [])
 
