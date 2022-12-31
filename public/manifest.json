@@ -3,8 +3,9 @@
 	"name": "VisitedCountries",
 	"short_name": "VisitedCountries",
 	"start_url": ".",
-	"display": "standalone",
+	"display": "fullscreen",
 	"background_color": "#090909",
+	"theme_color": "#090909",
 	"description": "VisitedCountries app.",
 	"icons": [
 		{
@@ -38,7 +39,6 @@
 			"type": "image/png"
 		}
 	],
-	"theme_color": "#EAEAEA",
 	"dir": "auto",
 	"lang": "en",
 	"display_override": ["fullscreen", "standalone"],
