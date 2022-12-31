@@ -4,7 +4,7 @@ import { themeDetector } from 'helpers/themeDetector'
 
 import { useLocalStorage } from 'hooks/useLocalstorage'
 
-import { THEME_COLOR } from 'constants/themeColor'
+import { THEME_COLORS } from 'constants/themeColors'
 
 import { darkTheme, lightTheme } from 'styles/theme'
 
@@ -18,11 +18,11 @@ const useColorTheme = () => {
 	const [theme, setTheme] = useLocalStorage<string>('theme')
 
 	const toggleTheme = () =>
-		setTheme(prev => (prev === THEME_COLOR.DARK ? THEME_COLOR.LIGHT : THEME_COLOR.DARK))
+		setTheme(prev => (prev === THEME_COLORS.DARK ? THEME_COLORS.LIGHT : THEME_COLORS.DARK))
 
 	useEffect(() => (!theme ? setTheme(localTheme) : undefined), [theme, setTheme, localTheme])
 
-	const themeColor = theme === THEME_COLOR.DARK ? darkTheme : lightTheme
+	const themeColor = theme === THEME_COLORS.DARK ? darkTheme : lightTheme
 
 	return {
 		theme,

@@ -1,1 +1,2 @@
-export * from './themeColor'
+export * from './themeColors'
+export * from './locales'

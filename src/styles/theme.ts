@@ -47,7 +47,7 @@ const font = {
 }
 
 const breakpoints = {
-	mobile: '@media (max-width: 700px)',
+	mobile: 700,
 }
 
 export const lightTheme = {

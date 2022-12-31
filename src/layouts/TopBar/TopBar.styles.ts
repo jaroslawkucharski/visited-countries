@@ -10,7 +10,7 @@ export const TopBarComponent = styled.div`
 			justify-content: space-between;
 			align-items: center;
 
-			${breakpoints.mobile} {
+			@media (max-width: ${breakpoints.mobile}px) {
 				justify-content: center;
 				flex-direction: column;
 				gap: ${spaces.tiny};

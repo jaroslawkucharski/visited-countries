@@ -12,7 +12,7 @@ export const LoginColumnComponent = styled.div`
 			align-items: center;
 			gap: ${spaces.tiny};
 
-			${breakpoints.mobile} {
+			@media (max-width: ${breakpoints.mobile}px) {
 				width: 100%;
 			}
 		`}

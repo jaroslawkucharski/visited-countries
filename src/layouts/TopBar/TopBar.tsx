@@ -1,6 +1,7 @@
 import LogoDark from 'assets/images/logo_dark.svg'
 import LogoLight from 'assets/images/logo_light.svg'
 import { Button } from 'components'
+import { LOCALES, THEME_COLORS } from 'constants'
 import { useThemeColorContext } from 'context/ThemeContext'
 import { useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
@@ -13,16 +14,16 @@ export const TopBar = () => {
 
 	const { theme, toggleTheme } = useThemeColorContext()
 
-	const handleLanguageChangeToEN = useCallback(() => i18n.changeLanguage('en-US'), [i18n])
+	const handleLanguageChangeToEN = useCallback(() => i18n.changeLanguage(LOCALES.EN), [i18n])
 
-	const handleLanguageChangeToPL = useCallback(() => i18n.changeLanguage('pl-PL'), [i18n])
+	const handleLanguageChangeToPL = useCallback(() => i18n.changeLanguage(LOCALES.PL), [i18n])
 
 	const handleThemeColorChange = useCallback(() => toggleTheme(), [toggleTheme])
 
 	return (
 		<TopBarComponent>
 			<img
-				src={theme === 'dark' ? LogoDark : LogoLight}
+				src={theme === THEME_COLORS.DARK ? LogoDark : LogoLight}
 				width="170"
 				alt="logo"
 			/>
