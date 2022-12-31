@@ -1,5 +1,5 @@
 {
-  "name": "visitedcountries",
+  "name": "backend",
   "private": true,
   "version": "0.1.0",
   "description": "A Strapi application",
@@ -21,7 +21,7 @@
     "name": "A Strapi developer"
   },
   "strapi": {
-    "uuid": "fd3573a9-ad06-4e2a-96a1-9b8859069934"
+    "uuid": "d571e66b-fef8-43b5-972d-f22063e4f15a"
   },
   "engines": {
     "node": ">=14.19.1 <=18.x.x",
