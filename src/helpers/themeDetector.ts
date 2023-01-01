@@ -1,4 +1,4 @@
-import { THEME_COLORS } from '../constants/themeColors'
+import { THEME_COLORS } from '../constants/theme'
 
 export const themeDetector = () => {
 	const isDarkTheme = window.matchMedia(`(prefers-color-scheme: ${THEME_COLORS.DARK})`).matches

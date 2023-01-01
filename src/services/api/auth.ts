@@ -1,9 +1,9 @@
-import { authToken } from 'services/authToken'
 import { post } from 'services/axios'
+import { apiUrl, authToken } from 'services/config'
 
 export const loginRequest = (identifier: string, password: string) =>
 	post(
-		'http://localhost:1337/api/auth/local',
+		`${apiUrl}/api/auth/local`,
 		{
 			identifier,
 			password,

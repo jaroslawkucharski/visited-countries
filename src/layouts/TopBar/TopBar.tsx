@@ -1,11 +1,13 @@
 import LogoDark from 'assets/images/logo_dark.svg'
 import LogoLight from 'assets/images/logo_light.svg'
 import { Button } from 'components'
-import { LOCALES, THEME_COLORS } from 'constants'
 import { useThemeColorContext } from 'context/ThemeContext'
 import { useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
 import { HiMoon, HiSun } from 'react-icons/hi'
+
+import { LOCALES } from 'constants/locales'
+import { THEME_COLORS } from 'constants/theme'
 
 import { SettingsComponent, TopBarComponent } from './TopBar.styles'
 
