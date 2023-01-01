@@ -1,10 +1,9 @@
-import { API_URL, ENVIRONMENT } from 'constants/api'
+import { API_URL } from 'constants/api'
 
-export const apiUrl = () =>
-	process.env.ENVIRONMENT === ENVIRONMENT.PRODUCTION ? API_URL.PRODUCTION : API_URL.DEVELOPMENT
+export const apiUrl = import.meta.env.PROD ? API_URL.PRODUCTION : API_URL.DEVELOPMENT
 
-export const authToken = () => ({
+export const authToken = {
 	headers: {
-		Authorization: `${process.env.AUTH_TOKEN_TYPE} ${process.env.AUTH_TOKEN}`,
+		Authorization: `${import.meta.env.VITE_AUTH_TOKEN_TYPE} ${import.meta.env.VITE_AUTH_TOKEN}`,
 	},
-})
+}
