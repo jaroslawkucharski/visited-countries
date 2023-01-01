@@ -1,17 +1,31 @@
 import { Button, Input } from 'components'
 import { useFormik } from 'formik'
 import { useTranslation } from 'react-i18next'
+import { loginRequest } from 'services/api/auth'
 import { v4 as uuid } from 'uuid'
 
 import { formSchema } from './Form.schema'
 import { FormComponent } from './Form.styles'
+
+interface FormValues {
+	email: string
+	password: string
+}
 
 export const Form = () => {
 	const { t } = useTranslation()
 
 	const initialValues: { email: string; password: string } = { email: '', password: '' }
 
-	const onSubmit = () => console.log('submit')
+	const onSubmit = async (values: FormValues) => {
+		try {
+			const data = await loginRequest(values.email, values.password)
+
+			alert(data)
+		} catch {
+			alert('error')
+		}
+	}
 
 	const { values, handleChange, handleBlur, handleSubmit, isSubmitting } = useFormik({
 		initialValues,

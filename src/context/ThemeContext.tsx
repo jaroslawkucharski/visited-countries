@@ -4,7 +4,7 @@ import { themeDetector } from 'helpers/themeDetector'
 
 import { useLocalStorage } from 'hooks/useLocalstorage'
 
-import { THEME_COLORS } from 'constants/themeColors'
+import { THEME_COLORS } from 'constants/theme'
 
 import { darkTheme, lightTheme } from 'styles/theme'
 
