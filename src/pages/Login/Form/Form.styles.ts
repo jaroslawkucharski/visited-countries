@@ -1,13 +1,9 @@
-import styled, { css } from 'styled-components'
+import styled from 'styled-components'
 
 export const FormComponent = styled.form`
 	width: 100%;
-
-	${({ theme: { spaces } }) =>
-		css`
-			display: flex;
-			flex-direction: column;
-			justify-content: center;
-			gap: ${spaces.medium};
-		`}
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	position: relative;
 `

@@ -10,7 +10,6 @@ export const LoginColumnComponent = styled.div`
 			flex-direction: column;
 			justify-content: center;
 			align-items: center;
-			gap: ${spaces.tiny};
 
 			@media (max-width: ${breakpoints.mobile}px) {
 				width: 100%;
@@ -27,6 +26,5 @@ export const LoginRowComponent = styled.div`
 			display: flex;
 			justify-content: center;
 			align-items: center;
-			gap: ${spaces.tiny};
 		`}
 `

@@ -1,8 +1,10 @@
-import { Button, Input } from 'components'
+import { Button, Input, Spacer } from 'components'
 import { useFormik } from 'formik'
 import { useTranslation } from 'react-i18next'
-import { loginRequest } from 'services/api/auth'
+import { loginRequest } from 'services/auth'
 import { v4 as uuid } from 'uuid'
+
+import { toastNotify } from 'helpers/toastNotify'
 
 import { formSchema } from './Form.schema'
 import { FormComponent } from './Form.styles'
@@ -20,10 +22,8 @@ export const Form = () => {
 	const onSubmit = async (values: FormValues) => {
 		try {
 			const data = await loginRequest(values.email, values.password)
-
-			alert(data)
 		} catch {
-			alert('error')
+			toastNotify(t('toasts.error'), 'error')
 		}
 	}
 
@@ -50,6 +50,8 @@ export const Form = () => {
 				hasFullWidth
 			/>
 
+			<Spacer type="vertical" />
+
 			<Input
 				id={uuid()}
 				type="password"
@@ -60,6 +62,13 @@ export const Form = () => {
 				onBlur={handleBlur}
 				hasFullWidth
 			/>
+
+			<Spacer
+				type="vertical"
+				space="small"
+			/>
+
+			<Spacer type="vertical" />
 
 			<Button
 				type="submit"
