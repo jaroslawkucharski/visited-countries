@@ -4,7 +4,7 @@ import { themeDetector } from 'helpers/themeDetector'
 
 import { useLocalStorage } from 'hooks/useLocalstorage'
 
-import { THEME_COLORS } from 'constants/theme'
+import { THEME_COLORS, ThemeColors } from 'constants/theme'
 
 import { darkTheme, lightTheme } from 'styles/theme'
 
@@ -15,7 +15,7 @@ const ThemeContext = createContext<ThemeContextType | null>(null)
 const useColorTheme = () => {
 	const localTheme = themeDetector()
 
-	const [theme, setTheme] = useLocalStorage<string>('theme')
+	const [theme, setTheme] = useLocalStorage<ThemeColors>('theme')
 
 	const toggleTheme = () =>
 		setTheme(prev => (prev === THEME_COLORS.DARK ? THEME_COLORS.LIGHT : THEME_COLORS.DARK))
