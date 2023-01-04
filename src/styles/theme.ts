@@ -6,7 +6,8 @@ const Colors = {
 	White100: '#EAEAEA',
 	White200: '#EEEEEE',
 	White300: '#DDDDDD',
-	Red100: '#F75252',
+	Red100: '#F97777',
+	Red200: '#F75252',
 }
 
 const spaces = {
@@ -47,7 +48,8 @@ const font = {
 }
 
 const breakpoints = {
-	mobile: 700,
+	mobile: 420,
+	tablet: 700,
 }
 
 export const lightTheme = {
@@ -60,6 +62,7 @@ export const lightTheme = {
 		color4: Colors.Grey300,
 		color5: Colors.Grey400,
 		error: Colors.Red100,
+		toastError: Colors.Red200,
 	},
 	font,
 	spaces,
@@ -75,7 +78,8 @@ export const darkTheme = {
 		color3: Colors.Grey200,
 		color4: Colors.Grey300,
 		color5: Colors.Grey400,
-		error: Colors.Red100,
+		error: Colors.Red200,
+		toastError: Colors.Red100,
 	},
 	font,
 	spaces,
