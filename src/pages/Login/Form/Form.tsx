@@ -1,10 +1,7 @@
 import { Button, Input, Spacer } from 'components'
 import { useFormik } from 'formik'
 import { useTranslation } from 'react-i18next'
-import { loginRequest } from 'services/auth'
 import { v4 as uuid } from 'uuid'
-
-import { toastNotify } from 'helpers/toastNotify'
 
 import { formSchema } from './Form.schema'
 import { FormComponent } from './Form.styles'
@@ -20,11 +17,7 @@ export const Form = () => {
 	const initialValues: { email: string; password: string } = { email: '', password: '' }
 
 	const onSubmit = async (values: FormValues) => {
-		try {
-			const data = await loginRequest(values.email, values.password)
-		} catch {
-			toastNotify(t('toasts.error'), 'error')
-		}
+		console.log(values)
 	}
 
 	const { values, handleChange, handleBlur, handleSubmit, isSubmitting } = useFormik({
