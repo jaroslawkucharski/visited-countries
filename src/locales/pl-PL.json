@@ -2,19 +2,22 @@
 	"hello.world": "Cześć świecie!",
 	"pages": {
 		"login": {
-			"heading": "Logowanie",
-			"description": "Witaj ponownie w aplikacji VisitedCountries.",
+			"heading": "Zaloguj się",
+			"description": "Witaj ponownie!",
 			"action": "Zaloguj się",
 			"label.email": "Email",
-			"label.password": "Hasło",
-			"placeholder.email": "twójmail@domena.pl",
-			"placeholder.password": "hasło",
-			"error.email": "Niepoprawny adres email"
+			"label.password": "Hasło"
 		},
 		"register": {
 			"heading": "Rejestracja",
-			"description": "Witaj w aplikacji VisitedCountries.",
-			"action": "Zarejestruj się"
+			"description": "Zarejestruj swoje konto.",
+			"action": "Zarejestruj konto",
+			"label.username": "Nazwa użytkownika",
+			"label.email": "Email",
+			"label.password": "Hasło"
 		}
+	},
+	"toasts": {
+		"error": "Coś poszło nie tak..."
 	}
 }

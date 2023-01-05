@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components'
 
-export const LoginColumnComponent = styled.div`
+export const RegisterColumnComponent = styled.div`
 	${({ theme: { spaces, breakpoints } }) =>
 		css`
 			width: 400px;
@@ -17,7 +17,7 @@ export const LoginColumnComponent = styled.div`
 		`}
 `
 
-export const LoginRowComponent = styled.div`
+export const RegisterRowComponent = styled.div`
 	width: 100%;
 
 	${({ theme: { spaces } }) =>

@@ -5,5 +5,4 @@ export const FormComponent = styled.form`
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
-	position: relative;
 `

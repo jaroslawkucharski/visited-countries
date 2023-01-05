@@ -2,19 +2,22 @@
 	"hello.world": "Hello world!",
 	"pages": {
 		"login": {
-			"heading": "Log in",
-			"description": "Welcome again to the VisitedCountries app.",
-			"action": "Log in",
+			"heading": "Sign In",
+			"description": "Welcome again!",
+			"action": "Login",
 			"label.email": "Email",
-			"label.password": "Password",
-			"placeholder.email": "yourmail@domain.com",
-			"placeholder.password": "password",
-			"error.email": "Incorrect email address"
+			"label.password": "Password"
 		},
 		"register": {
-			"heading": "Register",
-			"description": "Welcome to the VisitedCountries app.",
-			"action": "Register"
+			"heading": "Sign Up",
+			"description": "Create your account.",
+			"action": "Create account",
+			"label.username": "Username",
+			"label.email": "Email",
+			"label.password": "Password"
 		}
+	},
+	"toasts": {
+		"error": "Something went wrong..."
 	}
 }

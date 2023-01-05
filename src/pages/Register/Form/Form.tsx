@@ -1,5 +1,4 @@
 import { Button, Input, Spacer } from 'components'
-import { useAuthContext } from 'context/AuthContext'
 import { useFormik } from 'formik'
 import { useTranslation } from 'react-i18next'
 import { v4 as uuid } from 'uuid'
@@ -8,21 +7,21 @@ import { formSchema } from './Form.schema'
 import { FormComponent } from './Form.styles'
 
 interface FormValues {
+	username: string
 	email: string
 	password: string
 }
 
 export const Form = () => {
 	const { t } = useTranslation()
-	const { singIn } = useAuthContext()
 
-	const initialValues: { email: string; password: string } = { email: '', password: '' }
-
-	const onSubmit = async ({ email, password }: FormValues) => {
-		await singIn(email, password)
-
-		// setValues(email, password)
+	const initialValues: { username: string; email: string; password: string } = {
+		username: '',
+		email: '',
+		password: '',
 	}
+
+	const onSubmit = async (values: FormValues) => console.log({ ...values })
 
 	const { values, handleChange, handleBlur, handleSubmit, isSubmitting } = useFormik({
 		initialValues,
@@ -37,8 +36,22 @@ export const Form = () => {
 		>
 			<Input
 				id={uuid()}
+				type="text"
+				label={`${t('pages.register.label.username')}`}
+				name="username"
+				value={values.username}
+				onChange={handleChange}
+				onBlur={handleBlur}
+				autoFocus
+				hasFullWidth
+			/>
+
+			<Spacer type="vertical" />
+
+			<Input
+				id={uuid()}
 				type="email"
-				label={`${t('pages.login.label.email')}`}
+				label={`${t('pages.register.label.email')}`}
 				name="email"
 				value={values.email}
 				onChange={handleChange}
@@ -52,7 +65,7 @@ export const Form = () => {
 			<Input
 				id={uuid()}
 				type="password"
-				label={`${t('pages.login.label.password')}`}
+				label={`${t('pages.register.label.password')}`}
 				name="password"
 				value={values.password}
 				onChange={handleChange}
@@ -73,7 +86,7 @@ export const Form = () => {
 				isLoading={isSubmitting}
 				isDisabled={isSubmitting}
 			>
-				{t('pages.login.action')}
+				{t('pages.register.action')}
 			</Button>
 		</FormComponent>
 	)

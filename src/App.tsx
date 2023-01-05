@@ -1,17 +1,38 @@
 import { useThemeColorContext } from 'context/ThemeContext'
-import { Login } from 'pages'
+import { PrivateRoute } from 'layouts'
+import { Dashboard, Login, Register } from 'pages'
+import { Route, Routes } from 'react-router-dom'
+import { ToastContainer } from 'react-toastify'
+import { ROUTES } from 'routes'
 import { ThemeProvider } from 'styled-components'
 
-import { GlobalStyles } from 'styles/global'
+import { GlobalStyles } from 'styles/GlobalStyles'
 
 const App = () => {
-	const { themeColor } = useThemeColorContext()
+	const { theme, themeColor } = useThemeColorContext()
 
 	return (
 		<ThemeProvider theme={themeColor}>
 			<GlobalStyles />
 
-			<Login />
+			<ToastContainer theme={theme} />
+
+			<Routes>
+				<Route
+					path={ROUTES.SIGNIN}
+					element={<Login />}
+				/>
+
+				<Route
+					path={ROUTES.SIGNUP}
+					element={<Register />}
+				/>
+
+				<Route
+					path={ROUTES.DASHBOARD}
+					element={<PrivateRoute component={<Dashboard />} />}
+				/>
+			</Routes>
 		</ThemeProvider>
 	)
 }
