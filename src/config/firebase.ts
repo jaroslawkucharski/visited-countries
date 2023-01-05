@@ -1,19 +1,23 @@
 import { getAnalytics } from 'firebase/analytics'
 import { initializeApp } from 'firebase/app'
+import { getAuth } from 'firebase/auth'
+import { getDatabase } from 'firebase/database'
 
-// https://firebase.google.com/docs/web/setup#available-libraries
+import { ENVS } from 'constants/env'
 
 const firebaseConfig = {
-	apiKey: 'AIzaSyCHnGDlKr8T_-sHxuNjcrewkxkmDUhEkFc',
-	authDomain: 'visited-countries-2137.firebaseapp.com',
-	databaseURL: 'https://visited-countries-2137-default-rtdb.firebaseio.com',
-	projectId: 'visited-countries-2137',
-	storageBucket: 'visited-countries-2137.appspot.com',
-	messagingSenderId: '1037234467790',
-	appId: '1:1037234467790:web:6d11317d820c1e5fff719f',
-	measurementId: 'G-CW8GHY8N7P',
+	apiKey: ENVS.FIREBASE_API_KEY,
+	authDomain: ENVS.FIREBASE_AUTH_DOMAIN,
+	databaseURL: ENVS.FIREBASE_DATABASE_URL,
+	projectId: ENVS.FIREBASE_PROJECT_ID,
+	storageBucket: ENVS.FIREBASE_STORAGE_BUCKET,
+	messagingSenderId: ENVS.FIREBASE_MESSAGING_SENDER_ID,
+	appId: ENVS.FIREBASE_APP_ID,
+	measurementId: ENVS.FIREBASE_MEASUREMENT_ID,
 }
 
-// Initialize Firebase
 const app = initializeApp(firebaseConfig)
-const analytics = getAnalytics(app)
+
+export const auth = getAuth(app)
+export const database = getDatabase(app)
+export const analytics = getAnalytics(app)

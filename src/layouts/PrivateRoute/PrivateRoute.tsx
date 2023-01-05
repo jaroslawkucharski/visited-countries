@@ -1,7 +1,13 @@
-import { Dashboard } from 'pages'
+import { useAuthContext } from 'context/AuthContext'
+import { FC, ReactElement } from 'react'
 import { Navigate } from 'react-router-dom'
 import { ROUTES } from 'routes'
 
-import { getToken } from 'helpers/getToken'
+interface PrivateRouteProps {
+	component: ReactElement
+}
+export const PrivateRoute: FC<PrivateRouteProps> = ({ component }) => {
+	const { userAuth } = useAuthContext()
 
-export const PrivateRoute = () => (getToken() ? <Dashboard /> : <Navigate to={ROUTES.SIGNIN} />)
+	return userAuth ? component : <Navigate to={ROUTES.SIGNIN} />
+}

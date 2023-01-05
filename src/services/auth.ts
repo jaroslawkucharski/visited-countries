@@ -1,4 +1,4 @@
-import { apiAuthorization } from 'config/apiAuthorization'
+import { authToken } from 'config/authToken'
 import { client } from 'config/client'
 
 export const loginRequest = (identifier: string, password: string) =>
@@ -8,5 +8,5 @@ export const loginRequest = (identifier: string, password: string) =>
 			identifier,
 			password,
 		},
-		apiAuthorization,
+		authToken,
 	)

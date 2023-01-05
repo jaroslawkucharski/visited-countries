@@ -1,4 +1,5 @@
 import { Button, Input, Spacer } from 'components'
+import { useAuthContext } from 'context/AuthContext'
 import { useFormik } from 'formik'
 import { useTranslation } from 'react-i18next'
 import { v4 as uuid } from 'uuid'
@@ -13,11 +14,14 @@ interface FormValues {
 
 export const Form = () => {
 	const { t } = useTranslation()
+	const { singIn } = useAuthContext()
 
 	const initialValues: { email: string; password: string } = { email: '', password: '' }
 
-	const onSubmit = async (values: FormValues) => {
-		console.log(values)
+	const onSubmit = async ({ email, password }: FormValues) => {
+		await singIn(email, password)
+
+		// setValues(email, password)
 	}
 
 	const { values, handleChange, handleBlur, handleSubmit, isSubmitting } = useFormik({
