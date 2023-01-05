@@ -1,10 +1,6 @@
 import axios from 'axios'
 
-import { APP_API_URL } from 'constants/env'
-
-export const client = axios.create({
-	baseURL: APP_API_URL,
-})
+export const client = axios.create({})
 
 client.interceptors.response.use(
 	({ data }) => data,
