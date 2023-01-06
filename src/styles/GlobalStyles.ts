@@ -94,9 +94,5 @@ export const GlobalStyles = createGlobalStyle`
 		h6 {
 			overflow-wrap: break-word;
 		}
-	`}
-
-	
-
-	
+	`}	
 `

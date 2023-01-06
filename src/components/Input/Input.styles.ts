@@ -7,7 +7,6 @@ interface InputProps {
 }
 
 export const InputComponent = styled.input<InputProps>`
-	min-width: fit-content;
 	min-height: 44px;
 	max-height: 44px;
 	border-radius: 15px;
