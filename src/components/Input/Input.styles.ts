@@ -42,14 +42,6 @@ export const LabelComponent = styled.label<InputProps>`
 		`}
 `
 
-export const ErrorComponent = styled.span`
-	${({ theme: { colors, font } }) =>
-		css`
-			font-size: ${font.sizes.error};
-			color: ${colors.error};
-		`}
-`
-
 export const IconComponent = styled.span`
 	cursor: pointer;
 	margin-top: 12.5px;

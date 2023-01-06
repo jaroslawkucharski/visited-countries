@@ -1,9 +1,10 @@
+import { Paragraph } from 'components'
 import { FormikErrors, FormikTouched } from 'formik'
 import { ChangeEventHandler, FC, FocusEventHandler, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { HiEye, HiEyeOff } from 'react-icons/hi'
 
-import { ErrorComponent, IconComponent, InputComponent, LabelComponent } from './Input.styles'
+import { IconComponent, InputComponent, LabelComponent } from './Input.styles'
 
 interface InputProps {
 	type?: 'text' | 'email' | 'password'
@@ -53,7 +54,16 @@ export const Input: FC<InputProps> = ({
 				htmlFor={id}
 				hasFullWidth={hasFullWidth}
 			>
-				{label} {isError && <ErrorComponent>{t(`${errors[name]}`)}</ErrorComponent>}
+				<Paragraph type="label">{label}</Paragraph>
+
+				{isError && (
+					<Paragraph
+						type="error"
+						size="small"
+					>
+						{t(`${errors[name]}`)}
+					</Paragraph>
+				)}
 			</LabelComponent>
 
 			<InputComponent
