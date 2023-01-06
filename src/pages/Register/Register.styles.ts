@@ -19,12 +19,7 @@ export const RegisterColumnComponent = styled.div`
 
 export const RegisterRowComponent = styled.div`
 	width: 100%;
-
-	${({ theme: { spaces } }) =>
-		css`
-			padding: ${spaces.tiny};
-			display: flex;
-			justify-content: center;
-			align-items: center;
-		`}
+	display: flex;
+	justify-content: center;
+	align-items: center;
 `

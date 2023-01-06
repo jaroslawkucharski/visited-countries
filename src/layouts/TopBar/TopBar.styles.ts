@@ -25,5 +25,6 @@ export const SettingsComponent = styled.div`
 			justify-content: center;
 			align-items: center;
 			gap: ${spaces.tiny};
+			flex-wrap: wrap;
 		`}
 `

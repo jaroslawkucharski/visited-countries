@@ -19,12 +19,7 @@ export const LoginColumnComponent = styled.div`
 
 export const LoginRowComponent = styled.div`
 	width: 100%;
-
-	${({ theme: { spaces } }) =>
-		css`
-			padding: ${spaces.tiny};
-			display: flex;
-			justify-content: center;
-			align-items: center;
-		`}
+	display: flex;
+	justify-content: center;
+	align-items: center;
 `

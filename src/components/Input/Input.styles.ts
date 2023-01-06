@@ -7,7 +7,6 @@ interface InputProps {
 }
 
 export const InputComponent = styled.input<InputProps>`
-	min-width: fit-content;
 	min-height: 44px;
 	max-height: 44px;
 	border-radius: 15px;
@@ -39,14 +38,6 @@ export const LabelComponent = styled.label<InputProps>`
 			justify-content: space-between;
 			align-items: center;
 			margin-bottom: ${spaces.mini};
-		`}
-`
-
-export const ErrorComponent = styled.span`
-	${({ theme: { colors, font } }) =>
-		css`
-			font-size: ${font.sizes.error};
-			color: ${colors.error};
 		`}
 `
 

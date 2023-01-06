@@ -1,4 +1,5 @@
 import { Button, Input, Spacer } from 'components'
+import { useAuthContext } from 'context/AuthContext'
 import { useFormik } from 'formik'
 import { useTranslation } from 'react-i18next'
 import { v4 as uuid } from 'uuid'
@@ -7,47 +8,39 @@ import { formSchema } from './Form.schema'
 import { FormComponent } from './Form.styles'
 
 interface FormValues {
-	username: string
 	email: string
 	password: string
+	confirmPassword: string
 }
 
 export const Form = () => {
 	const { t } = useTranslation()
+	const { singUp } = useAuthContext()
 
-	const initialValues: { username: string; email: string; password: string } = {
-		username: '',
+	const initialValues: {
+		email: string
+		password: string
+		confirmPassword: string
+	} = {
 		email: '',
 		password: '',
+		confirmPassword: '',
 	}
 
-	const onSubmit = async (values: FormValues) => console.log({ ...values })
+	const onSubmit = async ({ email, password }: FormValues) => singUp(email, password)
 
-	const { values, handleChange, handleBlur, handleSubmit, isSubmitting } = useFormik({
-		initialValues,
-		validationSchema: formSchema,
-		onSubmit,
-	})
+	const { values, handleChange, handleBlur, handleSubmit, isSubmitting, errors, touched, isValid } =
+		useFormik({
+			initialValues,
+			validationSchema: formSchema,
+			onSubmit,
+		})
 
 	return (
 		<FormComponent
 			onSubmit={handleSubmit}
 			noValidate
 		>
-			<Input
-				id={uuid()}
-				type="text"
-				label={`${t('pages.register.label.username')}`}
-				name="username"
-				value={values.username}
-				onChange={handleChange}
-				onBlur={handleBlur}
-				autoFocus
-				hasFullWidth
-			/>
-
-			<Spacer type="vertical" />
-
 			<Input
 				id={uuid()}
 				type="email"
@@ -58,6 +51,8 @@ export const Form = () => {
 				onBlur={handleBlur}
 				autoFocus
 				hasFullWidth
+				errors={errors}
+				touched={touched}
 			/>
 
 			<Spacer type="vertical" />
@@ -71,6 +66,23 @@ export const Form = () => {
 				onChange={handleChange}
 				onBlur={handleBlur}
 				hasFullWidth
+				errors={errors}
+				touched={touched}
+			/>
+
+			<Spacer type="vertical" />
+
+			<Input
+				id={uuid()}
+				type="password"
+				label={`${t('pages.register.label.confirm.password')}`}
+				name="confirmPassword"
+				value={values.confirmPassword}
+				onChange={handleChange}
+				onBlur={handleBlur}
+				hasFullWidth
+				errors={errors}
+				touched={touched}
 			/>
 
 			<Spacer
@@ -84,7 +96,7 @@ export const Form = () => {
 				type="submit"
 				hasFullWidth
 				isLoading={isSubmitting}
-				isDisabled={isSubmitting}
+				isDisabled={isSubmitting || !isValid}
 			>
 				{t('pages.register.action')}
 			</Button>

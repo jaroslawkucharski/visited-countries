@@ -6,7 +6,10 @@
 			"description": "Witaj ponownie!",
 			"action": "Zaloguj się",
 			"label.email": "Email",
-			"label.password": "Hasło"
+			"label.password": "Hasło",
+			"link.forgot.password": "Zapomniałeś hasła?",
+			"paragraph.signup": "Nie masz konta?",
+			"link.signup": "REJESTRACJA"
 		},
 		"register": {
 			"heading": "Rejestracja",
@@ -14,7 +17,13 @@
 			"action": "Zarejestruj konto",
 			"label.username": "Nazwa użytkownika",
 			"label.email": "Email",
-			"label.password": "Hasło"
+			"label.password": "Hasło",
+			"label.confirm.password": "Powtórz hasło",
+			"error.field": "Pole obowiązkowe",
+			"error.email": "Niepoprawny adres email",
+			"error.confirm.password": "Hasła nie są takie same",
+			"paragraph.signin": "Masz już konto?",
+			"link.signin": "LOGOWANIE"
 		}
 	},
 	"toasts": {

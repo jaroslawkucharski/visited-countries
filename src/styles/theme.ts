@@ -30,6 +30,7 @@ const font = {
 	sizes: {
 		error: '12px',
 		default: '16px',
+		info: '18px',
 		h1: '28px',
 		h2: '18px',
 	},
