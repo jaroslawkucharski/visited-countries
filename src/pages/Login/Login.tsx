@@ -1,4 +1,4 @@
-import { Heading, Spacer } from 'components'
+import { Heading, Link, Paragraph, Spacer } from 'components'
 import { TopBar } from 'layouts'
 import { useTranslation } from 'react-i18next'
 
@@ -29,6 +29,23 @@ export const Login = () => {
 
 				<LoginRowComponent>
 					<Form />
+				</LoginRowComponent>
+
+				<Spacer type="vertical" />
+
+				<Link to="/signup">{t('pages.login.link.forgot.password')}</Link>
+
+				<Spacer
+					type="vertical"
+					space="tiny"
+				/>
+
+				<LoginRowComponent>
+					<Paragraph>{t('pages.login.paragraph.signup')}</Paragraph>
+
+					<Spacer space="tiny" />
+
+					<Link to="/signup">{t('pages.login.link.signup')}</Link>
 				</LoginRowComponent>
 			</LoginColumnComponent>
 		</>

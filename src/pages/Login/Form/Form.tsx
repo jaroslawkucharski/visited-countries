@@ -20,8 +20,6 @@ export const Form = () => {
 
 	const onSubmit = async ({ email, password }: FormValues) => {
 		await singIn(email, password)
-
-		// setValues(email, password)
 	}
 
 	const { values, handleChange, handleBlur, handleSubmit, isSubmitting } = useFormik({
