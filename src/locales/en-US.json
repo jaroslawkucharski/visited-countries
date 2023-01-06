@@ -6,7 +6,10 @@
 			"description": "Welcome again!",
 			"action": "Login",
 			"label.email": "Email",
-			"label.password": "Password"
+			"label.password": "Password",
+			"link.forgot.password": "Forgot password?",
+			"paragraph.signup": "You do not have an account?",
+			"link.signup": "SIGN UP"
 		},
 		"register": {
 			"heading": "Sign Up",
@@ -14,7 +17,13 @@
 			"action": "Create account",
 			"label.username": "Username",
 			"label.email": "Email",
-			"label.password": "Password"
+			"label.password": "Password",
+			"label.confirm.password": "Confirm password",
+			"error.field": "Field is required",
+			"error.email": "Invalid email",
+			"error.confirm.password": "The passwords are not the same",
+			"paragraph.signin": "Already have an account?",
+			"link.signin": "SIGN IN"
 		}
 	},
 	"toasts": {
