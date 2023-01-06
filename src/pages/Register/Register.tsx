@@ -1,4 +1,4 @@
-import { Heading, Spacer } from 'components'
+import { Heading, Link, Paragraph, Spacer } from 'components'
 import { TopBar } from 'layouts'
 import { useTranslation } from 'react-i18next'
 
@@ -26,6 +26,16 @@ export const Register = () => {
 
 				<RegisterRowComponent>
 					<Form />
+				</RegisterRowComponent>
+
+				<Spacer type="vertical" />
+
+				<RegisterRowComponent>
+					<Paragraph>{t('pages.register.paragraph.signin')}</Paragraph>
+
+					<Spacer space="tiny" />
+
+					<Link to="/signin">{t('pages.register.link.signin')}</Link>
 				</RegisterRowComponent>
 			</RegisterColumnComponent>
 		</>
