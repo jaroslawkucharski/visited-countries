@@ -13,6 +13,7 @@
 	"dependencies": {
 		"@reduxjs/toolkit": "^1.9.1",
 		"@types/i18next-browser-languagedetector": "^3.0.0",
+		"@types/react-simple-maps": "^3.0.0",
 		"@types/styled-components": "^5.1.26",
 		"axios": "^1.2.1",
 		"firebase": "^9.15.0",
@@ -26,6 +27,7 @@
 		"react-is": "^18.2.0",
 		"react-redux": "^8.0.5",
 		"react-router-dom": "^6.4.5",
+		"react-simple-maps": "^3.0.0",
 		"react-toastify": "^9.1.1",
 		"styled-components": "^5.3.6",
 		"uuid": "^9.0.0",
