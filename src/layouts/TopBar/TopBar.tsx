@@ -1,6 +1,9 @@
+import en from 'assets/images/locales/en.svg'
+import pl from 'assets/images/locales/pl.svg'
 import LogoDark from 'assets/images/logo_dark.svg'
 import LogoLight from 'assets/images/logo_light.svg'
 import { Button } from 'components'
+import { useAuthContext } from 'context/AuthContext'
 import { useThemeColorContext } from 'context/ThemeContext'
 import { useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
@@ -13,14 +16,19 @@ import { SettingsComponent, TopBarComponent } from './TopBar.styles'
 
 export const TopBar = () => {
 	const { i18n } = useTranslation()
-
 	const { theme, toggleTheme } = useThemeColorContext()
+	const { userAuth, logout } = useAuthContext()
 
-	const handleLanguageChangeToEN = useCallback(() => i18n.changeLanguage(LOCALES.EN), [i18n])
-
-	const handleLanguageChangeToPL = useCallback(() => i18n.changeLanguage(LOCALES.PL), [i18n])
-
+	const handleLanguageChangeToPL = useCallback(
+		() =>
+			i18n.language === LOCALES.EN
+				? i18n.changeLanguage(LOCALES.PL)
+				: i18n.changeLanguage(LOCALES.EN),
+		[i18n],
+	)
 	const handleThemeColorChange = useCallback(() => toggleTheme(), [toggleTheme])
+
+	const handleLogout = useCallback(() => logout(), [logout])
 
 	return (
 		<TopBarComponent>
@@ -31,6 +39,31 @@ export const TopBar = () => {
 			/>
 
 			<SettingsComponent>
+				{userAuth ? (
+					<Button
+						variant="primary"
+						action={handleLogout}
+					>
+						Log out
+					</Button>
+				) : (
+					<>
+						<Button
+							variant="primary"
+							action={handleLogout}
+						>
+							Sign In
+						</Button>
+
+						<Button
+							variant="secondary"
+							action={handleLogout}
+						>
+							Sign Up
+						</Button>
+					</>
+				)}
+
 				<Button
 					variant="secondary"
 					action={handleThemeColorChange}
@@ -41,18 +74,22 @@ export const TopBar = () => {
 
 				<Button
 					variant="secondary"
-					action={handleLanguageChangeToEN}
-					hasOnlyIcon
-				>
-					EN
-				</Button>
-
-				<Button
-					variant="secondary"
 					action={handleLanguageChangeToPL}
 					hasOnlyIcon
 				>
-					PL
+					{i18n.language === LOCALES.EN ? (
+						<img
+							src={en}
+							width={16}
+							alt="en"
+						/>
+					) : (
+						<img
+							src={pl}
+							width={16}
+							alt="pl"
+						/>
+					)}
 				</Button>
 			</SettingsComponent>
 		</TopBarComponent>

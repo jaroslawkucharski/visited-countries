@@ -1,5 +1,5 @@
 import { useThemeColorContext } from 'context/ThemeContext'
-import { PrivateRoute } from 'layouts'
+import { PrivateRoute, TopBar } from 'layouts'
 import { Dashboard, Login, Register } from 'pages'
 import { Route, Routes } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify'
@@ -16,6 +16,8 @@ const App = () => {
 			<GlobalStyles />
 
 			<ToastContainer theme={theme} />
+
+			<TopBar />
 
 			<Routes>
 				<Route
