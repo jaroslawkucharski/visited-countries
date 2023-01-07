@@ -2,12 +2,13 @@ import en from 'assets/images/locales/en.svg'
 import pl from 'assets/images/locales/pl.svg'
 import LogoDark from 'assets/images/logo_dark.svg'
 import LogoLight from 'assets/images/logo_light.svg'
-import { Button } from 'components'
+import { Button, Dropdown, Spacer } from 'components'
 import { useAuthContext } from 'context/AuthContext'
 import { useThemeColorContext } from 'context/ThemeContext'
 import { useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
-import { HiMoon, HiSun } from 'react-icons/hi'
+import { HiMoon, HiOutlineLogout, HiSun, HiUserCircle } from 'react-icons/hi'
+import { v4 as uuid } from 'uuid'
 
 import { LOCALES } from 'constants/locales'
 import { THEME_COLORS } from 'constants/theme'
@@ -15,7 +16,7 @@ import { THEME_COLORS } from 'constants/theme'
 import { SettingsComponent, TopBarComponent } from './TopBar.styles'
 
 export const TopBar = () => {
-	const { i18n } = useTranslation()
+	const { t, i18n } = useTranslation()
 	const { theme, toggleTheme } = useThemeColorContext()
 	const { userAuth, logout } = useAuthContext()
 
@@ -64,33 +65,57 @@ export const TopBar = () => {
 					</>
 				)}
 
-				<Button
-					variant="secondary"
-					action={handleThemeColorChange}
-					hasOnlyIcon
-				>
-					{theme === 'dark' ? <HiSun /> : <HiMoon />}
-				</Button>
+				{userAuth && (
+					<Dropdown text={t('topbar.dropdown.name')}>
+						<Dropdown.Item
+							key={uuid()}
+							to="/"
+						>
+							<HiUserCircle /> {t('topbar.dropdown.profile')}
+						</Dropdown.Item>
+						<Dropdown.Item
+							key={uuid()}
+							to="/"
+						>
+							<HiOutlineLogout /> {t('topbar.dropdown.logout')}
+						</Dropdown.Item>
 
-				<Button
-					variant="secondary"
-					action={handleLanguageChangeToPL}
-					hasOnlyIcon
-				>
-					{i18n.language === LOCALES.EN ? (
-						<img
-							src={en}
-							width={16}
-							alt="en"
+						<Spacer
+							type="vertical"
+							space="small"
 						/>
-					) : (
-						<img
-							src={pl}
-							width={16}
-							alt="pl"
-						/>
-					)}
-				</Button>
+
+						<SettingsComponent>
+							<Button
+								variant="secondary"
+								action={handleThemeColorChange}
+								hasOnlyIcon
+							>
+								{theme === 'dark' ? <HiSun /> : <HiMoon />}
+							</Button>
+
+							<Button
+								variant="secondary"
+								action={handleLanguageChangeToPL}
+								hasOnlyIcon
+							>
+								{i18n.language === LOCALES.EN ? (
+									<img
+										src={en}
+										width={16}
+										alt="en"
+									/>
+								) : (
+									<img
+										src={pl}
+										width={16}
+										alt="pl"
+									/>
+								)}
+							</Button>
+						</SettingsComponent>
+					</Dropdown>
+				)}
 			</SettingsComponent>
 		</TopBarComponent>
 	)
