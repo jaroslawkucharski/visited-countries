@@ -17,3 +17,5 @@ export const Heading: FC<HeadingProps> = ({ level = 1, children, align = 'center
 		{children}
 	</HeadingComponent>
 )
+
+Heading.displayName = 'Heading'

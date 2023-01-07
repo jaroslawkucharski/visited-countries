@@ -1,5 +1,12 @@
 {
 	"hello.world": "Hello world!",
+	"topbar": {
+		"dropdown": {
+			"name": "Settings",
+			"profile": "Your data",
+			"logout": "Log out"
+		}
+	},
 	"pages": {
 		"login": {
 			"heading": "Sign In",

@@ -7,3 +7,5 @@ export const Loader = () => (
 		<div className="bounce3" />
 	</LoaderComponent>
 )
+
+Loader.displayName = 'Loader'

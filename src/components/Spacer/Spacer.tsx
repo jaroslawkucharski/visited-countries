@@ -13,3 +13,5 @@ export const Spacer: FC<SpacerProps> = ({ type = 'horizontal', space = 'medium' 
 		space={space}
 	/>
 )
+
+Spacer.displayName = 'Spacer'

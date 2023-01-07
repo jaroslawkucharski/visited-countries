@@ -4,6 +4,7 @@ interface ButtonComponentProps {
 	variant?: 'primary' | 'secondary' | 'alert'
 	hasFullWidth?: boolean
 	hasOnlyIcon?: boolean
+	isDropdown?: boolean
 }
 
 const variantStyles = ({ colors }: DefaultTheme, variant = 'primary') =>
@@ -54,12 +55,14 @@ export const ButtonComponent = styled.button<ButtonComponentProps>`
 	align-items: center;
 	justify-content: center;
 	gap: 8px;
+	transition: 0.2s;
 
-	${({ theme: { spaces, font }, hasOnlyIcon, hasFullWidth }) =>
+	${({ theme: { spaces, font }, hasOnlyIcon, hasFullWidth, isDropdown }) =>
 		css`
 			width: ${hasFullWidth && '100%'};
 			font-weight: ${font.weights.bold};
 			padding: ${hasOnlyIcon ? `${spaces.tiny} ${spaces.small}` : `${spaces.tiny} ${spaces.big}`};
+			border-radius: ${isDropdown && `15px 15px 0 0`};
 		`}
 
 	${({ theme, variant }) => variantStyles(theme, variant)}

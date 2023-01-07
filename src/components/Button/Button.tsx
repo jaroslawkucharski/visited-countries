@@ -12,6 +12,7 @@ interface ButtonProps {
 	hasOnlyIcon?: boolean
 	isLoading?: boolean
 	isDisabled?: boolean
+	isDropdown?: boolean
 }
 
 export const Button: FC<ButtonProps> = ({
@@ -23,6 +24,7 @@ export const Button: FC<ButtonProps> = ({
 	hasOnlyIcon = false,
 	isLoading = false,
 	isDisabled = false,
+	isDropdown = false,
 }) => (
 	<ButtonComponent
 		variant={variant}
@@ -31,7 +33,10 @@ export const Button: FC<ButtonProps> = ({
 		hasFullWidth={hasFullWidth}
 		hasOnlyIcon={hasOnlyIcon}
 		disabled={isDisabled}
+		isDropdown={isDropdown}
 	>
 		{isLoading ? <Loader /> : children}
 	</ButtonComponent>
 )
+
+Button.displayName = 'Button'
