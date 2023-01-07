@@ -1,12 +1,24 @@
 import styled, { css } from 'styled-components'
 
-interface InputProps {
+interface InputComponentProps {
 	hasFullWidth?: boolean
 	isError?: boolean
 	isPassword?: boolean
 }
 
-export const InputComponent = styled.input<InputProps>`
+export const LabelComponent = styled.label<InputComponentProps>`
+	${({ theme: { colors, spaces }, hasFullWidth }) =>
+		css`
+			width: ${!!hasFullWidth && '100%'};
+			color: ${colors.color5};
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			margin-bottom: ${spaces.mini};
+		`}
+`
+
+export const InputComponent = styled.input<InputComponentProps>`
 	min-height: 44px;
 	max-height: 44px;
 	border-radius: 15px;
@@ -26,18 +38,6 @@ export const InputComponent = styled.input<InputProps>`
 
 			border: ${isError && `solid 2px ${colors.error}`};
 			padding-right: ${isPassword && `calc(${spaces.big} + ${spaces.tiny})`};
-		`}
-`
-
-export const LabelComponent = styled.label<InputProps>`
-	${({ theme: { colors, spaces }, hasFullWidth }) =>
-		css`
-			width: ${!!hasFullWidth && '100%'};
-			color: ${colors.color5};
-			display: flex;
-			justify-content: space-between;
-			align-items: center;
-			margin-bottom: ${spaces.mini};
 		`}
 `
 

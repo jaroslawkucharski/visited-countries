@@ -10,3 +10,5 @@ interface LinkProps {
 export const Link: FC<LinkProps> = ({ to, children }) => (
 	<NavigareComponent to={to}>{children}</NavigareComponent>
 )
+
+Link.displayName = 'Link'

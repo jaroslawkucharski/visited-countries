@@ -23,3 +23,5 @@ export const Paragraph: FC<ParagraphProps> = ({
 		{children}
 	</HeadingComponent>
 )
+
+Paragraph.displayName = 'Paragraph'
