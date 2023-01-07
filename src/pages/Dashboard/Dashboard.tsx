@@ -6,7 +6,7 @@ export const Dashboard = () => {
 
 	return (
 		<div>
-			<ComposableMap>
+			<ComposableMap style={{ height: '100vh' }}>
 				<ZoomableGroup
 					center={[10, 20]}
 					zoom={2}
