@@ -10,10 +10,10 @@ export const DropdownMenuComponent = styled.div`
 	width: 100%;
 	position: absolute;
 	border-radius: 0 0 15px 15px;
-	animation: animation 0.2s;
+	animation: animation-menu 0.2s;
 	transform-origin: top;
 
-	@keyframes animation {
+	@keyframes animation-menu {
 		0% {
 			transform: scaleY(0);
 		}

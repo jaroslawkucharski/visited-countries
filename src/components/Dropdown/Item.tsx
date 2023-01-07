@@ -1,14 +1,20 @@
-import { FC, ReactNode } from 'react'
+import { FC, ReactEventHandler, ReactNode } from 'react'
 
 import { ItemComponent } from './Dropdown.styles'
 
 export interface ItemProps {
-	to: string
+	to?: string
+	action?: ReactEventHandler<HTMLAnchorElement>
 	children: ReactNode
 }
 
-export const Item: FC<ItemProps> = ({ to, children }) => (
-	<ItemComponent to={to}>{children}</ItemComponent>
+export const Item: FC<ItemProps> = ({ to = '', action, children }) => (
+	<ItemComponent
+		to={to}
+		onClick={action}
+	>
+		{children}
+	</ItemComponent>
 )
 
 Item.displayName = 'DropdownItem'

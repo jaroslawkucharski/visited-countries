@@ -10,7 +10,7 @@ export const LoaderComponent = styled.div`
 		background-color: ${({ theme }) => theme.colors.main};
 		border-radius: 100%;
 		display: inline-block;
-		animation: animation 1.4s infinite ease-in-out both;
+		animation: animation-loader 1.4s infinite ease-in-out both;
 	}
 
 	.bounce1 {
@@ -21,7 +21,7 @@ export const LoaderComponent = styled.div`
 		animation-delay: -0.16s;
 	}
 
-	@keyframes animation {
+	@keyframes animation-loader {
 		0%,
 		80%,
 		100% {

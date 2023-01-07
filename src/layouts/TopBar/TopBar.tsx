@@ -40,14 +40,7 @@ export const TopBar = () => {
 			/>
 
 			<SettingsComponent>
-				{userAuth ? (
-					<Button
-						variant="primary"
-						action={handleLogout}
-					>
-						Log out
-					</Button>
-				) : (
+				{!userAuth && (
 					<>
 						<Button
 							variant="primary"
@@ -75,7 +68,7 @@ export const TopBar = () => {
 						</Dropdown.Item>
 						<Dropdown.Item
 							key={uuid()}
-							to="/"
+							action={handleLogout}
 						>
 							<HiOutlineLogout /> {t('topbar.dropdown.logout')}
 						</Dropdown.Item>
