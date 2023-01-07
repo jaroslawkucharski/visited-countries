@@ -28,3 +28,18 @@ export const SettingsComponent = styled.div`
 			flex-wrap: wrap;
 		`}
 `
+
+export const SettingsMobileComponent = styled.div`
+	${({ theme: { spaces, breakpoints } }) =>
+		css`
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			gap: ${spaces.tiny};
+			flex-wrap: wrap;
+
+			@media (max-width: ${breakpoints.mobile}px) {
+				display: none;
+			}
+		`}
+`

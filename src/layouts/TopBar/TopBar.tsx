@@ -13,7 +13,7 @@ import { v4 as uuid } from 'uuid'
 import { LOCALES } from 'constants/locales'
 import { THEME_COLORS } from 'constants/theme'
 
-import { SettingsComponent, TopBarComponent } from './TopBar.styles'
+import { SettingsComponent, SettingsMobileComponent, TopBarComponent } from './TopBar.styles'
 
 export const TopBar = () => {
 	const { t, i18n } = useTranslation()
@@ -42,19 +42,51 @@ export const TopBar = () => {
 			<SettingsComponent>
 				{!userAuth && (
 					<>
-						<Button
-							variant="primary"
-							action={handleLogout}
-						>
-							Sign In
-						</Button>
+						<SettingsMobileComponent>
+							<Button
+								variant="primary"
+								action={handleLogout}
+							>
+								Sign In
+							</Button>
 
-						<Button
-							variant="secondary"
-							action={handleLogout}
-						>
-							Sign Up
-						</Button>
+							<Button
+								variant="secondary"
+								action={handleLogout}
+							>
+								Sign Up
+							</Button>
+						</SettingsMobileComponent>
+
+						<SettingsComponent>
+							<Button
+								variant="secondary"
+								action={handleThemeColorChange}
+								hasOnlyIcon
+							>
+								{theme === 'dark' ? <HiSun /> : <HiMoon />}
+							</Button>
+
+							<Button
+								variant="secondary"
+								action={handleLanguageChangeToPL}
+								hasOnlyIcon
+							>
+								{i18n.language === LOCALES.EN ? (
+									<img
+										src={en}
+										width={16}
+										alt="en"
+									/>
+								) : (
+									<img
+										src={pl}
+										width={16}
+										alt="pl"
+									/>
+								)}
+							</Button>
+						</SettingsComponent>
 					</>
 				)}
 
