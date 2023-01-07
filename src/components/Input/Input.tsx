@@ -1,9 +1,10 @@
+import { Paragraph } from 'components'
 import { FormikErrors, FormikTouched } from 'formik'
 import { ChangeEventHandler, FC, FocusEventHandler, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { HiEye, HiEyeOff } from 'react-icons/hi'
 
-import { IconComponent, InputComponent } from './Input.styles'
-import { Label } from './Label'
+import { IconComponent, InputComponent, LabelComponent } from './Input.styles'
 
 interface InputProps {
 	type?: 'text' | 'email' | 'password'
@@ -38,6 +39,8 @@ export const Input: FC<InputProps> = ({
 	autoFocus = false,
 	hasFullWidth = false,
 }) => {
+	const { t } = useTranslation()
+
 	const [showPassword, setShowPassword] = useState(false)
 
 	const isError = (errors[name] && touched[name]) as boolean
@@ -47,14 +50,21 @@ export const Input: FC<InputProps> = ({
 
 	return (
 		<div>
-			<Label
-				id={id}
-				name={name}
-				label={label}
-				errors={errors}
-				isError={isError}
+			<LabelComponent
+				htmlFor={id}
 				hasFullWidth={hasFullWidth}
-			/>
+			>
+				<Paragraph type="label">{label}</Paragraph>
+
+				{isError && (
+					<Paragraph
+						type="error"
+						size="small"
+					>
+						{t(`${errors[name]}`)}
+					</Paragraph>
+				)}
+			</LabelComponent>
 
 			<InputComponent
 				id={id}
