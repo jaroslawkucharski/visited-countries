@@ -41,7 +41,7 @@ export const ItemComponent = styled(NavLink)`
 	${({ theme: { colors, spaces } }) =>
 		css`
 			color: ${colors.main};
-			padding: ${spaces.small};
+			padding: ${spaces.small} ${spaces.medium};
 			background: ${colors.secondary};
 			gap: ${spaces.tiny};
 
