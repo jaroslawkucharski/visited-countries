@@ -1,5 +1,12 @@
 {
 	"hello.world": "Cześć świecie!",
+	"topbar": {
+		"dropdown": {
+			"name": "Ustawienia",
+			"profile": "Twoje dane",
+			"logout": "Wyloguj się"
+		}
+	},
 	"pages": {
 		"login": {
 			"heading": "Zaloguj się",
