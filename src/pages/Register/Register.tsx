@@ -9,14 +9,14 @@ export const Register = () => {
 
 	return (
 		<RegisterColumnComponent>
-			<Heading>{t('pages.register.heading')}</Heading>
+			<Heading>{t('word.signup')}</Heading>
 
 			<Spacer
 				type="vertical"
 				space="small"
 			/>
 
-			<Heading level={2}>{t('pages.register.description')}</Heading>
+			<Heading level={2}>{t('register.description')}</Heading>
 
 			<Spacer type="vertical" />
 
@@ -27,11 +27,11 @@ export const Register = () => {
 			<Spacer type="vertical" />
 
 			<RegisterRowComponent>
-				<Paragraph>{t('pages.register.paragraph.signin')}</Paragraph>
+				<Paragraph>{t('register.already.account')}</Paragraph>
 
 				<Spacer space="tiny" />
 
-				<Link to="/signin">{t('pages.register.link.signin')}</Link>
+				<Link to="/signin">{t('word.signin')}</Link>
 			</RegisterRowComponent>
 		</RegisterColumnComponent>
 	)

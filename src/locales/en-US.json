@@ -1,37 +1,24 @@
 {
 	"hello.world": "Hello world!",
-	"topbar": {
-		"dropdown": {
-			"name": "Settings",
-			"profile": "Your data",
-			"logout": "Log out"
-		}
-	},
-	"pages": {
-		"login": {
-			"heading": "Sign In",
-			"description": "Welcome again!",
-			"action": "Login",
-			"label.email": "Email",
-			"label.password": "Password",
-			"link.forgot.password": "Forgot password?",
-			"paragraph.signup": "Need an account?",
-			"link.signup": "SIGN UP"
-		},
-		"register": {
-			"heading": "Sign Up",
-			"description": "Create your account.",
-			"action": "Create account",
-			"label.username": "Username",
-			"label.email": "Email",
-			"label.password": "Password",
-			"label.confirm.password": "Confirm password",
-			"error.field": "Field is required",
-			"error.email": "Invalid email",
-			"error.confirm.password": "The passwords are not the same",
-			"paragraph.signin": "Already have an account?",
-			"link.signin": "SIGN IN"
-		}
+	"word.signin": "Sign In",
+	"word.login": "Login",
+	"word.email": "Email",
+	"word.password": "Password",
+	"word.signup": "Sign Up",
+	"word.register": "Create account",
+	"word.confirm.password": "Confirm password",
+	"word.account": "Your account",
+	"word.logout": "Log out",
+	"register.description": "Create your account.",
+	"register.already.account": "Already have an account?",
+	"login.description": "Welcome again!",
+	"login.create.account": "Need an account?",
+	"word.forgot.password": "Forgot password?",
+	"word.account.data": "Your data",
+	"errors": {
+		"empty.field": "Field is required",
+		"email": "Invalid email",
+		"confirm.password": "The passwords are not the same"
 	},
 	"toasts": {
 		"error": "Something went wrong..."

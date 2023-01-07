@@ -9,14 +9,14 @@ export const Login = () => {
 
 	return (
 		<LoginColumnComponent>
-			<Heading>{t('pages.login.heading')}</Heading>
+			<Heading>{t('word.signin')}</Heading>
 
 			<Spacer
 				type="vertical"
 				space="small"
 			/>
 
-			<Heading level={2}>{t('pages.login.description')}</Heading>
+			<Heading level={2}>{t('login.description')}</Heading>
 
 			<Spacer
 				type="vertical"
@@ -29,7 +29,7 @@ export const Login = () => {
 
 			<Spacer type="vertical" />
 
-			<Link to="/signup">{t('pages.login.link.forgot.password')}</Link>
+			<Link to="/signup">{t('word.forgot.password')}</Link>
 
 			<Spacer
 				type="vertical"
@@ -37,11 +37,11 @@ export const Login = () => {
 			/>
 
 			<LoginRowComponent>
-				<Paragraph>{t('pages.login.paragraph.signup')}</Paragraph>
+				<Paragraph>{t('login.create.account')}</Paragraph>
 
 				<Spacer space="tiny" />
 
-				<Link to="/signup">{t('pages.login.link.signup')}</Link>
+				<Link to="/signup">{t('word.signup')}</Link>
 			</LoginRowComponent>
 		</LoginColumnComponent>
 	)

@@ -10,7 +10,7 @@ export const TopBarComponent = styled.div`
 			justify-content: space-between;
 			align-items: center;
 			background: ${colors.main};
-			position: fixed;
+			// position: fixed;
 
 			@media (max-width: ${breakpoints.mobile}px) {
 				justify-content: center;

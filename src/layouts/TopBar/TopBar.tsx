@@ -91,18 +91,18 @@ export const TopBar = () => {
 				)}
 
 				{userAuth && (
-					<Dropdown text={t('topbar.dropdown.name')}>
+					<Dropdown text={t('word.account')}>
 						<Dropdown.Item
 							key={uuid()}
 							to="/"
 						>
-							<HiUserCircle /> {t('topbar.dropdown.profile')}
+							<HiUserCircle /> {t('word.account.data')}
 						</Dropdown.Item>
 						<Dropdown.Item
 							key={uuid()}
 							action={handleLogout}
 						>
-							<HiOutlineLogout /> {t('topbar.dropdown.logout')}
+							<HiOutlineLogout /> {t('word.logout')}
 						</Dropdown.Item>
 
 						<Spacer
