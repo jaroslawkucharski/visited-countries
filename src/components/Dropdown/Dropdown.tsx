@@ -3,6 +3,7 @@ import { FC, ReactNode, useCallback, useRef, useState } from 'react'
 import { HiChevronDown, HiChevronUp } from 'react-icons/hi'
 
 import { useOnClickOutside } from 'hooks/useOnClickOutside'
+import { useScrollDetector } from 'hooks/useScrollDetector'
 
 import { DropdownComponent, DropdownMenuComponent } from './Dropdown.styles'
 
@@ -16,14 +17,18 @@ export const Dropdown: FC<DropdownProps> = ({ text, children }) => {
 
 	const [isOpen, setOpen] = useState<boolean>(false)
 
-	const handleOpen = useCallback(() => setOpen(!isOpen), [isOpen])
+	const handleOpenToogle = useCallback(() => setOpen(!isOpen), [isOpen])
 
-	useOnClickOutside(dropdownRef, handleOpen)
+	const handleClose = useCallback(() => setOpen(false), [])
+
+	useOnClickOutside(dropdownRef, handleClose)
+
+	useScrollDetector(handleClose)
 
 	return (
 		// eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions
 		<DropdownComponent
-			onClick={handleOpen}
+			onClick={handleOpenToogle}
 			ref={dropdownRef}
 		>
 			<Button isDropdown={isOpen}>
