@@ -36,7 +36,7 @@ export const Form = () => {
 			<Input
 				id={uuid()}
 				type="email"
-				label={`${t('pages.login.label.email')}`}
+				label={`${t('word.email')}`}
 				name="email"
 				value={values.email}
 				onChange={handleChange}
@@ -50,7 +50,7 @@ export const Form = () => {
 			<Input
 				id={uuid()}
 				type="password"
-				label={`${t('pages.login.label.password')}`}
+				label={`${t('word.password')}`}
 				name="password"
 				value={values.password}
 				onChange={handleChange}
@@ -71,7 +71,7 @@ export const Form = () => {
 				isLoading={isSubmitting}
 				isDisabled={isSubmitting}
 			>
-				{t('pages.login.action')}
+				{t('word.login')}
 			</Button>
 		</FormComponent>
 	)

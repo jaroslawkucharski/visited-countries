@@ -1,37 +1,24 @@
 {
 	"hello.world": "Cześć świecie!",
-	"topbar": {
-		"dropdown": {
-			"name": "Ustawienia",
-			"profile": "Twoje dane",
-			"logout": "Wyloguj się"
-		}
-	},
-	"pages": {
-		"login": {
-			"heading": "Zaloguj się",
-			"description": "Witaj ponownie!",
-			"action": "Zaloguj się",
-			"label.email": "Email",
-			"label.password": "Hasło",
-			"link.forgot.password": "Zapomniałeś hasła?",
-			"paragraph.signup": "Nie masz konta?",
-			"link.signup": "REJESTRACJA"
-		},
-		"register": {
-			"heading": "Rejestracja",
-			"description": "Zarejestruj swoje konto.",
-			"action": "Zarejestruj konto",
-			"label.username": "Nazwa użytkownika",
-			"label.email": "Email",
-			"label.password": "Hasło",
-			"label.confirm.password": "Powtórz hasło",
-			"error.field": "Pole obowiązkowe",
-			"error.email": "Niepoprawny adres email",
-			"error.confirm.password": "Hasła nie są takie same",
-			"paragraph.signin": "Masz już konto?",
-			"link.signin": "LOGOWANIE"
-		}
+	"word.signin": "Logowanie",
+	"word.login": "Zaloguj się",
+	"word.email": "Email",
+	"word.password": "Hasło",
+	"word.signup": "Rejestracja",
+	"word.register": "Zarejestruj konto",
+	"word.confirm.password": "Powtórz hasło",
+	"word.account": "Twoje konto",
+	"word.logout": "Wyloguj się",
+	"register.description": "Zarejestruj swoje konto.",
+	"register.already.account": "Masz już konto?",
+	"login.description": "Witaj ponownie!",
+	"login.create.account": "Nie masz konta?",
+	"word.forgot.password": "Zapomniałeś hasła?",
+	"word.account.data": "Twoje dane",
+	"errors": {
+		"empty.field": "Pole obowiązkowe",
+		"email": "Niepoprawny adres email",
+		"confirm.password": "Hasła nie są takie same"
 	},
 	"toasts": {
 		"error": "Coś poszło nie tak..."

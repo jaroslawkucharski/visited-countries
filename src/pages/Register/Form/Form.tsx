@@ -44,7 +44,7 @@ export const Form = () => {
 			<Input
 				id={uuid()}
 				type="email"
-				label={`${t('pages.register.label.email')}`}
+				label={`${t('word.email')}`}
 				name="email"
 				value={values.email}
 				onChange={handleChange}
@@ -60,7 +60,7 @@ export const Form = () => {
 			<Input
 				id={uuid()}
 				type="password"
-				label={`${t('pages.register.label.password')}`}
+				label={`${t('word.password')}`}
 				name="password"
 				value={values.password}
 				onChange={handleChange}
@@ -75,7 +75,7 @@ export const Form = () => {
 			<Input
 				id={uuid()}
 				type="password"
-				label={`${t('pages.register.label.confirm.password')}`}
+				label={`${t('word.confirm.password')}`}
 				name="confirmPassword"
 				value={values.confirmPassword}
 				onChange={handleChange}
@@ -98,7 +98,7 @@ export const Form = () => {
 				isLoading={isSubmitting}
 				isDisabled={isSubmitting || !isValid}
 			>
-				{t('pages.register.action')}
+				{t('word.register')}
 			</Button>
 		</FormComponent>
 	)
