@@ -5,7 +5,7 @@ export const TopBarComponent = styled.div`
 
 	${({ theme: { spaces, colors, breakpoints } }) =>
 		css`
-			padding: ${spaces.small} ${spaces.big};
+			padding: ${spaces.medium} ${spaces.big};
 			display: flex;
 			justify-content: space-between;
 			align-items: center;
