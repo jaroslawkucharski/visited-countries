@@ -5,13 +5,8 @@ import { useEffect, useState } from 'react'
 import { ComposableMap, Geographies, Geography, ZoomableGroup } from 'react-simple-maps'
 import { v4 as uuid } from 'uuid'
 
-type Country = {
-	country: string
-	uid: string
-}
-
 export const Dashboard = () => {
-	const [countries, setCountries] = useState<Country[]>([])
+	const [countries, setCountries] = useState([])
 
 	const handleAddCountry = (country: string) => {
 		const uid = uuid()
@@ -25,15 +20,15 @@ export const Dashboard = () => {
 	// const handleRemoveCountry = (uid: string) =>
 	// 	remove(ref(database, `/${auth.currentUser?.uid}/${uid}`))
 
-	useEffect(() => {
-		auth.onAuthStateChanged(() => {
-			onValue(ref(database, `${auth.currentUser?.uid}`), db => {
-				setCountries([])
+	// useEffect(() => {
+	// 	auth.onAuthStateChanged(() => {
+	// 		onValue(ref(database, `${auth.currentUser?.uid}`), db => {
+	// 			setCountries([])
 
-				Object.values(db.val()).map(item => setCountries(prev => [...prev, item]))
-			})
-		})
-	}, [])
+	// 			Object.values(db.val()).map(item => setCountries(prev => [...prev, item]))
+	// 		})
+	// 	})
+	// }, [])
 
 	return (
 		<div>
