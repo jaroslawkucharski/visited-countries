@@ -5,39 +5,38 @@ import { useEffect, useState } from 'react'
 import { ComposableMap, Geographies, Geography, ZoomableGroup } from 'react-simple-maps'
 import { v4 as uuid } from 'uuid'
 
-export const Dashboard = () => {
-	const [coutries, setCountries] = useState([])
+type Country = {
+	country: string
+	uid: string
+}
 
-	const handleAddCountry = () => {
+export const Dashboard = () => {
+	const [countries, setCountries] = useState<Country[]>([])
+
+	const handleAddCountry = (country: string) => {
 		const uid = uuid()
 
 		set(ref(database, `/${auth.currentUser?.uid}/${uid}`), {
-			country: 'Qatar',
+			country,
 			uid,
 		})
 	}
 
-	console.log(coutries)
+	// const handleRemoveCountry = (uid: string) =>
+	// 	remove(ref(database, `/${auth.currentUser?.uid}/${uid}`))
 
 	useEffect(() => {
 		auth.onAuthStateChanged(() => {
-			onValue(ref(database, `${auth.currentUser?.uid}`), snap => {
+			onValue(ref(database, `${auth.currentUser?.uid}`), db => {
 				setCountries([])
 
-				Object.values(snap.val()).map(el => setCountries(prev => [...prev, el]))
+				Object.values(db.val()).map(item => setCountries(prev => [...prev, item]))
 			})
 		})
 	}, [])
 
 	return (
 		<div>
-			<button
-				type="button"
-				onClick={() => handleAddCountry()}
-			>
-				CLICK
-			</button>
-
 			<ComposableMap style={{ height: '100vh', width: '100%' }}>
 				<ZoomableGroup
 					center={[10, 20]}
@@ -46,7 +45,7 @@ export const Dashboard = () => {
 					<Geographies geography={topology}>
 						{({ geographies }) =>
 							geographies.map(geo => {
-								const fillCountry = coutries.some(({ country }) => country === geo.properties.name)
+								const fillCountry = countries.some(({ country }) => country === geo.properties.name)
 									? '#333333'
 									: '#D6D6DA'
 								const mapStyle = {
@@ -67,9 +66,7 @@ export const Dashboard = () => {
 									<Geography
 										key={geo.rsmKey}
 										geography={geo}
-										onClick={() => {
-											console.log(`${geo.id}`)
-										}}
+										onClick={() => handleAddCountry(`${geo.properties.name}`)}
 										style={mapStyle}
 									/>
 								)
