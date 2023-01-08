@@ -29,12 +29,21 @@ export const Form = () => {
 
 	const onSubmit = async ({ email, password }: FormValues) => singUp(email, password)
 
-	const { values, handleChange, handleBlur, handleSubmit, isSubmitting, errors, touched, isValid } =
-		useFormik({
-			initialValues,
-			validationSchema: formSchema,
-			onSubmit,
-		})
+	const {
+		values,
+		handleChange,
+		handleBlur,
+		handleSubmit,
+		isSubmitting,
+		errors,
+		touched,
+		isValid,
+		dirty,
+	} = useFormik({
+		initialValues,
+		validationSchema: formSchema,
+		onSubmit,
+	})
 
 	return (
 		<FormComponent
@@ -96,7 +105,7 @@ export const Form = () => {
 				type="submit"
 				hasFullWidth
 				isLoading={isSubmitting}
-				isDisabled={isSubmitting || !isValid}
+				isDisabled={isSubmitting || !isValid || !dirty}
 			>
 				{t('word.register')}
 			</Button>
