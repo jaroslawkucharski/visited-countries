@@ -1,6 +1,10 @@
 <div align='center'>
 
-  <h1>VisitedCoutries</h1>
+<br />
+
+<img src='./src/assets/images/logo_dark.svg' width='400px' />
+
+<hr />
 
 ![](https://img.shields.io/badge/Vite-646CFF.svg?style=for-the-badge&logo=Vite&logoColor=white)
 ![](https://img.shields.io/badge/React-61DAFB.svg?style=for-the-badge&logo=React&logoColor=black)
