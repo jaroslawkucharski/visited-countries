@@ -2,7 +2,7 @@ import en from 'assets/images/locales/en.svg'
 import pl from 'assets/images/locales/pl.svg'
 import LogoDark from 'assets/images/logo_dark.svg'
 import LogoLight from 'assets/images/logo_light.svg'
-import { Button, Dropdown, Spacer } from 'components'
+import { Button, Dropdown, Image, Spacer } from 'components'
 import { useAuthContext } from 'context/AuthContext'
 import { useThemeColorContext } from 'context/ThemeContext'
 import { useCallback } from 'react'
@@ -33,10 +33,15 @@ export const TopBar = () => {
 
 	return (
 		<TopBarComponent>
-			<img
+			<Image
 				src={theme === THEME_COLORS.DARK ? LogoDark : LogoLight}
-				width="170"
-				alt="logo"
+				width={250}
+				alt={t('word.logo')}
+			/>
+
+			<Spacer
+				type="vertical"
+				space="tiny"
 			/>
 
 			<SettingsComponent>
@@ -125,13 +130,13 @@ export const TopBar = () => {
 								hasOnlyIcon
 							>
 								{i18n.language === LOCALES.EN ? (
-									<img
+									<Image
 										src={en}
 										width={16}
 										alt="en"
 									/>
 								) : (
-									<img
+									<Image
 										src={pl}
 										width={16}
 										alt="pl"
