@@ -10,12 +10,11 @@ export const TopBarComponent = styled.div`
 			justify-content: space-between;
 			align-items: center;
 			background: ${colors.main};
-			// position: fixed;
 
 			@media (max-width: ${breakpoints.mobile}px) {
+				padding: ${spaces.big};
 				justify-content: center;
 				flex-direction: column;
-				gap: ${spaces.tiny};
 			}
 		`}
 `
@@ -28,20 +27,5 @@ export const SettingsComponent = styled.div`
 			align-items: center;
 			gap: ${spaces.tiny};
 			flex-wrap: wrap;
-		`}
-`
-
-export const SettingsMobileComponent = styled.div`
-	${({ theme: { spaces, breakpoints } }) =>
-		css`
-			display: flex;
-			justify-content: center;
-			align-items: center;
-			gap: ${spaces.tiny};
-			flex-wrap: wrap;
-
-			@media (max-width: ${breakpoints.mobile}px) {
-				display: none;
-			}
 		`}
 `
