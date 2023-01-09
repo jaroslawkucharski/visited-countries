@@ -1,6 +1,6 @@
 import { Loader } from 'components'
 import { useThemeColorContext } from 'context/ThemeContext'
-import { PrivateRoute, TopBar } from 'layouts'
+import { MobileMenu, PrivateRoute, TopBar } from 'layouts'
 import { Suspense, lazy } from 'react'
 import { Route, Routes } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify'
@@ -31,6 +31,8 @@ const App = () => {
 			<ToastContainer theme={theme} />
 
 			<TopBar />
+
+			<MobileMenu />
 
 			<Routes>
 				<Route

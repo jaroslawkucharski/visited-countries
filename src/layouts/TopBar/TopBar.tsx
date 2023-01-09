@@ -10,15 +10,20 @@ import { useTranslation } from 'react-i18next'
 import { HiMoon, HiOutlineLogout, HiSun, HiUserCircle } from 'react-icons/hi'
 import { v4 as uuid } from 'uuid'
 
+import { useWindowSize } from 'hooks/useWindowSize'
+
+import { BREAKPOINTS } from 'constants/breakpoints'
 import { LOCALES } from 'constants/locales'
 import { THEME_COLORS } from 'constants/theme'
 
-import { SettingsComponent, SettingsMobileComponent, TopBarComponent } from './TopBar.styles'
+import { SettingsComponent, TopBarComponent } from './TopBar.styles'
 
 export const TopBar = () => {
 	const { t, i18n } = useTranslation()
 	const { theme, toggleTheme } = useThemeColorContext()
 	const { userAuth, logout } = useAuthContext()
+
+	const { width } = useWindowSize()
 
 	const handleLanguageChangeToPL = useCallback(
 		() =>
@@ -39,15 +44,12 @@ export const TopBar = () => {
 				alt={t('word.logo')}
 			/>
 
-			<Spacer
-				type="vertical"
-				space="tiny"
-			/>
+			<Spacer type="vertical" />
 
-			<SettingsComponent>
-				{!userAuth && (
-					<>
-						<SettingsMobileComponent>
+			{!userAuth && (
+				<SettingsComponent>
+					{width > BREAKPOINTS.MOBILE && (
+						<>
 							<Button
 								variant="primary"
 								action={handleLogout}
@@ -61,92 +63,91 @@ export const TopBar = () => {
 							>
 								Sign Up
 							</Button>
-						</SettingsMobileComponent>
+						</>
+					)}
 
-						<SettingsComponent>
-							<Button
-								variant="secondary"
-								action={handleThemeColorChange}
-								hasOnlyIcon
-							>
-								{theme === 'dark' ? <HiSun /> : <HiMoon />}
-							</Button>
+					<Button
+						variant="secondary"
+						action={handleThemeColorChange}
+						hasOnlyIcon
+					>
+						{theme === 'dark' ? <HiSun /> : <HiMoon />}
+					</Button>
 
-							<Button
-								variant="secondary"
-								action={handleLanguageChangeToPL}
-								hasOnlyIcon
-							>
-								{i18n.language === LOCALES.EN ? (
-									<img
-										src={en}
-										width={16}
-										alt="en"
-									/>
-								) : (
-									<img
-										src={pl}
-										width={16}
-										alt="pl"
-									/>
-								)}
-							</Button>
-						</SettingsComponent>
-					</>
-				)}
+					<Button
+						variant="secondary"
+						action={handleLanguageChangeToPL}
+						hasOnlyIcon
+					>
+						{i18n.language === LOCALES.EN ? (
+							<img
+								src={en}
+								width={16}
+								alt="en"
+							/>
+						) : (
+							<img
+								src={pl}
+								width={16}
+								alt="pl"
+							/>
+						)}
+					</Button>
+				</SettingsComponent>
+			)}
 
-				{userAuth && (
-					<Dropdown text={t('word.account')}>
-						<Dropdown.Item
-							key={uuid()}
-							to="/"
+			{userAuth && width > BREAKPOINTS.MOBILE && (
+				<Dropdown text={t('word.account')}>
+					<Dropdown.Item
+						key={uuid()}
+						to="/"
+					>
+						<HiUserCircle /> {t('word.account.data')}
+					</Dropdown.Item>
+
+					<Dropdown.Item
+						key={uuid()}
+						action={handleLogout}
+					>
+						<HiOutlineLogout /> {t('word.logout')}
+					</Dropdown.Item>
+
+					<Spacer
+						type="vertical"
+						space="small"
+					/>
+
+					<SettingsComponent>
+						<Button
+							variant="secondary"
+							action={handleThemeColorChange}
+							hasOnlyIcon
 						>
-							<HiUserCircle /> {t('word.account.data')}
-						</Dropdown.Item>
-						<Dropdown.Item
-							key={uuid()}
-							action={handleLogout}
+							{theme === 'dark' ? <HiSun /> : <HiMoon />}
+						</Button>
+
+						<Button
+							variant="secondary"
+							action={handleLanguageChangeToPL}
+							hasOnlyIcon
 						>
-							<HiOutlineLogout /> {t('word.logout')}
-						</Dropdown.Item>
-
-						<Spacer
-							type="vertical"
-							space="small"
-						/>
-
-						<SettingsComponent>
-							<Button
-								variant="secondary"
-								action={handleThemeColorChange}
-								hasOnlyIcon
-							>
-								{theme === 'dark' ? <HiSun /> : <HiMoon />}
-							</Button>
-
-							<Button
-								variant="secondary"
-								action={handleLanguageChangeToPL}
-								hasOnlyIcon
-							>
-								{i18n.language === LOCALES.EN ? (
-									<Image
-										src={en}
-										width={16}
-										alt="en"
-									/>
-								) : (
-									<Image
-										src={pl}
-										width={16}
-										alt="pl"
-									/>
-								)}
-							</Button>
-						</SettingsComponent>
-					</Dropdown>
-				)}
-			</SettingsComponent>
+							{i18n.language === LOCALES.EN ? (
+								<Image
+									src={en}
+									width={16}
+									alt="en"
+								/>
+							) : (
+								<Image
+									src={pl}
+									width={16}
+									alt="pl"
+								/>
+							)}
+						</Button>
+					</SettingsComponent>
+				</Dropdown>
+			)}
 		</TopBarComponent>
 	)
 }

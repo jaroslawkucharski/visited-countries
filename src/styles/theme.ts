@@ -1,3 +1,5 @@
+import { BREAKPOINTS } from 'constants/breakpoints'
+
 const Colors = {
 	Grey100: '#090909',
 	Grey200: '#111111',
@@ -49,8 +51,8 @@ const font = {
 }
 
 const breakpoints = {
-	mobile: 420,
-	tablet: 700,
+	mobile: BREAKPOINTS.MOBILE,
+	tablet: BREAKPOINTS.TABLET,
 }
 
 export const lightTheme = {
