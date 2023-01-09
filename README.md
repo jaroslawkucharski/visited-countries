@@ -29,4 +29,5 @@
 ![](https://img.shields.io/badge/ESLint-4B32C3.svg?style=for-the-badge&logo=ESLint&logoColor=white)
 ![](https://img.shields.io/badge/Prettier-F7B93E.svg?style=for-the-badge&logo=Prettier&logoColor=black)
 
+<img src='./src/assets/images/mock.png' />
 </div>
