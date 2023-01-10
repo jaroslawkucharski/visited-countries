@@ -4,6 +4,7 @@
 	"word.signin": "Sign In",
 	"word.login": "Login",
 	"word.email": "Email",
+	"word.name": "Username",
 	"word.password": "Password",
 	"word.signup": "Sign Up",
 	"word.register": "Create account",
@@ -12,8 +13,10 @@
 	"word.logout": "Log out",
 	"register.description": "Create your account.",
 	"register.already.account": "Already have an account?",
+	"register.toast.success": "Hello {{displayName}}",
 	"login.description": "Welcome again!",
 	"login.create.account": "Need an account?",
+	"login.toast.success": "Hello again {{displayName}}",
 	"word.forgot.password": "Forgot password?",
 	"word.account.data": "Your data",
 	"errors": {

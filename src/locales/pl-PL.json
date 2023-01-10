@@ -4,6 +4,7 @@
 	"word.signin": "Logowanie",
 	"word.login": "Zaloguj się",
 	"word.email": "Email",
+	"word.name": "Nazwa użytkownika",
 	"word.password": "Hasło",
 	"word.signup": "Rejestracja",
 	"word.register": "Zarejestruj konto",
@@ -12,8 +13,10 @@
 	"word.logout": "Wyloguj się",
 	"register.description": "Zarejestruj swoje konto.",
 	"register.already.account": "Masz już konto?",
+	"register.toast.success": "Witaj {{displayName}}",
 	"login.description": "Witaj ponownie!",
 	"login.create.account": "Nie masz konta?",
+	"login.toast.success": "Witaj ponownie {{displayName}}",
 	"word.forgot.password": "Zapomniałeś hasła?",
 	"word.account.data": "Twoje dane",
 	"errors": {
