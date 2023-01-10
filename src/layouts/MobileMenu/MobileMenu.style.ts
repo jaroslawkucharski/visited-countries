@@ -5,7 +5,7 @@ export const MobileMenuComponent = styled.div`
 
 	${({ theme: { spaces, colors } }) =>
 		css`
-			padding: ${spaces.medium} ${spaces.large};
+			padding: ${spaces.medium} ${spaces.large} ${spaces.large} ${spaces.large};
 			display: flex;
 			justify-content: space-between;
 			align-items: center;
