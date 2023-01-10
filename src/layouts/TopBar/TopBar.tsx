@@ -3,6 +3,7 @@ import pl from 'assets/images/locales/pl.svg'
 import LogoDark from 'assets/images/logo_dark.svg'
 import LogoLight from 'assets/images/logo_light.svg'
 import { Button, Dropdown, Image, Spacer } from 'components'
+import { auth } from 'config/firebase'
 import { useAuthContext } from 'context/AuthContext'
 import { useThemeColorContext } from 'context/ThemeContext'
 import { useCallback } from 'react'
@@ -97,7 +98,7 @@ export const TopBar = () => {
 			)}
 
 			{userAuth && width > BREAKPOINTS.MOBILE && (
-				<Dropdown text={t('word.account')}>
+				<Dropdown text={auth?.currentUser?.displayName || t('word.account')}>
 					<Dropdown.Item
 						key={uuid()}
 						to="/"
