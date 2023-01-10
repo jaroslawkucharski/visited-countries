@@ -8,6 +8,7 @@ import { formSchema } from './Form.schema'
 import { FormComponent } from './Form.styles'
 
 interface FormValues {
+	displayName: string
 	email: string
 	password: string
 	confirmPassword: string
@@ -18,16 +19,19 @@ export const Form = () => {
 	const { singUp } = useAuthContext()
 
 	const initialValues: {
+		displayName: string
 		email: string
 		password: string
 		confirmPassword: string
 	} = {
+		displayName: '',
 		email: '',
 		password: '',
 		confirmPassword: '',
 	}
 
-	const onSubmit = async ({ email, password }: FormValues) => singUp(email, password)
+	const onSubmit = async ({ displayName, email, password }: FormValues) =>
+		singUp(displayName, email, password)
 
 	const {
 		values,
@@ -52,13 +56,28 @@ export const Form = () => {
 		>
 			<Input
 				id={uuid()}
+				type="text"
+				label={`${t('word.name')}`}
+				name="displayName"
+				value={values.displayName}
+				onChange={handleChange}
+				onBlur={handleBlur}
+				autoFocus
+				hasFullWidth
+				errors={errors}
+				touched={touched}
+			/>
+
+			<Spacer type="vertical" />
+
+			<Input
+				id={uuid()}
 				type="email"
 				label={`${t('word.email')}`}
 				name="email"
 				value={values.email}
 				onChange={handleChange}
 				onBlur={handleBlur}
-				autoFocus
 				hasFullWidth
 				errors={errors}
 				touched={touched}

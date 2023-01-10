@@ -32,7 +32,7 @@ export const Dashboard = () => {
 
 	return (
 		<div>
-			<ComposableMap style={{ height: '100vh', width: '100%' }}>
+			<ComposableMap style={{ width: '100%', maxHeight: 'calc(100vh - 84px)' }}>
 				<ZoomableGroup
 					center={[10, 20]}
 					zoom={2}
@@ -47,6 +47,7 @@ export const Dashboard = () => {
 									default: {
 										fill: fillCountry,
 										outline: 'none',
+										height: '100vh',
 									},
 									hover: {
 										fill: '#F53',

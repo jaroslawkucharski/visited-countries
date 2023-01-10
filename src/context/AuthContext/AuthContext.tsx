@@ -1,5 +1,10 @@
 import { auth } from 'config/firebase'
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from 'firebase/auth'
+import {
+	createUserWithEmailAndPassword,
+	signInWithEmailAndPassword,
+	signOut,
+	updateProfile,
+} from 'firebase/auth'
 import { FC, ReactNode, createContext, useContext, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
@@ -11,7 +16,7 @@ type AuthUser = object | null
 
 interface AuthContextType {
 	userAuth: AuthUser
-	singUp: (email: string, password: string) => Promise<string | number | void>
+	singUp: (displayName: string, email: string, password: string) => Promise<string | number | void>
 	singIn: (email: string, password: string) => Promise<string | number | void>
 	logout: () => Promise<string | number | void>
 }
@@ -25,15 +30,37 @@ const useAuthUser = () => {
 	const [userAuth, setUserAuth] = useState<AuthUser>(null)
 	const [isLoading, setLoading] = useState<boolean>(true)
 
-	const singUp = (email: string, password: string) =>
-		createUserWithEmailAndPassword(auth, email, password)
-			.then(() => navigate(ROUTES.DASHBOARD))
-			.catch(() => toastNotify(t('toasts.error'), 'error'))
+	const singUp = async (displayName: string, email: string, password: string) => {
+		try {
+			await createUserWithEmailAndPassword(auth, email, password)
+			if (auth?.currentUser !== null) {
+				await updateProfile(auth.currentUser, { displayName })
+			}
 
-	const singIn = (email: string, password: string) =>
-		signInWithEmailAndPassword(auth, email, password)
-			.then(() => navigate(ROUTES.DASHBOARD))
-			.catch(() => toastNotify(t('toasts.error'), 'error'))
+			toastNotify(t('register.toast.success', { displayName }), 'success')
+
+			navigate(ROUTES.DASHBOARD)
+		} catch {
+			toastNotify(t('toasts.error'), 'error')
+		}
+	}
+
+	const singIn = async (email: string, password: string) => {
+		try {
+			await signInWithEmailAndPassword(auth, email, password)
+
+			if (auth?.currentUser !== null) {
+				toastNotify(
+					t('login.toast.success', { displayName: auth?.currentUser.displayName }),
+					'success',
+				)
+			}
+
+			navigate(ROUTES.DASHBOARD)
+		} catch {
+			toastNotify(t('toasts.error'), 'error')
+		}
+	}
 
 	const logout = () =>
 		signOut(auth)
