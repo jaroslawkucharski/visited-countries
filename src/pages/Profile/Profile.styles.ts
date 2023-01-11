@@ -1,20 +1,18 @@
 import styled, { css } from 'styled-components'
 
-export const TopBarComponent = styled.div`
-	width: 100%;
-
-	${({ theme: { spaces, colors, breakpoints } }) =>
+export const ProfileColumnComponent = styled.div`
+	${({ theme: { spaces, breakpoints } }) =>
 		css`
+			width: 400px;
+			margin: 0 auto;
 			padding: ${spaces.medium} ${spaces.big};
 			display: flex;
-			justify-content: space-between;
+			flex-direction: column;
+			justify-content: center;
 			align-items: center;
-			background: ${colors.main};
 
 			@media (max-width: ${breakpoints.mobile}px) {
-				padding: ${spaces.big} ${spaces.big} ${spaces.medium} ${spaces.big};
-				justify-content: center;
-				flex-direction: column;
+				width: 100%;
 			}
 		`}
 `

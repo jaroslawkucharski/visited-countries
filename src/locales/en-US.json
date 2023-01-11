@@ -11,6 +11,7 @@
 	"word.confirm.password": "Confirm password",
 	"word.account": "Your account",
 	"word.logout": "Log out",
+	"word.avatar": "User avatar",
 	"register.description": "Create your account.",
 	"register.already.account": "Already have an account?",
 	"register.toast.success": "Hello {{displayName}}",

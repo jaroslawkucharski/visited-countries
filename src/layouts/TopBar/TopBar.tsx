@@ -9,6 +9,8 @@ import { useThemeColorContext } from 'context/ThemeContext'
 import { useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
 import { HiMoon, HiOutlineLogout, HiSun, HiUserCircle } from 'react-icons/hi'
+import { useNavigate } from 'react-router-dom'
+import { ROUTES } from 'routes'
 import { v4 as uuid } from 'uuid'
 
 import { useWindowSize } from 'hooks/useWindowSize'
@@ -23,6 +25,7 @@ export const TopBar = () => {
 	const { t, i18n } = useTranslation()
 	const { theme, toggleTheme } = useThemeColorContext()
 	const { userAuth, logout } = useAuthContext()
+	const navigate = useNavigate()
 
 	const { width } = useWindowSize()
 
@@ -37,6 +40,10 @@ export const TopBar = () => {
 
 	const handleLogout = useCallback(() => logout(), [logout])
 
+	const handleSignIn = useCallback(() => navigate(ROUTES.SIGNIN), [navigate])
+
+	const handleSignUp = useCallback(() => navigate(ROUTES.SIGNUP), [navigate])
+
 	return (
 		<TopBarComponent>
 			<Image
@@ -45,55 +52,25 @@ export const TopBar = () => {
 				alt={t('word.logo')}
 			/>
 
-			<Spacer type="vertical" />
-
 			{!userAuth && (
 				<SettingsComponent>
 					{width > BREAKPOINTS.MOBILE && (
 						<>
 							<Button
 								variant="primary"
-								action={handleLogout}
+								action={handleSignIn}
 							>
 								Sign In
 							</Button>
 
 							<Button
 								variant="secondary"
-								action={handleLogout}
+								action={handleSignUp}
 							>
 								Sign Up
 							</Button>
 						</>
 					)}
-
-					<Button
-						variant="secondary"
-						action={handleThemeColorChange}
-						hasOnlyIcon
-					>
-						{theme === 'dark' ? <HiSun /> : <HiMoon />}
-					</Button>
-
-					<Button
-						variant="secondary"
-						action={handleLanguageChangeToPL}
-						hasOnlyIcon
-					>
-						{i18n.language === LOCALES.EN ? (
-							<img
-								src={en}
-								width={16}
-								alt="en"
-							/>
-						) : (
-							<img
-								src={pl}
-								width={16}
-								alt="pl"
-							/>
-						)}
-					</Button>
 				</SettingsComponent>
 			)}
 
