@@ -11,6 +11,7 @@
 	"word.confirm.password": "Powtórz hasło",
 	"word.account": "Twoje konto",
 	"word.logout": "Wyloguj się",
+	"word.avatar": "Avatar użytkownika",
 	"register.description": "Zarejestruj swoje konto.",
 	"register.already.account": "Masz już konto?",
 	"register.toast.success": "Witaj {{displayName}}",
