@@ -1,5 +1,6 @@
 {
 	"roots": ["<rootDir>/src"],
+	"setupFilesAfterEnv": ["<rootDir>/src/config/tests.ts"],
 	"transform": {
 		"^.+\\.tsx?$": "ts-jest"
 	},
@@ -12,6 +13,7 @@
 		"src/layouts/**/*.{ts,tsx}",
 		"src/pages/**/*.{ts,tsx}",
 		"src/styles/**/*.{ts,tsx}",
+		"src/utils/**/*.{ts,tsx}",
 		"!src/**/index.{ts,tsx}"
 	],
 	"transformIgnorePatterns": ["node_modules/.pnpm/firebase@9.15.0/"],
