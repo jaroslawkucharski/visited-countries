@@ -1,0 +1,21 @@
+{
+	"roots": ["<rootDir>/src"],
+	"transform": {
+		"^.+\\.tsx?$": "ts-jest"
+	},
+	"moduleFileExtensions": ["ts", "tsx", "js", "jsx", "json", "node"],
+	"collectCoverageFrom": [
+		"src/components/**/*.{ts,tsx}",
+		"src/context/**/*.{ts,tsx}",
+		"src/helpers/**/*.{ts,tsx}",
+		"src/hooks/**/*.{ts,tsx}",
+		"src/layouts/**/*.{ts,tsx}",
+		"src/pages/**/*.{ts,tsx}",
+		"src/styles/**/*.{ts,tsx}",
+		"!src/**/index.{ts,tsx}"
+	],
+	"transformIgnorePatterns": ["node_modules/.pnpm/firebase@9.15.0/"],
+	"moduleDirectories": ["node_modules", "src"],
+	"testEnvironment": "jsdom",
+	"coverageReporters": ["json-summary", "text", "lcov"]
+}

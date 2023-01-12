@@ -1,7 +1,8 @@
 {
 	"env": {
 		"browser": true,
-		"es2021": true
+		"es2021": true,
+		"jest": true
 	},
 	"extends": [
 		"airbnb",
@@ -20,7 +21,7 @@
 		"sourceType": "module",
 		"parser": "@typescript-eslint/parser"
 	},
-	"plugins": ["react", "@typescript-eslint", "prettier"],
+	"plugins": ["react", "@typescript-eslint", "prettier", "jest-dom", "testing-library"],
 	"rules": {
 		"react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx", ".ts", ".tsx"] }],
 		"react/react-in-jsx-scope": "off",
