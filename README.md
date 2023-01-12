@@ -1,5 +1,10 @@
 <div align='center'>
 
+<img src='./coverage/badges/badge-branches.svg' />
+<img src='./coverage/badges/badge-functions.svg' />
+<img src='./coverage/badges/badge-lines.svg' />
+<img src='./coverage/badges/badge-statements.svg' />
+
 <br />
 
 <img src='./src/assets/images/logo_dark.svg' width='400px' />
