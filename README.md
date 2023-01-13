@@ -8,6 +8,7 @@
 <img src='./coverage/badges/badge-statements.svg' />
 
 ##
+
 TECH<strong>STACK</strong>
 
 ![](https://img.shields.io/badge/Vite-646CFF.svg?style=for-the-badge&logo=Vite&logoColor=white)
@@ -18,6 +19,7 @@ TECH<strong>STACK</strong>
 ![](https://img.shields.io/badge/Vitest-6E9F18.svg?style=for-the-badge&logo=Vitest&logoColor=white)
 ![](https://img.shields.io/badge/Vercel-000000.svg?style=for-the-badge&logo=Vercel&logoColor=white)
 ![](https://img.shields.io/badge/Firebase-FFCA28.svg?style=for-the-badge&logo=Firebase&logoColor=black)
+![](https://img.shields.io/badge/Sentry-362D59.svg?style=for-the-badge&logo=Sentry&logoColor=white)
 ![](https://img.shields.io/badge/.ENV-ECD53F.svg?style=for-the-badge&logo=dotenv&logoColor=black)
 ![](https://img.shields.io/badge/i18next-26A69A.svg?style=for-the-badge&logo=i18next&logoColor=white)
 ![](https://img.shields.io/badge/styledcomponents-DB7093.svg?style=for-the-badge&logo=styled-components&logoColor=white)
@@ -32,6 +34,7 @@ TECH<strong>STACK</strong>
 ![](https://img.shields.io/badge/Prettier-F7B93E.svg?style=for-the-badge&logo=Prettier&logoColor=black)
 
 ##
+
 APP<strong>DEMO</strong>
 
 <a href="https://visited-countries.vercel.app/" style='color: red;'>`https://visited-countries.vercel.app`</a>
@@ -39,6 +42,7 @@ APP<strong>DEMO</strong>
 <img src='./src/assets/images/mock.png' />
 
 ##
+
 APP<strong>CONFIG</strong>
 
 ToDo
