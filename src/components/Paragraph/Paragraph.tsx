@@ -7,6 +7,7 @@ interface ParagraphProps {
 	children: ReactNode
 	size?: 'small' | 'medium' | 'big'
 	align?: 'left' | 'center' | 'right'
+	'data-testid'?: string
 }
 
 export const Paragraph: FC<ParagraphProps> = ({
@@ -14,11 +15,13 @@ export const Paragraph: FC<ParagraphProps> = ({
 	children,
 	size = 'medium',
 	align = 'center',
+	'data-testid': dataTestId = 'paragraph',
 }) => (
 	<HeadingComponent
 		type={type}
 		size={size}
 		align={align}
+		data-testid={dataTestId}
 	>
 		{children}
 	</HeadingComponent>

@@ -10,9 +10,14 @@ import { DropdownComponent, DropdownMenuComponent } from './Dropdown.styles'
 export interface DropdownProps {
 	text: string
 	children: ReactNode
+	'data-testid'?: string
 }
 
-export const Dropdown: FC<DropdownProps> = ({ text, children }) => {
+export const Dropdown: FC<DropdownProps> = ({
+	text,
+	children,
+	'data-testid': dataTestId = 'dropdown',
+}) => {
 	const dropdownRef = useRef(null)
 
 	const [isOpen, setOpen] = useState<boolean>(false)
@@ -30,6 +35,7 @@ export const Dropdown: FC<DropdownProps> = ({ text, children }) => {
 		<DropdownComponent
 			onClick={handleOpenToogle}
 			ref={dropdownRef}
+			data-testid={dataTestId}
 		>
 			<Button isDropdown={isOpen}>
 				{isOpen ? <HiChevronUp /> : <HiChevronDown />}
