@@ -12,8 +12,7 @@ import { FC, ReactNode, createContext, useContext, useEffect, useState } from 'r
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 import { ROUTES } from 'routes'
-
-import { toastNotify } from 'helpers/toastNotify'
+import { toastNotify } from 'utils/toastNotify'
 
 type AuthUser = object | null
 

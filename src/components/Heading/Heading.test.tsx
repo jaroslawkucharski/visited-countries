@@ -1,24 +1,8 @@
-import { describe, it, render, vi } from 'config/tests'
+import { describe, it, render } from 'utils/tests'
 
 import { Heading } from './Heading'
 
 describe('components/Heading', () => {
-	beforeAll(() => {
-		Object.defineProperty(window, 'matchMedia', {
-			writable: true,
-			value: vi.fn().mockImplementation(query => ({
-				matches: false,
-				media: query,
-				onchange: null,
-				addListener: vi.fn(), // deprecated
-				removeListener: vi.fn(), // deprecated
-				addEventListener: vi.fn(),
-				removeEventListener: vi.fn(),
-				dispatchEvent: vi.fn(),
-			})),
-		})
-	})
-
 	it('should be H1', () => {
 		const { getByTestId, container } = render(<Heading>Hello world</Heading>)
 

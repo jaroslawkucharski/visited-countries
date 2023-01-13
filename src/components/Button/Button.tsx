@@ -34,6 +34,7 @@ export const Button: FC<ButtonProps> = ({
 		hasOnlyIcon={hasOnlyIcon}
 		disabled={isDisabled}
 		isDropdown={isDropdown}
+		data-testid="button"
 	>
 		{isLoading ? <Loader /> : children}
 	</ButtonComponent>
