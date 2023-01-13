@@ -15,6 +15,9 @@
 	},
 	"dependencies": {
 		"@reduxjs/toolkit": "^1.9.1",
+		"@sentry/browser": "^7.30.0",
+		"@sentry/react": "^7.30.0",
+		"@sentry/tracing": "^7.30.0",
 		"@types/i18next-browser-languagedetector": "^3.0.0",
 		"@types/react-simple-maps": "^3.0.0",
 		"@types/styled-components": "^5.1.26",

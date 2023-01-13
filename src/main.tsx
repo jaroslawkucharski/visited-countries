@@ -1,4 +1,5 @@
 import 'config/i18n'
+import 'config/sentry'
 import { AuthProvider } from 'context/AuthContext'
 import { ThemeColorProvider } from 'context/ThemeContext'
 import React from 'react'
