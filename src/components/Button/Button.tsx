@@ -13,6 +13,7 @@ interface ButtonProps {
 	isLoading?: boolean
 	isDisabled?: boolean
 	isDropdown?: boolean
+	'data-testid'?: string
 }
 
 export const Button: FC<ButtonProps> = ({
@@ -25,6 +26,7 @@ export const Button: FC<ButtonProps> = ({
 	isLoading = false,
 	isDisabled = false,
 	isDropdown = false,
+	'data-testid': dataTestId = 'button',
 }) => (
 	<ButtonComponent
 		variant={variant}
@@ -34,8 +36,9 @@ export const Button: FC<ButtonProps> = ({
 		hasOnlyIcon={hasOnlyIcon}
 		disabled={isDisabled}
 		isDropdown={isDropdown}
+		data-testid={dataTestId}
 	>
-		{isLoading ? <Loader /> : children}
+		{isLoading ? <Loader data-testid="button-loader" /> : children}
 	</ButtonComponent>
 )
 

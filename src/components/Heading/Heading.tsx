@@ -6,13 +6,20 @@ interface HeadingProps {
 	level?: 1 | 2
 	children: ReactNode
 	align?: 'left' | 'center' | 'right'
+	'data-testid'?: string
 }
 
-export const Heading: FC<HeadingProps> = ({ level = 1, children, align = 'center' }) => (
+export const Heading: FC<HeadingProps> = ({
+	level = 1,
+	children,
+	align = 'center',
+	'data-testid': dataTestId = 'heading',
+}) => (
 	<HeadingComponent
 		as={`h${level}`}
 		level={level}
 		align={align}
+		data-testid={dataTestId}
 	>
 		{children}
 	</HeadingComponent>

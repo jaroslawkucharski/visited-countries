@@ -54,12 +54,18 @@ export const Input: FC<InputProps> = ({
 				htmlFor={id}
 				hasFullWidth={hasFullWidth}
 			>
-				<Paragraph type="label">{label}</Paragraph>
+				<Paragraph
+					type="label"
+					data-testid="input-label"
+				>
+					{label}
+				</Paragraph>
 
 				{isError && (
 					<Paragraph
 						type="error"
 						size="small"
+						data-testid="input-error"
 					>
 						{t(`${errors[name]}`)}
 					</Paragraph>
@@ -78,10 +84,14 @@ export const Input: FC<InputProps> = ({
 				autoFocus={autoFocus}
 				isError={isError}
 				isPassword={isPassword}
+				data-testid="input"
 			/>
 
 			{isPassword && (
-				<IconComponent onClick={handleShowPassword}>
+				<IconComponent
+					onClick={handleShowPassword}
+					data-testid="input-password"
+				>
 					{showPassword ? <HiEyeOff /> : <HiEye />}
 				</IconComponent>
 			)}
