@@ -24,3 +24,5 @@ i18next
 		},
 		detection: { lookupLocalStorage: 'language' },
 	})
+
+export default i18next

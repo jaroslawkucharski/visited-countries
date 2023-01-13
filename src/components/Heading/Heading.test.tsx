@@ -1,8 +1,8 @@
-import { describe, it, render, screen, vi, waitFor } from 'config/tests'
+import { describe, it, render, vi } from 'config/tests'
 
 import { Heading } from './Heading'
 
-describe('suite', () => {
+describe('components/Heading', () => {
 	beforeAll(() => {
 		Object.defineProperty(window, 'matchMedia', {
 			writable: true,
@@ -19,22 +19,17 @@ describe('suite', () => {
 		})
 	})
 
-	it('serial test', () => {
-		render(<Heading level={1}>fsdf</Heading>)
+	it('should be H1', () => {
+		const { getByTestId, container } = render(<Heading>Hello world</Heading>)
+
+		expect(getByTestId('heading')).toBeInTheDocument()
+		expect(container.querySelector('h1')).toBeInTheDocument()
 	})
 
-	it('serial test', async () => {
-		render(
-			<Heading
-				level={2}
-				data-testid="spreader"
-			>
-				dasdad
-			</Heading>,
-		)
+	it('should be H2', async () => {
+		const { getByTestId, container } = render(<Heading level={2}>Hello world</Heading>)
 
-		await waitFor(() => {
-			screen.debug(undefined, Infinity)
-		})
+		expect(getByTestId('heading')).toBeInTheDocument()
+		expect(container.querySelector('h2')).toBeInTheDocument()
 	})
 })

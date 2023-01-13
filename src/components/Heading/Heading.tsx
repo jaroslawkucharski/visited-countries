@@ -13,6 +13,7 @@ export const Heading: FC<HeadingProps> = ({ level = 1, children, align = 'center
 		as={`h${level}`}
 		level={level}
 		align={align}
+		data-testid="heading"
 	>
 		{children}
 	</HeadingComponent>
