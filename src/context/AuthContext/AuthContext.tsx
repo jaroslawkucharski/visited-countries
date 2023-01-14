@@ -11,8 +11,9 @@ import { getDownloadURL, ref as storageRef, uploadBytes } from 'firebase/storage
 import { FC, ReactNode, createContext, useContext, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
-import { ROUTES } from 'routes'
 import { toastNotify } from 'utils/toastNotify'
+
+import { ROUTES } from 'constants/routes'
 
 type AuthUser = object | null
 

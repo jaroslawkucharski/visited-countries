@@ -1,7 +1,8 @@
 import { useAuthContext } from 'context/AuthContext'
 import { FC, ReactElement } from 'react'
 import { Navigate } from 'react-router-dom'
-import { ROUTES } from 'routes'
+
+import { ROUTES } from 'constants/routes'
 
 interface PrivateRouteProps {
 	component: ReactElement

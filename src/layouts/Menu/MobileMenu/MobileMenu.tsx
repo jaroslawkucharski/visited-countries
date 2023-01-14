@@ -1,6 +1,7 @@
 import { Link } from 'components'
 import { HiGlobeAlt, HiQueueList, HiUserCircle } from 'react-icons/hi2'
-import { ROUTES } from 'routes'
+
+import { ROUTES } from 'constants/routes'
 
 import { MobileMenuComponent } from './MobileMenu.style'
 

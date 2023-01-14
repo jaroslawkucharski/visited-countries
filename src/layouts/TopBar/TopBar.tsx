@@ -8,12 +8,12 @@ import { useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
 import { HiArrowRightOnRectangle, HiQuestionMarkCircle, HiUserCircle } from 'react-icons/hi2'
 import { useNavigate } from 'react-router-dom'
-import { ROUTES } from 'routes'
 import { v4 as uuid } from 'uuid'
 
 import { useWindowSize } from 'hooks/useWindowSize'
 
 import { BREAKPOINTS } from 'constants/breakpoints'
+import { ROUTES } from 'constants/routes'
 import { THEME_COLORS } from 'constants/theme'
 
 import { SettingsComponent, TopBarComponent } from './TopBar.styles'
