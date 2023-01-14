@@ -21,6 +21,7 @@
 	"word.forgot.password": "Forgot password?",
 	"word.account.data": "Your data",
 	"word.help": "Help",
+	"word.profile": "Your profile",
 	"errors": {
 		"empty.field": "Field is required",
 		"email": "Invalid email",
