@@ -20,6 +20,7 @@
 	"login.toast.success": "Witaj ponownie {{displayName}}",
 	"word.forgot.password": "Zapomniałeś hasła?",
 	"word.account.data": "Twoje dane",
+	"word.help": "Pomoc",
 	"errors": {
 		"empty.field": "Pole obowiązkowe",
 		"email": "Niepoprawny adres email",
