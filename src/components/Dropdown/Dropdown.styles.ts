@@ -26,7 +26,7 @@ export const DropdownMenuComponent = styled.div`
 	${({ theme: { colors, spaces } }) =>
 		css`
 			background: ${colors.secondary};
-			padding: ${spaces.small} 0;
+			padding: 0 0 ${spaces.small} 0;
 		`}
 `
 
@@ -41,7 +41,7 @@ export const ItemComponent = styled(NavLink)`
 	${({ theme: { colors, spaces } }) =>
 		css`
 			color: ${colors.main};
-			padding: ${spaces.small} ${spaces.medium};
+			padding: ${spaces.small} ${spaces.medium} ${spaces.small} ${spaces.big};
 			background: ${colors.secondary};
 			gap: ${spaces.tiny};
 
