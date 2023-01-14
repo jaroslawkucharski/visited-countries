@@ -2,7 +2,7 @@ import { FC, ReactEventHandler, ReactNode } from 'react'
 
 import { ItemComponent } from './Dropdown.styles'
 
-export interface ItemProps {
+export interface DropdownItemProps {
 	to?: string
 	action?: ReactEventHandler<HTMLAnchorElement>
 	children: ReactNode
@@ -10,7 +10,7 @@ export interface ItemProps {
 	'data-testid'?: string
 }
 
-export const Item: FC<ItemProps> = ({
+export const DropdownItem: FC<DropdownItemProps> = ({
 	to = '',
 	action,
 	children,
@@ -27,4 +27,4 @@ export const Item: FC<ItemProps> = ({
 	</ItemComponent>
 )
 
-Item.displayName = 'DropdownItem'
+DropdownItem.displayName = 'DropdownItem'
