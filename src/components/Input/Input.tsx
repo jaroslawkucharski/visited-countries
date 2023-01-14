@@ -2,7 +2,7 @@ import { Paragraph } from 'components'
 import { FormikErrors, FormikTouched } from 'formik'
 import { ChangeEventHandler, FC, FocusEventHandler, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { HiEye, HiEyeOff } from 'react-icons/hi'
+import { HiEye, HiEyeSlash } from 'react-icons/hi2'
 
 import { IconComponent, InputComponent, LabelComponent } from './Input.styles'
 
@@ -92,7 +92,7 @@ export const Input: FC<InputProps> = ({
 					onClick={handleShowPassword}
 					data-testid="input-password"
 				>
-					{showPassword ? <HiEyeOff /> : <HiEye />}
+					{showPassword ? <HiEyeSlash /> : <HiEye />}
 				</IconComponent>
 			)}
 		</div>

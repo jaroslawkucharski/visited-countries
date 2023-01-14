@@ -1,4 +1,4 @@
-import { HiBadgeCheck } from 'react-icons/hi'
+import { HiCheckBadge } from 'react-icons/hi2'
 import { describe, it, render } from 'utils/tests'
 
 import { Button } from './Button'
@@ -25,7 +25,7 @@ describe('components/Button', () => {
 	it('should have only icon', () => {
 		const { getByTestId } = render(
 			<Button hasOnlyIcon>
-				<HiBadgeCheck />
+				<HiCheckBadge />
 			</Button>,
 		)
 
