@@ -1,27 +1,81 @@
-import { Link } from 'components'
-import { HiGlobeAlt, HiQueueList, HiUserCircle } from 'react-icons/hi2'
-import { ROUTES } from 'routes'
+import en from 'assets/images/locales/en.svg'
+import pl from 'assets/images/locales/pl.svg'
+import { Button, Image } from 'components'
+import { useThemeColorContext } from 'context/ThemeContext'
+import { DashboardList } from 'pages'
+import { useCallback, useState } from 'react'
+import { useTranslation } from 'react-i18next'
+import { HiChevronDoubleLeft, HiChevronDoubleRight, HiMoon, HiSun } from 'react-icons/hi2'
 
-import { MobileMenuComponent } from './WebMenu.style'
+import { LOCALES } from 'constants/locales'
 
-export const WebMenu = () => (
-	<MobileMenuComponent>
-		<div>
-			<Link to={ROUTES.DASHBOARD}>
-				<HiGlobeAlt />
-			</Link>
+import { WebMenuComponent, WebMenuItemComponent } from './WebMenu.style'
 
-			<Link to={ROUTES.DASHBOARD_LIST}>
-				<HiQueueList />
-			</Link>
+export const WebMenu = () => {
+	const { i18n } = useTranslation()
+	const { theme, toggleTheme } = useThemeColorContext()
 
-			<Link to={ROUTES.PROFILE}>
-				<HiUserCircle />
-			</Link>
-		</div>
+	const [isOpen, setOpen] = useState<boolean>(false)
 
-		<Link to={ROUTES.DASHBOARD}>
-			<HiGlobeAlt />
-		</Link>
-	</MobileMenuComponent>
-)
+	const handleOpenList = useCallback(() => setOpen(!isOpen), [isOpen])
+
+	const handleThemeColorChange = useCallback(() => toggleTheme(), [toggleTheme])
+
+	const handleLanguageChangeToPL = useCallback(
+		() =>
+			i18n.language === LOCALES.EN
+				? i18n.changeLanguage(LOCALES.PL)
+				: i18n.changeLanguage(LOCALES.EN),
+		[i18n],
+	)
+
+	return (
+		<WebMenuComponent>
+			<Button
+				variant="secondary"
+				action={handleOpenList}
+				hasOnlyIcon
+			>
+				{isOpen ? <HiChevronDoubleLeft /> : <HiChevronDoubleRight />}
+			</Button>
+
+			{isOpen && (
+				<WebMenuItemComponent>
+					<DashboardList />
+				</WebMenuItemComponent>
+			)}
+
+			{/* {isOpen && <DashboardList />} */}
+
+			<div>
+				<Button
+					variant="secondary"
+					action={handleThemeColorChange}
+					hasOnlyIcon
+				>
+					{theme === 'dark' ? <HiSun /> : <HiMoon />}
+				</Button>
+
+				<Button
+					variant="secondary"
+					action={handleLanguageChangeToPL}
+					hasOnlyIcon
+				>
+					{i18n.language === LOCALES.EN ? (
+						<Image
+							src={en}
+							width={16}
+							alt="en"
+						/>
+					) : (
+						<Image
+							src={pl}
+							width={16}
+							alt="pl"
+						/>
+					)}
+				</Button>
+			</div>
+		</WebMenuComponent>
+	)
+}

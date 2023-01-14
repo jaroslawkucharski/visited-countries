@@ -1,7 +1,7 @@
 import { Loader } from 'components'
 import { useThemeColorContext } from 'context/ThemeContext'
 import { Menu, PrivateRoute, TopBar } from 'layouts'
-import { Profile } from 'pages'
+import { DashboardList, Profile } from 'pages'
 import { Suspense, lazy } from 'react'
 import { Route, Routes } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify'
@@ -61,6 +61,19 @@ const App = () => {
 							component={
 								<Suspense fallback={<Loader type="website" />}>
 									<Dashboard />
+								</Suspense>
+							}
+						/>
+					}
+				/>
+
+				<Route
+					path={ROUTES.DASHBOARD_LIST}
+					element={
+						<PrivateRoute
+							component={
+								<Suspense fallback={<Loader type="website" />}>
+									<DashboardList />
 								</Suspense>
 							}
 						/>
