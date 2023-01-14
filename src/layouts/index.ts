@@ -1,3 +1,3 @@
 export * from './TopBar'
 export * from './PrivateRoute'
-export * from './MobileMenu'
+export * from './Menu'

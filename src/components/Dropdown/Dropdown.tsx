@@ -1,6 +1,6 @@
 import { Button } from 'components'
 import { FC, ReactNode, useCallback, useRef, useState } from 'react'
-import { HiChevronDown, HiChevronUp } from 'react-icons/hi'
+import { HiChevronDown, HiChevronUp } from 'react-icons/hi2'
 
 import { useOnClickOutside } from 'hooks/useOnClickOutside'
 import { useScrollDetector } from 'hooks/useScrollDetector'

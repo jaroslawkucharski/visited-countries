@@ -5,4 +5,5 @@ export const ROUTES = {
 	DASHBOARD: '/',
 	DASHBOARD_LIST: '/list',
 	PROFILE: '/profile',
+	HELP: '/help',
 }

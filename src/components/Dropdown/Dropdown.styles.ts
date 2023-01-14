@@ -1,6 +1,10 @@
 import { NavLink } from 'react-router-dom'
 import styled, { css } from 'styled-components'
 
+interface ItemComponentProps {
+	isLastItem?: boolean
+}
+
 export const DropdownComponent = styled.div`
 	min-width: fit-content;
 	position: relative;
@@ -23,14 +27,14 @@ export const DropdownMenuComponent = styled.div`
 		}
 	}
 
-	${({ theme: { colors, spaces } }) =>
+	${({ theme: { colors } }) =>
 		css`
+			padding: 0;
 			background: ${colors.secondary};
-			padding: ${spaces.small} 0;
 		`}
 `
 
-export const ItemComponent = styled(NavLink)`
+export const ItemComponent = styled(NavLink)<ItemComponentProps>`
 	cursor: pointer;
 	width: 100%;
 	display: block;
@@ -38,12 +42,13 @@ export const ItemComponent = styled(NavLink)`
 	display: flex;
 	align-items: center;
 
-	${({ theme: { colors, spaces } }) =>
+	${({ theme: { colors, spaces }, isLastItem }) =>
 		css`
 			color: ${colors.main};
-			padding: ${spaces.small} ${spaces.medium};
+			padding: ${spaces.small} ${spaces.medium} ${spaces.small} ${spaces.big};
 			background: ${colors.secondary};
 			gap: ${spaces.tiny};
+			border-radius: ${isLastItem && `0 0 15px 15px`};
 
 			&:hover {
 				background: ${colors.color1};

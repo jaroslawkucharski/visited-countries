@@ -9,7 +9,7 @@ import { useAuthContext } from 'context/AuthContext'
 import { useThemeColorContext } from 'context/ThemeContext'
 import { ChangeEvent, useCallback, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
-import { HiMoon, HiSun } from 'react-icons/hi'
+import { HiMoon, HiSun } from 'react-icons/hi2'
 
 import { LOCALES } from 'constants/locales'
 
