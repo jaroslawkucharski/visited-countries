@@ -1,6 +1,6 @@
 import { Loader } from 'components'
 import { useThemeColorContext } from 'context/ThemeContext'
-import { MobileMenu, PrivateRoute, TopBar } from 'layouts'
+import { Menu, PrivateRoute, TopBar } from 'layouts'
 import { Profile } from 'pages'
 import { Suspense, lazy } from 'react'
 import { Route, Routes } from 'react-router-dom'
@@ -33,7 +33,7 @@ const App = () => {
 
 			<TopBar />
 
-			<MobileMenu />
+			<Menu />
 
 			<Routes>
 				<Route
