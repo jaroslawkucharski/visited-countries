@@ -7,4 +7,5 @@ Sentry.init({
 	dsn: ENVS.SENTRY_DNS,
 	integrations: [new BrowserTracing()],
 	tracesSampleRate: 1.0,
+	allowUrls: ENVS.SENTRY_ALLOW_URLS,
 })

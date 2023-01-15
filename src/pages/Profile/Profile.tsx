@@ -3,7 +3,7 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import en from 'assets/images/locales/en.svg'
 import pl from 'assets/images/locales/pl.svg'
-import { Button, Image, Spacer } from 'components'
+import { Button, Heading, Image, Spacer } from 'components'
 import { auth } from 'config/firebase'
 import { useAuthContext } from 'context/AuthContext'
 import { useThemeColorContext } from 'context/ThemeContext'
@@ -49,6 +49,10 @@ export const Profile = () => {
 
 	return (
 		<ProfileColumnComponent>
+			<Heading>{t('word.profile')}</Heading>
+
+			<Spacer type="vertical" />
+
 			<div onClick={handleUploadImage}>
 				<Image
 					src={auth?.currentUser?.photoURL || ''}
