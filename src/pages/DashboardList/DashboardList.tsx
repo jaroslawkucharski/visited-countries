@@ -17,6 +17,7 @@ export const DashboardList = () => {
 				name="searcher"
 				id="searcher"
 				placeholder="Search country"
+				onChange={() => null}
 			/>
 
 			<Spacer type="vertical" />
