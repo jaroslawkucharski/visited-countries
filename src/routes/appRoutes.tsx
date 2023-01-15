@@ -5,7 +5,6 @@ import { v4 as uuid } from 'uuid'
 
 import { ROUTES } from 'constants/routes'
 
-import { MobileRoute } from './MobileRoute'
 import { PrivateRoute } from './PrivateRoute'
 import { PublicRoute } from './PublicRoute'
 
@@ -33,36 +32,42 @@ const routes = [
 	{
 		path: ROUTES.SIGNIN,
 		route: PublicRoute,
+		isOnlyForMobile: false,
 		component: <Login />,
 	},
 	{
 		path: ROUTES.SIGNUP,
 		route: PublicRoute,
+		isOnlyForMobile: false,
 		component: <Register />,
 	},
 	{
 		path: ROUTES.DASHBOARD,
 		route: PrivateRoute,
+		isOnlyForMobile: false,
 		component: <Dashboard />,
 	},
 	{
 		path: ROUTES.DASHBOARD_LIST,
-		route: MobileRoute,
+		route: PrivateRoute,
+		isOnlyForMobile: true,
 		component: <DashboardList />,
 	},
 	{
 		path: ROUTES.PROFILE,
 		route: PrivateRoute,
+		isOnlyForMobile: false,
 		component: <Profile />,
 	},
 ]
 
-export const appRoutes = routes.map(({ path, route, component }) => (
+export const appRoutes = routes.map(({ path, route, component, isOnlyForMobile }) => (
 	<Route
 		key={uuid()}
 		path={path}
 		element={createElement(route, {
 			component: <Suspense fallback={<Loader type="website" />}>{component}</Suspense>,
+			isOnlyForMobile,
 		})}
 	/>
 ))
