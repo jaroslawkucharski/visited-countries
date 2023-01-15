@@ -22,6 +22,7 @@
 	"word.account.data": "Twoje dane",
 	"word.help": "Pomoc",
 	"word.profile": "Twój profil",
+	"word.list": "Twoja lista",
 	"errors": {
 		"empty.field": "Pole obowiązkowe",
 		"email": "Niepoprawny adres email",
