@@ -45,16 +45,17 @@ export const TopBar = () => {
 					<Button
 						variant="primary"
 						action={handleSignIn}
+						data-testid="button-signin"
 					>
 						{t('word.signin')}
 					</Button>
 					<Button
 						variant="secondary"
 						action={handleSignUp}
+						data-testid="button-signup"
 					>
 						{t('word.signup')}
 					</Button>
-					s
 				</SettingsComponent>
 			)}
 

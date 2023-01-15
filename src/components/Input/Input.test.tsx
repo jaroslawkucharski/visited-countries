@@ -1,11 +1,11 @@
-import { describe, fireEvent, it, render, vi } from 'utils/tests'
+import { describe, fireEvent, it, render, vi, waitFor } from 'utils/tests'
 
 import { Input } from './Input'
 
 const onChange = vi.fn()
 
 describe('components/Input', () => {
-	it('should have label, name & id', () => {
+	it('should have label, name & id', async () => {
 		const { getByTestId } = render(
 			<Input
 				label="label"
@@ -15,11 +15,13 @@ describe('components/Input', () => {
 			/>,
 		)
 
-		expect(getByTestId('input')).toBeInTheDocument()
-		expect(getByTestId('input-label')).toBeInTheDocument()
+		await waitFor(() => {
+			expect(getByTestId('input')).toBeInTheDocument()
+			expect(getByTestId('input-label')).toBeInTheDocument()
+		})
 	})
 
-	it('should have errors', () => {
+	it('should have errors', async () => {
 		const { getByTestId } = render(
 			<Input
 				label="label"
@@ -31,11 +33,13 @@ describe('components/Input', () => {
 			/>,
 		)
 
-		expect(getByTestId('input')).toBeInTheDocument()
-		expect(getByTestId('input-error')).toBeInTheDocument()
+		await waitFor(() => {
+			expect(getByTestId('input')).toBeInTheDocument()
+			expect(getByTestId('input-error')).toBeInTheDocument()
+		})
 	})
 
-	it('should have full width', () => {
+	it('should have full width', async () => {
 		const { getByTestId } = render(
 			<Input
 				label="label"
@@ -46,10 +50,12 @@ describe('components/Input', () => {
 			/>,
 		)
 
-		expect(getByTestId('input')).toBeInTheDocument()
+		await waitFor(() => {
+			expect(getByTestId('input')).toBeInTheDocument()
+		})
 	})
 
-	it('should be password', () => {
+	it('should be password', async () => {
 		const { getByTestId } = render(
 			<Input
 				label="label"
@@ -60,9 +66,11 @@ describe('components/Input', () => {
 			/>,
 		)
 
-		expect(getByTestId('input')).toBeInTheDocument()
-		expect(getByTestId('input-password')).toBeInTheDocument()
+		await waitFor(() => {
+			expect(getByTestId('input')).toBeInTheDocument()
+			expect(getByTestId('input-password')).toBeInTheDocument()
 
-		fireEvent.click(getByTestId('input-password'))
+			fireEvent.click(getByTestId('input-password'))
+		})
 	})
 })

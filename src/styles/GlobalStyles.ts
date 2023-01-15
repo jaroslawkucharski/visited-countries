@@ -3,6 +3,17 @@ import { createGlobalStyle, css } from 'styled-components'
 export const GlobalStyles = createGlobalStyle`
 	${({ theme: { font, colors } }) =>
 		css`
+		@media screen and (pointer: coarse) and (orientation: landscape) {
+			html {
+				transform: rotate(-90deg);
+				transform-origin: left top;
+				width: 100vh;
+				overflow-x: hidden;
+				position: absolute;
+				top: 100%;
+				left: 0;
+				}
+		}
 	
 		:root {
 			font-family: 'Poppins', sans-serif;
@@ -29,7 +40,6 @@ export const GlobalStyles = createGlobalStyle`
 			--toastify-text-color-light: ${colors.main};
 			--toastify-text-color-dark: ${colors.main};
 		}
-	
 	
 		*,
 		*::before,

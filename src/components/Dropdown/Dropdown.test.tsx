@@ -1,10 +1,10 @@
-import { describe, fireEvent, it, render } from 'utils/tests'
+import { describe, fireEvent, it, render, waitFor } from 'utils/tests'
 
 import { Dropdown } from './Dropdown'
 import { DropdownItem } from './DropdownItem'
 
 describe('components/Dropdown', () => {
-	it('should be ', () => {
+	it('should be in the document', async () => {
 		const { getByTestId } = render(
 			<Dropdown text="Drop me">
 				<DropdownItem
@@ -23,11 +23,13 @@ describe('components/Dropdown', () => {
 			</Dropdown>,
 		)
 
-		expect(getByTestId('dropdown')).toBeInTheDocument()
+		await waitFor(() => {
+			expect(getByTestId('dropdown')).toBeInTheDocument()
 
-		fireEvent.click(getByTestId('dropdown'))
+			fireEvent.click(getByTestId('dropdown'))
 
-		expect(getByTestId('item1')).toBeInTheDocument()
-		expect(getByTestId('item2')).toBeInTheDocument()
+			expect(getByTestId('item1')).toBeInTheDocument()
+			expect(getByTestId('item2')).toBeInTheDocument()
+		})
 	})
 })

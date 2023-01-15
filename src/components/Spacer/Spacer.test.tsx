@@ -1,17 +1,21 @@
-import { describe, it, render } from 'utils/tests'
+import { describe, it, render, waitFor } from 'utils/tests'
 
 import { Spacer } from './Spacer'
 
 describe('components/Spacer', () => {
-	it('should be type horizontal', () => {
+	it('should be type horizontal', async () => {
 		const { getByTestId } = render(<Spacer />)
 
-		expect(getByTestId('spacer')).toBeInTheDocument()
+		await waitFor(() => {
+			expect(getByTestId('spacer')).toBeInTheDocument()
+		})
 	})
 
-	it('should be type vertical', () => {
+	it('should be type vertical', async () => {
 		const { getByTestId } = render(<Spacer type="vertical" />)
 
-		expect(getByTestId('spacer')).toBeInTheDocument()
+		await waitFor(() => {
+			expect(getByTestId('spacer')).toBeInTheDocument()
+		})
 	})
 })

@@ -1,11 +1,13 @@
-import { describe, it, render } from 'utils/tests'
+import { describe, it, render, waitFor } from 'utils/tests'
 
 import { Break } from './Break'
 
 describe('components/Break', () => {
-	it('should be in document', () => {
+	it('should be in document', async () => {
 		const { getByTestId } = render(<Break />)
 
-		expect(getByTestId('break')).toBeInTheDocument()
+		await waitFor(() => {
+			expect(getByTestId('break')).toBeInTheDocument()
+		})
 	})
 })

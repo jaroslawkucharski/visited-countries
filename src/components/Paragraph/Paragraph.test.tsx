@@ -1,11 +1,13 @@
-import { describe, it, render } from 'utils/tests'
+import { describe, it, render, waitFor } from 'utils/tests'
 
 import { Paragraph } from './Paragraph'
 
 describe('components/Paragraph', () => {
-	it('should be in document', () => {
+	it('should be in document', async () => {
 		const { getByTestId } = render(<Paragraph>Text</Paragraph>)
 
-		expect(getByTestId('paragraph')).toBeInTheDocument()
+		await waitFor(() => {
+			expect(getByTestId('paragraph')).toBeInTheDocument()
+		})
 	})
 })
