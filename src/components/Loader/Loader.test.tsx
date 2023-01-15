@@ -1,17 +1,21 @@
-import { describe, it, render } from 'utils/tests'
+import { describe, it, render, waitFor } from 'utils/tests'
 
 import { Loader } from './Loader'
 
 describe('components/Loader', () => {
-	it('should be type button', () => {
+	it('should be type button', async () => {
 		const { getByTestId } = render(<Loader />)
 
-		expect(getByTestId('loader')).toBeInTheDocument()
+		await waitFor(() => {
+			expect(getByTestId('loader')).toBeInTheDocument()
+		})
 	})
 
-	it('should be type website', () => {
+	it('should be type website', async () => {
 		const { getByTestId } = render(<Loader type="website" />)
 
-		expect(getByTestId('loader')).toBeInTheDocument()
+		await waitFor(() => {
+			expect(getByTestId('loader')).toBeInTheDocument()
+		})
 	})
 })

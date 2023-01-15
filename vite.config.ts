@@ -23,6 +23,7 @@ export default defineConfig({
 				'src/hooks/**/*.{ts,tsx}',
 				'src/layouts/**/*.{ts,tsx}',
 				'src/pages/**/*.{ts,tsx}',
+				'src/routes/**/*.{ts,tsx}',
 				'src/styles/**/*.{ts,tsx}',
 				'src/utils/**/*.{ts,tsx}',
 			],

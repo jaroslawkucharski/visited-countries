@@ -1,40 +1,50 @@
 import { HiCheckBadge } from 'react-icons/hi2'
-import { describe, it, render } from 'utils/tests'
+import { describe, it, render, waitFor } from 'utils/tests'
 
 import { Button } from './Button'
 
 describe('components/Button', () => {
-	it('should be variant primary', () => {
+	it('should be variant primary', async () => {
 		const { getByTestId } = render(<Button>Click</Button>)
 
-		expect(getByTestId('button')).toBeInTheDocument()
+		await waitFor(() => {
+			expect(getByTestId('button')).toBeInTheDocument()
+		})
 	})
 
-	it('should be loading', () => {
+	it('should be loading', async () => {
 		const { getByTestId } = render(<Button isLoading>Click</Button>)
 
-		expect(getByTestId('button-loader')).toBeInTheDocument()
+		await waitFor(() => {
+			expect(getByTestId('button-loader')).toBeInTheDocument()
+		})
 	})
 
-	it('should have full width', () => {
+	it('should have full width', async () => {
 		const { getByTestId } = render(<Button hasFullWidth>Click</Button>)
 
-		expect(getByTestId('button')).toBeInTheDocument()
+		await waitFor(() => {
+			expect(getByTestId('button')).toBeInTheDocument()
+		})
 	})
 
-	it('should have only icon', () => {
+	it('should have only icon', async () => {
 		const { getByTestId } = render(
 			<Button hasOnlyIcon>
 				<HiCheckBadge />
 			</Button>,
 		)
 
-		expect(getByTestId('button')).toBeInTheDocument()
+		await waitFor(() => {
+			expect(getByTestId('button')).toBeInTheDocument()
+		})
 	})
 
-	it('should be dropdown', () => {
+	it('should be dropdown', async () => {
 		const { getByTestId } = render(<Button isDropdown>Click</Button>)
 
-		expect(getByTestId('button')).toBeInTheDocument()
+		await waitFor(() => {
+			expect(getByTestId('button')).toBeInTheDocument()
+		})
 	})
 })
