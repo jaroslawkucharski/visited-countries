@@ -32,6 +32,7 @@ export const Form = () => {
 		<FormComponent
 			onSubmit={handleSubmit}
 			noValidate
+			data-testid="form"
 		>
 			<Input
 				id={uuid()}

@@ -1,9 +1,13 @@
-import { describe, it, render } from 'utils/tests'
+import { describe, it, render, waitFor } from 'utils/tests'
 
 import { Profile } from './Profile'
 
 describe('components/Profile', () => {
 	it('should be in document', async () => {
-		render(<Profile />)
+		const { getByText } = render(<Profile />)
+
+		await waitFor(() => {
+			expect(getByText('Your profile')).toBeInTheDocument()
+		})
 	})
 })

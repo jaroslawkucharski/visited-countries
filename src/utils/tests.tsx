@@ -1,5 +1,6 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import { render as rtlRender, screen, waitFor } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
 import { AuthProvider } from 'context/AuthContext'
 import { ThemeColorProvider } from 'context/ThemeContext'
 import { ComponentType, ReactElement, ReactNode } from 'react'
@@ -30,4 +31,4 @@ const render = (ui: ReactElement) => {
 
 export * from '@testing-library/react'
 
-export { render, describe, it, vi, screen, waitFor }
+export { render, describe, it, vi, screen, waitFor, userEvent }
