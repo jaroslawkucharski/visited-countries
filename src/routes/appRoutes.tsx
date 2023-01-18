@@ -16,6 +16,10 @@ const Register = lazy(async () => ({
 	default: (await import('pages')).Register,
 }))
 
+const PasswordReset = lazy(async () => ({
+	default: (await import('pages')).PasswordReset,
+}))
+
 const Dashboard = lazy(async () => ({
 	default: (await import('pages')).Dashboard,
 }))
@@ -40,6 +44,12 @@ const routes = [
 		route: PublicRoute,
 		isOnlyForMobile: false,
 		component: <Register />,
+	},
+	{
+		path: ROUTES.PASSWORD_RESET,
+		route: PublicRoute,
+		isOnlyForMobile: false,
+		component: <PasswordReset />,
 	},
 	{
 		path: ROUTES.DASHBOARD,
