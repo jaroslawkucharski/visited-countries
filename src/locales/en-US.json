@@ -23,12 +23,19 @@
 	"word.help": "Help",
 	"word.profile": "Your profile",
 	"word.list": "Your list",
+	"word.password.reset": "Reset password",
+	"password.reset.description": "A link to set a new password will be sent to your email",
+	"min.characters.6": "The password should contain at least 6 characters",
 	"errors": {
 		"empty.field": "Field is required",
 		"email": "Invalid email",
 		"confirm.password": "The passwords are not the same"
 	},
 	"toasts": {
-		"error": "Something went wrong..."
+		"error": "Something went wrong...",
+		"wrong.password": "Wrong password",
+		"wrong.email": "Wrong email",
+		"exist.email": "An account with this email address already exists",
+		"exist.number": "The phone number already exists in the database"
 	}
 }

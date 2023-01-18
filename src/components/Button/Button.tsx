@@ -10,6 +10,7 @@ interface ButtonProps {
 	action?: ReactEventHandler<HTMLButtonElement>
 	hasFullWidth?: boolean
 	hasOnlyIcon?: boolean
+	align?: 'center' | 'left'
 	isLoading?: boolean
 	isDisabled?: boolean
 	isDropdown?: boolean
@@ -23,6 +24,7 @@ export const Button: FC<ButtonProps> = ({
 	action,
 	hasFullWidth = false,
 	hasOnlyIcon = false,
+	align = 'center',
 	isLoading = false,
 	isDisabled = false,
 	isDropdown = false,
@@ -34,6 +36,7 @@ export const Button: FC<ButtonProps> = ({
 		onClick={action}
 		hasFullWidth={hasFullWidth}
 		hasOnlyIcon={hasOnlyIcon}
+		align={align}
 		disabled={isDisabled}
 		isDropdown={isDropdown}
 		data-testid={dataTestId}

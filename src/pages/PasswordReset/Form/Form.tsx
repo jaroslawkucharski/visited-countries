@@ -9,20 +9,29 @@ import { FormComponent } from './Form.styles'
 
 interface FormValues {
 	email: string
-	password: string
 }
 
 export const Form = () => {
 	const { t } = useTranslation()
-	const { singIn } = useAuthContext()
+	const { resetPassword } = useAuthContext()
 
-	const initialValues: { email: string; password: string } = { email: '', password: '' }
+	const initialValues: { email: string } = { email: '' }
 
-	const onSubmit = async ({ email, password }: FormValues) => {
-		await singIn(email, password)
+	const onSubmit = async ({ email }: FormValues) => {
+		await resetPassword(email)
 	}
 
-	const { values, handleChange, handleBlur, handleSubmit, isSubmitting } = useFormik({
+	const {
+		values,
+		handleChange,
+		handleBlur,
+		handleSubmit,
+		isSubmitting,
+		isValid,
+		dirty,
+		errors,
+		touched,
+	} = useFormik({
 		initialValues,
 		validationSchema: formSchema,
 		onSubmit,
@@ -44,19 +53,8 @@ export const Form = () => {
 				onBlur={handleBlur}
 				autoFocus
 				hasFullWidth
-			/>
-
-			<Spacer type="vertical" />
-
-			<Input
-				id={uuid()}
-				type="password"
-				label={`${t('word.password')}`}
-				name="password"
-				value={values.password}
-				onChange={handleChange}
-				onBlur={handleBlur}
-				hasFullWidth
+				errors={errors}
+				touched={touched}
 			/>
 
 			<Spacer
@@ -70,9 +68,9 @@ export const Form = () => {
 				type="submit"
 				hasFullWidth
 				isLoading={isSubmitting}
-				isDisabled={isSubmitting}
+				isDisabled={isSubmitting || !isValid || !dirty}
 			>
-				{t('word.login')}
+				{t('word.password.reset')}
 			</Button>
 		</FormComponent>
 	)

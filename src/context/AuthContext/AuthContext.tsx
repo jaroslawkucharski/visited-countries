@@ -13,6 +13,7 @@ import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 import { toastNotify } from 'utils/toastNotify'
 
+import { ERRORS } from 'constants/errors'
 import { ROUTES } from 'constants/routes'
 
 type AuthUser = object | null
@@ -49,8 +50,8 @@ const useAuthUser = () => {
 			toastNotify(t('register.toast.success', { displayName }), 'success')
 
 			navigate(ROUTES.DASHBOARD)
-		} catch {
-			toastNotify(t('toasts.error'), 'error')
+		} catch ({ code }) {
+			toastNotify(t(ERRORS[code as string] || 'toasts.error'), 'error')
 		}
 	}
 
@@ -67,8 +68,8 @@ const useAuthUser = () => {
 			}
 
 			navigate(ROUTES.DASHBOARD)
-		} catch {
-			toastNotify(t('toasts.error'), 'error')
+		} catch ({ code }) {
+			toastNotify(t(ERRORS[code as string] || 'toasts.error'), 'error')
 		}
 	}
 
@@ -78,8 +79,8 @@ const useAuthUser = () => {
 			await signOut(auth)
 
 			navigate(ROUTES.SIGNIN)
-		} catch {
-			toastNotify(t('toasts.error'), 'error')
+		} catch ({ code }) {
+			toastNotify(t(ERRORS[code as string] || 'toasts.error'), 'error')
 		}
 	}
 
@@ -89,8 +90,8 @@ const useAuthUser = () => {
 			await sendPasswordResetEmail(auth, email)
 
 			navigate(ROUTES.SIGNIN)
-		} catch {
-			toastNotify(t('toasts.error'), 'error')
+		} catch ({ code }) {
+			toastNotify(t(ERRORS[code as string] || 'toasts.error'), 'error')
 		}
 	}
 
@@ -103,8 +104,8 @@ const useAuthUser = () => {
 			})
 
 			navigate(ROUTES.SIGNIN)
-		} catch {
-			toastNotify(t('toasts.error'), 'error')
+		} catch ({ code }) {
+			toastNotify(t(ERRORS[code as string] || 'toasts.error'), 'error')
 		}
 	}
 
@@ -114,8 +115,8 @@ const useAuthUser = () => {
 			await remove(databaseRef(database, `/${auth.currentUser?.uid}/${uid}`))
 
 			navigate(ROUTES.SIGNIN)
-		} catch {
-			toastNotify(t('toasts.error'), 'error')
+		} catch ({ code }) {
+			toastNotify(t(ERRORS[code as string] || 'toasts.error'), 'error')
 		}
 	}
 
@@ -131,8 +132,8 @@ const useAuthUser = () => {
 			if (auth?.currentUser !== null) {
 				await updateProfile(auth.currentUser, { photoURL })
 			}
-		} catch {
-			toastNotify(t('toasts.error'), 'error')
+		} catch ({ code }) {
+			toastNotify(t(ERRORS[code as string] || 'toasts.error'), 'error')
 		}
 	}
 

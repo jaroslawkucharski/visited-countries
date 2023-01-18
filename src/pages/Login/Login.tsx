@@ -1,6 +1,8 @@
 import { Heading, Link, Paragraph, Spacer } from 'components'
 import { useTranslation } from 'react-i18next'
 
+import { ROUTES } from 'constants/routes'
+
 import { Form } from './Form'
 import { LoginColumnComponent, LoginRowComponent } from './Login.styles'
 
@@ -29,7 +31,7 @@ export const Login = () => {
 
 			<Spacer type="vertical" />
 
-			<Link to="/signup">{t('word.forgot.password')}</Link>
+			<Link to={ROUTES.PASSWORD_RESET}>{t('word.forgot.password')}</Link>
 
 			<Spacer
 				type="vertical"
@@ -41,7 +43,7 @@ export const Login = () => {
 
 				<Spacer space="tiny" />
 
-				<Link to="/signup">{t('word.signup')}</Link>
+				<Link to={ROUTES.SIGNUP}>{t('word.signup')}</Link>
 			</LoginRowComponent>
 		</LoginColumnComponent>
 	)

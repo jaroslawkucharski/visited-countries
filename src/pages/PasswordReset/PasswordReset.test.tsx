@@ -1,10 +1,10 @@
 import { describe, it, render, userEvent, waitFor } from 'utils/tests'
 
-import { Login } from './Login'
+import { PasswordReset } from './PasswordReset'
 
-describe('pages/Login', () => {
+describe('pages/PasswordReset', () => {
 	it('form submit', async () => {
-		const { getByTestId, getByLabelText } = render(<Login />)
+		const { getByTestId, getByLabelText } = render(<PasswordReset />)
 
 		await waitFor(() => {
 			expect(getByTestId('form')).toBeInTheDocument()
@@ -13,7 +13,6 @@ describe('pages/Login', () => {
 		const user = userEvent.setup()
 
 		await user.type(getByLabelText('Email'), 'mail@test.com')
-		await user.type(getByLabelText('Password'), '1234')
 
 		await user.click(getByTestId('button'))
 	})

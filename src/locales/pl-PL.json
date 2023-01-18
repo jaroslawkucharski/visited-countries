@@ -23,12 +23,19 @@
 	"word.help": "Pomoc",
 	"word.profile": "Twój profil",
 	"word.list": "Twoja lista",
+	"word.password.reset": "Zresetuj hasło",
+	"password.reset.description": "Link do ustawienia nowego hasła wyslemy na Twojego maila",
 	"errors": {
 		"empty.field": "Pole obowiązkowe",
 		"email": "Niepoprawny adres email",
-		"confirm.password": "Hasła nie są takie same"
+		"confirm.password": "Hasła nie są takie same",
+		"min.characters.6": "Hasło powinno zawierać minimum 6 znaków"
 	},
 	"toasts": {
-		"error": "Coś poszło nie tak..."
+		"error": "Coś poszło nie tak...",
+		"wrong.password": "Niepoprawne hasło",
+		"wrong.email": "Niepoprawny email",
+		"exist.email": "Konto z takim adresem email już istnieje",
+		"exist.number": "Numer telefonu istnieje już w bazie"
 	}
 }

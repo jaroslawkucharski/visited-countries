@@ -4,6 +4,7 @@ interface ButtonComponentProps {
 	variant?: 'primary' | 'secondary' | 'alert'
 	hasFullWidth?: boolean
 	hasOnlyIcon?: boolean
+	align?: 'center' | 'left'
 	isDropdown?: boolean
 }
 
@@ -44,6 +45,16 @@ const variantStyles = ({ colors }: DefaultTheme, variant = 'primary') =>
 		`,
 	}[variant])
 
+const alignStyles = (align = 'center') =>
+	({
+		center: css`
+			justify-content: center;
+		`,
+		left: css`
+			justify-content: flex-start;
+		`,
+	}[align])
+
 export const ButtonComponent = styled.button<ButtonComponentProps>`
 	cursor: pointer;
 	min-width: fit-content;
@@ -53,7 +64,6 @@ export const ButtonComponent = styled.button<ButtonComponentProps>`
 	border-radius: 15px;
 	display: flex;
 	align-items: center;
-	justify-content: center;
 	gap: 8px;
 	transition: 0.2s;
 
@@ -62,8 +72,9 @@ export const ButtonComponent = styled.button<ButtonComponentProps>`
 			width: ${hasFullWidth && '100%'};
 			font-weight: ${font.weights.bold};
 			padding: ${hasOnlyIcon ? `${spaces.tiny} ${spaces.small}` : `${spaces.tiny} ${spaces.big}`};
-			border-radius: ${isDropdown && `15px 15px 0 0`};
+			border-radius: ${isDropdown && '15px 15px 0 0'};
 		`}
 
 	${({ theme, variant }) => variantStyles(theme, variant)}
+	${({ align }) => alignStyles(align)}
 `
