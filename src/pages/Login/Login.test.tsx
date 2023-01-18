@@ -2,7 +2,7 @@ import { describe, it, render, userEvent, waitFor } from 'utils/tests'
 
 import { Login } from './Login'
 
-describe('components/Login', () => {
+describe('pages/Login', () => {
 	it('form submit', async () => {
 		const { getByTestId, getByLabelText } = render(<Login />)
 

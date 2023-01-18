@@ -2,7 +2,7 @@ import { describe, it, render, userEvent, waitFor } from 'utils/tests'
 
 import { Register } from './Register'
 
-describe('components/Register', () => {
+describe('pages/Register', () => {
 	it('firm submit', async () => {
 		const { getByTestId, getByLabelText } = render(<Register />)
 

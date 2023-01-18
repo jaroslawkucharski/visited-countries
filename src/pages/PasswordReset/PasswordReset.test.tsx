@@ -2,7 +2,7 @@ import { describe, it, render, userEvent, waitFor } from 'utils/tests'
 
 import { PasswordReset } from './PasswordReset'
 
-describe('components/PasswordReset', () => {
+describe('pages/PasswordReset', () => {
 	it('form submit', async () => {
 		const { getByTestId, getByLabelText } = render(<PasswordReset />)
 
