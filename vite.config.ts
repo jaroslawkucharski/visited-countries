@@ -26,6 +26,7 @@ export default defineConfig({
 				'src/routes/**/*.{ts,tsx}',
 				'src/styles/**/*.{ts,tsx}',
 				'src/utils/**/*.{ts,tsx}',
+				'src/App.tsx',
 			],
 			exclude: ['src/**/index.{ts,tsx}', 'src/**/*.test.{ts,tsx}'],
 			reporter: ['json-summary', 'text', 'html'],
