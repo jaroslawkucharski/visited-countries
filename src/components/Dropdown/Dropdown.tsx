@@ -37,7 +37,11 @@ export const Dropdown: FC<DropdownProps> = ({
 			ref={dropdownRef}
 			data-testid={dataTestId}
 		>
-			<Button isDropdown={isOpen}>
+			<Button
+				isDropdown={isOpen}
+				align="left"
+				hasFullWidth
+			>
 				{isOpen ? <HiChevronUp /> : <HiChevronDown />}
 
 				{text}

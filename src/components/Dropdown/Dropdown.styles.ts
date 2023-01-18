@@ -6,7 +6,7 @@ interface ItemComponentProps {
 }
 
 export const DropdownComponent = styled.div`
-	min-width: fit-content;
+	min-width: 200px;
 	position: relative;
 `
 
