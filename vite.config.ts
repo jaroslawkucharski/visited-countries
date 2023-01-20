@@ -24,6 +24,8 @@ export default defineConfig({
 				'src/layouts/**/*.{ts,tsx}',
 				'src/pages/**/*.{ts,tsx}',
 				'src/routes/**/*.{ts,tsx}',
+				'src/services/**/*.{ts,tsx}',
+				'src/store/**/*.{ts,tsx}',
 				'src/styles/**/*.{ts,tsx}',
 				'src/utils/**/*.{ts,tsx}',
 				'src/App.tsx',

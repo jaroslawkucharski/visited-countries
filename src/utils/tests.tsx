@@ -5,7 +5,9 @@ import { AuthProvider } from 'context/AuthContext'
 import { ThemeColorProvider } from 'context/ThemeContext'
 import { ComponentType, ReactElement, ReactNode } from 'react'
 import { I18nextProvider } from 'react-i18next'
+import { Provider } from 'react-redux'
 import { MemoryRouter } from 'react-router-dom'
+import { store } from 'store/store'
 import { ThemeProvider } from 'styled-components'
 import { describe, it, vi } from 'vitest'
 
@@ -15,15 +17,17 @@ import i18n from '../config/i18n'
 
 const render = (ui: ReactElement) => {
 	const AppProviders = ({ children }: { children: ReactNode }) => (
-		<I18nextProvider i18n={i18n}>
-			<MemoryRouter initialEntries={['/']}>
-				<AuthProvider>
-					<ThemeColorProvider>
-						<ThemeProvider theme={darkTheme}>{children}</ThemeProvider>
-					</ThemeColorProvider>
-				</AuthProvider>
-			</MemoryRouter>
-		</I18nextProvider>
+		<Provider store={store}>
+			<I18nextProvider i18n={i18n}>
+				<MemoryRouter initialEntries={['/']}>
+					<AuthProvider>
+						<ThemeColorProvider>
+							<ThemeProvider theme={darkTheme}>{children}</ThemeProvider>
+						</ThemeColorProvider>
+					</AuthProvider>
+				</MemoryRouter>
+			</I18nextProvider>
+		</Provider>
 	)
 
 	return rtlRender(ui, { wrapper: AppProviders as ComponentType })
