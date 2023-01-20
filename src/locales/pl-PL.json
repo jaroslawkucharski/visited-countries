@@ -25,6 +25,7 @@
 	"word.list": "Twoja lista",
 	"word.password.reset": "Zresetuj hasło",
 	"password.reset.description": "Link do ustawienia nowego hasła wyslemy na Twojego maila",
+	"password.reset.toast.success": "Sprawdź maila. Wysłaliśmy link do zresetowania hasła",
 	"errors": {
 		"empty.field": "Pole obowiązkowe",
 		"email": "Niepoprawny adres email",

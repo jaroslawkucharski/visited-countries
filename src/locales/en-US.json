@@ -26,6 +26,7 @@
 	"word.password.reset": "Reset password",
 	"password.reset.description": "A link to set a new password will be sent to your email",
 	"min.characters.6": "The password should contain at least 6 characters",
+	"password.reset.toast.success": "Check your mail. We have sent you a link to reset your password",
 	"errors": {
 		"empty.field": "Field is required",
 		"email": "Invalid email",
