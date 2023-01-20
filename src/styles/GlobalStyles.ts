@@ -77,10 +77,12 @@ export const GlobalStyles = createGlobalStyle`
 			color: ${colors.secondary};
 			background-color: ${({ theme }) => theme.colors.main};
 		}
+
 		body {
 			line-height: ${font.lineHeight.default};
 			-webkit-font-smoothing: antialiased;
 		}
+
 		img,
 		picture,
 		video,
@@ -89,12 +91,14 @@ export const GlobalStyles = createGlobalStyle`
 			display: block;
 			max-width: 100%;
 		}
+
 		input,
 		button,
 		textarea,
 		select {
 			font: inherit;
 		}
+
 		p,
 		h1,
 		h2,
@@ -103,6 +107,10 @@ export const GlobalStyles = createGlobalStyle`
 		h5,
 		h6 {
 			overflow-wrap: break-word;
+		}
+
+		ul {
+			list-style: none;
 		}
 	`}	
 `
