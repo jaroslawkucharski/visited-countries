@@ -35,6 +35,7 @@ const sizeStyles = ({ font }: DefaultTheme, size = 'medium') =>
 export const HeadingComponent = styled.p<HeadingComponentProps>`
 	font-size: ${({ size }) => size};
 	text-align: ${({ align }) => align};
+	min-height: 24px;
 
 	${({ theme, type }) => typeStyles(theme, type)};
 	${({ theme, size }) => sizeStyles(theme, size)};
