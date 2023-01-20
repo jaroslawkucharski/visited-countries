@@ -1,8 +1,13 @@
 import { Button, Input, Spacer } from 'components'
-import { useAuthContext } from 'context/AuthContext'
 import { useFormik } from 'formik'
 import { useTranslation } from 'react-i18next'
+import { useNavigate } from 'react-router-dom'
+import { singIn } from 'services/auth'
 import { v4 as uuid } from 'uuid'
+
+import { useService } from 'hooks/useService'
+
+import { ROUTES } from 'constants/routes'
 
 import { formSchema } from './Form.schema'
 import { FormComponent } from './Form.styles'
@@ -14,13 +19,17 @@ interface FormValues {
 
 export const Form = () => {
 	const { t } = useTranslation()
-	const { singIn } = useAuthContext()
+	const navigate = useNavigate()
 
 	const initialValues: { email: string; password: string } = { email: '', password: '' }
 
-	const onSubmit = async ({ email, password }: FormValues) => {
-		await singIn(email, password)
-	}
+	const { request } = useService({
+		service: singIn,
+		successToast: t('login.toast.success'),
+		successCallback: () => navigate(ROUTES.DASHBOARD),
+	})
+
+	const onSubmit = ({ email, password }: FormValues) => request(email, password)
 
 	const { values, handleChange, handleBlur, handleSubmit, isSubmitting } = useFormik({
 		initialValues,
@@ -46,8 +55,6 @@ export const Form = () => {
 				hasFullWidth
 			/>
 
-			<Spacer type="vertical" />
-
 			<Input
 				id={uuid()}
 				type="password"
@@ -63,8 +70,6 @@ export const Form = () => {
 				type="vertical"
 				space="small"
 			/>
-
-			<Spacer type="vertical" />
 
 			<Button
 				type="submit"

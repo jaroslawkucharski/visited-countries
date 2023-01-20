@@ -5,14 +5,16 @@ export const ProfileColumnComponent = styled.div`
 		css`
 			width: 400px;
 			margin: 0 auto;
-			padding: ${spaces.medium} ${spaces.big};
+			padding: ${spaces.medium} 0 ${spaces.medium} ${spaces.big};
 			display: flex;
 			flex-direction: column;
-			justify-content: center;
+			justify-content: flex-start;
 			align-items: center;
+			overflow: scroll;
 
 			@media (max-width: ${breakpoints.mobile}px) {
 				width: 100%;
+				overflow: none;
 			}
 		`}
 `

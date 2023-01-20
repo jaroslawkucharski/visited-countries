@@ -1,8 +1,13 @@
 import { Button, Input, Spacer } from 'components'
-import { useAuthContext } from 'context/AuthContext'
 import { useFormik } from 'formik'
 import { useTranslation } from 'react-i18next'
+import { useNavigate } from 'react-router-dom'
+import { resetPassword } from 'services/auth'
 import { v4 as uuid } from 'uuid'
+
+import { useService } from 'hooks/useService'
+
+import { ROUTES } from 'constants/routes'
 
 import { formSchema } from './Form.schema'
 import { FormComponent } from './Form.styles'
@@ -13,12 +18,18 @@ interface FormValues {
 
 export const Form = () => {
 	const { t } = useTranslation()
-	const { resetPassword } = useAuthContext()
+	const navigate = useNavigate()
 
 	const initialValues: { email: string } = { email: '' }
 
+	const { request } = useService({
+		service: resetPassword,
+		successToast: t('password.reset.description'),
+		successCallback: () => navigate(ROUTES.SIGNIN),
+	})
+
 	const onSubmit = async ({ email }: FormValues) => {
-		await resetPassword(email)
+		await request(email)
 	}
 
 	const {

@@ -14,10 +14,10 @@
 	"word.avatar": "User avatar",
 	"register.description": "Create your account.",
 	"register.already.account": "Already have an account?",
-	"register.toast.success": "Hello {{displayName}}",
+	"register.toast.success": "Hello!",
 	"login.description": "Welcome again!",
 	"login.create.account": "Need an account?",
-	"login.toast.success": "Hello again {{displayName}}",
+	"login.toast.success": "Hello again!",
 	"word.forgot.password": "Forgot password?",
 	"word.account.data": "Your data",
 	"word.help": "Help",
@@ -26,10 +26,12 @@
 	"word.password.reset": "Reset password",
 	"password.reset.description": "A link to set a new password will be sent to your email",
 	"min.characters.6": "The password should contain at least 6 characters",
+	"password.reset.toast.success": "Check your mail. We have sent you a link to reset your password",
 	"errors": {
 		"empty.field": "Field is required",
 		"email": "Invalid email",
-		"confirm.password": "The passwords are not the same"
+		"confirm.password": "The passwords are not the same",
+		"min.characters.6": "The password should contain at least 6 characters"
 	},
 	"toasts": {
 		"error": "Something went wrong...",

@@ -8,8 +8,10 @@ import { useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
 import { HiArrowRightOnRectangle, HiQuestionMarkCircle, HiUserCircle } from 'react-icons/hi2'
 import { useNavigate } from 'react-router-dom'
+import { logout } from 'services/auth'
 import { v4 as uuid } from 'uuid'
 
+import { useService } from 'hooks/useService'
 import { useWindowSize } from 'hooks/useWindowSize'
 
 import { BREAKPOINTS } from 'constants/breakpoints'
@@ -21,12 +23,17 @@ import { SettingsComponent, TopBarComponent } from './TopBar.styles'
 export const TopBar = () => {
 	const { t } = useTranslation()
 	const { theme } = useThemeColorContext()
-	const { userAuth, logout } = useAuthContext()
+	const { userAuth } = useAuthContext()
 	const navigate = useNavigate()
 
 	const { width } = useWindowSize()
 
-	const handleLogout = useCallback(() => logout(), [logout])
+	const { request } = useService({
+		service: logout,
+		successCallback: () => navigate(ROUTES.SIGNIN),
+	})
+
+	const handleLogout = () => request()
 
 	const handleSignIn = useCallback(() => navigate(ROUTES.SIGNIN), [navigate])
 

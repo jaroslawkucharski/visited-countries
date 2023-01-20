@@ -18,6 +18,10 @@ export const LabelComponent = styled.label<InputComponentProps>`
 		`}
 `
 
+export const InputWrapperComponent = styled.div`
+	position: relative;
+`
+
 export const InputComponent = styled.input<InputComponentProps>`
 	min-height: 44px;
 	max-height: 44px;
@@ -43,8 +47,8 @@ export const InputComponent = styled.input<InputComponentProps>`
 
 export const IconComponent = styled.span`
 	cursor: pointer;
-	margin-top: 12.5px;
-	margin-left: -36px;
+	top: 12.5px;
+	right: 20px;
 	position: absolute;
 	font-size: 18px;
 `

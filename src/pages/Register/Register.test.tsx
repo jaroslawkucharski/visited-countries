@@ -12,7 +12,6 @@ describe('pages/Register', () => {
 
 		const user = userEvent.setup()
 
-		await user.type(getByLabelText('Username'), 'User')
 		await user.type(getByLabelText('Email'), 'mail@test.com')
 		await user.type(getByLabelText('Password'), '1234')
 		await user.type(getByLabelText('Confirm password'), '1234')

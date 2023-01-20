@@ -1,14 +1,18 @@
 import { Button, Input, Spacer } from 'components'
-import { useAuthContext } from 'context/AuthContext'
 import { useFormik } from 'formik'
 import { useTranslation } from 'react-i18next'
+import { useNavigate } from 'react-router-dom'
+import { singUp } from 'services/auth'
 import { v4 as uuid } from 'uuid'
+
+import { useService } from 'hooks/useService'
+
+import { ROUTES } from 'constants/routes'
 
 import { formSchema } from './Form.schema'
 import { FormComponent } from './Form.styles'
 
 interface FormValues {
-	displayName: string
 	email: string
 	password: string
 	confirmPassword: string
@@ -16,22 +20,25 @@ interface FormValues {
 
 export const Form = () => {
 	const { t } = useTranslation()
-	const { singUp } = useAuthContext()
+	const navigate = useNavigate()
 
 	const initialValues: {
-		displayName: string
 		email: string
 		password: string
 		confirmPassword: string
 	} = {
-		displayName: '',
 		email: '',
 		password: '',
 		confirmPassword: '',
 	}
 
-	const onSubmit = async ({ displayName, email, password }: FormValues) =>
-		singUp(displayName, email, password)
+	const { request: register } = useService({
+		service: singUp,
+		successToast: t('register.toast.success'),
+		successCallback: () => navigate(ROUTES.DASHBOARD),
+	})
+
+	const onSubmit = async ({ email, password }: FormValues) => register(email, password)
 
 	const {
 		values,
@@ -57,22 +64,6 @@ export const Form = () => {
 		>
 			<Input
 				id={uuid()}
-				type="text"
-				label={`${t('word.name')}`}
-				name="displayName"
-				value={values.displayName}
-				onChange={handleChange}
-				onBlur={handleBlur}
-				autoFocus
-				hasFullWidth
-				errors={errors}
-				touched={touched}
-			/>
-
-			<Spacer type="vertical" />
-
-			<Input
-				id={uuid()}
 				type="email"
 				label={`${t('word.email')}`}
 				name="email"
@@ -83,8 +74,6 @@ export const Form = () => {
 				errors={errors}
 				touched={touched}
 			/>
-
-			<Spacer type="vertical" />
 
 			<Input
 				id={uuid()}
@@ -98,8 +87,6 @@ export const Form = () => {
 				errors={errors}
 				touched={touched}
 			/>
-
-			<Spacer type="vertical" />
 
 			<Input
 				id={uuid()}
@@ -115,11 +102,9 @@ export const Form = () => {
 			/>
 
 			<Spacer
-				type="vertical"
 				space="small"
+				type="vertical"
 			/>
-
-			<Spacer type="vertical" />
 
 			<Button
 				type="submit"
