@@ -8,7 +8,7 @@ import { useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
 import { HiArrowRightOnRectangle, HiQuestionMarkCircle, HiUserCircle } from 'react-icons/hi2'
 import { useNavigate } from 'react-router-dom'
-import { logout } from 'services/auth/auth'
+import { logout } from 'services/auth'
 import { v4 as uuid } from 'uuid'
 
 import { useService } from 'hooks/useService'

@@ -2,7 +2,7 @@ import { Button, Input, Spacer } from 'components'
 import { useFormik } from 'formik'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
-import { singUp } from 'services/auth/auth'
+import { singUp } from 'services/auth'
 import { v4 as uuid } from 'uuid'
 
 import { useService } from 'hooks/useService'

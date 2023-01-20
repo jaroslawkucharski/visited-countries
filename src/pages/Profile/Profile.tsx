@@ -10,7 +10,8 @@ import { ChangeEvent, useCallback, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
 import { HiMoon, HiSun } from 'react-icons/hi2'
 import { useNavigate } from 'react-router-dom'
-import { logout, setUserAvatar } from 'services/auth/auth'
+import { logout } from 'services/auth'
+import { setUserAvatar } from 'services/user'
 
 import { useService } from 'hooks/useService'
 
