@@ -5,23 +5,33 @@ import en from 'assets/images/locales/en.svg'
 import pl from 'assets/images/locales/pl.svg'
 import { Button, Heading, Image, Spacer } from 'components'
 import { auth } from 'config/firebase'
-import { useAuthContext } from 'context/AuthContext'
 import { useThemeColorContext } from 'context/ThemeContext'
 import { ChangeEvent, useCallback, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
 import { HiMoon, HiSun } from 'react-icons/hi2'
+import { useNavigate } from 'react-router-dom'
+import { logout, setUserAvatar } from 'services/auth/auth'
+
+import { useService } from 'hooks/useService'
 
 import { LOCALES } from 'constants/locales'
+import { ROUTES } from 'constants/routes'
 
 import { ProfileColumnComponent, SettingsComponent } from './Profile.styles'
 
 export const Profile = () => {
 	const { t, i18n } = useTranslation()
-	const { setUserAvatar, logout } = useAuthContext()
+	const navigate = useNavigate()
+
 	const { theme, toggleTheme } = useThemeColorContext()
 	const inputRef = useRef(null)
 
-	const handleLogout = useCallback(() => logout(), [logout])
+	const { request } = useService({
+		service: logout,
+		successCallback: () => navigate(ROUTES.SIGNIN),
+	})
+
+	const handleLogout = () => request()
 
 	const handleUploadImage = () => {
 		if (inputRef.current !== null) {
@@ -31,12 +41,14 @@ export const Profile = () => {
 		}
 	}
 
-	const handleUploadUserAvatar = (event: ChangeEvent<HTMLInputElement>) => {
+	const handleUploadUserAvatar = async (event: ChangeEvent<HTMLInputElement>) => {
 		const target = event.currentTarget as HTMLInputElement
 
 		if (target.files !== null) {
-			setUserAvatar(target.files[0])
+			await setUserAvatar(target.files[0])
 		}
+
+		navigate(0)
 	}
 	const handleLanguageChangeToPL = useCallback(
 		() =>
