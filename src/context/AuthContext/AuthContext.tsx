@@ -1,5 +1,8 @@
 import { auth } from 'config/firebase'
-import { FC, ReactNode, createContext, useContext, useEffect, useState } from 'react'
+import { FC, ReactNode, createContext, useCallback, useContext, useEffect, useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { fetchCountries } from 'store/features/countriesSlice'
+import { AppDispatch } from 'store/store'
 
 type AuthUser = object | null
 
@@ -10,8 +13,14 @@ interface AuthContextType {
 const AuthContext = createContext<AuthContextType | null>(null)
 
 const useAuthUser = () => {
+	const dispatch = useDispatch<AppDispatch>()
+
 	const [userAuth, setUserAuth] = useState<AuthUser>(null)
 	const [isLoading, setLoading] = useState<boolean>(true)
+
+	const fetchData = useCallback(() => {
+		dispatch(fetchCountries())
+	}, [dispatch])
 
 	useEffect(() => {
 		const unsubscribe = auth.onAuthStateChanged(user => {
@@ -21,6 +30,12 @@ const useAuthUser = () => {
 
 		return unsubscribe
 	}, [])
+
+	useEffect(() => {
+		if (userAuth) {
+			fetchData()
+		}
+	}, [userAuth, fetchData])
 
 	return {
 		value: {
