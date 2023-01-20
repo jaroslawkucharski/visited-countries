@@ -34,6 +34,7 @@ export const CountriesSlice = createSlice({
 	extraReducers: builder => {
 		builder.addCase(fetchCountries.fulfilled, (state, action) => {
 			// TODO types fixed
+			// @ts-ignore
 			state.countries.push(action.payload)
 		})
 	},
