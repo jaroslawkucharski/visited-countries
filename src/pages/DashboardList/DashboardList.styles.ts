@@ -14,6 +14,7 @@ export const ProfileColumnComponent = styled.div`
 
 			@media (max-width: ${breakpoints.mobile}px) {
 				width: 100%;
+				padding: ${spaces.medium} ${spaces.big};
 				overflow: none;
 			}
 		`}
