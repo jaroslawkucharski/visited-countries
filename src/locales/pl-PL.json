@@ -26,6 +26,11 @@
 	"word.password.reset": "Zresetuj hasło",
 	"password.reset.description": "Link do ustawienia nowego hasła wyslemy na Twojego maila",
 	"password.reset.toast.success": "Sprawdź maila. Wysłaliśmy link do zresetowania hasła",
+	"word.very.weak": "bardzo słabe",
+	"word.weak": "słabe",
+	"word.medium": "średnie",
+	"word.good": "dobre",
+	"word.very.good": "bardzo dobre",
 	"errors": {
 		"empty.field": "Pole obowiązkowe",
 		"email": "Niepoprawny adres email",
