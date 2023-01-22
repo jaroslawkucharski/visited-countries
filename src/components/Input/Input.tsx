@@ -31,6 +31,8 @@ interface InputProps {
 	hasFullWidth?: boolean
 	hasPasswordMeter?: boolean
 	isDropdown?: boolean
+	hideError?: boolean
+	'data-testid'?: string
 }
 
 export const Input: FC<InputProps> = ({
@@ -48,6 +50,8 @@ export const Input: FC<InputProps> = ({
 	hasFullWidth = false,
 	hasPasswordMeter = false,
 	isDropdown = false,
+	hideError = false,
+	'data-testid': dataTestId = 'input',
 }) => {
 	const { t } = useTranslation()
 
@@ -85,7 +89,7 @@ export const Input: FC<InputProps> = ({
 					autoFocus={autoFocus}
 					isError={isError}
 					isPassword={isPassword}
-					data-testid="input"
+					data-testid={dataTestId}
 					isDropdown={isDropdown}
 				/>
 
@@ -101,7 +105,7 @@ export const Input: FC<InputProps> = ({
 				{isPassword && !isError && hasPasswordMeter && <PasswordMeter value={value} />}
 			</InputWrapperComponent>
 
-			{!isDropdown && (
+			{!hideError && (
 				<Paragraph
 					type="error"
 					size="small"
