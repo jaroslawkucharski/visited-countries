@@ -6,9 +6,6 @@ export const ProfileColumnComponent = styled.div`
 			width: 400px;
 			margin: 0 auto;
 			padding: ${spaces.medium} ${spaces.small} ${spaces.medium} ${spaces.huge};
-			display: flex;
-			flex-direction: column;
-			justify-content: flex-start;
 			align-items: center;
 			overflow: scroll;
 

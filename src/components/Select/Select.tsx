@@ -1,7 +1,7 @@
 import { Input } from 'components'
 import { ChangeEvent, FC, ReactNode, useCallback, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { HiDocumentMagnifyingGlass, HiXCircle } from 'react-icons/hi2'
+import { HiDocumentMagnifyingGlass, HiMagnifyingGlassCircle, HiXCircle } from 'react-icons/hi2'
 import { v4 as uuid } from 'uuid'
 
 import { useOnClickOutside } from 'hooks/useOnClickOutside'
@@ -92,11 +92,11 @@ export const Select: FC<SelectProps> = ({
 				hideError
 			/>
 
-			{isOpen && (
+			{isOpen ? (
 				<>
 					<IconComponent
 						onClick={handleClearValue}
-						data-testid="select-icon"
+						data-testid="select-icon-clear"
 					>
 						<HiXCircle />
 					</IconComponent>
@@ -119,6 +119,10 @@ export const Select: FC<SelectProps> = ({
 						)}
 					</SelectMenuComponent>
 				</>
+			) : (
+				<IconComponent data-testid="select-icon-search">
+					<HiMagnifyingGlassCircle />
+				</IconComponent>
 			)}
 		</SelectComponent>
 	)

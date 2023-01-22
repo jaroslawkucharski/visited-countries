@@ -9,6 +9,8 @@ describe('components/Select', () => {
 		await waitFor(() => {
 			expect(getByTestId('select')).toBeInTheDocument()
 
+			expect(getByTestId('select-icon-search')).toBeInTheDocument()
+
 			expect(getByTestId('select-input')).toBeInTheDocument()
 
 			fireEvent.click(getByTestId('select'))
@@ -45,9 +47,9 @@ describe('components/Select', () => {
 
 			fireEvent.click(getByTestId('select'))
 
-			expect(getByTestId('select-icon')).toBeInTheDocument()
+			expect(getByTestId('select-icon-clear')).toBeInTheDocument()
 
-			fireEvent.click(getByTestId('select-icon'))
+			fireEvent.click(getByTestId('select-icon-clear'))
 
 			expect(getByTestId('select-input')).toHaveValue('')
 		})
