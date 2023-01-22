@@ -2,8 +2,11 @@ import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { getCountries } from 'services/countries'
 
 export interface Countries {
-	id: number
-	name: string
+	data: {
+		name: {
+			common: string
+		}
+	}
 }
 
 interface CountriesState {
@@ -24,17 +27,23 @@ export const CountriesSlice = createSlice({
 	name: 'countries',
 	initialState,
 	reducers: {
-		addCountries: (state, action: PayloadAction<{ name: string }>) => {
+		addCountries: (
+			state,
+			action: PayloadAction<{
+				data: {
+					name: {
+						common: string
+					}
+				}
+			}>,
+		) => {
 			state.countries.push({
-				id: state.countries.length,
-				name: action.payload.name,
+				data: action.payload.data,
 			})
 		},
 	},
 	extraReducers: builder => {
 		builder.addCase(fetchCountries.fulfilled, (state, action) => {
-			// TODO types fixed
-			// @ts-ignore
 			state.countries.push(action.payload)
 		})
 	},
