@@ -4,6 +4,7 @@ interface InputComponentProps {
 	hasFullWidth?: boolean
 	isError?: boolean
 	isPassword?: boolean
+	isDropdown?: boolean
 }
 
 interface PasswordMeterComponentProps {
@@ -32,7 +33,7 @@ export const InputComponent = styled.input<InputComponentProps>`
 	max-height: 44px;
 	border-radius: 15px;
 
-	${({ theme: { colors, spaces }, hasFullWidth, isError, isPassword }) =>
+	${({ theme: { colors, spaces }, hasFullWidth, isError, isPassword, isDropdown }) =>
 		css`
 			width: ${hasFullWidth && '100%'};
 			background: ${colors.color3};
@@ -47,6 +48,7 @@ export const InputComponent = styled.input<InputComponentProps>`
 
 			border: ${isError && `solid 2px ${colors.error}`};
 			padding-right: ${isPassword && `calc(${spaces.big} + ${spaces.tiny})`};
+			border-radius: ${isDropdown && '15px 15px 0 0'};
 		`}
 `
 

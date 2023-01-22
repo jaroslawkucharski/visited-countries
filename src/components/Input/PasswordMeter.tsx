@@ -84,7 +84,9 @@ export const PasswordMeter: FC<PasswordMeterProps> = ({ value = '' }) => {
 					size="small"
 					data-testid="input-error"
 				>
-					{t(strengthLevel[strength])} <HiInformationCircle />
+					{t(strengthLevel[strength])}
+
+					<HiInformationCircle />
 				</Paragraph>
 			)}
 		</PasswordMeterComponent>
