@@ -32,6 +32,9 @@
 	"word.medium": "medium",
 	"word.good": "good",
 	"word.very.good": "very good",
+	"word.search": "Search",
+	"list.input.placeholder": "Search country...",
+	"word.empty.message": "We couldn't find anything under this phrase :(",
 	"errors": {
 		"empty.field": "Field is required",
 		"email": "Invalid email",

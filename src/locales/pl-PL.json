@@ -31,6 +31,9 @@
 	"word.medium": "średnie",
 	"word.good": "dobre",
 	"word.very.good": "bardzo dobre",
+	"word.search": "Szukaj",
+	"list.input.placeholder": "Wyszukaj kraj...",
+	"word.empty.message": "Niczego nie znaleźliśmy pod tą frazą :(",
 	"errors": {
 		"empty.field": "Pole obowiązkowe",
 		"email": "Niepoprawny adres email",
