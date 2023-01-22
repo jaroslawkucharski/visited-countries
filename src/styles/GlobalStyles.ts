@@ -3,17 +3,18 @@ import { createGlobalStyle, css } from 'styled-components'
 export const GlobalStyles = createGlobalStyle`
 	${({ theme: { font, colors } }) =>
 		css`
-		@media screen and (pointer: coarse) and (orientation: landscape) {
-			html {
-				transform: rotate(-90deg);
-				transform-origin: left top;
-				width: 100vh;
-				overflow-x: hidden;
-				position: absolute;
-				top: 100%;
-				left: 0;
-				}
-		}
+		// TODO - fix styles
+		// @media screen and (pointer: coarse) and (orientation: landscape) {
+		// 	html {
+		// 		transform: rotate(-90deg);
+		// 		transform-origin: left top;
+		// 		width: 100vh;
+		// 		overflow-x: hidden;
+		// 		position: absolute;
+		// 		top: 100%;
+		// 		left: 0;
+		// 		}
+		// }
 	
 		:root {
 			font-family: 'Poppins', sans-serif;
@@ -21,9 +22,9 @@ export const GlobalStyles = createGlobalStyle`
 	
 			--toastify-color-light: ${colors.secondary};
 			--toastify-color-dark: ${colors.secondary};
-			--toastify-color-info: #3498db;
-			--toastify-color-success: #07bc0c;
-			--toastify-color-warning: #f1c40f;
+			--toastify-color-info: ${colors.toastInfo};;
+			--toastify-color-success: ${colors.toastSuccess};
+			--toastify-color-warning: ${colors.toastWarning};
 			--toastify-color-error: ${colors.toastError};
 			
 			--toastify-icon-color-info: var(--toastify-color-info);
