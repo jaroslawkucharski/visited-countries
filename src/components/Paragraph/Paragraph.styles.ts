@@ -36,6 +36,9 @@ export const HeadingComponent = styled.p<HeadingComponentProps>`
 	font-size: ${({ size }) => size};
 	text-align: ${({ align }) => align};
 	min-height: 24px;
+	display: flex;
+	align-items: center;
+	gap: 5px;
 
 	${({ theme, type }) => typeStyles(theme, type)};
 	${({ theme, size }) => sizeStyles(theme, size)};
