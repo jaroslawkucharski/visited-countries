@@ -48,6 +48,7 @@ specifiers:
   react-i18next: ^12.1.1
   react-icons: ^4.7.1
   react-is: ^18.2.0
+  react-laag: ^2.0.5
   react-redux: ^8.0.5
   react-router-dom: ^6.4.5
   react-simple-maps: ^3.0.0
@@ -79,6 +80,7 @@ dependencies:
   react-i18next: 12.1.4_iakk3dtjhjpukdoa4oua5khgci
   react-icons: 4.7.1_react@18.2.0
   react-is: 18.2.0
+  react-laag: 2.0.5_biqbaboplfbrettd7655fr4n2y
   react-redux: 8.0.5_ie75ejlwqy5zh3tldgt7pftwcu
   react-router-dom: 6.6.2_biqbaboplfbrettd7655fr4n2y
   react-simple-maps: 3.0.0_biqbaboplfbrettd7655fr4n2y
@@ -6646,6 +6648,17 @@ packages:
 
   /react-is/18.2.0:
     resolution: {integrity: sha512-xWGDIW6x921xtzPkhiULtthJHoJvBbF3q26fzloPCK0hsvxtPVelvftw3zjbHWSkR2km9Z+4uxbDDK/6Zw9B8w==}
+
+  /react-laag/2.0.5_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-RCvublJhdcgGRHU1wMYJ8kRtnYsKUgYusLvVhMuftg65POnnOB4+fwXvnETm6adc0cMnc1spujlrK6bGIz6aug==}
+    peerDependencies:
+      react: ^16.0.0 || ^17.0.0 || ^18.0.0
+      react-dom: ^16.0.0 || ^17.0.0 || ^18.0.0
+    dependencies:
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
+      tiny-warning: 1.0.3
+    dev: false
 
   /react-redux/8.0.5_ie75ejlwqy5zh3tldgt7pftwcu:
     resolution: {integrity: sha512-Q2f6fCKxPFpkXt1qNRZdEDLlScsDWyrgSj0mliK59qU6W5gvBiKkdMEG2lJzhd1rCctf0hb6EtePPLZ2e0m1uw==}
