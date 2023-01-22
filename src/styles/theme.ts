@@ -45,6 +45,7 @@ const font = {
 		info: '18px',
 		h1: '28px',
 		h2: '18px',
+		icon: '64px',
 	},
 
 	lineHeight: {
