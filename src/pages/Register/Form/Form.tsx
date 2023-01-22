@@ -86,6 +86,7 @@ export const Form = () => {
 				hasFullWidth
 				errors={errors}
 				touched={touched}
+				hasPasswordMeter
 			/>
 
 			<Input
