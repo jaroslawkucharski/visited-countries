@@ -31,7 +31,6 @@ export const Dropdown: FC<DropdownProps> = ({
 	useScrollDetector(handleClose)
 
 	return (
-		// eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions
 		<DropdownComponent
 			onClick={handleOpenToogle}
 			ref={dropdownRef}

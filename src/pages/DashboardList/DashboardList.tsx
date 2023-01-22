@@ -1,4 +1,4 @@
-import { Heading, Input, Spacer } from 'components'
+import { Heading, Select, Spacer } from 'components'
 import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { RootState } from 'store/store'
@@ -30,20 +30,26 @@ export const DashboardList = () => {
 
 			<Spacer type="vertical" />
 
-			<Input
-				label="Search"
-				name="searcher"
-				id="searcher"
-				placeholder="Search country"
-				onChange={() => null}
+			<Select
+				options={countries[0].map((country: Country) => {
+					const name =
+						i18n.language === LOCALES.EN ? country.name.common : country.translations.pol.common
+
+					return {
+						icon: country.flag,
+						name,
+					}
+				})}
+				hasFullWidth
 			/>
 
 			<Spacer type="vertical" />
 
-			<ul style={{ padding: '0 60px' }}>
+			<ul>
 				{countries[0].map((country: Country) => (
 					<li key={uuid()}>
-						{country.flag}{' '}
+						{country.flag}
+
 						{i18n.language === LOCALES.EN ? country.name.common : country.translations.pol.common}
 					</li>
 				))}

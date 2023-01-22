@@ -7,9 +7,11 @@ import { useThemeColorContext } from 'context/ThemeContext'
 import { useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
 import { HiArrowRightOnRectangle, HiQuestionMarkCircle, HiUserCircle } from 'react-icons/hi2'
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { logout } from 'services/auth'
 import { v4 as uuid } from 'uuid'
+
+import { hideLogo } from 'helpers/hideLofo'
 
 import { useService } from 'hooks/useService'
 import { useWindowSize } from 'hooks/useWindowSize'
@@ -25,6 +27,7 @@ export const TopBar = () => {
 	const { theme } = useThemeColorContext()
 	const { userAuth } = useAuthContext()
 	const navigate = useNavigate()
+	const { pathname } = useLocation()
 
 	const { width } = useWindowSize()
 
@@ -41,11 +44,13 @@ export const TopBar = () => {
 
 	return (
 		<TopBarComponent>
-			<Image
-				src={theme === THEME_COLORS.DARK ? LogoDark : LogoLight}
-				width={250}
-				alt={t('word.logo')}
-			/>
+			{hideLogo(pathname) && width <= BREAKPOINTS.MOBILE ? null : (
+				<Image
+					src={theme === THEME_COLORS.DARK ? LogoDark : LogoLight}
+					width={250}
+					alt={t('word.logo')}
+				/>
+			)}
 
 			{!userAuth && width > BREAKPOINTS.MOBILE && (
 				<SettingsComponent>

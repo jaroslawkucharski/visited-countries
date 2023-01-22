@@ -1,5 +1,6 @@
 import { FC, ReactNode, createContext, useContext, useEffect } from 'react'
-import { themeDetector } from 'utils/themeDetector'
+
+import { themeDetector } from 'helpers/themeDetector'
 
 import { useLocalStorage } from 'hooks/useLocalstorage'
 

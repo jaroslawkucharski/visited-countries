@@ -1,6 +1,6 @@
 import { Paragraph } from 'components'
 import { FormikErrors, FormikTouched } from 'formik'
-import { ChangeEventHandler, FC, FocusEventHandler, useEffect, useState } from 'react'
+import { ChangeEventHandler, FC, FocusEventHandler, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { HiEye, HiEyeSlash } from 'react-icons/hi2'
 
@@ -10,6 +10,7 @@ import {
 	InputWrapperComponent,
 	LabelComponent,
 } from './Input.styles'
+import { PasswordMeter } from './PasswordMeter'
 
 interface InputProps {
 	type?: 'text' | 'email' | 'password'
@@ -28,6 +29,10 @@ interface InputProps {
 	onBlur?: FocusEventHandler<HTMLInputElement>
 	autoFocus?: boolean
 	hasFullWidth?: boolean
+	hasPasswordMeter?: boolean
+	isDropdown?: boolean
+	hideError?: boolean
+	'data-testid'?: string
 }
 
 export const Input: FC<InputProps> = ({
@@ -43,44 +48,19 @@ export const Input: FC<InputProps> = ({
 	onBlur,
 	autoFocus = false,
 	hasFullWidth = false,
+	hasPasswordMeter = false,
+	isDropdown = false,
+	hideError = false,
+	'data-testid': dataTestId = 'input',
 }) => {
 	const { t } = useTranslation()
 
 	const [showPassword, setShowPassword] = useState(false)
-	const [progress, setProgress] = useState('0')
 
 	const isError = (errors[name] && touched[name]) as boolean
 	const isPassword = (type === 'password') as boolean
 
 	const handleShowPassword = () => setShowPassword(!showPassword)
-
-	type StrenchCheck = {
-		length: number | boolean
-		hasUpperCase: boolean
-		hasLowerCase: boolean
-		hasDigit: boolean
-		hasSpecialChar: boolean
-	}
-
-	useEffect(() => {
-		const strengthChecks: StrenchCheck = {
-			length: 0,
-			hasUpperCase: false,
-			hasLowerCase: false,
-			hasDigit: false,
-			hasSpecialChar: false,
-		}
-
-		strengthChecks.length = value.length >= 8
-		strengthChecks.hasUpperCase = /[A-Z]+/.test(value)
-		strengthChecks.hasLowerCase = /[a-z]+/.test(value)
-		strengthChecks.hasDigit = /[0-9]+/.test(value)
-		strengthChecks.hasSpecialChar = /[^A-Za-z0-9]+/.test(value)
-
-		const verifiedList = Object.values(strengthChecks).filter(passportValue => passportValue)
-
-		setProgress(`${(verifiedList.length / 5) * 100}%`)
-	}, [value])
 
 	return (
 		<div>
@@ -109,7 +89,8 @@ export const Input: FC<InputProps> = ({
 					autoFocus={autoFocus}
 					isError={isError}
 					isPassword={isPassword}
-					data-testid="input"
+					data-testid={dataTestId}
+					isDropdown={isDropdown}
 				/>
 
 				{isPassword && (
@@ -120,16 +101,20 @@ export const Input: FC<InputProps> = ({
 						{showPassword ? <HiEyeSlash /> : <HiEye />}
 					</IconComponent>
 				)}
+
+				{isPassword && !isError && hasPasswordMeter && <PasswordMeter value={value} />}
 			</InputWrapperComponent>
 
-			<Paragraph
-				type="error"
-				size="small"
-				align="left"
-				data-testid="input-error"
-			>
-				{isError ? t(`${errors[name]}`) : null}
-			</Paragraph>
+			{!hideError && (
+				<Paragraph
+					type="error"
+					size="small"
+					align="left"
+					data-testid="input-error"
+				>
+					{isError ? t(`${errors[name]}`) : null}
+				</Paragraph>
+			)}
 		</div>
 	)
 }
