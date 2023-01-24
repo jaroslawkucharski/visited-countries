@@ -6,4 +6,5 @@ export const ROUTES = {
 	DASHBOARD_LIST: '/list',
 	PROFILE: '/profile',
 	HELP: '/help',
+	PAGE_NOT_FOUND: '*',
 }

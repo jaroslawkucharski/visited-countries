@@ -32,6 +32,10 @@ const Profile = lazy(async () => ({
 	default: (await import('pages')).Profile,
 }))
 
+const PageNotFound = lazy(async () => ({
+	default: (await import('pages')).PageNotFound,
+}))
+
 const routes = [
 	{
 		path: ROUTES.SIGNIN,
@@ -69,15 +73,24 @@ const routes = [
 		isOnlyForMobile: false,
 		component: <Profile />,
 	},
+	{
+		path: ROUTES.PAGE_NOT_FOUND,
+		isOnlyForMobile: false,
+		component: <PageNotFound />,
+	},
 ]
 
 export const appRoutes = routes.map(({ path, route, component, isOnlyForMobile }) => (
 	<Route
 		key={uuid()}
 		path={path}
-		element={createElement(route, {
-			component: <Suspense fallback={<Loader type="website" />}>{component}</Suspense>,
-			isOnlyForMobile,
-		})}
+		element={
+			route
+				? createElement(route, {
+						component: <Suspense fallback={<Loader type="website" />}>{component}</Suspense>,
+						isOnlyForMobile,
+				  })
+				: component
+		}
 	/>
 ))
