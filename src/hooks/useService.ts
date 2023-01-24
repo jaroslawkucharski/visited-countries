@@ -50,8 +50,8 @@ export const useService = ({
 				}
 
 				successCallback?.()
-			} catch ({ code }) {
-				toastNotify(errorToast || i18next.t(ERRORS[code] || 'toasts.error'), 'error')
+			} catch ({ code }: any) {
+				toastNotify(errorToast || i18next.t(ERRORS[code as string] || 'toasts.error'), 'error')
 
 				errorCallback?.()
 			}
