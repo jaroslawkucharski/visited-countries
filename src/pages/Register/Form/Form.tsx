@@ -15,7 +15,6 @@ import { FormComponent } from './Form.styles'
 interface FormValues {
 	email: string
 	password: string
-	confirmPassword: string
 }
 
 export const Form = () => {
@@ -25,11 +24,9 @@ export const Form = () => {
 	const initialValues: {
 		email: string
 		password: string
-		confirmPassword: string
 	} = {
 		email: '',
 		password: '',
-		confirmPassword: '',
 	}
 
 	const { request: register } = useService({
@@ -87,19 +84,6 @@ export const Form = () => {
 				errors={errors}
 				touched={touched}
 				hasPasswordMeter
-			/>
-
-			<Input
-				id={uuid()}
-				type="password"
-				label={`${t('word.confirm.password')}`}
-				name="confirmPassword"
-				value={values.confirmPassword}
-				onChange={handleChange}
-				onBlur={handleBlur}
-				hasFullWidth
-				errors={errors}
-				touched={touched}
 			/>
 
 			<Spacer
