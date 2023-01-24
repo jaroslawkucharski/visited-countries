@@ -20,11 +20,11 @@ const render = (ui: ReactElement) => {
 		<Provider store={store}>
 			<I18nextProvider i18n={i18n}>
 				<MemoryRouter initialEntries={['/']}>
-					<AuthProvider>
-						<ThemeColorProvider>
-							<ThemeProvider theme={darkTheme}>{children}</ThemeProvider>
-						</ThemeColorProvider>
-					</AuthProvider>
+					<ThemeColorProvider>
+						<ThemeProvider theme={darkTheme}>
+							<AuthProvider>{children}</AuthProvider>
+						</ThemeProvider>
+					</ThemeColorProvider>
 				</MemoryRouter>
 			</I18nextProvider>
 		</Provider>

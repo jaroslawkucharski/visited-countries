@@ -1,3 +1,4 @@
+import { AuthProvider } from 'context/AuthContext'
 import { useThemeColorContext } from 'context/ThemeContext'
 import { Menu, TopBar } from 'layouts'
 import { Routes } from 'react-router-dom'
@@ -14,13 +15,15 @@ const App = () => {
 		<ThemeProvider theme={themeColor}>
 			<GlobalStyles />
 
-			<ToastContainer theme={theme} />
+			<AuthProvider>
+				<ToastContainer theme={theme} />
 
-			<TopBar />
+				<TopBar />
 
-			<Menu />
+				<Menu />
 
-			<Routes>{appRoutes}</Routes>
+				<Routes>{appRoutes}</Routes>
+			</AuthProvider>
 		</ThemeProvider>
 	)
 }

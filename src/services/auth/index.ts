@@ -7,7 +7,7 @@ import {
 } from 'firebase/auth'
 
 // Sign up user
-export const singUp = (displayName: string, email: string, password: string) =>
+export const singUp = (email: string, password: string) =>
 	createUserWithEmailAndPassword(auth, email, password)
 
 // Sign in user

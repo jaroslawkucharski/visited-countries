@@ -45,6 +45,7 @@ specifiers:
   prettier: ^2.8.1
   react: ^18.2.0
   react-dom: ^18.2.0
+  react-error-boundary: ^3.1.4
   react-i18next: ^12.1.1
   react-icons: ^4.7.1
   react-is: ^18.2.0
@@ -77,6 +78,7 @@ dependencies:
   i18next-browser-languagedetector: 7.0.1
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
+  react-error-boundary: 3.1.4_react@18.2.0
   react-i18next: 12.1.4_iakk3dtjhjpukdoa4oua5khgci
   react-icons: 4.7.1_react@18.2.0
   react-is: 18.2.0
@@ -6606,6 +6608,16 @@ packages:
       loose-envify: 1.4.0
       react: 18.2.0
       scheduler: 0.23.0
+
+  /react-error-boundary/3.1.4_react@18.2.0:
+    resolution: {integrity: sha512-uM9uPzZJTF6wRQORmSrvOIgt4lJ9MC1sNgEOj2XGsDTRE4kmpWxg7ENK9EWNKJRMAOY9z0MuF4yIfl6gp4sotA==}
+    engines: {node: '>=10', npm: '>=6'}
+    peerDependencies:
+      react: '>=16.13.1'
+    dependencies:
+      '@babel/runtime': 7.20.7
+      react: 18.2.0
+    dev: false
 
   /react-fast-compare/2.0.4:
     resolution: {integrity: sha512-suNP+J1VU1MWFKcyt7RtjiSWUjvidmQSlqu+eHslq+342xCbGTYmC0mEhPCOHxlW0CywylOC1u2DFAT+bv4dBw==}

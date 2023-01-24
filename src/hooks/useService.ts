@@ -50,7 +50,7 @@ export const useService = ({
 				}
 
 				successCallback?.()
-			} catch ({ code }) {
+			} catch ({ code }: any) {
 				toastNotify(errorToast || i18next.t(ERRORS[code as string] || 'toasts.error'), 'error')
 
 				errorCallback?.()

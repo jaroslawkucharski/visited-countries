@@ -10,15 +10,19 @@ export interface Countries {
 }
 
 interface CountriesState {
-	countries: Countries[]
+	isLoading: boolean
+	data: Countries[]
+	isError: boolean
 }
 
 const initialState: CountriesState = {
-	countries: [],
+	isLoading: true,
+	data: [],
+	isError: false,
 }
 
 export const fetchCountries = createAsyncThunk('countries/fetch', async () => {
-	const data = await await getCountries()
+	const data = await getCountries()
 
 	return data
 })
@@ -26,27 +30,22 @@ export const fetchCountries = createAsyncThunk('countries/fetch', async () => {
 export const CountriesSlice = createSlice({
 	name: 'countries',
 	initialState,
-	reducers: {
-		addCountries: (
-			state,
-			action: PayloadAction<{
-				data: {
-					name: {
-						common: string
-					}
-				}
-			}>,
-		) => {
-			state.countries.push({
-				data: action.payload.data,
+	reducers: {},
+	extraReducers: builder =>
+		builder
+			.addCase(fetchCountries.pending, state => {
+				state.isLoading = true
+				state.isError = false
 			})
-		},
-	},
-	extraReducers: builder => {
-		builder.addCase(fetchCountries.fulfilled, (state, action) => {
-			state.countries.push(action.payload)
-		})
-	},
+			.addCase(fetchCountries.fulfilled, (state, action) => {
+				state.isLoading = false
+				state.isError = false
+				state.data = [...state.data, action.payload]
+			})
+			.addCase(fetchCountries.rejected, (state, action) => {
+				state.isLoading = false
+				state.isError = true
+			}),
 })
 
 export default CountriesSlice.reducer

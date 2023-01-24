@@ -11,7 +11,7 @@ import { useLocation, useNavigate } from 'react-router-dom'
 import { logout } from 'services/auth'
 import { v4 as uuid } from 'uuid'
 
-import { hideLogo } from 'helpers/hideLofo'
+import { hideLogo } from 'helpers/hideLogo'
 
 import { useService } from 'hooks/useService'
 import { useWindowSize } from 'hooks/useWindowSize'

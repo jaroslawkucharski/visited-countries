@@ -14,7 +14,6 @@ describe('pages/Register', () => {
 
 		await user.type(getByLabelText('Email'), 'mail@test.com')
 		await user.type(getByLabelText('Password'), '1234')
-		await user.type(getByLabelText('Confirm password'), '1234')
 
 		await user.click(getByTestId('button'))
 	})

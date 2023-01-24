@@ -31,11 +31,14 @@ export const Form = () => {
 
 	const onSubmit = ({ email, password }: FormValues) => request(email, password)
 
-	const { values, handleChange, handleBlur, handleSubmit, isSubmitting } = useFormik({
-		initialValues,
-		validationSchema: formSchema,
-		onSubmit,
-	})
+	const { values, handleChange, handleBlur, handleSubmit, isSubmitting, errors, touched, isValid } =
+		useFormik({
+			initialValues,
+			validationSchema: formSchema,
+			onSubmit,
+		})
+
+	const isError = (errors.email && touched.email) as boolean
 
 	return (
 		<FormComponent
@@ -53,6 +56,8 @@ export const Form = () => {
 				onBlur={handleBlur}
 				autoFocus
 				hasFullWidth
+				errors={errors}
+				touched={touched}
 			/>
 
 			<Input
@@ -75,7 +80,7 @@ export const Form = () => {
 				type="submit"
 				hasFullWidth
 				isLoading={isSubmitting}
-				isDisabled={isSubmitting}
+				isDisabled={isSubmitting || isError}
 			>
 				{t('word.login')}
 			</Button>

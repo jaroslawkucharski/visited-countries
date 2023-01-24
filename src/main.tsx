@@ -1,6 +1,5 @@
 import 'config/i18n'
 import 'config/sentry'
-import { AuthProvider } from 'context/AuthContext'
 import { ThemeColorProvider } from 'context/ThemeContext'
 import React from 'react'
 import ReactDOM from 'react-dom/client'
@@ -14,11 +13,9 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
 	<React.StrictMode>
 		<Provider store={store}>
 			<Router>
-				<AuthProvider>
-					<ThemeColorProvider>
-						<App />
-					</ThemeColorProvider>
-				</AuthProvider>
+				<ThemeColorProvider>
+					<App />
+				</ThemeColorProvider>
 			</Router>
 		</Provider>
 	</React.StrictMode>,
