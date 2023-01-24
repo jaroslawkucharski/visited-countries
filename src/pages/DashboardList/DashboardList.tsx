@@ -4,25 +4,15 @@ import { useSelector } from 'react-redux'
 import { RootState } from 'store/store'
 import { v4 as uuid } from 'uuid'
 
+import { useCountries } from 'hooks/useCountries'
+
 import { LOCALES } from 'constants/locales'
 
 import { ProfileColumnComponent } from './DashboardList.styles'
 
-interface Country {
-	name: {
-		common: string
-	}
-	flag: string
-	translations: {
-		pol: {
-			common: string
-		}
-	}
-}
-
 export const DashboardList = () => {
 	const { t, i18n } = useTranslation()
-	const countries = useSelector<RootState>(state => state.countries.countries) as [Country[]]
+	const { data: countries } = useCountries()
 
 	return (
 		<ProfileColumnComponent>
@@ -31,7 +21,7 @@ export const DashboardList = () => {
 			<Spacer type="vertical" />
 
 			<Select
-				options={countries[0].map((country: Country) => {
+				options={countries[0].map(country => {
 					const name =
 						i18n.language === LOCALES.EN ? country.name.common : country.translations.pol.common
 
@@ -46,7 +36,7 @@ export const DashboardList = () => {
 			<Spacer type="vertical" />
 
 			<ul>
-				{countries[0].map((country: Country) => (
+				{countries[0].map(country => (
 					<li key={uuid()}>
 						{country.flag}
 
