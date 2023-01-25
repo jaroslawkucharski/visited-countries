@@ -16,7 +16,7 @@ describe('components/Dropdown', () => {
 				<DropdownItem
 					to="/2"
 					data-testid="item2"
-					isLastItem
+					islastitem={true}
 				>
 					Click me 2
 				</DropdownItem>
