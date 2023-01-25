@@ -46,6 +46,7 @@ const font = {
 		h1: '28px',
 		h2: '18px',
 		icon: '64px',
+		notFound: '128px',
 	},
 
 	lineHeight: {

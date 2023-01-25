@@ -52,12 +52,6 @@ export const GlobalStyles = createGlobalStyle`
 			margin: 0;
 		}
 	
-		html {
-			line-height: ${font.lineHeight.default};
-			-webkit-text-size-adjust: 100%;
-			-webkit-font-smoothing: antialiased;
-		}
-	
 		main {
 			display: block;
 		}
@@ -72,16 +66,11 @@ export const GlobalStyles = createGlobalStyle`
 	
 		html,
 		body {
-			height: 100%;
-			font-size: ${font.sizes.default}
 			height: 100vh;
+			font-size: ${font.sizes.default}
+			line-height: ${font.lineHeight.default};
 			color: ${colors.secondary};
 			background-color: ${({ theme }) => theme.colors.main};
-		}
-
-		body {
-			line-height: ${font.lineHeight.default};
-			-webkit-font-smoothing: antialiased;
 		}
 
 		img,
