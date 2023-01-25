@@ -85,12 +85,14 @@ export const appRoutes = routes.map(({ path, route, component, isOnlyForMobile }
 		key={uuid()}
 		path={path}
 		element={
-			route
-				? createElement(route, {
-						component: <Suspense fallback={<Loader type="website" />}>{component}</Suspense>,
-						isOnlyForMobile,
-				  })
-				: component
+			route ? (
+				createElement(route, {
+					component: <Suspense fallback={<Loader type="website" />}>{component}</Suspense>,
+					isOnlyForMobile,
+				})
+			) : (
+				<Suspense fallback={<Loader type="website" />}>{component}</Suspense>
+			)
 		}
 	/>
 ))
