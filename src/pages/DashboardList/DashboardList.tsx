@@ -1,7 +1,5 @@
 import { Heading, Select, Spacer } from 'components'
 import { useTranslation } from 'react-i18next'
-import { useSelector } from 'react-redux'
-import { RootState, store } from 'store/store'
 import { v4 as uuid } from 'uuid'
 
 import { useCountries } from 'hooks/useCountries'

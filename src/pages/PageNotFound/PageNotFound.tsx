@@ -11,7 +11,7 @@ export const PageNotFound = () => {
 	const { t } = useTranslation()
 	const navigate = useNavigate()
 
-	const handleSignIn = useCallback(() => navigate(ROUTES.SIGNIN), [navigate])
+	const handleBack = useCallback(() => navigate(ROUTES.SIGNIN), [navigate])
 
 	return (
 		<ProfileColumnComponent>
@@ -25,7 +25,7 @@ export const PageNotFound = () => {
 			/>
 
 			<Button
-				action={handleSignIn}
+				action={handleBack}
 				data-testid="button-back"
 			>
 				{t('word.back')}
