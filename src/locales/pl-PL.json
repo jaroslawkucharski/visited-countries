@@ -37,6 +37,8 @@
 	"word.404": "404",
 	"word.page.not.found": "Ups... Nie znaleziono strony.",
 	"word.back": "Cofnij",
+	"word.error.boundary": "Błąd krytyczny... Odświe stronę lub skontaktuj się z nami.",
+	"word.refresh": "Odświe stronę",
 	"errors": {
 		"empty.field": "Pole obowiązkowe",
 		"email": "Niepoprawny adres email",

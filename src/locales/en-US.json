@@ -38,6 +38,8 @@
 	"word.404": "404",
 	"word.page.not.found": "Ooops... Page not found.",
 	"word.back": "Back",
+	"word.error.boundary": "Critical error... Please refresh the page or contact us.",
+	"word.refresh": "Refresh page",
 	"errors": {
 		"empty.field": "Field is required",
 		"email": "Invalid email",
