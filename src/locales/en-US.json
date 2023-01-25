@@ -35,6 +35,9 @@
 	"word.search": "Search",
 	"list.input.placeholder": "Search country...",
 	"word.empty.message": "We couldn't find anything under this phrase :(",
+	"word.404": "404",
+	"word.page.not.found": "Ooops... Page not found.",
+	"word.back": "Back",
 	"errors": {
 		"empty.field": "Field is required",
 		"email": "Invalid email",

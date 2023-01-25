@@ -34,6 +34,9 @@
 	"word.search": "Szukaj",
 	"list.input.placeholder": "Wyszukaj kraj...",
 	"word.empty.message": "Niczego nie znaleźliśmy pod tą frazą :(",
+	"word.404": "404",
+	"word.page.not.found": "Ups... Nie znaleziono strony.",
+	"word.back": "Cofnij",
 	"errors": {
 		"empty.field": "Pole obowiązkowe",
 		"email": "Niepoprawny adres email",
