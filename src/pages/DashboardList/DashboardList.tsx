@@ -1,7 +1,7 @@
 import { Heading, Select, Spacer } from 'components'
 import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
-import { RootState } from 'store/store'
+import { RootState, store } from 'store/store'
 import { v4 as uuid } from 'uuid'
 
 import { useCountries } from 'hooks/useCountries'
@@ -21,7 +21,7 @@ export const DashboardList = () => {
 			<Spacer type="vertical" />
 
 			<Select
-				options={countries[0].map(country => {
+				options={countries.map(country => {
 					const name =
 						i18n.language === LOCALES.EN ? country.name.common : country.translations.pol.common
 
@@ -36,7 +36,7 @@ export const DashboardList = () => {
 			<Spacer type="vertical" />
 
 			<ul>
-				{countries[0].map(country => (
+				{countries.map(country => (
 					<li key={uuid()}>
 						{country.flag}
 

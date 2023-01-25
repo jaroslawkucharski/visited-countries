@@ -6,7 +6,7 @@ export interface DropdownItemProps {
 	to?: string
 	action?: ReactEventHandler<HTMLAnchorElement>
 	children: ReactNode
-	isLastItem?: boolean
+	islastitem?: boolean
 	'data-testid'?: string
 }
 
@@ -14,14 +14,14 @@ export const DropdownItem: FC<DropdownItemProps> = ({
 	to = '',
 	action,
 	children,
-	isLastItem,
+	islastitem,
 	'data-testid': dataTestId = 'dropdown-item',
 }) => (
 	<ItemComponent
 		to={to}
 		onClick={action}
 		data-testid={dataTestId}
-		isLastItem={isLastItem}
+		islastitem={islastitem}
 	>
 		{children}
 	</ItemComponent>

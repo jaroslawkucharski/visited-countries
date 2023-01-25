@@ -1,9 +1,13 @@
-import { describe, it, render } from 'utils/tests'
+import { describe, it, render, waitFor } from 'utils/tests'
 
 import { DashboardList } from './DashboardList'
 
 describe('pages/DashboardList', () => {
 	it('should be in document', async () => {
-		render(<DashboardList />)
+		const { getByTestId } = render(<DashboardList />)
+
+		await waitFor(() => {
+			expect(getByTestId('loader')).toBeInTheDocument()
+		})
 	})
 })

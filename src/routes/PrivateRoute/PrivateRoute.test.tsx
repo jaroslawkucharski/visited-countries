@@ -1,9 +1,13 @@
-import { describe, it, render } from 'utils/tests'
+import { describe, it, render, waitFor } from 'utils/tests'
 
 import { PrivateRoute } from './PrivateRoute'
 
 describe('routes/PrivateRoute', () => {
 	it('should be in document', async () => {
-		render(<PrivateRoute component={<p>Hello!</p>} />)
+		const { getByTestId } = render(<PrivateRoute component={<p>Hello!</p>} />)
+
+		await waitFor(() => {
+			expect(getByTestId('loader')).toBeInTheDocument()
+		})
 	})
 })

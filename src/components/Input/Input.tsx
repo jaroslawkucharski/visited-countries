@@ -14,7 +14,7 @@ import { PasswordMeter } from './PasswordMeter'
 
 interface InputProps {
 	type?: 'text' | 'email' | 'password'
-	label: string
+	label?: string
 	name: string
 	id: string
 	value?: string
@@ -64,17 +64,19 @@ export const Input: FC<InputProps> = ({
 
 	return (
 		<div>
-			<LabelComponent
-				htmlFor={id}
-				hasFullWidth={hasFullWidth}
-			>
-				<Paragraph
-					type="label"
-					data-testid="input-label"
+			{label && (
+				<LabelComponent
+					htmlFor={id}
+					hasFullWidth={hasFullWidth}
 				>
-					{label}
-				</Paragraph>
-			</LabelComponent>
+					<Paragraph
+						type="label"
+						data-testid="input-label"
+					>
+						{label}
+					</Paragraph>
+				</LabelComponent>
+			)}
 
 			<InputWrapperComponent>
 				<InputComponent

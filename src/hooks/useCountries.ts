@@ -1,22 +1,11 @@
 import { useSelector } from 'react-redux'
+import { Countries } from 'store/features/countriesSlice'
 import { RootState } from 'store/store'
 
-interface Country {
-	name: {
-		common: string
-	}
-	flag: string
-	translations: {
-		pol: {
-			common: string
-		}
-	}
-}
-
 export const useCountries = () => {
-	const isLoading = useSelector<RootState>(state => state.countries.isLoading) as boolean
-	const data = useSelector<RootState>(state => state.countries.data) as [Country[]]
-	const isError = useSelector<RootState>(state => state.countries.isError) as boolean
+	const data = useSelector<RootState>(state => state.countries.data[0]) as Countries[]
+	const statusLoading = useSelector<RootState>(state => state.countries.statusLoading) as boolean
+	const statusError = useSelector<RootState>(state => state.countries.statusError) as boolean
 
-	return { isLoading, data, isError }
+	return { data, statusLoading, statusError }
 }
