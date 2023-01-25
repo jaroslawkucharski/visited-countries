@@ -2,8 +2,10 @@ import en from 'assets/images/locales/en.svg'
 import pl from 'assets/images/locales/pl.svg'
 import { Button, Image } from 'components'
 import { useThemeColorContext } from 'context/ThemeContext'
+import { ErrorFallback } from 'layouts/ErrorBoundary'
 import { DashboardList } from 'pages'
 import { useCallback, useState } from 'react'
+import { ErrorBoundary } from 'react-error-boundary'
 import { useTranslation } from 'react-i18next'
 import { HiChevronDoubleLeft, HiChevronDoubleRight, HiMoon, HiSun } from 'react-icons/hi2'
 
@@ -41,7 +43,9 @@ export const WebMenu = () => {
 
 			{isOpen && (
 				<WebMenuItemComponent>
-					<DashboardList />
+					<ErrorBoundary FallbackComponent={ErrorFallback}>
+						<DashboardList />
+					</ErrorBoundary>
 				</WebMenuItemComponent>
 			)}
 

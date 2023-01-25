@@ -1,5 +1,7 @@
 import { Loader } from 'components'
+import { ErrorFallback } from 'layouts'
 import { Suspense, createElement, lazy } from 'react'
+import { ErrorBoundary } from 'react-error-boundary'
 import { Route } from 'react-router-dom'
 import { v4 as uuid } from 'uuid'
 
@@ -65,7 +67,11 @@ const routes = [
 		path: ROUTES.DASHBOARD_LIST,
 		route: PrivateRoute,
 		isOnlyForMobile: true,
-		component: <DashboardList />,
+		component: (
+			<ErrorBoundary FallbackComponent={ErrorFallback}>
+				<DashboardList />
+			</ErrorBoundary>
+		),
 	},
 	{
 		path: ROUTES.PROFILE,
