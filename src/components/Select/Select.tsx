@@ -39,7 +39,7 @@ export const Select: FC<SelectProps> = ({
 	const [selectOptions, setOptions] = useState(options)
 	const [inputValue, setValue] = useState('')
 
-	const handleOpenToogle = useCallback(() => setOpen(!isOpen), [isOpen])
+	const handleOpenToogle = useCallback(() => setOpen(true), [])
 
 	const handleClose = useCallback(() => setOpen(false), [])
 
@@ -82,7 +82,6 @@ export const Select: FC<SelectProps> = ({
 			<Input
 				id={uuid()}
 				name="select-input"
-				label={t('word.search')}
 				placeholder={`${t('list.input.placeholder')}`}
 				value={inputValue}
 				onChange={handleChange}

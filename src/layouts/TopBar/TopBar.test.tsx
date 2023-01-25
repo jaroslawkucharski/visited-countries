@@ -2,7 +2,7 @@ import { describe, it, render, waitFor } from 'utils/tests'
 
 import { TopBar } from './TopBar'
 
-describe('components/TopBar', () => {
+describe('layouts/TopBar', () => {
 	it('should be in document', async () => {
 		const { getByTestId } = render(<TopBar />)
 

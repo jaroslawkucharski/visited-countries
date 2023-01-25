@@ -17,12 +17,12 @@ const AuthContext = createContext<AuthContextType | null>(null)
 
 const useAuthUser = () => {
 	const dispatch = useDispatch<AppDispatch>()
-	const { isLoading: isLoadingCountries, isError } = useCountries()
+	const { statusLoading, statusError } = useCountries()
 
 	const [userAuth, setUserAuth] = useState<AuthUser>(null)
 	const [isLoading, setLoading] = useState<boolean>(true)
 
-	const countriesLoading = userAuth && !isError ? isLoadingCountries : false
+	const countriesLoading = userAuth && !statusError ? statusLoading : false
 
 	const fetchData = useCallback(() => {
 		dispatch(fetchCountries())

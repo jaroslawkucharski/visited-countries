@@ -1,24 +1,28 @@
-import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit'
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { getCountries } from 'services/countries'
 
 export interface Countries {
-	data: {
-		name: {
+	name: {
+		common: string
+	}
+	flag: string
+	translations: {
+		pol: {
 			common: string
 		}
 	}
 }
 
 interface CountriesState {
-	isLoading: boolean
 	data: Countries[]
-	isError: boolean
+	statusLoading: boolean
+	statusError: boolean
 }
 
 const initialState: CountriesState = {
-	isLoading: true,
 	data: [],
-	isError: false,
+	statusLoading: true,
+	statusError: false,
 }
 
 export const fetchCountries = createAsyncThunk('countries/fetch', async () => {
@@ -34,17 +38,17 @@ export const CountriesSlice = createSlice({
 	extraReducers: builder =>
 		builder
 			.addCase(fetchCountries.pending, state => {
-				state.isLoading = true
-				state.isError = false
+				state.statusLoading = true
+				state.statusError = false
 			})
 			.addCase(fetchCountries.fulfilled, (state, action) => {
-				state.isLoading = false
-				state.isError = false
-				state.data = [...state.data, action.payload]
+				state.statusLoading = false
+				state.statusError = false
+				state.data = [...state.data, action.payload] as Countries[]
 			})
-			.addCase(fetchCountries.rejected, (state, action) => {
-				state.isLoading = false
-				state.isError = true
+			.addCase(fetchCountries.rejected, state => {
+				state.statusLoading = false
+				state.statusError = true
 			}),
 })
 

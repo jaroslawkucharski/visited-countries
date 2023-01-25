@@ -92,7 +92,7 @@ export const TopBar = () => {
 					<DropdownItem
 						key={uuid()}
 						action={handleLogout}
-						isLastItem
+						islastitem
 					>
 						<HiArrowRightOnRectangle /> {t('word.logout')}
 					</DropdownItem>

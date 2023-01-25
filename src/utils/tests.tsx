@@ -1,13 +1,13 @@
-/* eslint-disable import/no-extraneous-dependencies */
-import { render as rtlRender, screen, waitFor } from '@testing-library/react'
+import { configureStore } from '@reduxjs/toolkit'
+import { RenderOptions, render as rtlRender, screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { AuthProvider } from 'context/AuthContext'
 import { ThemeColorProvider } from 'context/ThemeContext'
-import { ComponentType, ReactElement, ReactNode } from 'react'
+import { ComponentType, PropsWithChildren, ReactElement, ReactNode } from 'react'
 import { I18nextProvider } from 'react-i18next'
 import { Provider } from 'react-redux'
 import { MemoryRouter } from 'react-router-dom'
-import { store } from 'store/store'
+import { CountriesSlice } from 'store/features/countriesSlice'
 import { ThemeProvider } from 'styled-components'
 import { describe, it, vi } from 'vitest'
 
@@ -15,8 +15,18 @@ import { darkTheme } from 'styles/theme'
 
 import i18n from '../config/i18n'
 
-const render = (ui: ReactElement) => {
-	const AppProviders = ({ children }: { children: ReactNode }) => (
+interface ExtendedRenderOptions extends Omit<RenderOptions, 'queries'> {
+	store?: any
+}
+
+const render = (
+	ui: ReactElement,
+	{
+		store = configureStore({ reducer: { countries: CountriesSlice.reducer } }),
+		...renderOptions
+	}: ExtendedRenderOptions = {},
+) => {
+	const AppProviders = ({ children }: PropsWithChildren<{}>) => (
 		<Provider store={store}>
 			<I18nextProvider i18n={i18n}>
 				<MemoryRouter initialEntries={['/']}>
@@ -30,7 +40,7 @@ const render = (ui: ReactElement) => {
 		</Provider>
 	)
 
-	return rtlRender(ui, { wrapper: AppProviders as ComponentType })
+	return rtlRender(ui, { wrapper: AppProviders as ComponentType, ...renderOptions })
 }
 
 export * from '@testing-library/react'

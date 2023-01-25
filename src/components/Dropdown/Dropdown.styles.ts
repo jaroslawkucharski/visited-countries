@@ -2,7 +2,7 @@ import { NavLink } from 'react-router-dom'
 import styled, { css } from 'styled-components'
 
 interface ItemComponentProps {
-	isLastItem?: boolean
+	islastitem?: boolean
 }
 
 export const DropdownComponent = styled.div`
@@ -42,13 +42,13 @@ export const ItemComponent = styled(NavLink)<ItemComponentProps>`
 	display: flex;
 	align-items: center;
 
-	${({ theme: { colors, spaces }, isLastItem }) =>
+	${({ theme: { colors, spaces }, islastitem }) =>
 		css`
 			color: ${colors.main};
 			padding: ${spaces.small} ${spaces.medium} ${spaces.small} ${spaces.big};
 			background: ${colors.secondary};
 			gap: ${spaces.tiny};
-			border-radius: ${isLastItem && `0 0 15px 15px`};
+			border-radius: ${String(islastitem) && `0 0 15px 15px`};
 
 			&:hover {
 				background: ${colors.color1};
