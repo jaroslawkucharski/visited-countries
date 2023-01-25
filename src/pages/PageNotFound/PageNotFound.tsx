@@ -1,6 +1,7 @@
 import { Button, Paragraph, Spacer } from 'components'
 import { useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
+import { HiArrowLeft, HiXCircle } from 'react-icons/hi2'
 import { useNavigate } from 'react-router-dom'
 
 import { ROUTES } from 'constants/routes'
@@ -28,6 +29,8 @@ export const PageNotFound = () => {
 				action={handleBack}
 				data-testid="button-back"
 			>
+				<HiArrowLeft />
+
 				{t('word.back')}
 			</Button>
 		</ProfileColumnComponent>
