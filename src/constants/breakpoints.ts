@@ -1,4 +1,4 @@
 export const BREAKPOINTS = {
 	MOBILE: 428,
-	TABLET: 700,
+	TABLET: 1200,
 }

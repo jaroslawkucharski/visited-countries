@@ -2,7 +2,7 @@ import styled, { DefaultTheme, css } from 'styled-components'
 
 interface HeadingComponentProps {
 	type?: 'default' | 'label' | 'error'
-	size?: 'small' | 'medium' | 'big' | 'huge'
+	size?: 'small' | 'medium' | 'big' | 'large' | 'huge'
 	align?: 'left' | 'center' | 'right'
 }
 
@@ -29,6 +29,9 @@ const sizeStyles = ({ font }: DefaultTheme, size = 'medium') =>
 		`,
 		big: css`
 			font-size: ${font.sizes.info};
+		`,
+		large: css`
+			font-size: ${font.sizes.icon};
 		`,
 		huge: css`
 			font-size: ${font.sizes.notFound};

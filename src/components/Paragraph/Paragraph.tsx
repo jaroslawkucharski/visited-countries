@@ -5,7 +5,7 @@ import { HeadingComponent } from './Paragraph.styles'
 interface ParagraphProps {
 	type?: 'default' | 'label' | 'error'
 	children: ReactNode
-	size?: 'small' | 'medium' | 'big' | 'huge'
+	size?: 'small' | 'medium' | 'big' | 'large' | 'huge'
 	align?: 'left' | 'center' | 'right'
 	'data-testid'?: string
 }
