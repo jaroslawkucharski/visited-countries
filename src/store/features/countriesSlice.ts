@@ -11,6 +11,7 @@ export interface Countries {
 			common: string
 		}
 	}
+	cca3: string
 }
 
 interface CountriesState {

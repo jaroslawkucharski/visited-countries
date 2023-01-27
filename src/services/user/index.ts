@@ -9,14 +9,14 @@ import { ERRORS } from 'constants/errors'
 
 // Upload country
 export const setCountry = (uid: string, country: string) =>
-	set(databaseRef(database, `/${auth.currentUser?.uid}/${uid}`), {
+	set(databaseRef(database, `users/${auth.currentUser?.uid}/countries/${uid}`), {
 		country,
 		uid,
 	})
 
 // Remove country
 export const removeCountry = (uid: string) =>
-	remove(databaseRef(database, `/${auth.currentUser?.uid}/${uid}`))
+	remove(databaseRef(database, `users/${auth.currentUser?.uid}/countries/${uid}`))
 
 type UpdateUserProfileTypes = {
 	displayName?: string
@@ -29,7 +29,7 @@ export const updateUserProfile = async (args: UpdateUserProfileTypes) => {
 		if (auth?.currentUser !== null) {
 			await updateProfile(auth.currentUser, args)
 		}
-	} catch ({ code }) {
+	} catch ({ code }: any) {
 		toastNotify(i18next.t(ERRORS[code as string] || 'toasts.error'), 'error')
 	}
 }

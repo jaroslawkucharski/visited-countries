@@ -1,47 +1,39 @@
 import topology from 'assets/topology.json'
-import { auth, database } from 'config/firebase'
-import { onValue, ref, set } from 'firebase/database'
-import { useEffect, useState } from 'react'
+import { useCountriesListContext } from 'context/CountriesListContext'
 import { ComposableMap, Geographies, Geography, ZoomableGroup } from 'react-simple-maps'
+import { setCountry } from 'services/user'
 import { v4 as uuid } from 'uuid'
 
+import { useWindowSize } from 'hooks/useWindowSize'
+
+import { BREAKPOINTS } from 'constants/breakpoints'
+
 export const Dashboard = () => {
-	const [countries, setCountries] = useState([])
+	const { width } = useWindowSize()
+
+	const { visitedList, setVisitedCountries } = useCountriesListContext()
+
+	const isMobile = width <= BREAKPOINTS.MOBILE
 
 	const handleAddCountry = (country: string) => {
 		const uid = uuid()
 
-		set(ref(database, `/${auth.currentUser?.uid}/${uid}`), {
-			country,
-			uid,
-		})
+		setCountry(uid, country)
+		setVisitedCountries(prev => [...prev, { uid, country }])
 	}
-
-	// const handleRemoveCountry = (uid: string) =>
-	// 	remove(ref(database, `/${auth.currentUser?.uid}/${uid}`))
-
-	// useEffect(() => {
-	// 	auth.onAuthStateChanged(() => {
-	// 		onValue(ref(database, `${auth.currentUser?.uid}`), db => {
-	// 			setCountries([])
-
-	// 			Object.values(db.val()).map(item => setCountries(prev => [...prev, item]))
-	// 		})
-	// 	})
-	// }, [])
 
 	return (
 		<div>
-			<ComposableMap style={{ width: '100%', maxHeight: 'calc(100vh - 84px)' }}>
+			<ComposableMap style={{ width: '100%', height: 'calc(100vh - 84px)' }}>
 				<ZoomableGroup
-					center={[10, 20]}
-					zoom={2}
+					center={[10, 10]}
+					zoom={isMobile ? 5 : 1.5}
 				>
 					<Geographies geography={topology}>
 						{({ geographies }) =>
 							geographies.map(geo => {
-								const fillCountry = countries.some(({ country }) => country === geo.properties.name)
-									? '#333333'
+								const fillCountry = visitedList.some(item => item?.cca3 === geo.id)
+									? '#8EE296'
 									: '#D6D6DA'
 								const mapStyle = {
 									default: {
@@ -50,7 +42,7 @@ export const Dashboard = () => {
 										height: '100vh',
 									},
 									hover: {
-										fill: '#F53',
+										fill: '#797979',
 										outline: 'none',
 									},
 									pressed: {
@@ -62,7 +54,7 @@ export const Dashboard = () => {
 									<Geography
 										key={geo.rsmKey}
 										geography={geo}
-										onClick={() => handleAddCountry(`${geo.properties.name}`)}
+										onClick={() => handleAddCountry(`${geo.id}`)}
 										style={mapStyle}
 									/>
 								)
