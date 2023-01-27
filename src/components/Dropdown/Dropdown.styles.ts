@@ -2,7 +2,7 @@ import { NavLink } from 'react-router-dom'
 import styled, { css } from 'styled-components'
 
 interface ItemComponentProps {
-	islastitem?: boolean
+	islastitem?: string
 }
 
 export const DropdownComponent = styled.div`
@@ -48,7 +48,7 @@ export const ItemComponent = styled(NavLink)<ItemComponentProps>`
 			padding: ${spaces.small} ${spaces.medium} ${spaces.small} ${spaces.big};
 			background: ${colors.secondary};
 			gap: ${spaces.tiny};
-			border-radius: ${String(islastitem) && `0 0 15px 15px`};
+			border-radius: ${islastitem === 'true' && `0 0 15px 15px`};
 
 			&:hover {
 				background: ${colors.color1};

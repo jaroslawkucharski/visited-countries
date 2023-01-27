@@ -73,6 +73,10 @@ export const GlobalStyles = createGlobalStyle`
 			background-color: ${({ theme }) => theme.colors.main};
 		}
 
+		body {
+			transition: background .5s, color .7s;
+		}
+
 		img,
 		picture,
 		video,

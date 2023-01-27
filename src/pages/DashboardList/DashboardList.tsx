@@ -1,23 +1,20 @@
-import { Heading, Select, Spacer } from 'components'
+import { Heading, Layout, Paragraph, Select, Spacer } from 'components'
+import { useCountriesListContext } from 'context/CountriesListContext'
 import { useTranslation } from 'react-i18next'
+import { Countries } from 'store/features/countriesSlice'
 import { v4 as uuid } from 'uuid'
-
-import { useCountries } from 'hooks/useCountries'
 
 import { LOCALES } from 'constants/locales'
 
-import { ProfileColumnComponent } from './DashboardList.styles'
-
 export const DashboardList = () => {
 	const { t, i18n } = useTranslation()
-	const { data: countries } = useCountries()
+
+	const { countries, visitedList } = useCountriesListContext()
 
 	return (
-		<ProfileColumnComponent>
+		<Layout hidePresentional>
 			<Heading>{t('word.list')}</Heading>
-
 			<Spacer type="vertical" />
-
 			<Select
 				options={countries.map(country => {
 					const name =
@@ -30,18 +27,20 @@ export const DashboardList = () => {
 				})}
 				hasFullWidth
 			/>
-
 			<Spacer type="vertical" />
 
 			<ul>
-				{countries.map(country => (
+				{visitedList.map(country => (
 					<li key={uuid()}>
-						{country.flag}
-
-						{i18n.language === LOCALES.EN ? country.name.common : country.translations.pol.common}
+						{country?.flag}{' '}
+						{i18n.language === LOCALES.EN ? country?.name.common : country?.translations.pol.common}
+						<Spacer
+							type="vertical"
+							space="tiny"
+						/>
 					</li>
 				))}
 			</ul>
-		</ProfileColumnComponent>
+		</Layout>
 	)
 }

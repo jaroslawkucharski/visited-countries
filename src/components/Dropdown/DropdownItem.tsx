@@ -21,7 +21,7 @@ export const DropdownItem: FC<DropdownItemProps> = ({
 		to={to}
 		onClick={action}
 		data-testid={dataTestId}
-		islastitem={islastitem}
+		islastitem={String(islastitem)}
 	>
 		{children}
 	</ItemComponent>
