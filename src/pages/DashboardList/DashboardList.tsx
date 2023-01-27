@@ -1,4 +1,4 @@
-import { Heading, Select, Spacer } from 'components'
+import { Heading, Layout, Select, Spacer } from 'components'
 import { useTranslation } from 'react-i18next'
 import { v4 as uuid } from 'uuid'
 
@@ -6,14 +6,12 @@ import { useCountries } from 'hooks/useCountries'
 
 import { LOCALES } from 'constants/locales'
 
-import { ProfileColumnComponent } from './DashboardList.styles'
-
 export const DashboardList = () => {
 	const { t, i18n } = useTranslation()
 	const { data: countries } = useCountries()
 
 	return (
-		<ProfileColumnComponent>
+		<Layout hidePresentional>
 			<Heading>{t('word.list')}</Heading>
 
 			<Spacer type="vertical" />
@@ -42,6 +40,6 @@ export const DashboardList = () => {
 					</li>
 				))}
 			</ul>
-		</ProfileColumnComponent>
+		</Layout>
 	)
 }

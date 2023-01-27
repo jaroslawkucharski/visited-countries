@@ -1,12 +1,10 @@
-import { Button, Paragraph, Spacer } from 'components'
+import { Button, Layout, Paragraph, Spacer } from 'components'
 import { useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
-import { HiArrowLeft, HiXCircle } from 'react-icons/hi2'
+import { HiArrowLeft } from 'react-icons/hi2'
 import { useNavigate } from 'react-router-dom'
 
 import { ROUTES } from 'constants/routes'
-
-import { ProfileColumnComponent } from './PageNotFound.styles'
 
 export const PageNotFound = () => {
 	const { t } = useTranslation()
@@ -15,7 +13,7 @@ export const PageNotFound = () => {
 	const handleBack = useCallback(() => navigate(ROUTES.SIGNIN), [navigate])
 
 	return (
-		<ProfileColumnComponent>
+		<Layout>
 			<Paragraph size="huge">{t('word.404')}</Paragraph>
 
 			<Paragraph size="big">{t('word.page.not.found')}</Paragraph>
@@ -33,6 +31,6 @@ export const PageNotFound = () => {
 
 				{t('word.back')}
 			</Button>
-		</ProfileColumnComponent>
+		</Layout>
 	)
 }

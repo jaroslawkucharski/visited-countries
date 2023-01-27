@@ -1,16 +1,17 @@
-import { Heading, Link, Paragraph, Spacer } from 'components'
+import login from 'assets/images/pages/login.jpg'
+import { Heading, Layout, Link, Paragraph, Spacer } from 'components'
 import { useTranslation } from 'react-i18next'
 
 import { ROUTES } from 'constants/routes'
 
 import { Form } from './Form'
-import { LoginColumnComponent, LoginRowComponent } from './Login.styles'
+import { LoginRowComponent } from './Login.styles'
 
 export const Login = () => {
 	const { t } = useTranslation()
 
 	return (
-		<LoginColumnComponent>
+		<Layout image={login}>
 			<Heading>{t('word.signin')}</Heading>
 
 			<Spacer
@@ -45,6 +46,6 @@ export const Login = () => {
 
 				<Link to={ROUTES.SIGNUP}>{t('word.signup')}</Link>
 			</LoginRowComponent>
-		</LoginColumnComponent>
+		</Layout>
 	)
 }

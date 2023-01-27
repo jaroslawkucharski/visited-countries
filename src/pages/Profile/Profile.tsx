@@ -1,9 +1,6 @@
-/* eslint-disable jsx-a11y/no-static-element-interactions */
-
-/* eslint-disable jsx-a11y/click-events-have-key-events */
 import en from 'assets/images/locales/en.svg'
 import pl from 'assets/images/locales/pl.svg'
-import { Button, Heading, Image, Spacer } from 'components'
+import { Button, Heading, Image, Layout, Spacer } from 'components'
 import { auth } from 'config/firebase'
 import { useThemeColorContext } from 'context/ThemeContext'
 import { ChangeEvent, useCallback, useRef } from 'react'
@@ -14,15 +11,20 @@ import { logout } from 'services/auth'
 import { setUserAvatar } from 'services/user'
 
 import { useService } from 'hooks/useService'
+import { useWindowSize } from 'hooks/useWindowSize'
 
+import { BREAKPOINTS } from 'constants/breakpoints'
 import { LOCALES } from 'constants/locales'
 import { ROUTES } from 'constants/routes'
 
-import { ProfileColumnComponent, SettingsComponent } from './Profile.styles'
+import { SettingsComponent } from './Profile.styles'
 
 export const Profile = () => {
 	const { t, i18n } = useTranslation()
 	const navigate = useNavigate()
+	const { width } = useWindowSize()
+
+	const isMobile = width <= BREAKPOINTS.MOBILE
 
 	const { theme, toggleTheme } = useThemeColorContext()
 	const inputRef = useRef(null)
@@ -61,7 +63,7 @@ export const Profile = () => {
 	const handleThemeColorChange = useCallback(() => toggleTheme(), [toggleTheme])
 
 	return (
-		<ProfileColumnComponent>
+		<Layout hidePresentional>
 			<Heading>{t('word.profile')}</Heading>
 
 			<Spacer type="vertical" />
@@ -134,7 +136,7 @@ export const Profile = () => {
 				space="big"
 			/>
 
-			<Button action={handleLogout}>{t('word.logout')}</Button>
-		</ProfileColumnComponent>
+			{isMobile && <Button action={handleLogout}>{t('word.logout')}</Button>}
+		</Layout>
 	)
 }
