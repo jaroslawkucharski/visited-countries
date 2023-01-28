@@ -43,16 +43,14 @@ export const TopBar = () => {
 
 	const handleNavigateToMainPage = useCallback(() => navigate(ROUTES.DASHBOARD), [navigate])
 
-	return (
+	return hideLogo(pathname) && isMobile ? null : (
 		<TopBarComponent>
-			{hideLogo(pathname) && isMobile ? null : (
-				<Image
-					src={theme === THEME_COLORS.DARK ? LogoDark : LogoLight}
-					width={250}
-					alt={t('word.logo')}
-					onClick={handleNavigateToMainPage}
-				/>
-			)}
+			<Image
+				src={theme === THEME_COLORS.DARK ? LogoDark : LogoLight}
+				width={250}
+				alt={t('word.logo')}
+				onClick={handleNavigateToMainPage}
+			/>
 
 			{!userAuth && !isMobile && (
 				<SettingsComponent>

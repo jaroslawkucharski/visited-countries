@@ -63,9 +63,11 @@ export const Select: FC<SelectProps> = ({
 		)
 	}
 
-	const handleSetOption = useCallback((item: OptionsProps) => {
+	const handleSetOption = (item: OptionsProps) => {
+		setOpen(false)
+
 		setValue(item.name)
-	}, [])
+	}
 
 	const handleClearValue = () => {
 		setValue('')
@@ -74,7 +76,6 @@ export const Select: FC<SelectProps> = ({
 
 	return (
 		<SelectComponent
-			onClick={handleOpenToogle}
 			ref={selectRef}
 			hasFullWidth={hasFullWidth}
 			data-testid={dataTestId}
@@ -87,6 +88,7 @@ export const Select: FC<SelectProps> = ({
 				onChange={handleChange}
 				hasFullWidth
 				isDropdown={isOpen}
+				onClick={handleOpenToogle}
 				data-testid="select-input"
 				hideError
 			/>

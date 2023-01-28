@@ -6,7 +6,13 @@ export const ProfileColumnComponent = styled.div`
 			margin: 0 auto;
 			padding: 0 0 0 ${spaces.big};
 			align-items: center;
-			overflow: scroll;
+
+			@media (max-width: ${breakpoints.mobile}px) {
+				width: 100%;
+				padding: 0;
+				height: calc(100vh - 172px);
+				overflow: none;
+			}
 		`}
 `
 
