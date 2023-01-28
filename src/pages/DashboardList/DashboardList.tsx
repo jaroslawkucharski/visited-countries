@@ -1,6 +1,5 @@
 import { Button, Heading, Layout, Paragraph, Select, Spacer } from 'components'
 import { useCountriesListContext } from 'context/CountriesListContext'
-import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { v4 as uuid } from 'uuid'
 
@@ -11,11 +10,7 @@ import { ProfileColumnComponent } from './DashboardList.styles'
 export const DashboardList = () => {
 	const { t, i18n } = useTranslation()
 
-	const [country, setCountry] = useState<string>('')
-
 	const { countries, visitedList, unvisitedList } = useCountriesListContext()
-
-	console.log(country)
 
 	return (
 		<Layout>
@@ -40,15 +35,16 @@ export const DashboardList = () => {
 
 				<Spacer type="vertical" />
 
-				<Button
-					// action={handleAddCountry}
-					hasFullWidth
-				>
-					Add country
-				</Button>
+				<Button hasFullWidth>Add country</Button>
+
 				<Spacer type="vertical" />
 
-				<Paragraph>Your visited list</Paragraph>
+				<Paragraph size="big">Your visited list:</Paragraph>
+
+				<Spacer
+					type="vertical"
+					space="tiny"
+				/>
 
 				<ul>
 					{visitedList.map(country => (
@@ -67,7 +63,12 @@ export const DashboardList = () => {
 
 				<Spacer type="vertical" />
 
-				<Paragraph>Your visited list</Paragraph>
+				<Paragraph size="big">Your unvisited list:</Paragraph>
+
+				<Spacer
+					type="vertical"
+					space="tiny"
+				/>
 
 				<ul>
 					{unvisitedList.map(country => (

@@ -24,14 +24,9 @@ export const Dashboard = () => {
 	})
 
 	const handleCountryAction = (uid: string, country: string) => {
-		console.log(visitedList.some(item => item?.cca3 === country))
-
 		visitedCountries.some(item => item.country === country)
 			? removeRequest(uid)
 			: addRequest(uid, country)
-
-		!visitedCountries.some(item => item.country === country) &&
-			setVisitedCountries(prev => [...prev, { uid, country }])
 	}
 
 	return (
