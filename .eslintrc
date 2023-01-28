@@ -27,9 +27,10 @@
 		"react/function-component-definition": "off",
 		"import/prefer-default-export": "off",
 		"react/require-default-props": "off",
-		"no-unused-vars": "off",
-		"@typescript-eslint/no-unused-vars": "warn",
-		"react/jsx-props-no-spreading": "off"
-	},
-	"ignorePropertyModificationsFor": ["state"]
+		"no-unused-vars": "error",
+		"@typescript-eslint/no-unused-vars": "error",
+		"react/jsx-props-no-spreading": "off",
+		"@typescript-eslint/no-unused-expressions": "off"
+	}
+	// "ignorePropertyModificationsFor": ["state"]
 }

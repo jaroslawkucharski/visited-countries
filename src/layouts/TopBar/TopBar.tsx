@@ -16,7 +16,6 @@ import { hideLogo } from 'helpers/hideLogo'
 import { useService } from 'hooks/useService'
 import { useWindowSize } from 'hooks/useWindowSize'
 
-import { BREAKPOINTS } from 'constants/breakpoints'
 import { ROUTES } from 'constants/routes'
 import { THEME_COLORS } from 'constants/theme'
 
@@ -29,7 +28,7 @@ export const TopBar = () => {
 	const navigate = useNavigate()
 	const { pathname } = useLocation()
 
-	const { width } = useWindowSize()
+	const { isMobile } = useWindowSize()
 
 	const { request } = useService({
 		service: logout,
@@ -42,17 +41,20 @@ export const TopBar = () => {
 
 	const handleSignUp = useCallback(() => navigate(ROUTES.SIGNUP), [navigate])
 
+	const handleNavigateToMainPage = useCallback(() => navigate(ROUTES.DASHBOARD), [navigate])
+
 	return (
 		<TopBarComponent>
-			{hideLogo(pathname) && width <= BREAKPOINTS.MOBILE ? null : (
+			{hideLogo(pathname) && isMobile ? null : (
 				<Image
 					src={theme === THEME_COLORS.DARK ? LogoDark : LogoLight}
 					width={250}
 					alt={t('word.logo')}
+					onClick={handleNavigateToMainPage}
 				/>
 			)}
 
-			{!userAuth && width > BREAKPOINTS.MOBILE && (
+			{!userAuth && !isMobile && (
 				<SettingsComponent>
 					<Button
 						variant="primary"
@@ -71,7 +73,7 @@ export const TopBar = () => {
 				</SettingsComponent>
 			)}
 
-			{userAuth && width > BREAKPOINTS.MOBILE && (
+			{userAuth && !isMobile && (
 				<Dropdown text={auth?.currentUser?.displayName || t('word.account')}>
 					<DropdownItem
 						key={uuid()}

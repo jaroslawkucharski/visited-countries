@@ -1,12 +1,15 @@
 import { useLayoutEffect, useState } from 'react'
 
+import { BREAKPOINTS } from 'constants/breakpoints'
+
 export const useWindowSize = () => {
-	const [windowSize, setWindowSize] = useState({ width: 0, height: 0 })
+	const [windowSize, setWindowSize] = useState({ isMobile: false, isTable: false, isWeb: false })
 
 	const handleSize = () =>
 		setWindowSize({
-			width: window.innerWidth,
-			height: window.innerHeight,
+			isMobile: window.innerWidth <= BREAKPOINTS.MOBILE,
+			isTable: window.innerWidth < BREAKPOINTS.MOBILE && window.innerWidth <= BREAKPOINTS.TABLET,
+			isWeb: window.innerWidth > BREAKPOINTS.TABLET,
 		})
 
 	useLayoutEffect(() => {

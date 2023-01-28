@@ -4,7 +4,6 @@ import { Navigate } from 'react-router-dom'
 
 import { useWindowSize } from 'hooks/useWindowSize'
 
-import { BREAKPOINTS } from 'constants/breakpoints'
 import { ROUTES } from 'constants/routes'
 
 interface PrivateRouteProps {
@@ -13,9 +12,9 @@ interface PrivateRouteProps {
 }
 export const PrivateRoute: FC<PrivateRouteProps> = ({ component, isOnlyForMobile = false }) => {
 	const { userAuth } = useAuthContext()
-	const { width } = useWindowSize()
+	const { isMobile } = useWindowSize()
 
-	const perrmission = isOnlyForMobile ? userAuth && width <= BREAKPOINTS.MOBILE : userAuth
+	const perrmission = isOnlyForMobile ? userAuth && isMobile : userAuth
 
 	return perrmission ? component : <Navigate to={ROUTES.SIGNIN} />
 }

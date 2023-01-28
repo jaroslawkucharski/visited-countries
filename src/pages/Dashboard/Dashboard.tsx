@@ -1,25 +1,32 @@
 import topology from 'assets/topology.json'
 import { useCountriesListContext } from 'context/CountriesListContext'
+import { useTranslation } from 'react-i18next'
 import { ComposableMap, Geographies, Geography, ZoomableGroup } from 'react-simple-maps'
-import { setCountry } from 'services/user'
-import { v4 as uuid } from 'uuid'
+import { removeCountry, setCountry } from 'services/user'
 
+import { useService } from 'hooks/useService'
 import { useWindowSize } from 'hooks/useWindowSize'
 
-import { BREAKPOINTS } from 'constants/breakpoints'
-
 export const Dashboard = () => {
-	const { width } = useWindowSize()
+	const { t } = useTranslation()
+	const { isMobile } = useWindowSize()
 
-	const { visitedList, setVisitedCountries } = useCountriesListContext()
+	const { visitedList, visitedCountries } = useCountriesListContext()
 
-	const isMobile = width <= BREAKPOINTS.MOBILE
+	const { request: addRequest } = useService({
+		service: setCountry,
+		successToast: t('toasts.add.country'),
+	})
 
-	const handleAddCountry = (country: string) => {
-		const uid = uuid()
+	const { request: removeRequest } = useService({
+		service: removeCountry,
+		successToast: t('toasts.remove.country'),
+	})
 
-		setCountry(uid, country)
-		setVisitedCountries(prev => [...prev, { uid, country }])
+	const handleCountryAction = (uid: string, country: string) => {
+		visitedCountries.some(item => item.country === country)
+			? removeRequest(uid)
+			: addRequest(uid, country)
 	}
 
 	return (
@@ -54,7 +61,7 @@ export const Dashboard = () => {
 									<Geography
 										key={geo.rsmKey}
 										geography={geo}
-										onClick={() => handleAddCountry(`${geo.id}`)}
+										onClick={() => handleCountryAction(geo.rsmKey, geo.id)}
 										style={mapStyle}
 									/>
 								)

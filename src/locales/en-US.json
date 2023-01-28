@@ -51,6 +51,8 @@
 		"wrong.password": "Wrong password",
 		"wrong.email": "Wrong email",
 		"exist.email": "An account with this email address already exists",
-		"exist.number": "The phone number already exists in the database"
+		"exist.number": "The phone number already exists in the database",
+		"add.country": "New country added",
+		"remove.country": "Country removed from list"
 	}
 }

@@ -50,6 +50,8 @@
 		"wrong.password": "Niepoprawne hasło",
 		"wrong.email": "Niepoprawny email",
 		"exist.email": "Konto z takim adresem email już istnieje",
-		"exist.number": "Numer telefonu istnieje już w bazie"
+		"exist.number": "Numer telefonu istnieje już w bazie",
+		"add.country": "Dodano nowy kraj",
+		"remove.country": "Usnięto kraj z listy"
 	}
 }

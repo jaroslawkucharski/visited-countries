@@ -13,7 +13,6 @@ import { setUserAvatar } from 'services/user'
 import { useService } from 'hooks/useService'
 import { useWindowSize } from 'hooks/useWindowSize'
 
-import { BREAKPOINTS } from 'constants/breakpoints'
 import { LOCALES } from 'constants/locales'
 import { ROUTES } from 'constants/routes'
 
@@ -22,9 +21,7 @@ import { SettingsComponent } from './Profile.styles'
 export const Profile = () => {
 	const { t, i18n } = useTranslation()
 	const navigate = useNavigate()
-	const { width } = useWindowSize()
-
-	const isMobile = width <= BREAKPOINTS.MOBILE
+	const { isMobile } = useWindowSize()
 
 	const { theme, toggleTheme } = useThemeColorContext()
 	const inputRef = useRef(null)
@@ -63,7 +60,7 @@ export const Profile = () => {
 	const handleThemeColorChange = useCallback(() => toggleTheme(), [toggleTheme])
 
 	return (
-		<Layout hidePresentional>
+		<Layout>
 			<Heading>{t('word.profile')}</Heading>
 
 			<Spacer type="vertical" />

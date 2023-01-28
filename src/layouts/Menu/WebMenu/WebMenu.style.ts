@@ -28,7 +28,7 @@ export const WebMenuItemComponent = styled.div`
 			flex-direction: column;
 			justify-content: space-between;
 			align-items: space-between;
-			background: ${colors.color4};
+			background: ${colors.color3};
 			position: fixed;
 			top: 84px;
 			left: 0;

@@ -2,8 +2,9 @@ import { configureStore } from '@reduxjs/toolkit'
 import { RenderOptions, render as rtlRender, screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { AuthProvider } from 'context/AuthContext'
+import { CountriesListProvider } from 'context/CountriesListContext'
 import { ThemeColorProvider } from 'context/ThemeContext'
-import { ComponentType, PropsWithChildren, ReactElement, ReactNode } from 'react'
+import { ComponentType, PropsWithChildren, ReactElement } from 'react'
 import { I18nextProvider } from 'react-i18next'
 import { Provider } from 'react-redux'
 import { MemoryRouter } from 'react-router-dom'
@@ -17,6 +18,7 @@ import i18n from '../config/i18n'
 
 interface ExtendedRenderOptions extends Omit<RenderOptions, 'queries'> {
 	store?: any
+	screenWidth?: number
 }
 
 const render = (
@@ -32,7 +34,9 @@ const render = (
 				<MemoryRouter initialEntries={['/']}>
 					<ThemeColorProvider>
 						<ThemeProvider theme={darkTheme}>
-							<AuthProvider>{children}</AuthProvider>
+							<AuthProvider>
+								<CountriesListProvider>{children}</CountriesListProvider>
+							</AuthProvider>
 						</ThemeProvider>
 					</ThemeColorProvider>
 				</MemoryRouter>

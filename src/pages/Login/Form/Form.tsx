@@ -31,7 +31,7 @@ export const Form = () => {
 
 	const onSubmit = ({ email, password }: FormValues) => request(email, password)
 
-	const { values, handleChange, handleBlur, handleSubmit, isSubmitting, errors, touched, isValid } =
+	const { values, handleChange, handleBlur, handleSubmit, isSubmitting, errors, touched } =
 		useFormik({
 			initialValues,
 			validationSchema: formSchema,
