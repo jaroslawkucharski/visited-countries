@@ -42,6 +42,8 @@ export const TopBar = () => {
 
 	const handleSignUp = useCallback(() => navigate(ROUTES.SIGNUP), [navigate])
 
+	const handleNavigateToMainPage = useCallback(() => navigate(ROUTES.DASHBOARD), [navigate])
+
 	return (
 		<TopBarComponent>
 			{hideLogo(pathname) && width <= BREAKPOINTS.MOBILE ? null : (
@@ -49,6 +51,7 @@ export const TopBar = () => {
 					src={theme === THEME_COLORS.DARK ? LogoDark : LogoLight}
 					width={250}
 					alt={t('word.logo')}
+					onClick={handleNavigateToMainPage}
 				/>
 			)}
 

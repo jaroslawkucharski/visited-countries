@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { FC, ReactEventHandler } from 'react'
 
 import { ImageComponent } from './Image.styles'
 
@@ -8,6 +8,7 @@ interface ImageProps {
 	height?: number | string
 	alt: string
 	variant?: 'default' | 'avatar'
+	onClick?: ReactEventHandler<HTMLImageElement>
 	'data-testid'?: string
 }
 
@@ -17,6 +18,7 @@ export const Image: FC<ImageProps> = ({
 	height,
 	alt,
 	variant = 'default',
+	onClick,
 	'data-testid': dataTestId = 'image',
 }) => (
 	<ImageComponent
@@ -25,6 +27,7 @@ export const Image: FC<ImageProps> = ({
 		height={height}
 		alt={alt}
 		variant={variant}
+		onClick={onClick}
 		data-testid={dataTestId}
 	/>
 )

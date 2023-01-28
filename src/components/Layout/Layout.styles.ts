@@ -2,7 +2,6 @@ import styled, { css } from 'styled-components'
 
 interface PresentionalComponentProps {
 	image?: string
-	hidePresentional?: boolean
 }
 
 export const LayoutComponent = styled.div`
@@ -23,7 +22,7 @@ export const LayoutComponent = styled.div`
 `
 
 export const PresentionalComponent = styled.div<PresentionalComponentProps>`
-	${({ theme: { spaces, colors, breakpoints }, image, hidePresentional }) =>
+	${({ theme: { spaces, colors, breakpoints }, image }) =>
 		css`
 			width: calc(100% - 600px);
 			height: calc(100vh - 84px);
@@ -34,7 +33,7 @@ export const PresentionalComponent = styled.div<PresentionalComponentProps>`
 			background-repeat: no-repeat;
 			background-size: cover;
 			opacity: 0.5;
-			display: ${hidePresentional && 'none'};
+			display: ${!image && 'none'};
 
 			@media (max-width: ${breakpoints.mobile}px) {
 				display: none;

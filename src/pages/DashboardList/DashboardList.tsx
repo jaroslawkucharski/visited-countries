@@ -12,7 +12,7 @@ export const DashboardList = () => {
 	const { countries, visitedList } = useCountriesListContext()
 
 	return (
-		<Layout hidePresentional>
+		<Layout>
 			<Heading>{t('word.list')}</Heading>
 			<Spacer type="vertical" />
 			<Select

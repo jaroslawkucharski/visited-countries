@@ -63,7 +63,7 @@ export const Profile = () => {
 	const handleThemeColorChange = useCallback(() => toggleTheme(), [toggleTheme])
 
 	return (
-		<Layout hidePresentional>
+		<Layout>
 			<Heading>{t('word.profile')}</Heading>
 
 			<Spacer type="vertical" />

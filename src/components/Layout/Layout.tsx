@@ -7,21 +7,16 @@ import { ChildrenComponent, LayoutComponent, PresentionalComponent } from './Lay
 interface LayoutProps {
 	children: ReactNode
 	image?: string
-	hidePresentional?: boolean
 	'data-testid'?: string
 }
 
 export const Layout: FC<LayoutProps> = ({
 	children,
 	image,
-	hidePresentional = false,
 	'data-testid': dataTestId = 'layout',
 }) => (
 	<LayoutComponent data-testid={dataTestId}>
-		<PresentionalComponent
-			image={image}
-			hidePresentional={hidePresentional}
-		/>
+		<PresentionalComponent image={image} />
 
 		<ChildrenComponent>{children}</ChildrenComponent>
 	</LayoutComponent>
