@@ -13,9 +13,9 @@ interface PublicRouteProps {
 }
 export const PublicRoute: FC<PublicRouteProps> = ({ component, isOnlyForMobile = false }) => {
 	const { userAuth } = useAuthContext()
-	const { width } = useWindowSize()
+	const { isMobile } = useWindowSize()
 
-	const perrmission = isOnlyForMobile ? !userAuth && width <= BREAKPOINTS.MOBILE : !userAuth
+	const perrmission = isOnlyForMobile ? !userAuth && isMobile : !userAuth
 
 	return perrmission ? component : <Navigate to={ROUTES.DASHBOARD} />
 }

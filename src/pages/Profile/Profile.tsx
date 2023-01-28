@@ -22,9 +22,7 @@ import { SettingsComponent } from './Profile.styles'
 export const Profile = () => {
 	const { t, i18n } = useTranslation()
 	const navigate = useNavigate()
-	const { width } = useWindowSize()
-
-	const isMobile = width <= BREAKPOINTS.MOBILE
+	const { isMobile } = useWindowSize()
 
 	const { theme, toggleTheme } = useThemeColorContext()
 	const inputRef = useRef(null)

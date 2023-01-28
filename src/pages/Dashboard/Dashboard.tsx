@@ -6,14 +6,10 @@ import { v4 as uuid } from 'uuid'
 
 import { useWindowSize } from 'hooks/useWindowSize'
 
-import { BREAKPOINTS } from 'constants/breakpoints'
-
 export const Dashboard = () => {
-	const { width } = useWindowSize()
+	const { isMobile } = useWindowSize()
 
 	const { visitedList, setVisitedCountries } = useCountriesListContext()
-
-	const isMobile = width <= BREAKPOINTS.MOBILE
 
 	const handleAddCountry = (country: string) => {
 		const uid = uuid()

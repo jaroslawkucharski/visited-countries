@@ -29,7 +29,7 @@ export const TopBar = () => {
 	const navigate = useNavigate()
 	const { pathname } = useLocation()
 
-	const { width } = useWindowSize()
+	const { isMobile } = useWindowSize()
 
 	const { request } = useService({
 		service: logout,
@@ -46,7 +46,7 @@ export const TopBar = () => {
 
 	return (
 		<TopBarComponent>
-			{hideLogo(pathname) && width <= BREAKPOINTS.MOBILE ? null : (
+			{hideLogo(pathname) && isMobile ? null : (
 				<Image
 					src={theme === THEME_COLORS.DARK ? LogoDark : LogoLight}
 					width={250}
@@ -55,7 +55,7 @@ export const TopBar = () => {
 				/>
 			)}
 
-			{!userAuth && width > BREAKPOINTS.MOBILE && (
+			{!userAuth && !isMobile && (
 				<SettingsComponent>
 					<Button
 						variant="primary"
@@ -74,7 +74,7 @@ export const TopBar = () => {
 				</SettingsComponent>
 			)}
 
-			{userAuth && width > BREAKPOINTS.MOBILE && (
+			{userAuth && !isMobile && (
 				<Dropdown text={auth?.currentUser?.displayName || t('word.account')}>
 					<DropdownItem
 						key={uuid()}
