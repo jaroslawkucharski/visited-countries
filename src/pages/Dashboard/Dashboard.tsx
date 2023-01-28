@@ -11,7 +11,7 @@ export const Dashboard = () => {
 	const { t } = useTranslation()
 	const { isMobile } = useWindowSize()
 
-	const { visitedList, visitedCountries, setVisitedCountries } = useCountriesListContext()
+	const { visitedList, visitedCountries } = useCountriesListContext()
 
 	const { request: addRequest } = useService({
 		service: setCountry,
