@@ -13,7 +13,7 @@ describe('components/Select', () => {
 
 			expect(getByTestId('select-input')).toBeInTheDocument()
 
-			fireEvent.click(getByTestId('select'))
+			fireEvent.click(getByTestId('select-input'))
 
 			expect(getByTestId('select-item')).toBeInTheDocument()
 
@@ -31,7 +31,7 @@ describe('components/Select', () => {
 
 			expect(getByTestId('select-input')).toBeInTheDocument()
 
-			fireEvent.click(getByTestId('select'))
+			fireEvent.click(getByTestId('select-input'))
 
 			expect(getByTestId('select-empty-message')).toBeInTheDocument()
 		})
@@ -45,7 +45,7 @@ describe('components/Select', () => {
 
 			expect(getByTestId('select-input')).toBeInTheDocument()
 
-			fireEvent.click(getByTestId('select'))
+			fireEvent.click(getByTestId('select-input'))
 
 			expect(getByTestId('select-icon-clear')).toBeInTheDocument()
 
@@ -63,7 +63,7 @@ describe('components/Select', () => {
 
 			expect(getByTestId('select-input')).toBeInTheDocument()
 
-			fireEvent.click(getByTestId('select'))
+			fireEvent.click(getByTestId('select-input'))
 
 			fireEvent.change(getByTestId('select-input'), { target: { value: 'name' } })
 
