@@ -4,7 +4,6 @@ import { Navigate } from 'react-router-dom'
 
 import { useWindowSize } from 'hooks/useWindowSize'
 
-import { BREAKPOINTS } from 'constants/breakpoints'
 import { ROUTES } from 'constants/routes'
 
 interface PrivateRouteProps {

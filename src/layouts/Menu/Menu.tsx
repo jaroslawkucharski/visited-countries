@@ -2,8 +2,6 @@ import { useAuthContext } from 'context/AuthContext'
 
 import { useWindowSize } from 'hooks/useWindowSize'
 
-import { BREAKPOINTS } from 'constants/breakpoints'
-
 import { MobileMenu } from './MobileMenu'
 import { WebMenu } from './WebMenu'
 

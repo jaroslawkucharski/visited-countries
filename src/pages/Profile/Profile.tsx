@@ -13,7 +13,6 @@ import { setUserAvatar } from 'services/user'
 import { useService } from 'hooks/useService'
 import { useWindowSize } from 'hooks/useWindowSize'
 
-import { BREAKPOINTS } from 'constants/breakpoints'
 import { LOCALES } from 'constants/locales'
 import { ROUTES } from 'constants/routes'
 

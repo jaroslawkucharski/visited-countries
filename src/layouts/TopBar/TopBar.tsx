@@ -16,7 +16,6 @@ import { hideLogo } from 'helpers/hideLogo'
 import { useService } from 'hooks/useService'
 import { useWindowSize } from 'hooks/useWindowSize'
 
-import { BREAKPOINTS } from 'constants/breakpoints'
 import { ROUTES } from 'constants/routes'
 import { THEME_COLORS } from 'constants/theme'
 
