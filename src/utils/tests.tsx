@@ -1,8 +1,11 @@
+/* eslint-disable @typescript-eslint/ban-types */
+
+/* eslint-disable import/no-extraneous-dependencies */
 import { configureStore } from '@reduxjs/toolkit'
 import { RenderOptions, render as rtlRender, screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { AuthProvider } from 'context/AuthContext'
-import { CountriesListProvider } from 'context/CountriesListContext'
+// import { CountriesListProvider } from 'context/CountriesListContext'
 import { ThemeColorProvider } from 'context/ThemeContext'
 import { ComponentType, PropsWithChildren, ReactElement } from 'react'
 import { I18nextProvider } from 'react-i18next'
@@ -35,7 +38,9 @@ const render = (
 					<ThemeColorProvider>
 						<ThemeProvider theme={darkTheme}>
 							<AuthProvider>
-								<CountriesListProvider>{children}</CountriesListProvider>
+								{/* <CountriesListProvider> */}
+								{children}
+								{/* </CountriesListProvider> */}
 							</AuthProvider>
 						</ThemeProvider>
 					</ThemeColorProvider>
