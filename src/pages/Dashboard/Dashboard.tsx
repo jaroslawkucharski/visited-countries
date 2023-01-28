@@ -11,7 +11,7 @@ export const Dashboard = () => {
 	const { t } = useTranslation()
 	const { isMobile } = useWindowSize()
 
-	const { visitedList, visitedCountries } = useCountriesListContext()
+	const { visitedList, visitedCountries, fetchCountriesList } = useCountriesListContext()
 
 	const { request: addRequest } = useService({
 		service: setCountry,
@@ -27,6 +27,8 @@ export const Dashboard = () => {
 		visitedCountries.some(item => item.country === country)
 			? removeRequest(uid)
 			: addRequest(uid, country)
+
+		fetchCountriesList()
 	}
 
 	return (

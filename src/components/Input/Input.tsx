@@ -1,6 +1,6 @@
 import { Paragraph } from 'components'
 import { FormikErrors, FormikTouched } from 'formik'
-import { ChangeEventHandler, FC, FocusEventHandler, useState } from 'react'
+import { ChangeEventHandler, FC, FocusEventHandler, ReactEventHandler, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { HiEye, HiEyeSlash } from 'react-icons/hi2'
 
@@ -32,6 +32,7 @@ interface InputProps {
 	hasPasswordMeter?: boolean
 	isDropdown?: boolean
 	hideError?: boolean
+	onClick?: ReactEventHandler<HTMLInputElement>
 	'data-testid'?: string
 }
 
@@ -51,6 +52,7 @@ export const Input: FC<InputProps> = ({
 	hasPasswordMeter = false,
 	isDropdown = false,
 	hideError = false,
+	onClick,
 	'data-testid': dataTestId = 'input',
 }) => {
 	const { t } = useTranslation()
@@ -93,6 +95,7 @@ export const Input: FC<InputProps> = ({
 					isPassword={isPassword}
 					data-testid={dataTestId}
 					isDropdown={isDropdown}
+					onClick={onClick}
 				/>
 
 				{isPassword && (

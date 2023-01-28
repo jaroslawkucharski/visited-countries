@@ -1,4 +1,4 @@
-import { FC, ReactNode } from 'react'
+import { FC, ReactNode, useCallback } from 'react'
 
 import { ItemComponent } from './Select.styles'
 
@@ -9,7 +9,7 @@ type ChildrenProps = {
 
 export interface SelectItemProps {
 	children: ChildrenProps
-	action?: (item: ChildrenProps) => void
+	action: (item: ChildrenProps) => void
 	'data-testid'?: string
 }
 
@@ -18,7 +18,7 @@ export const SelectItem: FC<SelectItemProps> = ({
 	action,
 	'data-testid': dataTestId = 'select-item',
 }) => {
-	const handleAction = () => action && action(children)
+	const handleAction = useCallback(() => action(children), [action, children])
 
 	return (
 		<ItemComponent

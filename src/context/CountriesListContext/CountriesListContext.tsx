@@ -25,6 +25,7 @@ interface CountriesListContextType {
 	setVisitedCountries: Dispatch<SetStateAction<VisitedCountriesType[]>>
 	visitedList: (Countries | undefined)[]
 	unvisitedList: (Countries | undefined)[]
+	fetchCountriesList: () => void
 }
 
 const CountriesListContext = createContext<CountriesListContextType | null>(null)
@@ -42,13 +43,17 @@ const useCountriesList = () => {
 		return !visitedCountries.find(({ country }) => cca3 === country)
 	})
 
-	useLayoutEffect(() => {
+	const fetchCountriesList = () => {
 		const tasksRef = ref(database, `users/${auth.currentUser?.uid}/countries`)
 
 		get(tasksRef).then(snapshot => {
 			setVisitedCountries(Object.values(snapshot.val()))
 		})
-	}, [visitedCountries])
+	}
+
+	useLayoutEffect(() => {
+		fetchCountriesList()
+	}, [])
 
 	return {
 		value: {
@@ -57,6 +62,7 @@ const useCountriesList = () => {
 			setVisitedCountries,
 			visitedList,
 			unvisitedList,
+			fetchCountriesList,
 		},
 	}
 }
