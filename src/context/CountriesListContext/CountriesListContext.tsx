@@ -7,7 +7,7 @@ import {
 	SetStateAction,
 	createContext,
 	useContext,
-	useEffect,
+	useLayoutEffect,
 	useState,
 } from 'react'
 import { Countries } from 'store/features/countriesSlice'
@@ -22,8 +22,9 @@ export interface VisitedCountriesType {
 interface CountriesListContextType {
 	countries: Countries[]
 	visitedCountries: VisitedCountriesType[]
-	visitedList: (Countries | undefined)[]
 	setVisitedCountries: Dispatch<SetStateAction<VisitedCountriesType[]>>
+	visitedList: (Countries | undefined)[]
+	unvisitedList: (Countries | undefined)[]
 }
 
 const CountriesListContext = createContext<CountriesListContextType | null>(null)
@@ -34,23 +35,28 @@ const useCountriesList = () => {
 	const [visitedCountries, setVisitedCountries] = useState<VisitedCountriesType[]>([])
 
 	const visitedList = visitedCountries.map(({ country }) => {
-		return countries.find(({ cca3 }) => cca3 === country && cca3)
+		return countries.find(({ cca3 }) => cca3 === country)
 	})
 
-	useEffect(() => {
+	const unvisitedList = countries?.filter(({ cca3 }) => {
+		return !visitedCountries.find(({ country }) => cca3 === country)
+	})
+
+	useLayoutEffect(() => {
 		const tasksRef = ref(database, `users/${auth.currentUser?.uid}/countries`)
 
 		get(tasksRef).then(snapshot => {
 			setVisitedCountries(Object.values(snapshot.val()))
 		})
-	}, [])
+	}, [visitedCountries])
 
 	return {
 		value: {
 			countries,
 			visitedCountries,
-			visitedList,
 			setVisitedCountries,
+			visitedList,
+			unvisitedList,
 		},
 	}
 }

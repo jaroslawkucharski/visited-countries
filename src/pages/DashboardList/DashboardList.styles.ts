@@ -1,23 +1,14 @@
 import styled, { css } from 'styled-components'
 
-// TODO
-// export const ProfileColumnComponent = styled.div`
-// 	${({ theme: { spaces, breakpoints } }) =>
-// 		css`
-// 			width: 400px;
-// 			margin: 0 auto;
-// 			padding: ${spaces.medium} ${spaces.small} ${spaces.medium} ${spaces.huge};
-// 			align-items: center;
-// 			overflow: scroll;
-
-// 			@media (max-width: ${breakpoints.mobile}px) {
-// 				width: 100%;
-// 				height: calc(100vh - 172px);
-// 				padding: ${spaces.medium} ${spaces.big};
-// 				overflow: none;
-// 			}
-// 		`}
-// `
+export const ProfileColumnComponent = styled.div`
+	${({ theme: { spaces, breakpoints } }) =>
+		css`
+			margin: 0 auto;
+			padding: 0 0 0 ${spaces.big};
+			align-items: center;
+			overflow: scroll;
+		`}
+`
 
 export const SettingsComponent = styled.div`
 	${({ theme: { spaces } }) =>
