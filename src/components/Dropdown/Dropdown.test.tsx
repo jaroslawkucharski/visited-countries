@@ -1,4 +1,4 @@
-import { describe, fireEvent, it, render, waitFor } from 'utils/tests'
+import { describe, fireEvent, it, render, waitFor } from 'utils/tests-utils'
 
 import { Dropdown } from './Dropdown'
 import { DropdownItem } from './DropdownItem'

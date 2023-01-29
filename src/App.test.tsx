@@ -1,4 +1,4 @@
-import { describe, it, render, waitFor } from 'utils/tests'
+import { describe, it, render, waitFor } from 'utils/tests-utils'
 
 import App from './App'
 

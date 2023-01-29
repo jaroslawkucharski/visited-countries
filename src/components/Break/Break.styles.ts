@@ -5,6 +5,6 @@ export const BreakComponent = styled.hr`
 
 	${({ theme: { colors } }) =>
 		css`
-			border: 0.5px solid ${colors.main};
+			border: 0.5px solid ${colors.color5};
 		`}
 `

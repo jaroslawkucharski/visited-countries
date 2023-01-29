@@ -1,5 +1,5 @@
 import { HiCheckBadge } from 'react-icons/hi2'
-import { describe, it, render, waitFor } from 'utils/tests'
+import { describe, it, render, waitFor } from 'utils/tests-utils'
 
 import { Button } from './Button'
 

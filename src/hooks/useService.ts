@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { UserCredential } from 'firebase/auth'
 import i18next from 'i18next'
 import { ReactNode, useCallback, useEffect, useState } from 'react'

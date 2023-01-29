@@ -1,11 +1,10 @@
-import { Button, Paragraph, Spacer } from 'components'
-import { useCallback } from 'react'
+import { Button, Layout, Paragraph, Spacer } from 'components'
+import { FC, ReactNode, useCallback } from 'react'
+import { ErrorBoundary as ReactErrorBoundary } from 'react-error-boundary'
 import { useTranslation } from 'react-i18next'
 import { HiRefresh } from 'react-icons/hi'
 import { HiHandThumbDown } from 'react-icons/hi2'
 import { useNavigate } from 'react-router-dom'
-
-import { ProfileColumnComponent } from './ErrorBoundary.styles'
 
 export const ErrorFallback = () => {
 	const { t } = useTranslation()
@@ -14,7 +13,7 @@ export const ErrorFallback = () => {
 	const handleRefresh = useCallback(() => navigate(0), [navigate])
 
 	return (
-		<ProfileColumnComponent>
+		<Layout>
 			<Paragraph size="huge">
 				<HiHandThumbDown />
 			</Paragraph>
@@ -36,6 +35,14 @@ export const ErrorFallback = () => {
 
 				{t('word.refresh')}
 			</Button>
-		</ProfileColumnComponent>
+		</Layout>
 	)
 }
+
+interface ErrorBoundaryProps {
+	children: ReactNode
+}
+
+export const ErrorBoundary: FC<ErrorBoundaryProps> = ({ children }) => (
+	<ReactErrorBoundary FallbackComponent={ErrorFallback}>{children}</ReactErrorBoundary>
+)
