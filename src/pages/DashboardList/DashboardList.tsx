@@ -1,16 +1,42 @@
 import { Button, Heading, Layout, Paragraph, Select, Spacer } from 'components'
 import { useCountriesListContext } from 'context/CountriesListContext'
 import { useTranslation } from 'react-i18next'
+import { HiPlusCircle, HiTrash } from 'react-icons/hi2'
+import { removeCountry, setCountry } from 'services/user'
 import { v4 as uuid } from 'uuid'
+
+import { useService } from 'hooks/useService'
 
 import { LOCALES } from 'constants/locales'
 
-import { ProfileColumnComponent } from './DashboardList.styles'
+import { IconComponent, ListItemComponent, ProfileColumnComponent } from './DashboardList.styles'
 
 export const DashboardList = () => {
 	const { t, i18n } = useTranslation()
 
-	const { countries, visitedList, unvisitedList } = useCountriesListContext()
+	const { countries, visitedList, unvisitedList, fetchCountriesList } = useCountriesListContext()
+
+	const { request: addRequest } = useService({
+		service: setCountry,
+		successToast: t('toasts.add.country'),
+	})
+
+	const handleAddCountry = (uid: string, country: string) => {
+		addRequest(uid, country)
+
+		fetchCountriesList()
+	}
+
+	const { request: removeRequest } = useService({
+		service: removeCountry,
+		successToast: t('toasts.remove.country'),
+	})
+
+	const handleRemoveCountry = (uid: string) => {
+		removeRequest(uid)
+
+		fetchCountriesList()
+	}
 
 	return (
 		<Layout>
@@ -48,16 +74,19 @@ export const DashboardList = () => {
 
 				<ul>
 					{visitedList.map(country => (
-						<li key={uuid()}>
-							{country?.flag}{' '}
+						<ListItemComponent key={uuid()}>
+							{`${country?.flag} `}
+
 							{i18n.language === LOCALES.EN
 								? country?.name.common
 								: country?.translations.pol.common}
-							<Spacer
-								type="vertical"
-								space="tiny"
-							/>
-						</li>
+
+							<Spacer space="small" />
+
+							<IconComponent isRemoved>
+								<HiTrash onClick={() => handleRemoveCountry(country?.cca3 as string)} />
+							</IconComponent>
+						</ListItemComponent>
 					))}
 				</ul>
 
@@ -71,18 +100,26 @@ export const DashboardList = () => {
 				/>
 
 				<ul>
-					{unvisitedList.map(country => (
-						<li key={uuid()}>
-							{country?.flag}{' '}
-							{i18n.language === LOCALES.EN
-								? country?.name.common
-								: country?.translations.pol.common}
-							<Spacer
-								type="vertical"
-								space="tiny"
-							/>
-						</li>
-					))}
+					{unvisitedList.map(country => {
+						const name =
+							i18n.language === LOCALES.EN ? country?.name.common : country?.translations.pol.common
+
+						return (
+							<ListItemComponent key={uuid()}>
+								{`${country?.flag}`}
+
+								{name}
+
+								<Spacer space="small" />
+
+								<IconComponent>
+									<HiPlusCircle
+										onClick={() => handleAddCountry(country?.cca3 as string, name as string)}
+									/>
+								</IconComponent>
+							</ListItemComponent>
+						)
+					})}
 				</ul>
 			</ProfileColumnComponent>
 		</Layout>

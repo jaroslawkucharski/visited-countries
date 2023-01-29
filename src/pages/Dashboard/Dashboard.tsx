@@ -63,7 +63,7 @@ export const Dashboard = () => {
 									<Geography
 										key={geo.rsmKey}
 										geography={geo}
-										onClick={() => handleCountryAction(geo.rsmKey, geo.id)}
+										onClick={() => handleCountryAction(geo.id, geo.properties.name)}
 										style={mapStyle}
 									/>
 								)

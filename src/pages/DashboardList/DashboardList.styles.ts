@@ -1,5 +1,9 @@
 import styled, { css } from 'styled-components'
 
+interface IconComponentProps {
+	isRemoved?: boolean
+}
+
 export const ProfileColumnComponent = styled.div`
 	${({ theme: { spaces, breakpoints } }) =>
 		css`
@@ -24,5 +28,24 @@ export const SettingsComponent = styled.div`
 			align-items: center;
 			gap: ${spaces.tiny};
 			flex-wrap: wrap;
+		`}
+`
+
+export const ListItemComponent = styled.li`
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+`
+
+export const IconComponent = styled.div<IconComponentProps>`
+	${({ theme: { spaces, colors }, isRemoved }) =>
+		css`
+			cursor: pointer;
+			padding: ${spaces.tiny};
+
+			&:hover {
+				color: ${isRemoved ? colors.error : colors.success};
+			}
 		`}
 `
