@@ -1,7 +1,7 @@
 import { AuthProvider } from 'context/AuthContext'
 import { CountriesListProvider } from 'context/CountriesListContext'
 import { useThemeColorContext } from 'context/ThemeContext'
-import { Menu, TopBar } from 'layouts'
+import { ErrorBoundary, Menu, TopBar } from 'layouts'
 import { Routes } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify'
 import { appRoutes } from 'routes'
@@ -16,17 +16,19 @@ const App = () => {
 		<ThemeProvider theme={themeColor}>
 			<GlobalStyles />
 
-			<AuthProvider>
-				<CountriesListProvider>
-					<ToastContainer theme={theme} />
+			<ErrorBoundary>
+				<AuthProvider>
+					<CountriesListProvider>
+						<ToastContainer theme={theme} />
 
-					<TopBar />
+						<TopBar />
 
-					<Menu />
+						<Menu />
 
-					<Routes>{appRoutes}</Routes>
-				</CountriesListProvider>
-			</AuthProvider>
+						<Routes>{appRoutes}</Routes>
+					</CountriesListProvider>
+				</AuthProvider>
+			</ErrorBoundary>
 		</ThemeProvider>
 	)
 }

@@ -60,7 +60,11 @@ const routes = [
 		path: ROUTES.DASHBOARD,
 		route: PrivateRoute,
 		isOnlyForMobile: false,
-		component: <Dashboard />,
+		component: (
+			<ErrorBoundary>
+				<Dashboard />
+			</ErrorBoundary>
+		),
 	},
 	{
 		path: ROUTES.DASHBOARD_LIST,

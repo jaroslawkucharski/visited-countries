@@ -20,7 +20,7 @@ export const DashboardList = () => {
 				<Spacer type="vertical" />
 
 				<Select
-					options={countries?.map(country => {
+					options={countries.map(country => {
 						const name =
 							i18n.language === LOCALES.EN ? country.name.common : country.translations.pol.common
 
@@ -47,7 +47,7 @@ export const DashboardList = () => {
 				/>
 
 				<ul>
-					{visitedList?.map(country => (
+					{visitedList.map(country => (
 						<li key={uuid()}>
 							{country?.flag}{' '}
 							{i18n.language === LOCALES.EN
@@ -71,7 +71,7 @@ export const DashboardList = () => {
 				/>
 
 				<ul>
-					{unvisitedList?.map(country => (
+					{unvisitedList.map(country => (
 						<li key={uuid()}>
 							{country?.flag}{' '}
 							{i18n.language === LOCALES.EN
