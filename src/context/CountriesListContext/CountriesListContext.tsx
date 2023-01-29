@@ -35,20 +35,22 @@ const useCountriesList = () => {
 
 	const [visitedCountries, setVisitedCountries] = useState<VisitedCountriesType[]>([])
 
-	const visitedList = visitedCountries.map(({ country }) => {
-		return countries.find(({ cca3 }) => cca3 === country)
+	const visitedList = visitedCountries.map(({ uid }) => {
+		return countries.find(({ cca3 }) => cca3 === uid)
 	})
 
 	const unvisitedList = countries?.filter(({ cca3 }) => {
-		return !visitedCountries.find(({ country }) => cca3 === country)
+		return !visitedCountries.find(({ uid }) => cca3 === uid)
 	})
 
 	const fetchCountriesList = () => {
 		const tasksRef = ref(database, `users/${auth.currentUser?.uid}/countries`)
 
-		get(tasksRef).then(snapshot => {
-			setVisitedCountries(Object.values(snapshot.val()))
-		})
+		get(tasksRef)
+			.then(snapshot => {
+				setVisitedCountries(Object.values(snapshot.val()))
+			})
+			.catch(() => setVisitedCountries([]))
 	}
 
 	useLayoutEffect(() => {
