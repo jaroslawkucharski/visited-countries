@@ -39,7 +39,10 @@ APP<strong>DEMO</strong>
 
 <a href="https://visited-countries.vercel.app/" style='color: red;'>`https://visited-countries.vercel.app`</a>
 
-<img src='./src/assets/images/mocks/mockup1.png' />
+<img src='./src/assets/images/mockup-login.png' />
+
+<br />
+<br />
 
 ##
 
@@ -63,21 +66,22 @@ APP<strong>CONFIG</strong>
 >
 > - Add <b>Authentication</b> and Sign-in method with <b>Email/Password</b>
 >
-> - Create <b>Realtime Database</b> and add rules: 
->> ```
->> {
->>  "rules": { 
->>    ".read": false,
->>    ".write": false,
->>    "users": { 
->>      "$user_id": { 
->>         ".read": "$user_id === auth.uid", 
->>        	".write": "$user_id === auth.uid" 
->>      }
->>    } 
->>  } 
->> }
->> ```
+> - Create <b>Realtime Database</b> and add rules:
+>
+>   > ```
+>   > {
+>   >  "rules": {
+>   >    ".read": false,
+>   >    ".write": false,
+>   >    "users": {
+>   >      "$user_id": {
+>   >         ".read": "$user_id === auth.uid",
+>   >        	".write": "$user_id === auth.uid"
+>   >      }
+>   >    }
+>   >  }
+>   > }
+>   > ```
 >
 > - Create <b>Storage</b> and create <b>images/</b> catalog
 
@@ -87,19 +91,19 @@ APP<strong>CONFIG</strong>
 
 > <i>3. Add envs to the project (Sentry & Firebase)</i>
 >
->>```
->> VITE_SENTRY_DNS=
->> VITE_SENTRY_ALLOW_URL=
->>
->> VITE_FIREBASE_API_KEY=
->> VITE_FIREBASE_AUTH_DOMAIN=
->> VITE_FIREBASE_DATABASE_URL=
->> VITE_FIREBASE_PROJECT_ID=
->> VITE_FIREBASE_STORAGE_BUCKET=
->> VITE_FIREBASE_MESSAGING_SENDER_ID=
->> VITE_FIREBASE_APP_ID=
->> VITE_FIREBASE_MEASUREMENT_ID=
->> ```
+> > ```
+> > VITE_SENTRY_DNS=
+> > VITE_SENTRY_ALLOW_URL=
+> >
+> > VITE_FIREBASE_API_KEY=
+> > VITE_FIREBASE_AUTH_DOMAIN=
+> > VITE_FIREBASE_DATABASE_URL=
+> > VITE_FIREBASE_PROJECT_ID=
+> > VITE_FIREBASE_STORAGE_BUCKET=
+> > VITE_FIREBASE_MESSAGING_SENDER_ID=
+> > VITE_FIREBASE_APP_ID=
+> > VITE_FIREBASE_MEASUREMENT_ID=
+> > ```
 
 </div>
 
@@ -108,6 +112,8 @@ APP<strong>CONFIG</strong>
 > <i>4. Fire up the app with `pnpm dev` and... Enjoy!</i>
 
 </div>
+
+<img src='./src/assets/images/mockup-app.png' />
 
 <br />
 <br />
