@@ -5,7 +5,7 @@ import { configureStore } from '@reduxjs/toolkit'
 import { RenderOptions, render as rtlRender, screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { AuthProvider } from 'context/AuthContext'
-// import { CountriesListProvider } from 'context/CountriesListContext'
+import { CountriesListProvider } from 'context/CountriesListContext'
 import { ThemeColorProvider } from 'context/ThemeContext'
 import { ComponentType, PropsWithChildren, ReactElement } from 'react'
 import { I18nextProvider } from 'react-i18next'
@@ -27,7 +27,11 @@ interface ExtendedRenderOptions extends Omit<RenderOptions, 'queries'> {
 const render = (
 	ui: ReactElement,
 	{
-		store = configureStore({ reducer: { countries: CountriesSlice.reducer } }),
+		store = configureStore({
+			reducer: {
+				countries: CountriesSlice.reducer,
+			},
+		}),
 		...renderOptions
 	}: ExtendedRenderOptions = {},
 ) => {
@@ -38,9 +42,7 @@ const render = (
 					<ThemeColorProvider>
 						<ThemeProvider theme={darkTheme}>
 							<AuthProvider>
-								{/* <CountriesListProvider> */}
-								{children}
-								{/* </CountriesListProvider> */}
+								<CountriesListProvider>{children}</CountriesListProvider>
 							</AuthProvider>
 						</ThemeProvider>
 					</ThemeColorProvider>

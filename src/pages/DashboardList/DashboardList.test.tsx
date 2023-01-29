@@ -7,7 +7,7 @@ describe('pages/DashboardList', () => {
 		const { getByTestId } = render(<DashboardList />)
 
 		await waitFor(() => {
-			expect(getByTestId('loader')).toBeInTheDocument()
+			expect(getByTestId('heading')).toBeInTheDocument()
 		})
 	})
 })
