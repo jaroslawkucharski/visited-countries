@@ -39,7 +39,7 @@ APP<strong>DEMO</strong>
 
 <a href="https://visited-countries.vercel.app/" style='color: red;'>`https://visited-countries.vercel.app`</a>
 
-<img src='./src/assets/images/mockup-login.png' />
+<img src='./src/assets/images/mocks/mockup-login.png' />
 
 <br />
 <br />
@@ -113,7 +113,7 @@ APP<strong>CONFIG</strong>
 
 </div>
 
-<img src='./src/assets/images/mockup-app.png' />
+<img src='./src/assets/images/mocks/mockup-app.png' />
 
 <br />
 <br />
