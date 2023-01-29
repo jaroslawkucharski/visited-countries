@@ -39,7 +39,7 @@ APP<strong>DEMO</strong>
 
 <a href="https://visited-countries.vercel.app/" style='color: red;'>`https://visited-countries.vercel.app`</a>
 
-<img src='./src/assets/images/mock.png' />
+<img src='./src/assets/images/mocks/mockup1.png' />
 
 ##
 
@@ -108,7 +108,6 @@ APP<strong>CONFIG</strong>
 > <i>4. Fire up the app with `pnpm dev` and... Enjoy!</i>
 
 </div>
-
 
 <br />
 <br />
