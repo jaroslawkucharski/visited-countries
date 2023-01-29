@@ -1,4 +1,4 @@
-import { describe, fireEvent, it, render, vi, waitFor } from 'utils/tests'
+import { describe, fireEvent, it, render, vi, waitFor } from 'utils/tests-utils'
 
 import { Input } from './Input'
 

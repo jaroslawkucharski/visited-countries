@@ -1,4 +1,4 @@
-import { describe, it, render, userEvent, waitFor } from 'utils/tests'
+import { describe, it, render, userEvent, waitFor } from 'utils/tests-utils'
 
 import { PasswordReset } from './PasswordReset'
 

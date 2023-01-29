@@ -1,3 +1,3 @@
-export * from './TopBar'
-export * from './Menu'
 export * from './ErrorBoundary'
+export * from './Menu'
+export * from './TopBar'

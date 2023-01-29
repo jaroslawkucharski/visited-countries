@@ -1,6 +1,4 @@
-import { Paragraph } from 'components'
 import { FC, ReactNode } from 'react'
-import { HiArrowRightOnRectangle } from 'react-icons/hi2'
 
 import { ChildrenComponent, LayoutComponent, PresentionalComponent } from './Layout.styles'
 
