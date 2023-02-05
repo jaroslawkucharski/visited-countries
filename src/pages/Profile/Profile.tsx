@@ -1,6 +1,6 @@
+import { Button, Heading, Image, Layout, Spacer } from '@jaroslaw91/novelui'
 import en from 'assets/images/locales/en.svg'
 import pl from 'assets/images/locales/pl.svg'
-import { Button, Heading, Image, Layout, Spacer } from 'components'
 import { auth } from 'config/firebase'
 import { useThemeColorContext } from 'context/ThemeContext'
 import { ChangeEvent, useCallback, useRef } from 'react'

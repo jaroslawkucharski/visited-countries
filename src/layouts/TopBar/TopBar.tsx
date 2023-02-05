@@ -1,6 +1,7 @@
+import { Break, Button, Image } from '@jaroslaw91/novelui'
 import LogoDark from 'assets/images/logo_dark.svg'
 import LogoLight from 'assets/images/logo_light.svg'
-import { Break, Button, Dropdown, DropdownItem, Image } from 'components'
+import { Dropdown, DropdownItem } from 'components'
 import { auth } from 'config/firebase'
 import { useAuthContext } from 'context/AuthContext'
 import { useThemeColorContext } from 'context/ThemeContext'

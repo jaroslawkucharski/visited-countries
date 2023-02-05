@@ -1,4 +1,4 @@
-import { Button, Layout, Paragraph, Spacer } from 'components'
+import { Button, Layout, Paragraph, Spacer } from '@jaroslaw91/novelui'
 import { FC, ReactNode, useCallback } from 'react'
 import { ErrorBoundary as ReactErrorBoundary } from 'react-error-boundary'
 import { useTranslation } from 'react-i18next'

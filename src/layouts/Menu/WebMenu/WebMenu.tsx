@@ -1,6 +1,6 @@
+import { Button, Image } from '@jaroslaw91/novelui'
 import en from 'assets/images/locales/en.svg'
 import pl from 'assets/images/locales/pl.svg'
-import { Button, Image } from 'components'
 import { useThemeColorContext } from 'context/ThemeContext'
 import { ErrorBoundary } from 'layouts'
 import { DashboardList } from 'pages'

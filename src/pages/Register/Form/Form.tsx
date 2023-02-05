@@ -1,4 +1,5 @@
-import { Button, Input, Spacer } from 'components'
+import { Button, Spacer } from '@jaroslaw91/novelui'
+import { Input } from 'components'
 import { useFormik } from 'formik'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
