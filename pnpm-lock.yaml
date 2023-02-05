@@ -1,7 +1,7 @@
 lockfileVersion: 5.4
 
 specifiers:
-  '@jaroslaw91/novelui': ^0.4.0
+  '@jaroslaw91/novelui': ^1.0.0
   '@reduxjs/toolkit': ^1.9.1
   '@sentry/browser': ^7.30.0
   '@sentry/react': ^7.30.0
@@ -65,7 +65,7 @@ specifiers:
   yup: ^0.32.11
 
 dependencies:
-  '@jaroslaw91/novelui': 0.4.0_biqbaboplfbrettd7655fr4n2y
+  '@jaroslaw91/novelui': 1.0.0_biqbaboplfbrettd7655fr4n2y
   '@reduxjs/toolkit': 1.9.2_k4ae6lp43ej6mezo3ztvx6pykq
   '@sentry/browser': 7.36.0
   '@sentry/react': 7.36.0_react@18.2.0
@@ -2036,8 +2036,8 @@ packages:
     engines: {node: '>=8'}
     dev: true
 
-  /@jaroslaw91/novelui/0.4.0_biqbaboplfbrettd7655fr4n2y:
-    resolution: {integrity: sha512-I1yb2/y93GVNsC/JhRPyYeAMLeaZIQlyBOuS+OyZg0Ssjws13JOsn4iKSf7o6oqcs93XDEUhNZkart3hlwu2aw==}
+  /@jaroslaw91/novelui/1.0.0_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-gi63LH4/mfumNZd/nOooHz6fHOTclC608WfKoI6xvi1eFzHwjLZU0m6wHrzoULILHY2Bi5Q3MB4qhfS6fhS8Nw==}
     peerDependencies:
       react: ^18.2.0
       react-dom: ^18.2.0

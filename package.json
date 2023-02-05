@@ -14,7 +14,7 @@
 		"format": "prettier --write ./src"
 	},
 	"dependencies": {
-		"@jaroslaw91/novelui": "^0.4.0",
+		"@jaroslaw91/novelui": "^1.0.0",
 		"@reduxjs/toolkit": "^1.9.1",
 		"@sentry/browser": "^7.30.0",
 		"@sentry/react": "^7.30.0",
