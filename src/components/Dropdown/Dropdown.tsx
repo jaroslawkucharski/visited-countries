@@ -1,4 +1,4 @@
-import { Button } from 'components'
+import { Button } from '@jaroslaw91/novelui'
 import { FC, ReactNode, useCallback, useRef, useState } from 'react'
 import { HiChevronDown, HiChevronUp } from 'react-icons/hi2'
 

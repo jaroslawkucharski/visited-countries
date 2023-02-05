@@ -1,4 +1,5 @@
-import { Button, Heading, Layout, Paragraph, Select, Spacer } from 'components'
+import { Button, Heading, Layout, Paragraph, Spacer } from '@jaroslaw91/novelui'
+import { Select } from 'components'
 import { useCountriesListContext } from 'context/CountriesListContext'
 import { useTranslation } from 'react-i18next'
 import { HiPlusCircle, HiTrash } from 'react-icons/hi2'

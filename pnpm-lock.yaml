@@ -1,6 +1,7 @@
 lockfileVersion: 5.4
 
 specifiers:
+  '@jaroslaw91/novelui': ^0.3.0
   '@reduxjs/toolkit': ^1.9.1
   '@sentry/browser': ^7.30.0
   '@sentry/react': ^7.30.0
@@ -64,6 +65,7 @@ specifiers:
   yup: ^0.32.11
 
 dependencies:
+  '@jaroslaw91/novelui': 0.3.0_biqbaboplfbrettd7655fr4n2y
   '@reduxjs/toolkit': 1.9.1_k4ae6lp43ej6mezo3ztvx6pykq
   '@sentry/browser': 7.31.1
   '@sentry/react': 7.31.1_react@18.2.0
@@ -2045,6 +2047,16 @@ packages:
     resolution: {integrity: sha512-ZXRY4jNvVgSVQ8DL3LTcakaAtXwTVUxE81hslsyD2AtoXW/wVob10HkOJ1X/pAlcI7D+2YoZKg5do8G/w6RYgA==}
     engines: {node: '>=8'}
     dev: true
+
+  /@jaroslaw91/novelui/0.3.0_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-FsF6DdKMgjZxpmbxmqo2j11MHTn98S6054sTitXvMiqZQBcn3S1nvjVJ16rLs7AbNqj1vB0715+orT5J7mr0gA==}
+    peerDependencies:
+      react: ^18.2.0
+      react-dom: ^18.2.0
+    dependencies:
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
+    dev: false
 
   /@jest/console/29.3.1:
     resolution: {integrity: sha512-IRE6GD47KwcqA09RIWrabKdHPiKDGgtAL31xDxbi/RjQMsr+lY+ppxmHwY0dUEV3qvvxZzoe5Hl0RXZJOjQNUg==}

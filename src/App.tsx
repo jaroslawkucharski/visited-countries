@@ -1,3 +1,4 @@
+import { Theme } from '@jaroslaw91/novelui'
 import { AuthProvider } from 'context/AuthContext'
 import { CountriesListProvider } from 'context/CountriesListContext'
 import { useThemeColorContext } from 'context/ThemeContext'
@@ -13,23 +14,24 @@ const App = () => {
 	const { theme, themeColor } = useThemeColorContext()
 
 	return (
-		<ThemeProvider theme={themeColor}>
-			<GlobalStyles />
+		<Theme theme={theme}>
+			<ThemeProvider theme={themeColor}>
+				<GlobalStyles />
 
-			<ErrorBoundary>
-				<AuthProvider>
-					<CountriesListProvider>
-						<ToastContainer theme={theme} />
+				<ErrorBoundary>
+					<AuthProvider>
+						<CountriesListProvider>
+							<ToastContainer theme={theme} />
+							<TopBar />
 
-						<TopBar />
+							<Menu />
 
-						<Menu />
-
-						<Routes>{appRoutes}</Routes>
-					</CountriesListProvider>
-				</AuthProvider>
-			</ErrorBoundary>
-		</ThemeProvider>
+							<Routes>{appRoutes}</Routes>
+						</CountriesListProvider>
+					</AuthProvider>
+				</ErrorBoundary>
+			</ThemeProvider>
+		</Theme>
 	)
 }
 

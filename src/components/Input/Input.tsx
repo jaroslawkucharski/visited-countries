@@ -1,4 +1,4 @@
-import { Paragraph } from 'components'
+import { Paragraph } from '@jaroslaw91/novelui'
 import { FormikErrors, FormikTouched } from 'formik'
 import { ChangeEventHandler, FC, FocusEventHandler, ReactEventHandler, useState } from 'react'
 import { useTranslation } from 'react-i18next'

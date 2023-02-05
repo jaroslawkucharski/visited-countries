@@ -1,4 +1,4 @@
-import { Paragraph } from 'components'
+import { Paragraph } from '@jaroslaw91/novelui'
 import { FC, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { HiInformationCircle } from 'react-icons/hi2'
