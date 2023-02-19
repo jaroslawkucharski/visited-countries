@@ -1,4 +1,4 @@
-import { Button, Image } from '@jaroslaw91/novelui'
+import { Button, Image, Spacer } from '@jaroslaw91/novelui'
 import en from 'assets/images/locales/en.svg'
 import pl from 'assets/images/locales/pl.svg'
 import { useThemeColorContext } from 'context/ThemeContext'
@@ -58,6 +58,11 @@ export const WebMenu = () => {
 				>
 					{theme === 'dark' ? <HiSun /> : <HiMoon />}
 				</Button>
+
+				<Spacer
+					type="vertical"
+					space="tiny"
+				/>
 
 				<Button
 					variant="secondary"
