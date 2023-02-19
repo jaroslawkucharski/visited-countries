@@ -5,15 +5,15 @@
 	"type": "module",
 	"scripts": {
 		"dev": "vite",
-		"build": "yarn version --patch && tsc && vite build",
+		"build": "yarn version --patch && tsc && rm -rf ./dist && vite build",
 		"preview": "vite preview",
 		"test": "vitest",
 		"coverage": "vitest run --coverage",
 		"badges": "pnpm coverage && jest-coverage-badges --output ./coverage/badges",
 		"lint": "eslint --fix ./src",
 		"format": "prettier --write ./src",
-		"ios": "npx cap add ios",
-		"android": "npx cap add android"
+		"ios": "rm -rf ./ios && npx cap add ios",
+		"android": "rm -rf ./android && npx cap add android"
 	},
 	"dependencies": {
 		"@capacitor/android": "^4.6.3",
