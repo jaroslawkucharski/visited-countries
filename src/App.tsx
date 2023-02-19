@@ -8,16 +8,12 @@ import { ToastContainer } from 'react-toastify'
 import { appRoutes } from 'routes'
 import { ThemeProvider } from 'styled-components'
 
-import { GlobalStyles } from 'styles/GlobalStyles'
-
 const App = () => {
 	const { theme, themeColor } = useThemeColorContext()
 
 	return (
 		<Theme theme={theme}>
 			<ThemeProvider theme={themeColor}>
-				<GlobalStyles />
-
 				<ErrorBoundary>
 					<AuthProvider>
 						<CountriesListProvider>
