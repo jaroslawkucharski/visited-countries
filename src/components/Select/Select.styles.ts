@@ -25,7 +25,7 @@ export const SelectMenuComponent = styled.div`
 	border-radius: 0 0 15px 15px;
 	animation: animation-menu 0.2s;
 	transform-origin: top;
-	overflow: scroll;
+	overflow-y: auto;
 
 	${({ theme: { colors } }) =>
 		css`

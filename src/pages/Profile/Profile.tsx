@@ -98,35 +98,37 @@ export const Profile = () => {
 				space="big"
 			/>
 
-			<SettingsComponent>
-				<Button
-					variant="secondary"
-					action={handleThemeColorChange}
-					hasOnlyIcon
-				>
-					{theme === 'dark' ? <HiSun /> : <HiMoon />}
-				</Button>
+			{isMobile && (
+				<SettingsComponent>
+					<Button
+						variant="secondary"
+						action={handleThemeColorChange}
+						hasOnlyIcon
+					>
+						{theme === 'dark' ? <HiSun /> : <HiMoon />}
+					</Button>
 
-				<Button
-					variant="secondary"
-					action={handleLanguageChangeToPL}
-					hasOnlyIcon
-				>
-					{i18n.language === LOCALES.EN ? (
-						<Image
-							src={en}
-							width={16}
-							alt="en"
-						/>
-					) : (
-						<Image
-							src={pl}
-							width={16}
-							alt="pl"
-						/>
-					)}
-				</Button>
-			</SettingsComponent>
+					<Button
+						variant="secondary"
+						action={handleLanguageChangeToPL}
+						hasOnlyIcon
+					>
+						{i18n.language === LOCALES.EN ? (
+							<Image
+								src={en}
+								width={16}
+								alt="en"
+							/>
+						) : (
+							<Image
+								src={pl}
+								width={16}
+								alt="pl"
+							/>
+						)}
+					</Button>
+				</SettingsComponent>
+			)}
 
 			<Spacer
 				type="vertical"
