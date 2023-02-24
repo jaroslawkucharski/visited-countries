@@ -48,8 +48,6 @@ export const WebMenu = () => {
 				</WebMenuItemComponent>
 			)}
 
-			{/* {isOpen && <DashboardList />} */}
-
 			<div>
 				<Button
 					variant="secondary"
