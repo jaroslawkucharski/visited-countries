@@ -19,12 +19,19 @@ export interface VisitedCountriesType {
 	uid: string
 }
 
+export interface CountriesListType {
+	nameEN?: string
+	namePL?: string
+	icon?: string
+	code?: string
+}
+
 interface CountriesListContextType {
 	countries: Countries[]
 	visitedCountries: VisitedCountriesType[]
 	setVisitedCountries: Dispatch<SetStateAction<VisitedCountriesType[]>>
-	visitedList: (Countries | undefined)[]
-	unvisitedList: (Countries | undefined)[]
+	visitedList: (CountriesListType | undefined)[]
+	unvisitedList: (CountriesListType | undefined)[]
 	fetchCountriesList: () => void
 }
 
@@ -36,12 +43,28 @@ const useCountriesList = () => {
 	const [visitedCountries, setVisitedCountries] = useState<VisitedCountriesType[]>([])
 
 	const visitedList = visitedCountries.map(({ uid }) => {
-		return countries.find(({ cca3 }) => cca3 === uid)
+		const list = countries.find(({ cca3 }) => cca3 === uid)
+
+		return (
+			list && {
+				nameEN: list.name.common,
+				namePL: list.translations.pol.common,
+				icon: list.flag,
+				code: list.cca3,
+			}
+		)
 	})
 
-	const unvisitedList = countries?.filter(({ cca3 }) => {
-		return !visitedCountries.find(({ uid }) => cca3 === uid)
-	})
+	const unvisitedList = countries
+		?.filter(({ cca3 }) => {
+			return !visitedCountries.find(({ uid }) => cca3 === uid)
+		})
+		.map(item => ({
+			nameEN: item.name.common,
+			namePL: item.translations.pol.common,
+			icon: item.flag,
+			code: item.cca3,
+		}))
 
 	const fetchCountriesList = () => {
 		const tasksRef = ref(database, `users/${auth.currentUser?.uid}/countries`)

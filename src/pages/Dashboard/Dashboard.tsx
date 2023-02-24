@@ -41,7 +41,7 @@ export const Dashboard = () => {
 					<Geographies geography={topology}>
 						{({ geographies }) =>
 							geographies.map(geo => {
-								const fillCountry = visitedList.some(item => item?.cca3 === geo.id)
+								const fillCountry = visitedList.some(item => item?.code === geo.id)
 									? '#8EE296'
 									: '#D6D6DA'
 								const mapStyle = {
