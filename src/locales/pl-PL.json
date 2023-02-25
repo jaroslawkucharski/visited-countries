@@ -59,6 +59,6 @@
 		"exist.email": "Konto z takim adresem email już istnieje",
 		"exist.number": "Numer telefonu istnieje już w bazie",
 		"add.country": "Dodano nowy kraj",
-		"remove.country": "Usnięto kraj z listy"
+		"remove.country": "Usunięto kraj z listy"
 	}
 }
