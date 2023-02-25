@@ -39,6 +39,13 @@
 	"word.back": "Cofnij",
 	"word.error.boundary": "Błąd krytyczny... Odświe stronę lub skontaktuj się z nami.",
 	"word.refresh": "Odświe stronę",
+	"word.cancel": "Anuluj",
+	"word.add": "Dodaj",
+	"word.remove": "Usuń",
+	"modal.add.country": "Dodaj kraj",
+	"modal.add.country.content": "Dodaj do swojej listy: {{country}}.",
+	"modal.remove.country": "Usuń kraj",
+	"modal.remove.country.content": "Usuń kraj ze swojej listy: {{country}}.",
 	"errors": {
 		"empty.field": "Pole obowiązkowe",
 		"email": "Niepoprawny adres email",
