@@ -42,10 +42,8 @@
 	"word.cancel": "Anuluj",
 	"word.add": "Dodaj",
 	"word.remove": "Usuń",
-	"modal.add.country": "Dodaj kraj",
-	"modal.add.country.content": "Dodaj do swojej listy: {{country}}.",
 	"modal.remove.country": "Usuń kraj",
-	"modal.remove.country.content": "Usuń kraj ze swojej listy: {{country}}.",
+	"modal.remove.country.content": "Czy na pewno chcesz usunąć ten kraj z listy?",
 	"errors": {
 		"empty.field": "Pole obowiązkowe",
 		"email": "Niepoprawny adres email",

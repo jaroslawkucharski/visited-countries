@@ -43,10 +43,8 @@
 	"word.cancel": "Cancel",
 	"word.add": "Add",
 	"word.remove": "Remove",
-	"modal.add.country": "Add country",
-	"modal.add.country.content": "Add to your list: {{country}}.",
 	"modal.remove.country": "Remove country",
-	"modal.remove.country.content": "Remove country from your list: {{country}}.",
+	"modal.remove.country.content": "Are you sure you want to remove this country from the list?",
 	"errors": {
 		"empty.field": "Field is required",
 		"email": "Invalid email",

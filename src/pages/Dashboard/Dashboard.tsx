@@ -1,6 +1,6 @@
-import { modalShow } from '@jaroslaw91/novelui'
+import { Spacer, modalShow } from '@jaroslaw91/novelui'
 import topology from 'assets/topology.json'
-import { useCountriesListContext } from 'context/CountriesListContext'
+import { CountriesListType, useCountriesListContext } from 'context/CountriesListContext'
 import { useTranslation } from 'react-i18next'
 import { ComposableMap, Geographies, Geography, ZoomableGroup } from 'react-simple-maps'
 import { removeCountry, setCountry } from 'services/user'
@@ -8,8 +8,10 @@ import { removeCountry, setCountry } from 'services/user'
 import { useService } from 'hooks/useService'
 import { useWindowSize } from 'hooks/useWindowSize'
 
+import { LOCALES } from 'constants/locales'
+
 export const Dashboard = () => {
-	const { t } = useTranslation()
+	const { t, i18n } = useTranslation()
 	const { isMobile } = useWindowSize()
 
 	const { visitedList, visitedCountries, fetchCountriesList } = useCountriesListContext()
@@ -24,8 +26,8 @@ export const Dashboard = () => {
 		successToast: t('toasts.remove.country'),
 	})
 
-	const handleAddCountry = (uid: string, country: string) => {
-		addRequest(uid, country)
+	const handleAddCountry = (code: string, country: string) => {
+		addRequest(code, country)
 
 		fetchCountriesList()
 	}
@@ -36,31 +38,35 @@ export const Dashboard = () => {
 		fetchCountriesList()
 	}
 
-	const showAddModal = (uid: string, country: string) =>
-		modalShow({
-			id: 'add-country',
-			title: t('modal.add.country'),
-			content: t('modal.add.country.content', { country: uid }),
-			actionName: t('word.add'),
-			cancelName: t('word.cancel'),
-			action: () => handleAddCountry(uid, country),
-		})
-
-	const showRemoveModal = (uid: string) =>
+	const showRemoveModal = (code: string, countryData: CountriesListType[]) =>
 		modalShow({
 			id: 'remove-country',
 			title: t('modal.remove.country'),
-			content: t('modal.remove.country.content', { country: uid }),
+			content: (
+				<>
+					{t('modal.remove.country.content')}
+					<Spacer
+						type="vertical"
+						space="tiny"
+					/>
+
+					{`${countryData[0].icon} ${
+						i18n.language === LOCALES.EN ? countryData[0].nameEN : countryData[0].namePL
+					}`}
+				</>
+			),
 			actionName: t('word.remove'),
 			cancelName: t('word.cancel'),
-			action: () => handleRemoveCountry(uid),
+			action: () => handleRemoveCountry(code),
 			variant: 'alert',
 		})
 
-	const handleCountryAction = (uid: string, country: string) => {
-		visitedCountries.some(item => item.country === country)
-			? showRemoveModal(uid)
-			: showAddModal(uid, country)
+	const handleCountryAction = (code: string, country: string) => {
+		const countryData = visitedList.filter(item => item?.code === code)
+
+		visitedCountries.some(item => item.uid === code)
+			? showRemoveModal(code, countryData as CountriesListType[])
+			: handleAddCountry(code, country)
 	}
 
 	return (

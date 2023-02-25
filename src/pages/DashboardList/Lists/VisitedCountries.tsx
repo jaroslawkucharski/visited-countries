@@ -21,20 +21,31 @@ export const VisitedCountries = () => {
 		successToast: t('toasts.remove.country'),
 	})
 
-	const handleRemoveCountry = (uid: string) => {
-		removeRequest(uid)
+	const handleRemoveCountry = (code: string) => {
+		removeRequest(code)
 
 		fetchCountriesList()
 	}
 
-	const showRemoveModal = (uid: string, country: string) =>
+	const showRemoveModal = (code: string, country: string, icon: string) =>
 		modalShow({
 			id: 'remove-country',
 			title: t('modal.remove.country'),
-			content: t('modal.remove.country.content', { country }),
+			content: (
+				<>
+					{t('modal.remove.country.content')}
+
+					<Spacer
+						type="vertical"
+						space="tiny"
+					/>
+
+					{`${icon} ${country}`}
+				</>
+			),
 			actionName: t('word.remove'),
 			cancelName: t('word.cancel'),
-			action: () => handleRemoveCountry(uid),
+			action: () => handleRemoveCountry(code),
 			variant: 'alert',
 		})
 
@@ -59,8 +70,13 @@ export const VisitedCountries = () => {
 
 							<Spacer space="small" />
 
-							<IconComponent isRemoved>
-								<HiTrash onClick={() => showRemoveModal(country?.code as string, name as string)} />
+							<IconComponent
+								isRemoved
+								onClick={() =>
+									showRemoveModal(country?.code as string, name as string, country?.icon as string)
+								}
+							>
+								<HiTrash />
 							</IconComponent>
 						</ListItemComponent>
 					)
