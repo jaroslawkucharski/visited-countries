@@ -47,6 +47,7 @@
 	"modal.remove.country.content": "Are you sure you want to remove this country from the list?",
 	"word.visited.list": "Your visited list:",
 	"word.unvisited.list": "Your unvisited list:",
+	"word.edit.data": "Edit your data",
 	"errors": {
 		"empty.field": "Field is required",
 		"email": "Invalid email",

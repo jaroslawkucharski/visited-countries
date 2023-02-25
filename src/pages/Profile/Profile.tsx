@@ -16,7 +16,7 @@ import { useWindowSize } from 'hooks/useWindowSize'
 import { LOCALES } from 'constants/locales'
 import { ROUTES } from 'constants/routes'
 
-import { SettingsComponent } from './Profile.styles'
+import { ImageComponent, SettingsComponent } from './Profile.styles'
 
 export const Profile = () => {
 	const { t, i18n } = useTranslation()
@@ -65,13 +65,13 @@ export const Profile = () => {
 
 			<Spacer type="vertical" />
 
-			<div onClick={handleUploadImage}>
+			<ImageComponent onClick={handleUploadImage}>
 				<Image
 					src={auth?.currentUser?.photoURL || ''}
 					alt={t('word.avatar')}
 					variant="avatar"
 				/>
-			</div>
+			</ImageComponent>
 
 			<input
 				style={{ display: 'none' }}
@@ -130,12 +130,26 @@ export const Profile = () => {
 				</SettingsComponent>
 			)}
 
+			<Button
+				variant="secondary"
+				hasFullWidth
+			>
+				{t('word.edit.data')}
+			</Button>
+
 			<Spacer
 				type="vertical"
 				space="big"
 			/>
 
-			{isMobile && <Button action={handleLogout}>{t('word.logout')}</Button>}
+			{isMobile && (
+				<Button
+					action={handleLogout}
+					hasFullWidth
+				>
+					{t('word.logout')}
+				</Button>
+			)}
 		</Layout>
 	)
 }
