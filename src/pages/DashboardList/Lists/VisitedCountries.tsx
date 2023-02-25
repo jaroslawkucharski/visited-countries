@@ -1,4 +1,4 @@
-import { Paragraph, Spacer } from '@jaroslaw91/novelui'
+import { Paragraph, Spacer, modalShow } from '@jaroslaw91/novelui'
 import { useCountriesListContext } from 'context/CountriesListContext'
 import { useTranslation } from 'react-i18next'
 import { HiTrash } from 'react-icons/hi2'
@@ -27,6 +27,18 @@ export const VisitedCountries = () => {
 		fetchCountriesList()
 	}
 
+	const showRemoveModal = (uid: string, country: string) => {
+		modalShow({
+			id: 'remove-country',
+			title: t('modal.remove.country'),
+			content: t('modal.remove.country.content', { country }),
+			actionName: t('word.remove'),
+			cancelName: t('word.cancel'),
+			action: () => handleRemoveCountry(uid),
+			variant: 'alert',
+		})
+	}
+
 	return (
 		<>
 			<Paragraph size="big">Your visited list:</Paragraph>
@@ -37,19 +49,23 @@ export const VisitedCountries = () => {
 			/>
 
 			<ul>
-				{visitedList.map(country => (
-					<ListItemComponent key={uuid()}>
-						{`${country?.icon} `}
+				{visitedList.map(country => {
+					const name = i18n.language === LOCALES.EN ? country?.nameEN : country?.namePL
 
-						{i18n.language === LOCALES.EN ? country?.nameEN : country?.namePL}
+					return (
+						<ListItemComponent key={uuid()}>
+							{`${country?.icon} `}
 
-						<Spacer space="small" />
+							{name}
 
-						<IconComponent isRemoved>
-							<HiTrash onClick={() => handleRemoveCountry(country?.code as string)} />
-						</IconComponent>
-					</ListItemComponent>
-				))}
+							<Spacer space="small" />
+
+							<IconComponent isRemoved>
+								<HiTrash onClick={() => showRemoveModal(country?.code as string, name as string)} />
+							</IconComponent>
+						</ListItemComponent>
+					)
+				})}
 			</ul>
 
 			<Spacer type="vertical" />

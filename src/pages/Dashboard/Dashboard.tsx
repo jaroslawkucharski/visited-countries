@@ -1,3 +1,4 @@
+import { modalShow } from '@jaroslaw91/novelui'
 import topology from 'assets/topology.json'
 import { useCountriesListContext } from 'context/CountriesListContext'
 import { useTranslation } from 'react-i18next'
@@ -23,12 +24,45 @@ export const Dashboard = () => {
 		successToast: t('toasts.remove.country'),
 	})
 
-	const handleCountryAction = (uid: string, country: string) => {
-		visitedCountries.some(item => item.country === country)
-			? removeRequest(uid)
-			: addRequest(uid, country)
+	const handleAddCountry = (uid: string, country: string) => {
+		addRequest(uid, country)
 
 		fetchCountriesList()
+	}
+
+	const handleRemoveCountry = (uid: string) => {
+		removeRequest(uid)
+
+		fetchCountriesList()
+	}
+
+	const showAddModal = (uid: string, country: string) => {
+		modalShow({
+			id: 'add-country',
+			title: t('modal.add.country'),
+			content: t('modal.add.country.content', { country }),
+			actionName: t('word.add'),
+			cancelName: t('word.cancel'),
+			action: () => handleAddCountry(uid, country),
+		})
+	}
+
+	const showRemoveModal = (uid: string, country: string) => {
+		modalShow({
+			id: 'remove-country',
+			title: t('modal.remove.country'),
+			content: t('modal.remove.country.content', { country }),
+			actionName: t('word.remove'),
+			cancelName: t('word.cancel'),
+			action: () => handleRemoveCountry(uid),
+			variant: 'alert',
+		})
+	}
+
+	const handleCountryAction = (uid: string, country: string) => {
+		visitedCountries.some(item => item.country === country)
+			? showRemoveModal(uid)
+			: showAddModal(uid, country)
 	}
 
 	return (

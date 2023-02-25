@@ -1,4 +1,4 @@
-import { Paragraph, Spacer } from '@jaroslaw91/novelui'
+import { Paragraph, Spacer, modalShow } from '@jaroslaw91/novelui'
 import { useCountriesListContext } from 'context/CountriesListContext'
 import { useTranslation } from 'react-i18next'
 import { HiPlusCircle } from 'react-icons/hi2'
@@ -27,6 +27,17 @@ export const UnvisitedCountries = () => {
 		fetchCountriesList()
 	}
 
+	const showAddModal = (uid: string, country: string) => {
+		modalShow({
+			id: 'add-country',
+			title: t('modal.add.country'),
+			content: t('modal.add.country.content', { country }),
+			actionName: t('word.add'),
+			cancelName: t('word.cancel'),
+			action: () => handleAddCountry(uid, country),
+		})
+	}
+
 	return (
 		<>
 			<Paragraph size="big">Your unvisited list:</Paragraph>
@@ -44,14 +55,17 @@ export const UnvisitedCountries = () => {
 						<ListItemComponent key={uuid()}>
 							{`${country?.icon} `}
 
-							{i18n.language === LOCALES.EN ? country?.nameEN : country?.namePL}
+							{name}
 
 							<Spacer space="small" />
 
 							<IconComponent>
 								<HiPlusCircle
-									onClick={() => handleAddCountry(country?.code as string, name as string)}
+									onClick={() => showAddModal(country?.code as string, name as string)}
 								/>
+								{/* <HiPlusCircle
+									onClick={() => handleAddCountry(country?.code as string, name as string)}
+								/> */}
 							</IconComponent>
 						</ListItemComponent>
 					)

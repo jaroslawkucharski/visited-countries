@@ -4,7 +4,6 @@ import { CountriesListProvider } from 'context/CountriesListContext'
 import { useThemeColorContext } from 'context/ThemeContext'
 import { ErrorBoundary, Menu, TopBar } from 'layouts'
 import { Routes } from 'react-router-dom'
-import { ToastContainer } from 'react-toastify'
 import { appRoutes } from 'routes'
 import { ThemeProvider } from 'styled-components'
 
@@ -17,7 +16,6 @@ const App = () => {
 				<ErrorBoundary>
 					<AuthProvider>
 						<CountriesListProvider>
-							<ToastContainer theme={theme} />
 							<TopBar />
 
 							<Menu />
