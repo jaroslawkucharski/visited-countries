@@ -5,7 +5,7 @@ specifiers:
   '@capacitor/cli': ^4.7.0
   '@capacitor/core': ^4.6.3
   '@capacitor/ios': ^4.6.3
-  '@jaroslaw91/novelui': ^1.0.95
+  '@jaroslaw91/novelui': ^1.0.104
   '@reduxjs/toolkit': ^1.9.1
   '@sentry/browser': ^7.30.0
   '@sentry/react': ^7.30.0
@@ -59,7 +59,6 @@ specifiers:
   react-redux: ^8.0.5
   react-router-dom: ^6.8.1
   react-simple-maps: ^3.0.0
-  react-toastify: ^9.1.1
   styled-components: ^5.3.6
   typescript: ^4.9.5
   uuid: ^9.0.0
@@ -73,7 +72,7 @@ dependencies:
   '@capacitor/android': 4.7.0_@capacitor+core@4.7.0
   '@capacitor/core': 4.7.0
   '@capacitor/ios': 4.7.0_@capacitor+core@4.7.0
-  '@jaroslaw91/novelui': 1.0.95_biqbaboplfbrettd7655fr4n2y
+  '@jaroslaw91/novelui': 1.0.104_volfmk5qsxea4s2hq5skeociie
   '@reduxjs/toolkit': 1.9.3_k4ae6lp43ej6mezo3ztvx6pykq
   '@sentry/browser': 7.38.0
   '@sentry/react': 7.38.0_react@18.2.0
@@ -96,7 +95,6 @@ dependencies:
   react-redux: 8.0.5_ctrls2ti7t7iutxbwkm5ipogyy
   react-router-dom: 6.8.1_biqbaboplfbrettd7655fr4n2y
   react-simple-maps: 3.0.0_v2m5e27vhdewzwhryxwfaorcca
-  react-toastify: 9.1.1_biqbaboplfbrettd7655fr4n2y
   styled-components: 5.3.6_7i5myeigehqah43i5u7wbekgba
   uuid: 9.0.0
   yup: 1.0.0
@@ -107,7 +105,7 @@ devDependencies:
   '@testing-library/jest-dom': 5.16.5
   '@testing-library/react': 14.0.0_biqbaboplfbrettd7655fr4n2y
   '@testing-library/user-event': 14.4.3_@testing-library+dom@9.0.0
-  '@trivago/prettier-plugin-sort-imports': 4.1.0_prettier@2.8.4
+  '@trivago/prettier-plugin-sort-imports': 4.1.1_prettier@2.8.4
   '@types/jest': 29.4.0
   '@types/node': 18.14.1
   '@types/react': 18.0.28
@@ -118,7 +116,7 @@ devDependencies:
   '@typescript-eslint/parser': 5.53.0_7kw3g6rralp5ps6mg3uyzz6azm
   '@vitejs/plugin-react': 3.1.0_vite@4.1.4
   '@vitest/coverage-c8': 0.28.5_jsdom@21.1.0
-  cypress: 12.6.0
+  cypress: 12.7.0
   eslint: 8.34.0
   eslint-config-airbnb: 19.0.4_hbw3smywoiafix46yjc35xsaqq
   eslint-config-airbnb-typescript: 17.0.0_mcnezbmb3bzu3sdorej6fitigm
@@ -2349,14 +2347,16 @@ packages:
     engines: {node: '>=8'}
     dev: true
 
-  /@jaroslaw91/novelui/1.0.95_biqbaboplfbrettd7655fr4n2y:
-    resolution: {integrity: sha512-wtmxLZ7/NXAvUWLQbYDYq5i4kA+uSJDvyEcVojqAf/7bTakPBSpR8Em599IBtxfoCBHXM2ihTmIlSic2Vgc8sg==}
+  /@jaroslaw91/novelui/1.0.104_volfmk5qsxea4s2hq5skeociie:
+    resolution: {integrity: sha512-pmzm4V2nvzRdBOHe1ZLKRS2MiWOcu3kM5la9NLMzvJqxRWdduRj1ev75EkXy1oWUO1c60XVt0OuwFel2T3/blA==}
     peerDependencies:
       react: ^18.2.0
       react-dom: ^18.2.0
+      react-toastify: ^9.1.1
     dependencies:
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
+      react-toastify: 9.1.1_biqbaboplfbrettd7655fr4n2y
     dev: false
 
   /@jest/console/29.4.3:
@@ -2945,8 +2945,8 @@ packages:
     engines: {node: '>= 10'}
     dev: true
 
-  /@trivago/prettier-plugin-sort-imports/4.1.0_prettier@2.8.4:
-    resolution: {integrity: sha512-aTr6QPFaPAAzPRFn9yWB/9yKi3ZAFqfGpxIGLPWuQfYJFGUed+W3KKwxntsoCiNvNE2iuKOg6haMo5KG8WXltg==}
+  /@trivago/prettier-plugin-sort-imports/4.1.1_prettier@2.8.4:
+    resolution: {integrity: sha512-dQ2r2uzNr1x6pJsuh/8x0IRA3CBUB+pWEW3J/7N98axqt7SQSm+2fy0FLNXvXGg77xEDC7KHxJlHfLYyi7PDcw==}
     peerDependencies:
       '@vue/compiler-sfc': 3.x
       prettier: 2.x
@@ -3852,7 +3852,7 @@ packages:
     hasBin: true
     dependencies:
       caniuse-lite: 1.0.30001457
-      electron-to-chromium: 1.4.310
+      electron-to-chromium: 1.4.311
       node-releases: 2.0.10
       update-browserslist-db: 1.0.10_browserslist@4.21.5
     dev: true
@@ -4198,8 +4198,8 @@ packages:
   /csstype/3.1.1:
     resolution: {integrity: sha512-DJR/VvkAvSZW9bTouZue2sSxDwdTN92uHjqeKVm+0dAqdfNykRzQ95tay8aXMBAAPpUiq4Qcug2L7neoRh2Egw==}
 
-  /cypress/12.6.0:
-    resolution: {integrity: sha512-WdHSVaS1lumSd5XpVTslZd8ui9GIGphrzvXq9+3DtVhqjRZC5M70gu5SW/Y/SLPq3D1wiXGZoHC6HJ7ESVE2lw==}
+  /cypress/12.7.0:
+    resolution: {integrity: sha512-7rq+nmhzz0u6yabCFyPtADU2OOrYt6pvUau9qV7xyifJ/hnsaw/vkr0tnLlcuuQKUAOC1v1M1e4Z0zG7S0IAvA==}
     engines: {node: ^14.0.0 || ^16.0.0 || >=18.0.0}
     hasBin: true
     requiresBuild: true
@@ -4535,8 +4535,8 @@ packages:
       jake: 10.8.5
     dev: true
 
-  /electron-to-chromium/1.4.310:
-    resolution: {integrity: sha512-/xlATgfwkm5uDDwLw5nt/MNEf7c1oazLURMZLy39vOioGYyYzLWIDT8fZMJak6qTiAJ7udFTy7JG7ziyjNutiA==}
+  /electron-to-chromium/1.4.311:
+    resolution: {integrity: sha512-RoDlZufvrtr2Nx3Yx5MB8jX3aHIxm8nRWPJm3yVvyHmyKaRvn90RjzB6hNnt0AkhS3IInJdyRfQb4mWhPvUjVw==}
     dev: true
 
   /elementtree/0.1.7:
