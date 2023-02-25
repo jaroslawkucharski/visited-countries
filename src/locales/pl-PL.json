@@ -44,6 +44,8 @@
 	"word.remove": "Usuń",
 	"modal.remove.country": "Usuń kraj",
 	"modal.remove.country.content": "Czy na pewno chcesz usunąć ten kraj z listy?",
+	"word.visited.list": "Lista odwiedzonych krajów:",
+	"word.unvisited.list": "Lista nieodwiedzonych krajów:",
 	"errors": {
 		"empty.field": "Pole obowiązkowe",
 		"email": "Niepoprawny adres email",

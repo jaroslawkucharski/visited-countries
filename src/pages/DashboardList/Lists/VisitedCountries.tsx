@@ -51,7 +51,7 @@ export const VisitedCountries = () => {
 
 	return (
 		<>
-			<Paragraph size="big">Your visited list:</Paragraph>
+			<Paragraph size="big">{t('word.visited.list')}</Paragraph>
 
 			<Spacer
 				type="vertical"

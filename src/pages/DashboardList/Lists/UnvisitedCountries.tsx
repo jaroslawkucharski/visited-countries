@@ -29,7 +29,7 @@ export const UnvisitedCountries = () => {
 
 	return (
 		<>
-			<Paragraph size="big">Your unvisited list:</Paragraph>
+			<Paragraph size="big">{t('word.unvisited.list')}</Paragraph>
 
 			<Spacer
 				type="vertical"
