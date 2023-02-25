@@ -27,7 +27,7 @@ export const VisitedCountries = () => {
 		fetchCountriesList()
 	}
 
-	const showRemoveModal = (uid: string, country: string) => {
+	const showRemoveModal = (uid: string, country: string) =>
 		modalShow({
 			id: 'remove-country',
 			title: t('modal.remove.country'),
@@ -37,7 +37,6 @@ export const VisitedCountries = () => {
 			action: () => handleRemoveCountry(uid),
 			variant: 'alert',
 		})
-	}
 
 	return (
 		<>

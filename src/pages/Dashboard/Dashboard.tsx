@@ -36,28 +36,26 @@ export const Dashboard = () => {
 		fetchCountriesList()
 	}
 
-	const showAddModal = (uid: string, country: string) => {
+	const showAddModal = (uid: string, country: string) =>
 		modalShow({
 			id: 'add-country',
 			title: t('modal.add.country'),
-			content: t('modal.add.country.content', { country }),
+			content: t('modal.add.country.content', { country: uid }),
 			actionName: t('word.add'),
 			cancelName: t('word.cancel'),
 			action: () => handleAddCountry(uid, country),
 		})
-	}
 
-	const showRemoveModal = (uid: string, country: string) => {
+	const showRemoveModal = (uid: string) =>
 		modalShow({
 			id: 'remove-country',
 			title: t('modal.remove.country'),
-			content: t('modal.remove.country.content', { country }),
+			content: t('modal.remove.country.content', { country: uid }),
 			actionName: t('word.remove'),
 			cancelName: t('word.cancel'),
 			action: () => handleRemoveCountry(uid),
 			variant: 'alert',
 		})
-	}
 
 	const handleCountryAction = (uid: string, country: string) => {
 		visitedCountries.some(item => item.country === country)

@@ -27,7 +27,7 @@ export const UnvisitedCountries = () => {
 		fetchCountriesList()
 	}
 
-	const showAddModal = (uid: string, country: string) => {
+	const showAddModal = (uid: string, country: string) =>
 		modalShow({
 			id: 'add-country',
 			title: t('modal.add.country'),
@@ -36,7 +36,6 @@ export const UnvisitedCountries = () => {
 			cancelName: t('word.cancel'),
 			action: () => handleAddCountry(uid, country),
 		})
-	}
 
 	return (
 		<>

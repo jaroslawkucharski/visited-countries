@@ -59,6 +59,7 @@ specifiers:
   react-redux: ^8.0.5
   react-router-dom: ^6.8.1
   react-simple-maps: ^3.0.0
+  react-toastify: ^9.1.1
   styled-components: ^5.3.6
   typescript: ^4.9.5
   uuid: ^9.0.0
@@ -72,7 +73,7 @@ dependencies:
   '@capacitor/android': 4.7.0_@capacitor+core@4.7.0
   '@capacitor/core': 4.7.0
   '@capacitor/ios': 4.7.0_@capacitor+core@4.7.0
-  '@jaroslaw91/novelui': 1.0.104_volfmk5qsxea4s2hq5skeociie
+  '@jaroslaw91/novelui': 1.0.107_biqbaboplfbrettd7655fr4n2y
   '@reduxjs/toolkit': 1.9.3_k4ae6lp43ej6mezo3ztvx6pykq
   '@sentry/browser': 7.38.0
   '@sentry/react': 7.38.0_react@18.2.0
@@ -95,6 +96,7 @@ dependencies:
   react-redux: 8.0.5_ctrls2ti7t7iutxbwkm5ipogyy
   react-router-dom: 6.8.1_biqbaboplfbrettd7655fr4n2y
   react-simple-maps: 3.0.0_v2m5e27vhdewzwhryxwfaorcca
+  react-toastify: 9.1.1_biqbaboplfbrettd7655fr4n2y
   styled-components: 5.3.6_7i5myeigehqah43i5u7wbekgba
   uuid: 9.0.0
   yup: 1.0.0
@@ -2347,16 +2349,14 @@ packages:
     engines: {node: '>=8'}
     dev: true
 
-  /@jaroslaw91/novelui/1.0.104_volfmk5qsxea4s2hq5skeociie:
-    resolution: {integrity: sha512-pmzm4V2nvzRdBOHe1ZLKRS2MiWOcu3kM5la9NLMzvJqxRWdduRj1ev75EkXy1oWUO1c60XVt0OuwFel2T3/blA==}
+  /@jaroslaw91/novelui/1.0.107_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-LLhM5ZcE9G3/9XMJt9I33JH19phqtZdFHjMit6MuZpYDYQfKmUzC7HoRgSs6d+eacbJt7gLeHaTqGSFs3euivg==}
     peerDependencies:
       react: ^18.2.0
       react-dom: ^18.2.0
-      react-toastify: ^9.1.1
     dependencies:
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
-      react-toastify: 9.1.1_biqbaboplfbrettd7655fr4n2y
     dev: false
 
   /@jest/console/29.4.3:
