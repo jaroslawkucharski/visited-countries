@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import { toastNotify } from '@jaroslaw91/novelui'
 import { UserCredential } from 'firebase/auth'
 import i18next from 'i18next'
 import { ReactNode, useCallback, useEffect, useState } from 'react'
-import { toastNotify } from 'utils/toastNotify'
 
 import { ERRORS } from 'constants/errors'
 

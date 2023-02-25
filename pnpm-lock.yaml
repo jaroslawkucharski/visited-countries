@@ -5,7 +5,7 @@ specifiers:
   '@capacitor/cli': ^4.7.0
   '@capacitor/core': ^4.6.3
   '@capacitor/ios': ^4.6.3
-  '@jaroslaw91/novelui': ^1.0.104
+  '@jaroslaw91/novelui': ^1.0.108
   '@reduxjs/toolkit': ^1.9.1
   '@sentry/browser': ^7.30.0
   '@sentry/react': ^7.30.0
@@ -59,7 +59,6 @@ specifiers:
   react-redux: ^8.0.5
   react-router-dom: ^6.8.1
   react-simple-maps: ^3.0.0
-  react-toastify: ^9.1.1
   styled-components: ^5.3.6
   typescript: ^4.9.5
   uuid: ^9.0.0
@@ -73,7 +72,7 @@ dependencies:
   '@capacitor/android': 4.7.0_@capacitor+core@4.7.0
   '@capacitor/core': 4.7.0
   '@capacitor/ios': 4.7.0_@capacitor+core@4.7.0
-  '@jaroslaw91/novelui': 1.0.107_biqbaboplfbrettd7655fr4n2y
+  '@jaroslaw91/novelui': 1.0.108_biqbaboplfbrettd7655fr4n2y
   '@reduxjs/toolkit': 1.9.3_k4ae6lp43ej6mezo3ztvx6pykq
   '@sentry/browser': 7.38.0
   '@sentry/react': 7.38.0_react@18.2.0
@@ -96,7 +95,6 @@ dependencies:
   react-redux: 8.0.5_ctrls2ti7t7iutxbwkm5ipogyy
   react-router-dom: 6.8.1_biqbaboplfbrettd7655fr4n2y
   react-simple-maps: 3.0.0_v2m5e27vhdewzwhryxwfaorcca
-  react-toastify: 9.1.1_biqbaboplfbrettd7655fr4n2y
   styled-components: 5.3.6_7i5myeigehqah43i5u7wbekgba
   uuid: 9.0.0
   yup: 1.0.0
@@ -2349,8 +2347,8 @@ packages:
     engines: {node: '>=8'}
     dev: true
 
-  /@jaroslaw91/novelui/1.0.107_biqbaboplfbrettd7655fr4n2y:
-    resolution: {integrity: sha512-LLhM5ZcE9G3/9XMJt9I33JH19phqtZdFHjMit6MuZpYDYQfKmUzC7HoRgSs6d+eacbJt7gLeHaTqGSFs3euivg==}
+  /@jaroslaw91/novelui/1.0.108_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-KXvRUCDzR9DLi37aln46ZXaw81GE2slBHyDZHBwWejT4kn2GWhJ2lwH5XXLBJAY3XNGX5/mqf+soAzsT/UaMQw==}
     peerDependencies:
       react: ^18.2.0
       react-dom: ^18.2.0
@@ -4064,11 +4062,6 @@ packages:
       wrap-ansi: 7.0.0
     dev: true
 
-  /clsx/1.2.1:
-    resolution: {integrity: sha512-EcR6r5a8bj6pu3ycsa/E/cKVGuTgZJZdsyUYHOksG/UHIiKfjxzRxYJpyVBwYaQeOvghal9fcc4PidlgzugAQg==}
-    engines: {node: '>=6'}
-    dev: false
-
   /co/4.6.0:
     resolution: {integrity: sha512-QVb0dM5HvG+uaxitm8wONl7jltx8dqhfU33DcqtOZcLSVIKSDDLDi7+0LbAKiyI8hD9u42m2YxXSkMGWThaecQ==}
     engines: {iojs: '>= 1.0.0', node: '>= 0.12.0'}
@@ -4849,7 +4842,7 @@ packages:
       object.values: 1.1.6
       resolve: 1.22.1
       semver: 6.3.0
-      tsconfig-paths: 3.14.1
+      tsconfig-paths: 3.14.2
     transitivePeerDependencies:
       - eslint-import-resolver-typescript
       - eslint-import-resolver-webpack
@@ -7603,17 +7596,6 @@ packages:
       topojson-client: 3.1.0
     dev: false
 
-  /react-toastify/9.1.1_biqbaboplfbrettd7655fr4n2y:
-    resolution: {integrity: sha512-pkFCla1z3ve045qvjEmn2xOJOy4ZciwRXm1oMPULVkELi5aJdHCN/FHnuqXq8IwGDLB7PPk2/J6uP9D8ejuiRw==}
-    peerDependencies:
-      react: '>=16'
-      react-dom: '>=16'
-    dependencies:
-      clsx: 1.2.1
-      react: 18.2.0
-      react-dom: 18.2.0_react@18.2.0
-    dev: false
-
   /react/18.2.0:
     resolution: {integrity: sha512-/3IjMdb2L9QbBdWiW5e3P2/npwMBaU9mHCSCUzNln0ZCYbcfTsGbTJrU/kGemdH2IWmB2ioZ+zkxtmq6g09fGQ==}
     engines: {node: '>=0.10.0'}
@@ -8392,8 +8374,8 @@ packages:
       typescript: 4.9.5
     dev: true
 
-  /tsconfig-paths/3.14.1:
-    resolution: {integrity: sha512-fxDhWnFSLt3VuTwtvJt5fpwxBHg5AdKWMsgcPOOIilyjymcYVZoCQF8fvFRezCNfblEXmi+PcM1eYHeOAgXCOQ==}
+  /tsconfig-paths/3.14.2:
+    resolution: {integrity: sha512-o/9iXgCYc5L/JxCHPe3Hvh8Q/2xm5Z+p18PESBU6Ff33695QnCHBEjcytY2q19ua7Mbl/DavtBOLq+oG0RCL+g==}
     dependencies:
       '@types/json5': 0.0.29
       json5: 1.0.2

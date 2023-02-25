@@ -1,9 +1,9 @@
+import { toastNotify } from '@jaroslaw91/novelui'
 import { auth, database, storage } from 'config/firebase'
 import { updateProfile } from 'firebase/auth'
 import { ref as databaseRef, remove, set } from 'firebase/database'
 import { getDownloadURL, ref as storageRef, uploadBytes } from 'firebase/storage'
 import i18next from 'i18next'
-import { toastNotify } from 'utils/toastNotify'
 
 import { ERRORS } from 'constants/errors'
 
