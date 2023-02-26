@@ -39,7 +39,7 @@ const CountriesListContext = createContext<CountriesListContextType | null>(null
 const useCountriesList = () => {
 	const { data } = useCountries()
 
-	const countries = data.map(item => ({
+	const countries = data?.map(item => ({
 		nameEN: item.name.common,
 		namePL: item.translations.pol.common,
 		icon: item.flag,
