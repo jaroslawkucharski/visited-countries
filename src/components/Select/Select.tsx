@@ -67,7 +67,9 @@ export const Select: FC<SelectProps> = ({
 		}
 
 		options.filter(
-			item => item.name.toLowerCase().includes(inputValue) && setOptions(prev => [...prev, item]),
+			item =>
+				item.name.toLowerCase().includes(inputValue.toLowerCase()) &&
+				setOptions(prev => [...prev, item]),
 		)
 	}
 
