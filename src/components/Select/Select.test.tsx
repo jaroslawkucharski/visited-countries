@@ -1,10 +1,17 @@
-import { describe, fireEvent, it, render, waitFor } from 'utils/tests-utils'
+import { describe, fireEvent, it, render, vi, waitFor } from 'utils/tests-utils'
 
 import { Select } from './Select'
 
 describe('components/Select', () => {
 	it('should be in the document', async () => {
-		const { getByTestId } = render(<Select options={[{ name: 'name', icon: 'icon' }]} />)
+		const { getByTestId } = render(
+			<Select
+				options={[{ name: 'name', icon: 'icon', id: 'id' }]}
+				buttonName="buton"
+				action={vi.fn()}
+				buttonIsLoading={false}
+			/>,
+		)
 
 		await waitFor(() => {
 			expect(getByTestId('select')).toBeInTheDocument()
@@ -24,7 +31,14 @@ describe('components/Select', () => {
 	})
 
 	it('should display empty message', async () => {
-		const { getByTestId } = render(<Select options={[]} />)
+		const { getByTestId } = render(
+			<Select
+				options={[]}
+				buttonName="buton"
+				action={vi.fn()}
+				buttonIsLoading={false}
+			/>,
+		)
 
 		await waitFor(() => {
 			expect(getByTestId('select')).toBeInTheDocument()
@@ -38,7 +52,14 @@ describe('components/Select', () => {
 	})
 
 	it('clear value', async () => {
-		const { getByTestId } = render(<Select options={[{ name: 'name', icon: 'icon' }]} />)
+		const { getByTestId } = render(
+			<Select
+				options={[{ name: 'name', icon: 'icon', id: 'id' }]}
+				buttonName="buton"
+				action={vi.fn()}
+				buttonIsLoading={false}
+			/>,
+		)
 
 		await waitFor(() => {
 			expect(getByTestId('select')).toBeInTheDocument()
@@ -56,7 +77,14 @@ describe('components/Select', () => {
 	})
 
 	it('search values', async () => {
-		const { getByTestId } = render(<Select options={[{ name: 'name', icon: 'icon' }]} />)
+		const { getByTestId } = render(
+			<Select
+				options={[{ name: 'name', icon: 'icon', id: 'id' }]}
+				buttonName="buton"
+				action={vi.fn()}
+				buttonIsLoading={false}
+			/>,
+		)
 
 		await waitFor(() => {
 			expect(getByTestId('select')).toBeInTheDocument()
@@ -78,7 +106,10 @@ describe('components/Select', () => {
 	it('should have full width', async () => {
 		const { getByTestId } = render(
 			<Select
-				options={[{ name: 'name', icon: 'icon' }]}
+				options={[{ name: 'name', icon: 'icon', id: 'id' }]}
+				buttonName="buton"
+				action={vi.fn()}
+				buttonIsLoading={false}
 				hasFullWidth
 			/>,
 		)
