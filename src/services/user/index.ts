@@ -1,6 +1,6 @@
 import { toastNotify } from '@jaroslaw91/novelui'
 import { auth, database, storage } from 'config/firebase'
-import { updateProfile } from 'firebase/auth'
+import { updateEmail, updatePassword, updateProfile } from 'firebase/auth'
 import { ref as databaseRef, remove, set } from 'firebase/database'
 import { getDownloadURL, ref as storageRef, uploadBytes } from 'firebase/storage'
 import i18next from 'i18next'
@@ -44,5 +44,27 @@ export const setUserAvatar = async (file: Blob) => {
 
 	if (auth?.currentUser !== null) {
 		updateUserProfile({ photoURL })
+	}
+}
+
+// Update email
+export const updateUserEmail = async (email: string) => {
+	try {
+		if (auth?.currentUser !== null) {
+			await updateEmail(auth.currentUser, email)
+		}
+	} catch ({ code }: any) {
+		toastNotify(i18next.t(ERRORS[code as string] || 'toasts.error'), 'error')
+	}
+}
+
+// Update password
+export const updateUserPassword = async (password: string) => {
+	try {
+		if (auth?.currentUser !== null) {
+			await updatePassword(auth.currentUser, password)
+		}
+	} catch ({ code }: any) {
+		toastNotify(i18next.t(ERRORS[code as string] || 'toasts.error'), 'error')
 	}
 }

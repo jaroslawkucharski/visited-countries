@@ -1,4 +1,4 @@
-import { Button, Heading, Image, Layout, Spacer } from '@jaroslaw91/novelui'
+import { Break, Button, Heading, Image, Layout, Spacer } from '@jaroslaw91/novelui'
 import en from 'assets/images/locales/en.svg'
 import pl from 'assets/images/locales/pl.svg'
 import { auth } from 'config/firebase'
@@ -16,6 +16,7 @@ import { useWindowSize } from 'hooks/useWindowSize'
 import { LOCALES } from 'constants/locales'
 import { ROUTES } from 'constants/routes'
 
+import { Form } from './Form'
 import { ImageComponent, SettingsComponent } from './Profile.styles'
 
 export const Profile = () => {
@@ -84,71 +85,60 @@ export const Profile = () => {
 
 			<Spacer type="vertical" />
 
-			<p>{auth?.currentUser?.displayName}</p>
-
-			<Spacer
-				type="vertical"
-				space="tiny"
-			/>
-
-			<p>{auth?.currentUser?.email}</p>
-
-			<Spacer
-				type="vertical"
-				space="big"
-			/>
+			<Form />
 
 			{isMobile && (
-				<SettingsComponent>
-					<Button
-						variant="secondary"
-						action={handleThemeColorChange}
-						hasOnlyIcon
-					>
-						{theme === 'dark' ? <HiSun /> : <HiMoon />}
-					</Button>
+				<>
+					<Spacer
+						type="vertical"
+						space="big"
+					/>
+
+					<Break />
+
+					<Spacer
+						type="vertical"
+						space="big"
+					/>
+					<SettingsComponent>
+						<Button
+							variant="secondary"
+							action={handleThemeColorChange}
+							hasOnlyIcon
+						>
+							{theme === 'dark' ? <HiSun /> : <HiMoon />}
+						</Button>
+
+						<Button
+							variant="secondary"
+							action={handleLanguageChangeToPL}
+							hasOnlyIcon
+						>
+							{i18n.language === LOCALES.EN ? (
+								<Image
+									src={en}
+									width={16}
+									alt="en"
+								/>
+							) : (
+								<Image
+									src={pl}
+									width={16}
+									alt="pl"
+								/>
+							)}
+						</Button>
+					</SettingsComponent>
+
+					<Spacer type="vertical" />
 
 					<Button
-						variant="secondary"
-						action={handleLanguageChangeToPL}
-						hasOnlyIcon
+						action={handleLogout}
+						hasFullWidth
 					>
-						{i18n.language === LOCALES.EN ? (
-							<Image
-								src={en}
-								width={16}
-								alt="en"
-							/>
-						) : (
-							<Image
-								src={pl}
-								width={16}
-								alt="pl"
-							/>
-						)}
+						{t('word.logout')}
 					</Button>
-				</SettingsComponent>
-			)}
-
-			<Button
-				variant="secondary"
-				hasFullWidth
-			>
-				{t('word.edit.data')}
-			</Button>
-
-			<Spacer
-				type="vertical"
-				space="big"
-			/>
-
-			{isMobile && (
-				<Button
-					action={handleLogout}
-					hasFullWidth
-				>
-					{t('word.logout')}
-				</Button>
+				</>
 			)}
 		</Layout>
 	)
