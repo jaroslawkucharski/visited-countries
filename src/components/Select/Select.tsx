@@ -1,3 +1,4 @@
+import { Button, Spacer } from '@jaroslaw91/novelui'
 import { Input } from 'components'
 import { ChangeEvent, FC, ReactNode, useCallback, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
@@ -18,17 +19,24 @@ import { SelectItem } from './SelectItem'
 type OptionsProps = {
 	icon?: ReactNode
 	name: string
+	id: string
 }
 
 export interface SelectProps {
 	options: OptionsProps[]
 	hasFullWidth?: boolean
+	buttonName: string
+	action: (value: string) => void
+	buttonIsLoading?: boolean
 	'data-testid'?: string
 }
 
 export const Select: FC<SelectProps> = ({
 	options,
 	hasFullWidth,
+	buttonName,
+	action,
+	buttonIsLoading,
 	'data-testid': dataTestId = 'select',
 }) => {
 	const selectRef = useRef(null)
@@ -69,10 +77,16 @@ export const Select: FC<SelectProps> = ({
 		setValue(item.name)
 	}
 
-	const handleClearValue = () => {
+	const handleClearValue = useCallback(() => {
 		setValue('')
 		setOptions(options)
-	}
+	}, [options])
+
+	const handleAction = useCallback(() => {
+		action(inputValue)
+
+		handleClearValue()
+	}, [action, inputValue, handleClearValue])
 
 	return (
 		<SelectComponent
@@ -125,6 +139,17 @@ export const Select: FC<SelectProps> = ({
 					<HiMagnifyingGlassCircle />
 				</IconComponent>
 			)}
+
+			<Spacer type="vertical" />
+
+			<Button
+				action={handleAction}
+				isLoading={buttonIsLoading}
+				isDisabled={!inputValue || buttonIsLoading}
+				hasFullWidth
+			>
+				{buttonName}
+			</Button>
 		</SelectComponent>
 	)
 }

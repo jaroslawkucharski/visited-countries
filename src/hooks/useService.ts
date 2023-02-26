@@ -2,7 +2,7 @@
 import { toastNotify } from '@jaroslaw91/novelui'
 import { UserCredential } from 'firebase/auth'
 import i18next from 'i18next'
-import { ReactNode, useCallback, useEffect, useState } from 'react'
+import { ReactNode, useCallback, useEffect, useMemo, useState } from 'react'
 
 import { ERRORS } from 'constants/errors'
 
@@ -30,10 +30,13 @@ export const useService = ({
 		isLoaded: boolean
 	}
 
-	const initialState: State = {
-		isLoading: false,
-		isLoaded: false,
-	}
+	const initialState = useMemo<State>(
+		() => ({
+			isLoading: false,
+			isLoaded: false,
+		}),
+		[],
+	)
 
 	const [state, setState] = useState(initialState)
 
@@ -55,9 +58,11 @@ export const useService = ({
 				toastNotify(errorToast || i18next.t(ERRORS[code as string] || 'toasts.error'), 'error')
 
 				errorCallback?.()
+			} finally {
+				setState(initialState)
 			}
 		},
-		[service, errorCallback, successCallback, errorToast, successToast],
+		[service, errorCallback, successCallback, errorToast, successToast, initialState],
 	)
 
 	useEffect(() => {

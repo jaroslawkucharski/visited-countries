@@ -5,6 +5,7 @@ import { ItemComponent } from './Select.styles'
 type ChildrenProps = {
 	icon?: ReactNode
 	name: string
+	id: string
 }
 
 export interface SelectItemProps {

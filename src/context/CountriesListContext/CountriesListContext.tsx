@@ -10,7 +10,6 @@ import {
 	useLayoutEffect,
 	useState,
 } from 'react'
-import { Countries } from 'store/features/countriesSlice'
 
 import { useCountries } from 'hooks/useCountries'
 
@@ -27,7 +26,7 @@ export interface CountriesListType {
 }
 
 interface CountriesListContextType {
-	countries: Countries[]
+	countries: CountriesListType[]
 	visitedCountries: VisitedCountriesType[]
 	setVisitedCountries: Dispatch<SetStateAction<VisitedCountriesType[]>>
 	visitedList: (CountriesListType | undefined)[]
@@ -38,33 +37,22 @@ interface CountriesListContextType {
 const CountriesListContext = createContext<CountriesListContextType | null>(null)
 
 const useCountriesList = () => {
-	const { data: countries } = useCountries()
+	const { data } = useCountries()
+
+	const countries = data.map(item => ({
+		nameEN: item.name.common,
+		namePL: item.translations.pol.common,
+		icon: item.flag,
+		code: item.cca3,
+	}))
 
 	const [visitedCountries, setVisitedCountries] = useState<VisitedCountriesType[]>([])
 
-	const visitedList = visitedCountries.map(({ uid }) => {
-		const list = countries.find(({ cca3 }) => cca3 === uid)
+	const visitedList = visitedCountries.map(({ uid }) => countries.find(({ code }) => code === uid))
 
-		return (
-			list && {
-				nameEN: list.name.common,
-				namePL: list.translations.pol.common,
-				icon: list.flag,
-				code: list.cca3,
-			}
-		)
-	})
-
-	const unvisitedList = countries
-		?.filter(({ cca3 }) => {
-			return !visitedCountries.find(({ uid }) => cca3 === uid)
-		})
-		.map(item => ({
-			nameEN: item.name.common,
-			namePL: item.translations.pol.common,
-			icon: item.flag,
-			code: item.cca3,
-		}))
+	const unvisitedList = countries?.filter(
+		({ code }) => !visitedCountries.find(({ uid }) => code === uid),
+	)
 
 	const fetchCountriesList = () => {
 		const tasksRef = ref(database, `users/${auth.currentUser?.uid}/countries`)

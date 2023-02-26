@@ -87,6 +87,7 @@ export const EmptyListComponent = styled.div`
 export const IconComponent = styled.span`
 	cursor: pointer;
 	bottom: 12.5px;
+	top: 13px;
 	right: 20px;
 	position: absolute;
 	font-size: 18px;
