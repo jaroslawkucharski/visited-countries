@@ -41,7 +41,7 @@
 	"word.error.boundary": "Critical error... Please refresh the page or contact us.",
 	"word.refresh": "Refresh page",
 	"word.cancel": "Cancel",
-	"word.add": "Add",
+	"word.add.country": "Add country",
 	"word.remove": "Remove",
 	"modal.remove.country": "Remove country",
 	"modal.remove.country.content": "Are you sure you want to remove this country from the list?",

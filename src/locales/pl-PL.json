@@ -40,7 +40,7 @@
 	"word.error.boundary": "Błąd krytyczny... Odświe stronę lub skontaktuj się z nami.",
 	"word.refresh": "Odświe stronę",
 	"word.cancel": "Anuluj",
-	"word.add": "Dodaj",
+	"word.add.country": "Dodaj kraj",
 	"word.remove": "Usuń",
 	"modal.remove.country": "Usuń kraj",
 	"modal.remove.country.content": "Czy na pewno chcesz usunąć ten kraj z listy?",

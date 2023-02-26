@@ -46,7 +46,7 @@ export const SelectCountries = () => {
 
 			<Select
 				options={options}
-				buttonName="Add"
+				buttonName={t('word.add.country')}
 				action={handleAddCountry}
 				buttonIsLoading={isLoading}
 				hasFullWidth
