@@ -126,11 +126,10 @@ TODO<strong>LIST</strong>
 
 - [x] removing a country from the list of countries
 - [x] adding a country to the list of countries
+- [x] adding country with Select
+- [x] add delete confirmation modal
 - [ ] complete the tests
-- [ ] adding country with Select
 - [ ] code optimization
-- [ ] add delete confirmation modal
-- [ ] add country information
 - [ ] add profile update
 - [ ] add a Help tab
 
