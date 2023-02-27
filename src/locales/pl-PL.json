@@ -47,7 +47,7 @@
 	"modal.remove.country.content": "Czy na pewno chcesz usunąć ten kraj z listy?",
 	"word.visited.list": "Lista odwiedzonych krajów:",
 	"word.unvisited.list": "Lista nieodwiedzonych krajów:",
-	"word.edit.data": "Edytuj swoje dane",
+	"word.edit.data": "Zapisz swoje dane",
 	"errors": {
 		"empty.field": "Pole obowiązkowe",
 		"email": "Niepoprawny adres email",
