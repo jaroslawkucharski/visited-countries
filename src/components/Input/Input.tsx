@@ -1,6 +1,13 @@
 import { Paragraph } from '@jaroslaw91/novelui'
 import { FormikErrors, FormikTouched } from 'formik'
-import { ChangeEventHandler, FC, FocusEventHandler, ReactEventHandler, useState } from 'react'
+import {
+	ChangeEventHandler,
+	FocusEventHandler,
+	ReactEventHandler,
+	Ref,
+	forwardRef,
+	useState,
+} from 'react'
 import { useTranslation } from 'react-i18next'
 import { HiEye, HiEyeSlash } from 'react-icons/hi2'
 
@@ -13,12 +20,13 @@ import {
 import { PasswordMeter } from './PasswordMeter'
 
 interface InputProps {
-	type?: 'text' | 'email' | 'password'
+	type?: 'text' | 'email' | 'password' | 'file'
 	label?: string
 	name: string
 	id: string
 	value?: string
 	placeholder?: string
+	accept?: string
 	touched?: FormikTouched<{
 		[field: string]: boolean
 	}>
@@ -36,92 +44,100 @@ interface InputProps {
 	'data-testid'?: string
 }
 
-export const Input: FC<InputProps> = ({
-	type = 'text',
-	label,
-	name,
-	placeholder = '',
-	id,
-	value = '',
-	touched = {},
-	errors = {},
-	onChange,
-	onBlur,
-	autoFocus = false,
-	hasFullWidth = false,
-	hasPasswordMeter = false,
-	isDropdown = false,
-	hideError = false,
-	onClick,
-	'data-testid': dataTestId = 'input',
-}) => {
-	const { t } = useTranslation()
+export const Input = forwardRef(
+	(
+		{
+			type = 'text',
+			label,
+			name,
+			placeholder = '',
+			id,
+			value = '',
+			accept,
+			touched = {},
+			errors = {},
+			onChange,
+			onBlur,
+			autoFocus = false,
+			hasFullWidth = false,
+			hasPasswordMeter = false,
+			isDropdown = false,
+			hideError = false,
+			onClick,
+			'data-testid': dataTestId = 'input',
+		}: InputProps,
+		ref: Ref<HTMLInputElement>,
+	) => {
+		const { t } = useTranslation()
 
-	const [showPassword, setShowPassword] = useState(false)
+		const [showPassword, setShowPassword] = useState(false)
 
-	const isError = (errors[name] && touched[name]) as boolean
-	const isPassword = (type === 'password') as boolean
+		const isError = (errors[name] && touched[name]) as boolean
+		const isPassword = (type === 'password') as boolean
 
-	const handleShowPassword = () => setShowPassword(!showPassword)
+		const handleShowPassword = () => setShowPassword(!showPassword)
 
-	return (
-		<div>
-			{label && (
-				<LabelComponent
-					htmlFor={id}
-					hasFullWidth={hasFullWidth}
-				>
-					<Paragraph
-						type="label"
-						data-testid="input-label"
+		return (
+			<div>
+				{label && (
+					<LabelComponent
+						htmlFor={id}
+						hasFullWidth={hasFullWidth}
 					>
-						{label}
-					</Paragraph>
-				</LabelComponent>
-			)}
-
-			<InputWrapperComponent>
-				<InputComponent
-					id={id}
-					name={name}
-					type={showPassword ? 'text' : type}
-					value={value}
-					placeholder={placeholder}
-					onChange={onChange}
-					onBlur={onBlur}
-					hasFullWidth={hasFullWidth}
-					autoFocus={autoFocus}
-					isError={isError}
-					isPassword={isPassword}
-					data-testid={dataTestId}
-					isDropdown={isDropdown}
-					onClick={onClick}
-				/>
-
-				{isPassword && (
-					<IconComponent
-						onClick={handleShowPassword}
-						data-testid="input-password"
-					>
-						{showPassword ? <HiEyeSlash /> : <HiEye />}
-					</IconComponent>
+						<Paragraph
+							type="label"
+							data-testid="input-label"
+						>
+							{label}
+						</Paragraph>
+					</LabelComponent>
 				)}
 
-				{isPassword && !isError && hasPasswordMeter && <PasswordMeter value={value} />}
-			</InputWrapperComponent>
+				<InputWrapperComponent>
+					<InputComponent
+						id={id}
+						name={name}
+						type={showPassword ? 'text' : type}
+						value={value}
+						placeholder={placeholder}
+						accept={accept}
+						onChange={onChange}
+						onBlur={onBlur}
+						hasFullWidth={hasFullWidth}
+						autoFocus={autoFocus}
+						isError={isError}
+						isPassword={isPassword}
+						data-testid={dataTestId}
+						isDropdown={isDropdown}
+						onClick={onClick}
+						ref={ref}
+					/>
 
-			{!hideError && (
-				<Paragraph
-					type="error"
-					size="small"
-					align="left"
-					data-testid="input-error"
-				>
-					{isError ? t(`${errors[name]}`) : null}
-				</Paragraph>
-			)}
-		</div>
-	)
-}
+					{isPassword && (
+						<IconComponent
+							onClick={handleShowPassword}
+							data-testid="input-password"
+						>
+							{showPassword ? <HiEyeSlash /> : <HiEye />}
+						</IconComponent>
+					)}
+
+					{isPassword && !isError && hasPasswordMeter && <PasswordMeter value={value} />}
+				</InputWrapperComponent>
+
+				{!hideError && (
+					<Paragraph
+						type="error"
+						size="small"
+						align="left"
+						data-testid="input-error"
+					>
+						{isError ? t(`${errors[name]}`) : null}
+					</Paragraph>
+				)}
+			</div>
+		)
+	},
+)
 
 Input.displayName = 'Input'

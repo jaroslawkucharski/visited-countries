@@ -1,14 +1,25 @@
-import { Break, Button, Heading, Image, Layout, Spacer } from '@jaroslaw91/novelui'
+import {
+	Break,
+	Button,
+	Heading,
+	Image,
+	Layout,
+	Paragraph,
+	Spacer,
+	modalShow,
+} from '@jaroslaw91/novelui'
+import avatar from 'assets/images/avatar/empty.png'
 import en from 'assets/images/locales/en.svg'
 import pl from 'assets/images/locales/pl.svg'
+import { Input } from 'components'
 import { auth } from 'config/firebase'
 import { useThemeColorContext } from 'context/ThemeContext'
-import { ChangeEvent, useCallback, useRef } from 'react'
+import { ChangeEvent, useCallback, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { HiMoon, HiSun } from 'react-icons/hi2'
+import { HiCloudArrowUp, HiMoon, HiSun, HiTrash } from 'react-icons/hi2'
 import { useNavigate } from 'react-router-dom'
 import { logout } from 'services/auth'
-import { setUserAvatar } from 'services/user'
+import { removeAccount, removeUserAvatar, setUserAvatar } from 'services/user'
 
 import { useService } from 'hooks/useService'
 import { useWindowSize } from 'hooks/useWindowSize'
@@ -23,6 +34,10 @@ export const Profile = () => {
 	const { t, i18n } = useTranslation()
 	const navigate = useNavigate()
 	const { isMobile } = useWindowSize()
+
+	const [isError, setError] = useState(false)
+	const [avatarImage, setAvatarImage] = useState(auth?.currentUser?.photoURL || avatar)
+	const [isLoading, setLoading] = useState({ upload: false, remove: false })
 
 	const { theme, toggleTheme } = useThemeColorContext()
 	const inputRef = useRef(null)
@@ -46,11 +61,55 @@ export const Profile = () => {
 		const target = event.currentTarget as HTMLInputElement
 
 		if (target.files !== null) {
-			await setUserAvatar(target.files[0])
-		}
+			setLoading(prev => ({ ...prev, upload: true }))
 
-		navigate(0)
+			const file = target.files[0]
+			const fileSize = file.size
+			const size = Math.round(fileSize / 1024)
+
+			if (size > 2048) {
+				setError(true)
+
+				return
+			}
+
+			setError(false)
+
+			await setUserAvatar(file)
+
+			const reader = new FileReader()
+
+			reader.onload = () => {
+				setAvatarImage(reader.result as string)
+			}
+
+			reader.readAsDataURL(file)
+
+			setLoading(prev => ({ ...prev, upload: false }))
+		}
 	}
+
+	const handleRemoveUserAvatar = async () => {
+		setLoading(prev => ({ ...prev, remove: true }))
+
+		await removeUserAvatar()
+
+		setAvatarImage(avatar)
+
+		setLoading(prev => ({ ...prev, remove: false }))
+	}
+
+	const showRemoveModal = () =>
+		modalShow({
+			id: 'remove-country',
+			title: t('modal.remove.country'),
+			content: <>{t('modal.remove.country.content')}</>,
+			actionName: t('word.remove'),
+			cancelName: t('word.cancel'),
+			action: () => removeAccount(),
+			variant: 'alert',
+		})
+
 	const handleLanguageChangeToPL = useCallback(
 		() =>
 			i18n.language === LOCALES.EN
@@ -66,16 +125,58 @@ export const Profile = () => {
 
 			<Spacer type="vertical" />
 
-			<ImageComponent onClick={handleUploadImage}>
-				<Image
-					src={auth?.currentUser?.photoURL || ''}
-					alt={t('word.avatar')}
-					variant="avatar"
-				/>
+			<Image
+				src={avatarImage}
+				alt={t('word.avatar')}
+				variant="avatar"
+			/>
+
+			<Spacer type="vertical" />
+
+			<Paragraph type="label">{t('word.image')}</Paragraph>
+
+			<Spacer type="vertical" />
+
+			<ImageComponent>
+				<Button
+					action={handleUploadImage}
+					isLoading={isLoading.upload}
+					isDisabled={isLoading.upload}
+				>
+					<HiCloudArrowUp />
+
+					{t('word.upload')}
+				</Button>
+
+				<Button
+					variant="alert"
+					action={handleRemoveUserAvatar}
+					hasOnlyIcon
+					isLoading={isLoading.remove}
+					isDisabled={isLoading.remove}
+				>
+					<HiTrash />
+				</Button>
 			</ImageComponent>
 
-			<input
-				style={{ display: 'none' }}
+			{isError && (
+				<>
+					<Spacer
+						type="vertical"
+						space="tiny"
+					/>
+
+					<Paragraph
+						type="error"
+						size="small"
+					>
+						{t('errors.image')}
+					</Paragraph>
+				</>
+			)}
+
+			<Input
+				id="file"
 				type="file"
 				name="file"
 				ref={inputRef}
@@ -84,6 +185,13 @@ export const Profile = () => {
 			/>
 
 			<Spacer type="vertical" />
+
+			<Break />
+
+			<Spacer
+				type="vertical"
+				space="big"
+			/>
 
 			<Form />
 
@@ -140,6 +248,16 @@ export const Profile = () => {
 					</Button>
 				</>
 			)}
+
+			<Spacer type="vertical" />
+
+			<Button
+				variant="alert"
+				action={showRemoveModal}
+				hasFullWidth
+			>
+				Remove
+			</Button>
 		</Layout>
 	)
 }

@@ -12,25 +12,11 @@ export const SettingsComponent = styled.div`
 `
 
 export const ImageComponent = styled.div`
-	position: relative;
-
-	&:hover {
-		opacity: 0.5;
-
-		&::before {
+	${({ theme: { spaces } }) =>
+		css`
 			width: 100%;
-			content: 'EDIT';
-			display: block;
-			position: absolute;
-			margin: 0 auto;
-			text-align: center;
-			top: 40%;
-		}
-	}
-
-	> img {
-		&:hover {
-			opacity: 0.5;
-		}
-	}
+			display: flex;
+			justify-content: center;
+			gap: ${spaces.tiny};
+		`}
 `
