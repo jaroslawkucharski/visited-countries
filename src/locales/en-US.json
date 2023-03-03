@@ -49,11 +49,14 @@
 	"word.visited.list": "Your visited list:",
 	"word.unvisited.list": "Your unvisited list:",
 	"word.edit.data": "Save your data",
+	"word.image": "User image",
+	"word.upload": "Upload",
 	"errors": {
 		"empty.field": "Field is required",
 		"email": "Invalid email",
 		"confirm.password": "The passwords are not the same",
-		"min.characters.6": "The password should contain at least 6 characters"
+		"min.characters.6": "The password should contain at least 6 characters",
+		"image": "The maximum size of the photo is 2MB."
 	},
 	"toasts": {
 		"error": "Something went wrong...",

@@ -48,11 +48,14 @@
 	"word.visited.list": "Lista odwiedzonych krajów:",
 	"word.unvisited.list": "Lista nieodwiedzonych krajów:",
 	"word.edit.data": "Zapisz swoje dane",
+	"word.image": "Zdjęcie użytkownika",
+	"word.upload": "Prześlij",
 	"errors": {
 		"empty.field": "Pole obowiązkowe",
 		"email": "Niepoprawny adres email",
 		"confirm.password": "Hasła nie są takie same",
-		"min.characters.6": "Hasło powinno zawierać minimum 6 znaków"
+		"min.characters.6": "Hasło powinno zawierać minimum 6 znaków",
+		"image": "Maksymalny rozmiar zdjęcia to 2MB."
 	},
 	"toasts": {
 		"error": "Coś poszło nie tak...",
