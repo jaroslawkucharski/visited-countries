@@ -1,11 +1,9 @@
-import { Paragraph, Spacer } from '@jaroslaw91/novelui'
+import { Paragraph, Spacer, toastNotify } from '@jaroslaw91/novelui'
 import { useCountriesListContext } from 'context/CountriesListContext'
 import { useTranslation } from 'react-i18next'
 import { HiPlusCircle } from 'react-icons/hi2'
 import { setCountry } from 'services/user'
 import { v4 as uuid } from 'uuid'
-
-import { useService } from 'hooks/useService'
 
 import { LOCALES } from 'constants/locales'
 
@@ -16,15 +14,16 @@ export const UnvisitedCountries = () => {
 
 	const { unvisitedList, fetchCountriesList } = useCountriesListContext()
 
-	const { request: addRequest } = useService({
-		service: setCountry,
-		successToast: t('toasts.add.country'),
-	})
+	const handleAddCountry = async (code: string, country: string) => {
+		try {
+			await setCountry(code, country)
 
-	const handleAddCountry = (code: string, country: string) => {
-		addRequest(code, country)
+			toastNotify(t('toasts.add.country'), 'success')
 
-		fetchCountriesList()
+			fetchCountriesList()
+		} catch {
+			toastNotify(t('toasts.error'), 'error')
+		}
 	}
 
 	return (

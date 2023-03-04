@@ -1,11 +1,9 @@
-import { Paragraph, Spacer, modalShow } from '@jaroslaw91/novelui'
+import { Paragraph, Spacer, modalShow, toastNotify } from '@jaroslaw91/novelui'
 import { useCountriesListContext } from 'context/CountriesListContext'
 import { useTranslation } from 'react-i18next'
 import { HiTrash } from 'react-icons/hi2'
 import { removeCountry } from 'services/user'
 import { v4 as uuid } from 'uuid'
-
-import { useService } from 'hooks/useService'
 
 import { LOCALES } from 'constants/locales'
 
@@ -16,15 +14,16 @@ export const VisitedCountries = () => {
 
 	const { visitedList, fetchCountriesList } = useCountriesListContext()
 
-	const { request: removeRequest } = useService({
-		service: removeCountry,
-		successToast: t('toasts.remove.country'),
-	})
+	const handleRemoveCountry = async (code: string) => {
+		try {
+			await removeCountry(code)
 
-	const handleRemoveCountry = (code: string) => {
-		removeRequest(code)
+			toastNotify(t('toasts.remove.country'), 'success')
 
-		fetchCountriesList()
+			fetchCountriesList()
+		} catch {
+			toastNotify(t('toasts.error'), 'error')
+		}
 	}
 
 	const showRemoveModal = (code: string, country: string, icon: string) =>

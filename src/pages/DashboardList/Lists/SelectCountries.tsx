@@ -1,15 +1,16 @@
-import { Heading, Spacer } from '@jaroslaw91/novelui'
+import { Heading, Spacer, toastNotify } from '@jaroslaw91/novelui'
 import { Select } from 'components'
 import { useCountriesListContext } from 'context/CountriesListContext'
+import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { setCountry } from 'services/user'
-
-import { useService } from 'hooks/useService'
 
 import { LOCALES } from 'constants/locales'
 
 export const SelectCountries = () => {
 	const { t, i18n } = useTranslation()
+
+	const [isLoading, setLoading] = useState(false)
 
 	const { unvisitedList, fetchCountriesList } = useCountriesListContext()
 
@@ -23,19 +24,24 @@ export const SelectCountries = () => {
 		}
 	})
 
-	const { isLoading, request: addRequest } = useService({
-		service: setCountry,
-		successToast: t('toasts.add.country'),
-	})
+	const handleAddCountry = async (country: string) => {
+		setLoading(true)
 
-	const handleAddCountry = (country: string) => {
-		const serchedCountry = unvisitedList?.find(
-			item => country === item?.nameEN || country === item?.namePL,
-		)
+		try {
+			const serchedCountry = unvisitedList?.find(
+				item => country === item?.nameEN || country === item?.namePL,
+			)
 
-		addRequest(serchedCountry?.code as string, serchedCountry?.nameEN as string)
+			setCountry(serchedCountry?.code as string, serchedCountry?.nameEN as string)
 
-		fetchCountriesList()
+			toastNotify(t('toasts.add.country'), 'success')
+
+			fetchCountriesList()
+		} catch {
+			toastNotify(t('toasts.error'), 'error')
+		} finally {
+			setLoading(false)
+		}
 	}
 
 	return (
