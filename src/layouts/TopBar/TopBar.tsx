@@ -83,7 +83,7 @@ export const TopBar = () => {
 
 					<DropdownItem
 						key={uuid()}
-						to={ROUTES.HELP}
+						to={`mailto:${t('help.email')}?subject=${t('help.subject')}&body=${t('help.body')}`}
 					>
 						<HiQuestionMarkCircle /> {t('word.help')}
 					</DropdownItem>

@@ -1,4 +1,4 @@
-import { Button, Image, Paragraph, Spacer } from '@jaroslaw91/novelui'
+import { Button, Image, Paragraph, Spacer, modalShow } from '@jaroslaw91/novelui'
 import { Input } from 'components'
 import { auth } from 'config/firebase'
 import { ChangeEvent, useRef, useState } from 'react'
@@ -72,6 +72,17 @@ export const User = () => {
 		setLoading(prev => ({ ...prev, remove: false }))
 	}
 
+	const showRemoveModal = () =>
+		modalShow({
+			id: 'remove-country',
+			title: t('modal.remove.image'),
+			content: t('modal.remove.image.content'),
+			actionName: t('word.remove'),
+			cancelName: t('word.cancel'),
+			action: () => handleRemoveUserAvatar(),
+			variant: 'alert',
+		})
+
 	return (
 		<UserComponent>
 			<Paragraph type="label">{t('word.image')}</Paragraph>
@@ -103,8 +114,8 @@ export const User = () => {
 				</Button>
 
 				<Button
-					variant="alert"
-					action={handleRemoveUserAvatar}
+					variant="secondary"
+					action={showRemoveModal}
 					hasOnlyIcon
 					isLoading={isLoading.remove}
 					isDisabled={isLoading.remove}

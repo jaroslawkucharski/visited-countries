@@ -1,4 +1,5 @@
 import { Break, Button, Spacer } from '@jaroslaw91/novelui'
+import { Link } from 'components'
 import { useThemeColorContext } from 'context/ThemeContext'
 import { useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
@@ -47,10 +48,7 @@ export const Mobile = () => {
 
 			<Break />
 
-			<Spacer
-				type="vertical"
-				space="big"
-			/>
+			<Spacer type="vertical" />
 			<MobileComponent>
 				<Button
 					variant="secondary"
@@ -71,12 +69,25 @@ export const Mobile = () => {
 
 			<Spacer type="vertical" />
 
+			<Break />
+
+			<Spacer
+				type="vertical"
+				space="big"
+			/>
+
 			<Button
 				action={handleLogout}
 				hasFullWidth
 			>
 				{t('word.logout')}
 			</Button>
+
+			<Spacer type="vertical" />
+
+			<Link to={`mailto:${t('help.email')}?subject=${t('help.subject')}&body=${t('help.body')}`}>
+				{t('word.help')}
+			</Link>
 		</>
 	)
 }

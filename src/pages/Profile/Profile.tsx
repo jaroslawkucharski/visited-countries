@@ -40,7 +40,7 @@ export const Profile = () => {
 			<Spacer type="vertical" />
 
 			<Button
-				variant="alert"
+				variant="secondary"
 				action={showRemoveModal}
 				hasFullWidth
 			>
