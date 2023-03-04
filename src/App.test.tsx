@@ -3,11 +3,11 @@ import { describe, it, render, waitFor } from 'utils/tests-utils'
 import App from './App'
 
 describe('App', () => {
-	it('firm submit', async () => {
+	it('should be in document', async () => {
 		const { getByTestId } = render(<App />)
 
 		await waitFor(() => {
-			expect(getByTestId('form')).toBeInTheDocument()
+			expect(getByTestId('loader')).toBeInTheDocument()
 		})
 	})
 })

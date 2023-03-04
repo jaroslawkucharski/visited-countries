@@ -14,7 +14,7 @@ export const SelectCountries = () => {
 
 	const { unvisitedList, fetchCountriesList } = useCountriesListContext()
 
-	const options = unvisitedList.map(country => {
+	const options = unvisitedList?.map(country => {
 		const name = languageDetector(country?.nameEN, country?.namePL)
 
 		return {

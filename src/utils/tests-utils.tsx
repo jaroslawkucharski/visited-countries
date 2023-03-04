@@ -3,6 +3,7 @@
 /* eslint-disable @typescript-eslint/ban-types */
 
 /* eslint-disable import/no-extraneous-dependencies */
+import { Theme } from '@jaroslaw91/novelui'
 import { configureStore } from '@reduxjs/toolkit'
 import { RenderOptions, render as rtlRender, screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
@@ -42,11 +43,13 @@ const render = (
 			<I18nextProvider i18n={i18n}>
 				<MemoryRouter initialEntries={['/']}>
 					<ThemeColorProvider>
-						<ThemeProvider theme={darkTheme}>
-							<AuthProvider>
-								<CountriesListProvider>{children}</CountriesListProvider>
-							</AuthProvider>
-						</ThemeProvider>
+						<Theme theme="dark">
+							<ThemeProvider theme={darkTheme}>
+								<AuthProvider>
+									<CountriesListProvider>{children}</CountriesListProvider>
+								</AuthProvider>
+							</ThemeProvider>
+						</Theme>
 					</ThemeColorProvider>
 				</MemoryRouter>
 			</I18nextProvider>

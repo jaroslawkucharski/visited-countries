@@ -58,7 +58,7 @@ export const VisitedCountries = () => {
 			/>
 
 			<ul>
-				{visitedList.map(country => {
+				{visitedList?.map(country => {
 					const name = languageDetector(country?.nameEN, country?.namePL)
 
 					return (
