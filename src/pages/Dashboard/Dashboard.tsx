@@ -1,11 +1,10 @@
-import { Spacer, modalShow } from '@jaroslaw91/novelui'
+import { Spacer, modalShow, toastNotify } from '@jaroslaw91/novelui'
 import topology from 'assets/topology.json'
 import { CountriesListType, useCountriesListContext } from 'context/CountriesListContext'
 import { useTranslation } from 'react-i18next'
 import { ComposableMap, Geographies, Geography, ZoomableGroup } from 'react-simple-maps'
 import { removeCountry, setCountry } from 'services/user'
 
-import { useService } from 'hooks/useService'
 import { useWindowSize } from 'hooks/useWindowSize'
 
 import { LOCALES } from 'constants/locales'
@@ -16,26 +15,28 @@ export const Dashboard = () => {
 
 	const { visitedList, visitedCountries, fetchCountriesList } = useCountriesListContext()
 
-	const { request: addRequest } = useService({
-		service: setCountry,
-		successToast: t('toasts.add.country'),
-	})
+	const handleAddCountry = async (code: string, country: string) => {
+		try {
+			await setCountry(code, country)
 
-	const { request: removeRequest } = useService({
-		service: removeCountry,
-		successToast: t('toasts.remove.country'),
-	})
+			toastNotify(t('toasts.add.country'), 'success')
 
-	const handleAddCountry = (code: string, country: string) => {
-		addRequest(code, country)
-
-		fetchCountriesList()
+			fetchCountriesList()
+		} catch {
+			toastNotify(t('toasts.error'), 'error')
+		}
 	}
 
-	const handleRemoveCountry = (uid: string) => {
-		removeRequest(uid)
+	const handleRemoveCountry = async (uid: string) => {
+		try {
+			await removeCountry(uid)
 
-		fetchCountriesList()
+			toastNotify(t('toasts.remove.country'), 'success')
+
+			fetchCountriesList()
+		} catch {
+			toastNotify(t('toasts.error'), 'error')
+		}
 	}
 
 	const showRemoveModal = (code: string, countryData: CountriesListType[]) =>
