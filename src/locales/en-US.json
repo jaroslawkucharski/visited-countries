@@ -50,7 +50,9 @@
 	"word.unvisited.list": "Your unvisited list:",
 	"word.edit.data": "Save your data",
 	"word.image": "User image",
-	"word.upload": "Upload",
+	"word.upload": "Upload image",
+	"word.remove.account": "Remove account",
+	"modal.remove.account.content": "Are you sure you want to delete your account? If you delete your account, you will lose complete access to your data, which will be permanently deleted: data about visited countries, profile picture, and user data (username, email, password).",
 	"errors": {
 		"empty.field": "Field is required",
 		"email": "Invalid email",
