@@ -5,12 +5,12 @@ import { HiTrash } from 'react-icons/hi2'
 import { removeCountry } from 'services/user'
 import { v4 as uuid } from 'uuid'
 
-import { LOCALES } from 'constants/locales'
+import { languageDetector } from 'helpers/languageDetector'
 
 import { IconComponent, ListItemComponent } from '../DashboardList.styles'
 
 export const VisitedCountries = () => {
-	const { t, i18n } = useTranslation()
+	const { t } = useTranslation()
 
 	const { visitedList, fetchCountriesList } = useCountriesListContext()
 
@@ -59,7 +59,7 @@ export const VisitedCountries = () => {
 
 			<ul>
 				{visitedList.map(country => {
-					const name = i18n.language === LOCALES.EN ? country?.nameEN : country?.namePL
+					const name = languageDetector(country?.nameEN, country?.namePL)
 
 					return (
 						<ListItemComponent key={uuid()}>

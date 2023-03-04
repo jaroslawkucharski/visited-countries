@@ -5,12 +5,12 @@ import { useTranslation } from 'react-i18next'
 import { ComposableMap, Geographies, Geography, ZoomableGroup } from 'react-simple-maps'
 import { removeCountry, setCountry } from 'services/user'
 
+import { languageDetector } from 'helpers/languageDetector'
+
 import { useWindowSize } from 'hooks/useWindowSize'
 
-import { LOCALES } from 'constants/locales'
-
 export const Dashboard = () => {
-	const { t, i18n } = useTranslation()
+	const { t } = useTranslation()
 	const { isMobile } = useWindowSize()
 
 	const { visitedList, visitedCountries, fetchCountriesList } = useCountriesListContext()
@@ -51,9 +51,10 @@ export const Dashboard = () => {
 						space="tiny"
 					/>
 
-					{`${countryData[0].icon} ${
-						i18n.language === LOCALES.EN ? countryData[0].nameEN : countryData[0].namePL
-					}`}
+					{`${countryData[0].icon} ${languageDetector(
+						countryData[0].nameEN,
+						countryData[0].namePL,
+					)}`}
 				</>
 			),
 			actionName: t('word.remove'),

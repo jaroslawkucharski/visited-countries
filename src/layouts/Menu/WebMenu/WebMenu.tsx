@@ -1,12 +1,12 @@
-import { Button, Image, Spacer } from '@jaroslaw91/novelui'
-import en from 'assets/images/locales/en.svg'
-import pl from 'assets/images/locales/pl.svg'
+import { Button, Spacer } from '@jaroslaw91/novelui'
 import { useThemeColorContext } from 'context/ThemeContext'
 import { ErrorBoundary } from 'layouts'
 import { DashboardList } from 'pages'
 import { useCallback, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { HiChevronDoubleLeft, HiChevronDoubleRight, HiMoon, HiSun } from 'react-icons/hi2'
+
+import { getLanguageImage } from 'helpers/languageDetector'
 
 import { LOCALES } from 'constants/locales'
 
@@ -67,19 +67,7 @@ export const WebMenu = () => {
 					action={handleLanguageChangeToPL}
 					hasOnlyIcon
 				>
-					{i18n.language === LOCALES.EN ? (
-						<Image
-							src={en}
-							width={16}
-							alt="en"
-						/>
-					) : (
-						<Image
-							src={pl}
-							width={16}
-							alt="pl"
-						/>
-					)}
+					{getLanguageImage()}
 				</Button>
 			</div>
 		</WebMenuComponent>

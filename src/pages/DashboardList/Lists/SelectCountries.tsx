@@ -5,21 +5,21 @@ import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { setCountry } from 'services/user'
 
-import { LOCALES } from 'constants/locales'
+import { languageDetector } from 'helpers/languageDetector'
 
 export const SelectCountries = () => {
-	const { t, i18n } = useTranslation()
+	const { t } = useTranslation()
 
 	const [isLoading, setLoading] = useState(false)
 
 	const { unvisitedList, fetchCountriesList } = useCountriesListContext()
 
 	const options = unvisitedList.map(country => {
-		const name = i18n.language === LOCALES.EN ? country?.nameEN : country?.namePL
+		const name = languageDetector(country?.nameEN, country?.namePL)
 
 		return {
 			icon: country?.icon || '',
-			name: name || '',
+			name: String(name) || '',
 			id: country?.code || '',
 		}
 	})
