@@ -2,11 +2,6 @@
 
 # <img src='./src/assets/images/logo_dark.svg' width='400px' />
 
-<img src='./coverage/badges/badge-statements.svg' />
-<img src='./coverage/badges/badge-branches.svg' />
-<img src='./coverage/badges/badge-functions.svg' />
-<img src='./coverage/badges/badge-lines.svg' />
-
 ##
 
 TECH<strong>STACK</strong>
@@ -116,21 +111,5 @@ APP<strong>CONFIG</strong>
 </div>
 
 <img src='./src/assets/images/mocks/mockup-app.png' />
-
-<br />
-<br />
-
-##
-
-TODO<strong>LIST</strong>
-
-- [x] removing a country from the list of countries
-- [x] adding a country to the list of countries
-- [x] adding country with Select
-- [x] add delete confirmation modal
-- [ ] complete the tests
-- [ ] code optimization
-- [ ] add profile update
-- [ ] add a Help tab
 
 </div>
