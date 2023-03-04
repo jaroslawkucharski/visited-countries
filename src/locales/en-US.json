@@ -53,6 +53,8 @@
 	"word.upload": "Upload image",
 	"word.remove.account": "Remove account",
 	"modal.remove.account.content": "Are you sure you want to delete your account? If you delete your account, you will lose complete access to your data, which will be permanently deleted: data about visited countries, profile picture, and user data (username, email, password).",
+	"modal.remove.image": "Remove image",
+	"modal.remove.image.content": "Are you sure you want to remove the profile picture?",
 	"errors": {
 		"empty.field": "Field is required",
 		"email": "Invalid email",
@@ -68,5 +70,10 @@
 		"exist.number": "The phone number already exists in the database",
 		"add.country": "New country added",
 		"remove.country": "Country removed from list"
+	},
+	"help": {
+		"email": "jaroslawkucharski91@gmail.com",
+		"subject": "VisitedCountry - Help",
+		"body": "Hi! How can we help you?"
 	}
 }

@@ -52,6 +52,8 @@
 	"word.upload": "Prześlij zdjęcie",
 	"word.remove.account": "Usuń konto",
 	"modal.remove.account.content": "Czy na pewno chcesz usunąć swoje konto? W przypadku usunięcia konta stracisz całkowity dostęp do swoich danych, które zostaną trwale usunięte: dane o odwiedzonych krajach, zdjęcie profilowe oraz dane użytkownika (nazwa, mail, hasło).",
+	"modal.remove.image": "Usuń zdjęcie",
+	"modal.remove.image.content": "Czy na pewno chcesz usunąć zdjęcie profilowe?",
 	"errors": {
 		"empty.field": "Pole obowiązkowe",
 		"email": "Niepoprawny adres email",
@@ -67,5 +69,10 @@
 		"exist.number": "Numer telefonu istnieje już w bazie",
 		"add.country": "Dodano nowy kraj",
 		"remove.country": "Usunięto kraj z listy"
+	},
+	"help": {
+		"email": "jaroslawkucharski91@gmail.com",
+		"subject": "VisitedCountry - Pomoc",
+		"body": "Cześć! W czym możemy Ci pomóc?"
 	}
 }
