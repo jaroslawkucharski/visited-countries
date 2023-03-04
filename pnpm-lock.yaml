@@ -5,7 +5,7 @@ specifiers:
   '@capacitor/cli': ^4.7.0
   '@capacitor/core': ^4.6.3
   '@capacitor/ios': ^4.6.3
-  '@jaroslaw91/novelui': ^1.1.10
+  '@jaroslaw91/novelui': ^1.1.30
   '@reduxjs/toolkit': ^1.9.1
   '@sentry/browser': ^7.30.0
   '@sentry/react': ^7.30.0
@@ -60,6 +60,7 @@ specifiers:
   react-router-dom: ^6.8.1
   react-simple-maps: ^3.0.0
   styled-components: ^5.3.6
+  swr: ^2.0.4
   typescript: ^4.9.5
   uuid: ^9.0.0
   vite: ^4.1.4
@@ -72,7 +73,7 @@ dependencies:
   '@capacitor/android': 4.7.0_@capacitor+core@4.7.0
   '@capacitor/core': 4.7.0
   '@capacitor/ios': 4.7.0_@capacitor+core@4.7.0
-  '@jaroslaw91/novelui': 1.1.10_biqbaboplfbrettd7655fr4n2y
+  '@jaroslaw91/novelui': 1.1.30_biqbaboplfbrettd7655fr4n2y
   '@reduxjs/toolkit': 1.9.3_k4ae6lp43ej6mezo3ztvx6pykq
   '@sentry/browser': 7.38.0
   '@sentry/react': 7.38.0_react@18.2.0
@@ -132,6 +133,7 @@ devDependencies:
   jest-coverage-badges: 1.1.2
   jsdom: 21.1.0
   prettier: 2.8.4
+  swr: 2.0.4_react@18.2.0
   typescript: 4.9.5
   vite: 4.1.4_@types+node@18.14.1
   vite-plugin-pwa: 0.14.4_vite@4.1.4
@@ -2347,8 +2349,8 @@ packages:
     engines: {node: '>=8'}
     dev: true
 
-  /@jaroslaw91/novelui/1.1.10_biqbaboplfbrettd7655fr4n2y:
-    resolution: {integrity: sha512-xyHMHtNzw4BFxHEnAwN53WwzWs8xWaT0nVYLIH7lYkf388D7GvbRlwFjVMzhl5MTGamoRi3zfa9rt0vGof4EzA==}
+  /@jaroslaw91/novelui/1.1.30_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-rEtjGL3DvVQP/TAcsYdw59VhZ1wSLzrYG632u6RkJtv/daz63hYmvUkRVoxegfUsdd6K58r9h4RzVXCfB5rnGQ==}
     peerDependencies:
       react: ^18.2.0
       react-dom: ^18.2.0
@@ -8197,6 +8199,16 @@ packages:
     engines: {node: '>= 0.4'}
     dev: true
 
+  /swr/2.0.4_react@18.2.0:
+    resolution: {integrity: sha512-4GUiTjknRUVuw4MWUHR7mzJ9G/DWL+yZz/TgWDfiA0OZ9tL6qyrTkN2wPeboBpL3OJTkej3pexh3mWCnv8cFkQ==}
+    engines: {pnpm: '7'}
+    peerDependencies:
+      react: ^16.11.0 || ^17.0.0 || ^18.0.0
+    dependencies:
+      react: 18.2.0
+      use-sync-external-store: 1.2.0_react@18.2.0
+    dev: true
+
   /symbol-tree/3.2.4:
     resolution: {integrity: sha512-9QNk5KwDF+Bvz+PyObkmSYjI5ksVUYtjW7AU22r2NKcfLJcXp96hkDWU3+XndOsUb+AQ9QhfzfCT2O+CNWT5Tw==}
     dev: true
@@ -8555,7 +8567,6 @@ packages:
       react: ^16.8.0 || ^17.0.0 || ^18.0.0
     dependencies:
       react: 18.2.0
-    dev: false
 
   /util-deprecate/1.0.2:
     resolution: {integrity: sha512-EPD5q1uXyFxJpCrLnCc1nHnq3gOa6DZBocAIiI2TaSCA7VCJ1UJDMagCzIkXNsUYfD1daK//LTEQ8xiIbrHtcw==}
