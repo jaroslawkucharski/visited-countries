@@ -16,6 +16,7 @@ export const DropdownMenuComponent = styled.div`
 	border-radius: 0 0 15px 15px;
 	animation: animation-menu 0.2s;
 	transform-origin: top;
+	z-index: 1;
 
 	@keyframes animation-menu {
 		0% {
