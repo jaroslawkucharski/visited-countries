@@ -5,12 +5,15 @@ export const UserComponent = styled.div`
 `
 
 export const ImageComponent = styled.div`
-	${({ theme: { spaces, colors } }) =>
+	width: 100%;
+	display: flex;
+	justify-content: center;
+`
+
+export const AvatarComponent = styled.div`
+	${({ theme: { colors } }) =>
 		css`
-			width: 100%;
-			display: flex;
-			justify-content: center;
-			// gap: ${spaces.tiny};
+			min-width: 100px;
 
 			> .empty-avatar {
 				background: ${colors.main};

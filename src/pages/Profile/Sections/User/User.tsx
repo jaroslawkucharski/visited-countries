@@ -9,7 +9,7 @@ import { removeUserAvatar, setUserAvatar } from 'services/user'
 
 import { FILE_SIZES } from 'constants/fileSizes'
 
-import { ImageComponent, UserComponent } from './User.styles'
+import { AvatarComponent, ImageComponent, UserComponent } from './User.styles'
 
 export const User = () => {
 	const { t } = useTranslation()
@@ -85,17 +85,19 @@ export const User = () => {
 	return (
 		<UserComponent>
 			<ImageComponent>
-				{avatarImage ? (
-					<Image
-						src={avatarImage}
-						alt={t('word.avatar')}
-						variant="avatar"
-						width={100}
-						height={100}
-					/>
-				) : (
-					<HiUserCircle className="empty-avatar" />
-				)}
+				<AvatarComponent>
+					{avatarImage ? (
+						<Image
+							src={avatarImage}
+							alt={t('word.avatar')}
+							variant="avatar"
+							width={100}
+							height={100}
+						/>
+					) : (
+						<HiUserCircle className="empty-avatar" />
+					)}
+				</AvatarComponent>
 
 				<Spacer
 					type="horizontal"
@@ -111,7 +113,7 @@ export const User = () => {
 
 				<Spacer
 					type="horizontal"
-					space="tiny"
+					space="small"
 				/>
 
 				<Paragraph
