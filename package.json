@@ -1,7 +1,7 @@
 {
 	"name": "visitedcountries",
 	"private": true,
-	"version": "1.0.14",
+	"version": "1.0.15",
 	"type": "module",
 	"scripts": {
 		"dev": "vite",
@@ -20,7 +20,7 @@
 		"@capacitor/android": "^4.6.3",
 		"@capacitor/core": "^4.6.3",
 		"@capacitor/ios": "^4.6.3",
-		"@jaroslaw91/novelui": "^1.1.41",
+		"@jaroslaw91/novelui": "^1.1.42",
 		"@reduxjs/toolkit": "^1.9.1",
 		"@sentry/browser": "^7.30.0",
 		"@sentry/react": "^7.30.0",

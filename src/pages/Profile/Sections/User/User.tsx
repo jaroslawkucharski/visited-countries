@@ -1,11 +1,10 @@
 import { Button, Image, Paragraph, Spacer, modalShow } from '@jaroslaw91/novelui'
-import avatar from 'assets/images/avatar.jpeg'
 import { Input } from 'components'
 import { auth } from 'config/firebase'
 import { useCountriesListContext } from 'context/CountriesListContext'
 import { ChangeEvent, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { HiCloudArrowUp, HiTrash } from 'react-icons/hi2'
+import { HiCloudArrowUp, HiTrash, HiUserCircle } from 'react-icons/hi2'
 import { removeUserAvatar, setUserAvatar } from 'services/user'
 
 import { FILE_SIZES } from 'constants/fileSizes'
@@ -19,7 +18,7 @@ export const User = () => {
 
 	const [isError, setError] = useState(false)
 	const [avatarImage, setAvatarImage] = useState(currentUser?.photoURL)
-	const [isLoading, setLoading] = useState({ upload: false, remove: false })
+	const [isLoading, setLoading] = useState(false)
 
 	const inputRef = useRef(null)
 
@@ -37,7 +36,7 @@ export const User = () => {
 		const target = event.currentTarget as HTMLInputElement
 
 		if (target.files !== null) {
-			setLoading(prev => ({ ...prev, upload: true }))
+			setLoading(true)
 
 			const file = target.files[0]
 			const fileSize = file.size
@@ -45,7 +44,7 @@ export const User = () => {
 
 			if (size > FILE_SIZES.TWO_MB) {
 				setError(true)
-				setLoading(prev => ({ ...prev, upload: false }))
+				setLoading(false)
 
 				return
 			}
@@ -62,18 +61,14 @@ export const User = () => {
 
 			reader.readAsDataURL(file)
 
-			setLoading(prev => ({ ...prev, upload: false }))
+			setLoading(false)
 		}
 	}
 
 	const handleRemoveUserAvatar = async () => {
-		setLoading(prev => ({ ...prev, remove: true }))
-
 		await removeUserAvatar()
 
 		setAvatarImage(null)
-
-		setLoading(prev => ({ ...prev, remove: false }))
 	}
 
 	const showRemoveModal = () =>
@@ -90,12 +85,21 @@ export const User = () => {
 	return (
 		<UserComponent>
 			<ImageComponent>
-				<Image
-					src={avatarImage || avatar}
-					alt={t('word.avatar')}
-					variant="avatar"
-					width={100}
-					height={100}
+				{avatarImage ? (
+					<Image
+						src={avatarImage}
+						alt={t('word.avatar')}
+						variant="avatar"
+						width={100}
+						height={100}
+					/>
+				) : (
+					<HiUserCircle className="empty-avatar" />
+				)}
+
+				<Spacer
+					type="horizontal"
+					space="tiny"
 				/>
 
 				<Paragraph
@@ -130,8 +134,8 @@ export const User = () => {
 			<ImageComponent>
 				<Button
 					action={handleUploadImage}
-					isLoading={isLoading.upload}
-					isDisabled={isLoading.upload}
+					isLoading={isLoading}
+					isDisabled={isLoading}
 					hasFullWidth
 				>
 					<HiCloudArrowUp />
@@ -139,15 +143,22 @@ export const User = () => {
 					{t('word.upload')}
 				</Button>
 
-				<Button
-					variant="secondary"
-					action={showRemoveModal}
-					hasOnlyIcon
-					isLoading={isLoading.remove}
-					isDisabled={isLoading.remove}
-				>
-					<HiTrash />
-				</Button>
+				{avatarImage && (
+					<>
+						<Spacer
+							type="horizontal"
+							space="tiny"
+						/>
+
+						<Button
+							variant="secondary"
+							action={showRemoveModal}
+							hasOnlyIcon
+						>
+							<HiTrash />
+						</Button>
+					</>
+				)}
 			</ImageComponent>
 
 			<Spacer
