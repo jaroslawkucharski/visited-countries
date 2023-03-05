@@ -9,7 +9,7 @@ export const ImageComponent = styled.div`
 		css`
 			width: 100%;
 			display: flex;
-			justify-content: space-between;
+			justify-content: center;
 			gap: ${spaces.tiny};
 		`}
 `

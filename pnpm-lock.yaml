@@ -5,7 +5,7 @@ specifiers:
   '@capacitor/cli': ^4.7.0
   '@capacitor/core': ^4.6.3
   '@capacitor/ios': ^4.6.3
-  '@jaroslaw91/novelui': ^1.1.38
+  '@jaroslaw91/novelui': ^1.1.41
   '@reduxjs/toolkit': ^1.9.1
   '@sentry/browser': ^7.30.0
   '@sentry/react': ^7.30.0
@@ -73,7 +73,7 @@ dependencies:
   '@capacitor/android': 4.7.0_@capacitor+core@4.7.0
   '@capacitor/core': 4.7.0
   '@capacitor/ios': 4.7.0_@capacitor+core@4.7.0
-  '@jaroslaw91/novelui': 1.1.38_biqbaboplfbrettd7655fr4n2y
+  '@jaroslaw91/novelui': 1.1.41_biqbaboplfbrettd7655fr4n2y
   '@reduxjs/toolkit': 1.9.3_k4ae6lp43ej6mezo3ztvx6pykq
   '@sentry/browser': 7.40.0
   '@sentry/react': 7.40.0_react@18.2.0
@@ -2354,8 +2354,8 @@ packages:
     engines: {node: '>=8'}
     dev: true
 
-  /@jaroslaw91/novelui/1.1.38_biqbaboplfbrettd7655fr4n2y:
-    resolution: {integrity: sha512-48JCCvyh3Sg7LjA4sn9PA9Q5S7QBC7bYXOkvBY92sd7KfwM8bu6B4vZWSeJmiv/s3F9vbtkded0QXFNN6H0T3g==}
+  /@jaroslaw91/novelui/1.1.41_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-RKOL5oFxOA7nA6jgto1Him888lmICD8uPf2kTfI3dnVVBm8Od+ByYeaE+HturENO+r3DHoIoCFEQQ+MgGFkILQ==}
     peerDependencies:
       react: ^18.2.0
       react-dom: ^18.2.0

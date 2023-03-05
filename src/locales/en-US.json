@@ -55,6 +55,7 @@
 	"modal.remove.account.content": "Are you sure you want to delete your account? If you delete your account, you will lose complete access to your data, which will be permanently deleted: data about visited countries, profile picture, and user data (username, email, password).",
 	"modal.remove.image": "Remove image",
 	"modal.remove.image.content": "Are you sure you want to remove the profile picture?",
+	"word.visited": "Visited countries",
 	"errors": {
 		"empty.field": "Field is required",
 		"email": "Invalid email",

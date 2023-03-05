@@ -54,6 +54,7 @@
 	"modal.remove.account.content": "Czy na pewno chcesz usunąć swoje konto? W przypadku usunięcia konta stracisz całkowity dostęp do swoich danych, które zostaną trwale usunięte: dane o odwiedzonych krajach, zdjęcie profilowe oraz dane użytkownika (nazwa, mail, hasło).",
 	"modal.remove.image": "Usuń zdjęcie",
 	"modal.remove.image.content": "Czy na pewno chcesz usunąć zdjęcie profilowe?",
+	"word.visited": "Odwiedzone kraje",
 	"errors": {
 		"empty.field": "Pole obowiązkowe",
 		"email": "Niepoprawny adres email",

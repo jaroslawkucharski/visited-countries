@@ -1,6 +1,8 @@
 import { Button, Image, Paragraph, Spacer, modalShow } from '@jaroslaw91/novelui'
+import avatar from 'assets/images/avatar.jpeg'
 import { Input } from 'components'
 import { auth } from 'config/firebase'
+import { useCountriesListContext } from 'context/CountriesListContext'
 import { ChangeEvent, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { HiCloudArrowUp, HiTrash } from 'react-icons/hi2'
@@ -20,6 +22,8 @@ export const User = () => {
 	const [isLoading, setLoading] = useState({ upload: false, remove: false })
 
 	const inputRef = useRef(null)
+
+	const { visitedList } = useCountriesListContext()
 
 	const handleUploadImage = () => {
 		if (inputRef.current !== null) {
@@ -85,6 +89,37 @@ export const User = () => {
 
 	return (
 		<UserComponent>
+			<ImageComponent>
+				<Image
+					src={avatarImage || avatar}
+					alt={t('word.avatar')}
+					variant="avatar"
+					width={100}
+					height={100}
+				/>
+
+				<Paragraph
+					size="big"
+					align="right"
+				>
+					{t('word.visited')}
+				</Paragraph>
+
+				<Spacer
+					type="horizontal"
+					space="tiny"
+				/>
+
+				<Paragraph
+					size="large"
+					align="center"
+				>
+					{visitedList.length}
+				</Paragraph>
+			</ImageComponent>
+
+			<Spacer type="vertical" />
+
 			<Paragraph type="label">{t('word.image')}</Paragraph>
 
 			<Spacer
@@ -93,15 +128,6 @@ export const User = () => {
 			/>
 
 			<ImageComponent>
-				{avatarImage && (
-					<Image
-						src={avatarImage}
-						alt={t('word.avatar')}
-						variant="avatar"
-						width={44}
-						height={44}
-					/>
-				)}
 				<Button
 					action={handleUploadImage}
 					isLoading={isLoading.upload}
