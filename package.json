@@ -13,8 +13,8 @@
 		"badges": "pnpm coverage && jest-coverage-badges --output ./coverage/badges",
 		"lint": "eslint --fix ./src",
 		"format": "prettier --write ./src",
-		"ios": "rm -rf ./ios && npx cap add ios",
-		"android": "rm -rf ./android && npx cap add android"
+		"ios": "rm -rf ./ios && npx cap add ios && npx cap open ios",
+		"android": "rm -rf ./android && npx cap add android && npx cap open android"
 	},
 	"dependencies": {
 		"@capacitor/android": "^4.6.3",
