@@ -14,5 +14,6 @@ export const MobileMenuComponent = styled.div`
 			bottom: 0;
 			gap: 20px;
 			font-size: 2em;
+			z-index: 1;
 		`}
 `
