@@ -5,7 +5,8 @@
 	"type": "module",
 	"scripts": {
 		"dev": "vite",
-		"build": "yarn version --patch && tsc && pnpm badges && rm -rf ./dist && vite build",
+		"build": "vite build",
+		"deploy": "yarn version --patch && tsc && pnpm badges && rm -rf ./dist && vite build",
 		"preview": "vite preview",
 		"test": "vitest",
 		"cypress": "cypress open",
