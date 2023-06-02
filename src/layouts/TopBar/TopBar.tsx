@@ -1,7 +1,6 @@
-import { Break, Button, Image } from 'components'
 import LogoDark from 'assets/images/logo_dark.svg'
 import LogoLight from 'assets/images/logo_light.svg'
-import { Dropdown, DropdownItem } from 'components'
+import { Break, Button, Dropdown, DropdownItem, Image } from 'components'
 import { auth } from 'config/firebase'
 import { useAuthContext } from 'context/AuthContext'
 import { useThemeColorContext } from 'context/ThemeContext'
@@ -57,14 +56,14 @@ export const TopBar = () => {
 				<SettingsComponent>
 					<Button
 						variant="primary"
-						action={handleSignIn}
+						onClick={handleSignIn}
 						data-testid="button-signin"
 					>
 						{t('word.signin')}
 					</Button>
 					<Button
 						variant="secondary"
-						action={handleSignUp}
+						onClick={handleSignUp}
 						data-testid="button-signup"
 					>
 						{t('word.signup')}

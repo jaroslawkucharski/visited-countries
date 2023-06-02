@@ -28,7 +28,7 @@ export const ErrorFallback = () => {
 			/>
 
 			<Button
-				action={handleRefresh}
+				onClick={handleRefresh}
 				data-testid="button-refresh"
 			>
 				<HiRefresh />

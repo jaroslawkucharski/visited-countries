@@ -1,47 +1,49 @@
-import { HiCheckBadge } from 'react-icons/hi2'
+import { render, waitFor } from 'utils/tests-utils'
 
-import { describe, it, render, waitFor } from '../../utils/tests-utils'
 import { Button } from './Button'
 
 describe('components/Button', () => {
-	it('should be variant primary', async () => {
-		const { getByTestId } = render(<Button>Click</Button>)
+	it('it should render', async () => {
+		const { getByTestId } = render(<Button>Button</Button>)
 
 		await waitFor(() => {
 			expect(getByTestId('button')).toBeInTheDocument()
-		})
-	})
-
-	it('should be loading', async () => {
-		const { getByTestId } = render(<Button isLoading>Click</Button>)
-
-		await waitFor(() => {
-			expect(getByTestId('button-loader')).toBeInTheDocument()
 		})
 	})
 
 	it('should have full width', async () => {
-		const { getByTestId } = render(<Button hasFullWidth>Click</Button>)
+		const { getByTestId } = render(<Button hasFullWidth>Button</Button>)
 
 		await waitFor(() => {
 			expect(getByTestId('button')).toBeInTheDocument()
 		})
 	})
 
-	it('should have only icon', async () => {
+	it('should have secondary variant', async () => {
+		const { getByTestId } = render(<Button variant="secondary">Button</Button>)
+
+		await waitFor(() => {
+			expect(getByTestId('button')).toBeInTheDocument()
+		})
+	})
+
+	it('it should load ', async () => {
+		const { getByTestId } = render(<Button isLoading>Button</Button>)
+
+		await waitFor(() => {
+			expect(getByTestId('button')).toBeInTheDocument()
+		})
+	})
+
+	it('it should load and have secondary variant', async () => {
 		const { getByTestId } = render(
-			<Button hasOnlyIcon>
-				<HiCheckBadge />
+			<Button
+				variant="secondary"
+				isLoading
+			>
+				Button
 			</Button>,
 		)
-
-		await waitFor(() => {
-			expect(getByTestId('button')).toBeInTheDocument()
-		})
-	})
-
-	it('should be dropdown', async () => {
-		const { getByTestId } = render(<Button isDropdown>Click</Button>)
 
 		await waitFor(() => {
 			expect(getByTestId('button')).toBeInTheDocument()

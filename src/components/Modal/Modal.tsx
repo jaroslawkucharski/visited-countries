@@ -91,14 +91,14 @@ export const Modal: FC<ModalProps & NiceModalHocProps> = NiceModal.create(
 					<ModalActionsComponent>
 						<Button
 							variant="secondary"
-							action={closeModal}
+							onClick={closeModal}
 						>
 							{cancelName}
 						</Button>
 
 						<Button
 							variant={variant}
-							action={handleAction}
+							onClick={handleAction}
 						>
 							{actionName}
 						</Button>

@@ -1,48 +1,66 @@
+import { Spinner } from 'components'
 import { FC, ReactEventHandler, ReactNode } from 'react'
 
-import { Loader } from '../Loader'
+import { colors } from 'styles/theme'
+
+// eslint-disable-next-line import/no-cycle
 import { ButtonComponent } from './Button.styles'
 
-export interface ButtonProps {
-	variant?: 'primary' | 'secondary' | 'alert'
-	type?: 'button' | 'submit' | 'reset'
+export type Variants = 'primary' | 'secondary' | 'icon'
+
+export interface CommonButtonProps {
+	variant?: Variants
 	children: ReactNode
-	action?: ReactEventHandler<HTMLButtonElement>
+	type?: 'button' | 'submit' | 'reset'
+	onClick?: ReactEventHandler<HTMLButtonElement>
+	width?: string
 	hasFullWidth?: boolean
-	hasOnlyIcon?: boolean
-	align?: 'center' | 'left'
 	isLoading?: boolean
 	isDisabled?: boolean
-	isDropdown?: boolean
 	'data-testid'?: string
 }
 
+type IconVariantProps = {
+	variant: 'icon'
+	width?: never
+	hasFullWidth?: never
+}
+
+type DefaultVariantProps = {
+	variant?: 'primary' | 'secondary'
+	width?: string | number
+	hasFullWidth?: boolean
+}
+
+type ConditionalProps = DefaultVariantProps | IconVariantProps
+
+export type ButtonProps = ConditionalProps & CommonButtonProps
+
 export const Button: FC<ButtonProps> = ({
 	variant = 'primary',
-	type = 'button',
 	children,
-	action,
+	type = 'button',
+	onClick,
+	width = 'auto',
 	hasFullWidth = false,
-	hasOnlyIcon = false,
-	align = 'center',
 	isLoading = false,
 	isDisabled = false,
-	isDropdown = false,
 	'data-testid': dataTestId = 'button',
+	...restProps
 }) => (
 	<ButtonComponent
 		variant={variant}
 		type={type}
-		onClick={action}
+		onClick={onClick}
+		width={width}
 		hasFullWidth={hasFullWidth}
-		hasOnlyIcon={hasOnlyIcon}
-		align={align}
+		isLoading={isLoading}
 		disabled={isDisabled}
-		isDropdown={isDropdown}
 		data-testid={dataTestId}
+		{...restProps}
 	>
-		{isLoading ? <Loader data-testid="button-loader" /> : children}
+		{isLoading ? <Spinner color={variant === 'secondary' ? '' : colors.dark100} /> : children}
 	</ButtonComponent>
 )
 
-Button.displayName = 'Button'
+Button.displayName = 'novelUI/Components/Button'

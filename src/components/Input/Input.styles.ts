@@ -32,7 +32,7 @@ export const InputWrapperComponent = styled.div`
 export const InputComponent = styled.input<InputComponentProps>`
 	min-height: 44px;
 	max-height: 44px;
-	border-radius: 15px;
+	border-radius: 5px;
 
 	${({ theme: { colors, spaces }, hasFullWidth, isError, isPassword, isDropdown, type }) =>
 		css`

@@ -1,5 +1,5 @@
-import { Button, Layout, Paragraph, Spacer } from 'components'
 import pageNotFound from 'assets/images/pages/404.jpg'
+import { Button, Layout, Paragraph, Spacer } from 'components'
 import { useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
 import { HiArrowLeft } from 'react-icons/hi2'
@@ -25,7 +25,7 @@ export const PageNotFound = () => {
 			/>
 
 			<Button
-				action={handleBack}
+				onClick={handleBack}
 				data-testid="button-back"
 			>
 				<HiArrowLeft />

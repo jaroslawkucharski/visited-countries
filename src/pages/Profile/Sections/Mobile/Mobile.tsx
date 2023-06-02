@@ -1,5 +1,4 @@
-import { Break, Button, Spacer } from 'components'
-import { Link } from 'components'
+import { Break, Button, Link, Spacer } from 'components'
 import { useThemeColorContext } from 'context/ThemeContext'
 import { useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
@@ -51,17 +50,15 @@ export const Mobile = () => {
 			<Spacer type="vertical" />
 			<MobileComponent>
 				<Button
-					variant="secondary"
-					action={handleThemeColorChange}
-					hasOnlyIcon
+					variant="icon"
+					onClick={handleThemeColorChange}
 				>
 					{theme === 'dark' ? <HiSun /> : <HiMoon />}
 				</Button>
 
 				<Button
-					variant="secondary"
-					action={handleLanguageChangeToPL}
-					hasOnlyIcon
+					variant="icon"
+					onClick={handleLanguageChangeToPL}
 				>
 					{getLanguageImage()}
 				</Button>
@@ -77,7 +74,7 @@ export const Mobile = () => {
 			/>
 
 			<Button
-				action={handleLogout}
+				onClick={handleLogout}
 				hasFullWidth
 			>
 				{t('word.logout')}

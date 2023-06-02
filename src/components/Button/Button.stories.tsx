@@ -1,58 +1,81 @@
-import { ComponentMeta, ComponentStory } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react'
+import { AiFillLike } from 'react-icons/ai'
 
 import { Button } from './Button'
 
-export default {
-	title: 'Button',
+const meta: Meta<typeof Button> = {
+	title: 'Components/Button',
 	component: Button,
 	argTypes: {
-		variant: {
-			options: ['primary', 'secondary', 'alert'],
-			control: { type: 'radio' },
-		},
-		align: {
-			options: ['left', 'center'],
-			control: { type: 'radio' },
-		},
-		type: {
-			options: ['button', 'submit', 'reset'],
-			control: { type: 'radio' },
-		},
-		action: { action: 'clicked' },
-	},
-} as ComponentMeta<typeof Button>
-
-const Template: ComponentStory<typeof Button> = args => <Button {...args}>{args?.children}</Button>
-
-const Default = Template.bind({})
-Default.args = {
-	type: 'button',
-	hasFullWidth: false,
-	hasOnlyIcon: false,
-	align: 'center',
-	isLoading: false,
-	isDisabled: false,
-	isDropdown: false,
-	'data-testid': 'button',
+		borderRadius: {
+			control: {
+				type: 'range',
+				min: 0,
+				max: 20,
+				step: 1
+			}
+		}
+	}
 }
 
-export const Primary = Template.bind({})
-Primary.args = {
-	children: 'Button Primary',
-	variant: 'primary',
-	...Default.args,
+export default meta
+type Story = StoryObj<typeof Button>
+
+export const Primary: Story = {
+	args: {
+		variant: 'primary',
+		label: 'Button',
+		type: 'button',
+		onClick: () => console.log('Click!'),
+		width: 'auto',
+		hasFullWidth: false,
+		borderRadius: 0,
+		isLoading: false,
+		isDisabled: false,
+		'data-testid': 'button'
+	}
 }
 
-export const Secondary = Template.bind({})
-Secondary.args = {
-	children: 'Button Secondary',
-	variant: 'secondary',
-	...Default.args,
+export const PrimaryWithIcon: Story = {
+	args: {
+		variant: 'primary',
+		label: 'Button',
+		icon: <AiFillLike />,
+		type: 'button',
+		onClick: () => console.log('Click!'),
+		width: 'auto',
+		hasFullWidth: false,
+		borderRadius: 0,
+		isLoading: false,
+		isDisabled: false,
+		'data-testid': 'button'
+	}
 }
 
-export const Alert = Template.bind({})
-Alert.args = {
-	children: 'Button Alert',
-	variant: 'alert',
-	...Default.args,
+export const PrimaryOnlyIcon: Story = {
+	args: {
+		variant: 'icon',
+		icon: <AiFillLike />,
+		type: 'button',
+		onClick: () => console.log('Click!'),
+		borderRadius: 0,
+		isLoading: false,
+		isDisabled: false,
+		'data-testid': 'button'
+	}
+}
+
+export const Secondary: Story = {
+	args: {
+		variant: 'secondary',
+		label: 'Button',
+		type: 'button',
+		onClick: () => console.log('Click!'),
+		width: 'auto',
+		hasFullWidth: false,
+		borderRadius: 0,
+		isLoading: false,
+		isDisabled: false,
+		'data-testid': 'button'
+	}
 }

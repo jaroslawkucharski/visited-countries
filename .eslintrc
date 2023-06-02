@@ -32,5 +32,4 @@
 		"react/jsx-props-no-spreading": "off",
 		"@typescript-eslint/no-unused-expressions": "off"
 	}
-	// "ignorePropertyModificationsFor": ["state"]
 }

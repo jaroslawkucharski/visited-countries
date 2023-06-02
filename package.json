@@ -15,7 +15,9 @@
 		"lint": "eslint --fix ./src",
 		"format": "prettier --write ./src",
 		"ios": "rm -rf ./ios && npx cap add ios && npx cap open ios",
-		"android": "rm -rf ./android && npx cap add android && npx cap open android"
+		"android": "rm -rf ./android && npx cap add android && npx cap open android",
+		"storybook": "storybook dev -p ./static .storybook watch-css ./src 6006",
+		"build-storybook": "storybook build"
 	},
 	"dependencies": {
 		"@capacitor/android": "^4.6.3",

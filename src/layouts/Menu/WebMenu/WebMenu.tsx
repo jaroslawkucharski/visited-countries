@@ -33,9 +33,8 @@ export const WebMenu = () => {
 	return (
 		<WebMenuComponent>
 			<Button
-				variant="secondary"
-				action={handleOpenList}
-				hasOnlyIcon
+				variant="icon"
+				onClick={handleOpenList}
 			>
 				{isOpen ? <HiChevronDoubleLeft /> : <HiChevronDoubleRight />}
 			</Button>
@@ -50,9 +49,8 @@ export const WebMenu = () => {
 
 			<div>
 				<Button
-					variant="secondary"
-					action={handleThemeColorChange}
-					hasOnlyIcon
+					variant="icon"
+					onClick={handleThemeColorChange}
 				>
 					{theme === 'dark' ? <HiSun /> : <HiMoon />}
 				</Button>
@@ -63,9 +61,8 @@ export const WebMenu = () => {
 				/>
 
 				<Button
-					variant="secondary"
-					action={handleLanguageChangeToPL}
-					hasOnlyIcon
+					variant="icon"
+					onClick={handleLanguageChangeToPL}
 				>
 					{getLanguageImage()}
 				</Button>

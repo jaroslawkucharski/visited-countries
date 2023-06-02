@@ -1,5 +1,4 @@
-import { Button, Spacer } from 'components'
-import { Input } from 'components'
+import { Button, Input, Spacer } from 'components'
 import { auth } from 'config/firebase'
 import { useFormik } from 'formik'
 import { useCallback } from 'react'

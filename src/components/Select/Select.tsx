@@ -1,5 +1,4 @@
-import { Button, Spacer } from 'components'
-import { Input } from 'components'
+import { Button, Input, Spacer } from 'components'
 import { ChangeEvent, FC, ReactNode, useCallback, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { HiDocumentMagnifyingGlass, HiMagnifyingGlassCircle, HiXCircle } from 'react-icons/hi2'
@@ -145,7 +144,7 @@ export const Select: FC<SelectProps> = ({
 			<Spacer type="vertical" />
 
 			<Button
-				action={handleAction}
+				onClick={handleAction}
 				isLoading={buttonIsLoading}
 				isDisabled={!inputValue || buttonIsLoading}
 				hasFullWidth

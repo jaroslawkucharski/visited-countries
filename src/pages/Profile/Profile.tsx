@@ -44,7 +44,7 @@ export const Profile = () => {
 
 			<Button
 				variant="secondary"
-				action={showRemoveModal}
+				onClick={showRemoveModal}
 				hasFullWidth
 			>
 				{t('word.remove.account')}

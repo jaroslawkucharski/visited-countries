@@ -8,7 +8,7 @@ describe('components/Select', () => {
 			<Select
 				options={[{ name: 'name', icon: 'icon', id: 'id' }]}
 				buttonName="buton"
-				action={vi.fn()}
+				onClick={vi.fn()}
 				buttonIsLoading={false}
 			/>,
 		)
@@ -35,7 +35,7 @@ describe('components/Select', () => {
 			<Select
 				options={[]}
 				buttonName="buton"
-				action={vi.fn()}
+				onClick={vi.fn()}
 				buttonIsLoading={false}
 			/>,
 		)
@@ -56,7 +56,7 @@ describe('components/Select', () => {
 			<Select
 				options={[{ name: 'name', icon: 'icon', id: 'id' }]}
 				buttonName="buton"
-				action={vi.fn()}
+				onClick={vi.fn()}
 				buttonIsLoading={false}
 			/>,
 		)
@@ -81,7 +81,7 @@ describe('components/Select', () => {
 			<Select
 				options={[{ name: 'name', icon: 'icon', id: 'id' }]}
 				buttonName="buton"
-				action={vi.fn()}
+				onClick={vi.fn()}
 				buttonIsLoading={false}
 			/>,
 		)
@@ -108,7 +108,7 @@ describe('components/Select', () => {
 			<Select
 				options={[{ name: 'name', icon: 'icon', id: 'id' }]}
 				buttonName="buton"
-				action={vi.fn()}
+				onClick={vi.fn()}
 				buttonIsLoading={false}
 				hasFullWidth
 			/>,

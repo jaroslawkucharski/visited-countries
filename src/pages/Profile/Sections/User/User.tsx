@@ -135,7 +135,7 @@ export const User = () => {
 
 			<ImageComponent>
 				<Button
-					action={handleUploadImage}
+					onClick={handleUploadImage}
 					isLoading={isLoading}
 					isDisabled={isLoading}
 					hasFullWidth
@@ -153,9 +153,8 @@ export const User = () => {
 						/>
 
 						<Button
-							variant="secondary"
-							action={showRemoveModal}
-							hasOnlyIcon
+							variant="icon"
+							onClick={showRemoveModal}
 						>
 							<HiTrash />
 						</Button>

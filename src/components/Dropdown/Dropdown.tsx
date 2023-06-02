@@ -1,4 +1,3 @@
-import { Button } from 'components'
 import { FC, ReactNode, useCallback, useRef, useState } from 'react'
 import { HiChevronDown, HiChevronUp } from 'react-icons/hi2'
 
@@ -36,15 +35,11 @@ export const Dropdown: FC<DropdownProps> = ({
 			ref={dropdownRef}
 			data-testid={dataTestId}
 		>
-			<Button
-				isDropdown={isOpen}
-				align="left"
-				hasFullWidth
-			>
+			<div>
 				{isOpen ? <HiChevronUp /> : <HiChevronDown />}
 
 				{text}
-			</Button>
+			</div>
 			{isOpen && <DropdownMenuComponent>{children}</DropdownMenuComponent>}
 		</DropdownComponent>
 	)

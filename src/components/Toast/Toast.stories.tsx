@@ -15,7 +15,7 @@ const Template: ComponentStory<typeof Button> = () => (
 	<div>
 		<Button
 			variant="secondary"
-			action={() => showToast()}
+			onClick={() => showToast()}
 		>
 			SHOW TOAST
 		</Button>
