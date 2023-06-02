@@ -1,4 +1,4 @@
-import { Layout, Spacer } from '@jaroslaw91/novelui'
+import { Layout, Spacer } from 'components'
 
 import { ProfileColumnComponent } from './DashboardList.styles'
 import { SelectCountries } from './Lists/SelectCountries'

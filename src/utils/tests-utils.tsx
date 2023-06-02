@@ -3,7 +3,6 @@
 /* eslint-disable @typescript-eslint/ban-types */
 
 /* eslint-disable import/no-extraneous-dependencies */
-import { Theme } from '@jaroslaw91/novelui'
 import { configureStore } from '@reduxjs/toolkit'
 import { RenderOptions, render as rtlRender, screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
@@ -18,6 +17,7 @@ import { CountriesSlice } from 'store/features/countriesSlice'
 import { ThemeProvider } from 'styled-components'
 import { describe, it, vi } from 'vitest'
 
+import { Theme } from 'styles/ThemeProvider'
 import { darkTheme } from 'styles/theme'
 
 import i18n from '../config/i18n'

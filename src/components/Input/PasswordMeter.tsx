@@ -1,8 +1,8 @@
-import { Paragraph } from '@jaroslaw91/novelui'
 import { FC, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { HiInformationCircle } from 'react-icons/hi2'
 
+import { Paragraph } from '../Paragraph'
 import { PasswordMeterComponent } from './Input.styles'
 
 interface PasswordMeterProps {

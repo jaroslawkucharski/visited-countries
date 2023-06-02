@@ -1,4 +1,4 @@
-import { Loader } from '@jaroslaw91/novelui'
+import { Loader } from 'components'
 import { auth } from 'config/firebase'
 import { FC, ReactNode, createContext, useCallback, useContext, useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'

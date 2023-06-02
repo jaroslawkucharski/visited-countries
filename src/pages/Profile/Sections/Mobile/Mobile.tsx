@@ -1,4 +1,4 @@
-import { Break, Button, Spacer } from '@jaroslaw91/novelui'
+import { Break, Button, Spacer } from 'components'
 import { Link } from 'components'
 import { useThemeColorContext } from 'context/ThemeContext'
 import { useCallback } from 'react'

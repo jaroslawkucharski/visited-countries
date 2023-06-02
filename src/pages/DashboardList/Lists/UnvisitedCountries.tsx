@@ -1,8 +1,9 @@
-import { Paragraph, Spacer, toastNotify } from '@jaroslaw91/novelui'
+import { Paragraph, Spacer } from 'components'
 import { useCountriesListContext } from 'context/CountriesListContext'
 import { useTranslation } from 'react-i18next'
 import { HiPlusCircle } from 'react-icons/hi2'
 import { setCountry } from 'services/user'
+import { toastNotify } from 'utils'
 import { v4 as uuid } from 'uuid'
 
 import { languageDetector } from 'helpers/languageDetector'

@@ -1,4 +1,4 @@
-import { Image } from '@jaroslaw91/novelui'
+import { Image } from 'components'
 import en from 'assets/images/locales/en.svg'
 import pl from 'assets/images/locales/pl.svg'
 import i18next from 'i18next'

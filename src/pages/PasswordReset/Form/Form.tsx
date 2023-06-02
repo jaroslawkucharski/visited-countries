@@ -1,4 +1,4 @@
-import { Button, Spacer } from '@jaroslaw91/novelui'
+import { Button, Spacer } from 'components'
 import { Input } from 'components'
 import { useFormik } from 'formik'
 import { useTranslation } from 'react-i18next'

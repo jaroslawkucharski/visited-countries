@@ -1,9 +1,10 @@
-import { Spacer, modalShow, toastNotify } from '@jaroslaw91/novelui'
 import topology from 'assets/topology.json'
+import { Spacer } from 'components'
 import { CountriesListType, useCountriesListContext } from 'context/CountriesListContext'
 import { useTranslation } from 'react-i18next'
 import { ComposableMap, Geographies, Geography, ZoomableGroup } from 'react-simple-maps'
 import { removeCountry, setCountry } from 'services/user'
+import { modalShow, toastNotify } from 'utils'
 
 import { languageDetector } from 'helpers/languageDetector'
 

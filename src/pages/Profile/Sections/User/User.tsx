@@ -1,11 +1,11 @@
-import { Button, Image, Paragraph, Spacer, modalShow } from '@jaroslaw91/novelui'
-import { Input } from 'components'
+import { Button, Image, Input, Paragraph, Spacer } from 'components'
 import { auth } from 'config/firebase'
 import { useCountriesListContext } from 'context/CountriesListContext'
 import { ChangeEvent, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { HiCloudArrowUp, HiTrash, HiUserCircle } from 'react-icons/hi2'
 import { removeUserAvatar, setUserAvatar } from 'services/user'
+import { modalShow } from 'utils'
 
 import { FILE_SIZES } from 'constants/fileSizes'
 

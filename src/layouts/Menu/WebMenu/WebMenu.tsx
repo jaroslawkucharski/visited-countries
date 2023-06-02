@@ -1,4 +1,4 @@
-import { Button, Spacer } from '@jaroslaw91/novelui'
+import { Button, Spacer } from 'components'
 import { useThemeColorContext } from 'context/ThemeContext'
 import { ErrorBoundary } from 'layouts'
 import { DashboardList } from 'pages'

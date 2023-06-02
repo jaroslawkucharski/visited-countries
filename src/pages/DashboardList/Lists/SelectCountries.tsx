@@ -1,9 +1,9 @@
-import { Heading, Spacer, toastNotify } from '@jaroslaw91/novelui'
-import { Select } from 'components'
+import { Heading, Select, Spacer } from 'components'
 import { useCountriesListContext } from 'context/CountriesListContext'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { setCountry } from 'services/user'
+import { toastNotify } from 'utils'
 
 import { languageDetector } from 'helpers/languageDetector'
 

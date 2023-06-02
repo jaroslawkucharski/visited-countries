@@ -1,4 +1,4 @@
-import { Button, Spacer } from '@jaroslaw91/novelui'
+import { Button, Spacer } from 'components'
 import { Input } from 'components'
 import { auth } from 'config/firebase'
 import { useFormik } from 'formik'

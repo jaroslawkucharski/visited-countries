@@ -1,8 +1,9 @@
-import { Button, Heading, Layout, Spacer, modalShow } from '@jaroslaw91/novelui'
 import profile from 'assets/images/pages/profile.jpg'
+import { Button, Heading, Layout, Spacer } from 'components'
 import { auth } from 'config/firebase'
 import { useTranslation } from 'react-i18next'
 import { removeAccount } from 'services/user'
+import { modalShow } from 'utils'
 
 import { useWindowSize } from 'hooks/useWindowSize'
 
@@ -18,7 +19,7 @@ export const Profile = () => {
 		modalShow({
 			id: 'remove-country',
 			title: t('word.remove.account'),
-			subtitle: auth?.currentUser?.email,
+			subtitle: auth?.currentUser?.email || '',
 			content: t('modal.remove.account.content'),
 			actionName: t('word.remove'),
 			cancelName: t('word.cancel'),

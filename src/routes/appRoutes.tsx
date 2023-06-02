@@ -1,4 +1,4 @@
-import { Loader } from '@jaroslaw91/novelui'
+import { Loader } from 'components'
 import { ErrorBoundary } from 'layouts'
 import { Suspense, createElement, lazy } from 'react'
 import { Route } from 'react-router-dom'

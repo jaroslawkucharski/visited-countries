@@ -1,4 +1,4 @@
-import { Heading, Layout, Spacer } from '@jaroslaw91/novelui'
+import { Heading, Layout, Spacer } from 'components'
 import passwordReset from 'assets/images/pages/password-reset.jpg'
 import { Link } from 'components'
 import { useTranslation } from 'react-i18next'

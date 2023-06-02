@@ -1,4 +1,4 @@
-import { Button, Layout, Paragraph, Spacer } from '@jaroslaw91/novelui'
+import { Button, Layout, Paragraph, Spacer } from 'components'
 import pageNotFound from 'assets/images/pages/404.jpg'
 import { useCallback } from 'react'
 import { useTranslation } from 'react-i18next'

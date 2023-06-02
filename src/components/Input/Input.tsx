@@ -1,4 +1,4 @@
-import { Paragraph } from '@jaroslaw91/novelui'
+import { Paragraph } from 'components'
 import { FormikErrors, FormikTouched } from 'formik'
 import {
 	ChangeEventHandler,

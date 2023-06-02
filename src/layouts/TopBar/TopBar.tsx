@@ -1,4 +1,4 @@
-import { Break, Button, Image } from '@jaroslaw91/novelui'
+import { Break, Button, Image } from 'components'
 import LogoDark from 'assets/images/logo_dark.svg'
 import LogoLight from 'assets/images/logo_light.svg'
 import { Dropdown, DropdownItem } from 'components'

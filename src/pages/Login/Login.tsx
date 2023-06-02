@@ -1,4 +1,4 @@
-import { Heading, Layout, Paragraph, Spacer } from '@jaroslaw91/novelui'
+import { Heading, Layout, Paragraph, Spacer } from 'components'
 import login from 'assets/images/pages/login.jpg'
 import { Link } from 'components'
 import { useTranslation } from 'react-i18next'
