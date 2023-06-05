@@ -9,7 +9,7 @@ export const TopBarComponent = styled.div`
 			display: flex;
 			justify-content: space-between;
 			align-items: center;
-			background: ${colors.main};
+			background: ${colors.main100};
 
 			@media (max-width: ${breakpoints.mobile}px) {
 				padding: ${spaces.big} ${spaces.big} calc(${spaces.medium} + ${spaces.tiny}) ${spaces.big};
@@ -28,4 +28,17 @@ export const SettingsComponent = styled.div`
 			gap: ${spaces.tiny};
 			flex-wrap: wrap;
 		`}
+`
+
+export const VisitedSectionComponent = styled.div`
+	width: 100%;
+	padding: 10px 20px;
+
+	.quantity {
+		padding: 0 2px;
+		display: flex;
+		justify-content: space-between;
+		align-items: top;
+		gap: 10px;
+	}
 `

@@ -6,10 +6,10 @@ import { colors } from 'styles/theme'
 // eslint-disable-next-line import/no-cycle
 import { ButtonComponent } from './Button.styles'
 
-export type Variants = 'primary' | 'secondary' | 'icon'
+export type ButtonVariants = 'primary' | 'secondary' | 'icon' | 'alert'
 
 export interface CommonButtonProps {
-	variant?: Variants
+	variant?: ButtonVariants
 	children: ReactNode
 	type?: 'button' | 'submit' | 'reset'
 	onClick?: ReactEventHandler<HTMLButtonElement>

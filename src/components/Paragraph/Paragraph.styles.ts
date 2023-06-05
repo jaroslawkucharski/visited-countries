@@ -1,15 +1,31 @@
 import styled, { DefaultTheme, css } from 'styled-components'
 
 interface HeadingComponentProps {
-	type?: 'default' | 'label' | 'error'
-	size?: 'small' | 'medium' | 'big' | 'large' | 'huge'
+	type?: 'default' | 'dropdown' | 'label' | 'error'
+	size?:
+		| 'small'
+		| 'medium'
+		| 'big'
+		| 'large'
+		| 'huge'
+		| 's12'
+		| 's14'
+		| 's16'
+		| 's18'
+		| 's28'
+		| 's36'
+		| 's64'
+		| 's128'
 	align?: 'left' | 'center' | 'right'
 }
 
 const typeStyles = ({ colors }: DefaultTheme, type = 'label') =>
 	({
 		default: css`
-			color: ${colors.secondary};
+			color: ${colors.secondary100};
+		`,
+		dropdown: css`
+			color: ${colors.main100};
 		`,
 		label: css`
 			color: ${colors.color5};
@@ -21,20 +37,8 @@ const typeStyles = ({ colors }: DefaultTheme, type = 'label') =>
 
 const sizeStyles = ({ font }: DefaultTheme, size = 'medium') =>
 	({
-		small: css`
-			font-size: ${font.sizes.error};
-		`,
-		medium: css`
-			font-size: ${font.sizes.default};
-		`,
-		big: css`
-			font-size: ${font.sizes.info};
-		`,
-		large: css`
-			font-size: ${font.sizes.icon};
-		`,
-		huge: css`
-			font-size: ${font.sizes.notFound};
+		[size]: css`
+			font-size: ${font.sizes[size as keyof typeof font.sizes]};
 		`,
 	}[size])
 

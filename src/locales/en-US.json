@@ -56,6 +56,8 @@
 	"modal.remove.image": "Remove image",
 	"modal.remove.image.content": "Are you sure you want to remove the profile picture?",
 	"word.visited": "Visited countries",
+	"word.settings": "Settings",
+	"dropdown.countries.info": "You have visited {visited} out of {countries} countries.",
 	"errors": {
 		"empty.field": "Field is required",
 		"email": "Invalid email",

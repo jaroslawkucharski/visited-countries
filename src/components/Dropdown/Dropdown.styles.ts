@@ -1,19 +1,26 @@
 import { NavLink } from 'react-router-dom'
 import styled, { css } from 'styled-components'
 
-interface ItemComponentProps {
+interface DropdownComponentProps {
 	islastitem?: string
+	dropdownWith?: number | string
+	dropdownContentWith?: number | string
 }
 
-export const DropdownComponent = styled.div`
-	min-width: 200px;
+export const DropdownComponent = styled.div<DropdownComponentProps>`
 	position: relative;
+
+	${({ dropdownWith = '200px' }) =>
+		css`
+			min-width: ${dropdownWith};
+		`}
 `
 
-export const DropdownMenuComponent = styled.div`
-	width: 100%;
+export const DropdownMenuComponent = styled.div<DropdownComponentProps>`
+	margin-top: 2px;
+	right: 0;
 	position: absolute;
-	border-radius: 0 0 15px 15px;
+	border-radius: 0;
 	animation: animation-menu 0.2s;
 	transform-origin: top;
 	z-index: 1;
@@ -28,14 +35,15 @@ export const DropdownMenuComponent = styled.div`
 		}
 	}
 
-	${({ theme: { colors } }) =>
+	${({ theme: { colors }, dropdownContentWith = '200px' }) =>
 		css`
 			padding: 0;
-			background: ${colors.secondary};
+			background: ${colors.secondary100};
+			min-width: ${dropdownContentWith};
 		`}
 `
 
-export const ItemComponent = styled(NavLink)<ItemComponentProps>`
+export const ItemComponent = styled(NavLink)<DropdownComponentProps>`
 	cursor: pointer;
 	width: 100%;
 	display: block;
@@ -43,13 +51,13 @@ export const ItemComponent = styled(NavLink)<ItemComponentProps>`
 	display: flex;
 	align-items: center;
 
-	${({ theme: { colors, spaces }, islastitem }) =>
+	${({ theme: { colors, font, spaces } }) =>
 		css`
+			font-size: ${font.sizes.s14};
 			color: ${colors.main};
-			padding: ${spaces.small} ${spaces.medium} ${spaces.small} ${spaces.big};
+			padding: ${spaces.small} ${spaces.medium} ${spaces.small} ${spaces.medium};
 			background: ${colors.secondary};
 			gap: ${spaces.tiny};
-			border-radius: ${islastitem === 'true' && `0 0 15px 15px`};
 
 			&:hover {
 				background: ${colors.color1};

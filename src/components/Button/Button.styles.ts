@@ -3,7 +3,27 @@ import styled, { DefaultTheme, css } from 'styled-components'
 // eslint-disable-next-line import/no-cycle
 import { CommonButtonProps } from './Button'
 
-const variantStyles = ({ colors }: DefaultTheme, variant = 'primary') =>
+const varianStyles = css`
+	content: '';
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 0;
+	height: 0;
+	border-radius: 50%;
+	transform: translate(-50%, -50%);
+	animation: ripple 0.5s ease-out;
+
+	@keyframes ripple {
+		to {
+			width: 200%;
+			padding-bottom: 200%;
+			opacity: 0;
+		}
+	}
+`
+
+const variantStyles = ({ colors, font }: DefaultTheme, variant = 'primary') =>
 	({
 		primary: css`
 			color: ${colors.main100};
@@ -14,24 +34,8 @@ const variantStyles = ({ colors }: DefaultTheme, variant = 'primary') =>
 			}
 
 			&:active::after {
-				content: '';
-				position: absolute;
-				top: 50%;
-				left: 50%;
-				width: 0;
-				height: 0;
-				border-radius: 50%;
-				transform: translate(-50%, -50%);
+				${varianStyles}
 				background-color: ${colors.secondary50};
-				animation: ripple 0.5s ease-out;
-			}
-
-			@keyframes ripple {
-				to {
-					width: 200%;
-					padding-bottom: 200%;
-					opacity: 0;
-				}
 			}
 
 			&:disabled,
@@ -52,24 +56,8 @@ const variantStyles = ({ colors }: DefaultTheme, variant = 'primary') =>
 			}
 
 			&:active::after {
-				content: '';
-				position: absolute;
-				top: 50%;
-				left: 50%;
-				width: 0;
-				height: 0;
-				border-radius: 50%;
-				transform: translate(-50%, -50%);
+				${varianStyles}
 				background-color: ${colors.main50};
-				animation: ripple 0.5s ease-out;
-			}
-
-			@keyframes ripple {
-				to {
-					width: 200%;
-					padding-bottom: 200%;
-					opacity: 0;
-				}
 			}
 
 			&:disabled,
@@ -89,24 +77,8 @@ const variantStyles = ({ colors }: DefaultTheme, variant = 'primary') =>
 			}
 
 			&:active::after {
-				content: '';
-				position: absolute;
-				top: 50%;
-				left: 50%;
-				width: 0;
-				height: 0;
-				border-radius: 50%;
-				transform: translate(-50%, -50%);
+				${varianStyles}
 				background-color: ${colors.secondary50};
-				animation: ripple 0.5s ease-out;
-			}
-
-			@keyframes ripple {
-				to {
-					width: 200%;
-					padding-bottom: 200%;
-					opacity: 0;
-				}
 			}
 
 			&:disabled,
@@ -117,36 +89,21 @@ const variantStyles = ({ colors }: DefaultTheme, variant = 'primary') =>
 			}
 		`,
 		icon: css`
-			padding: 13px;
+			padding: 0;
 			min-width: 42px;
 			width: 42px;
 			height: 42px;
-			color: ${colors.main100};
-			background: ${colors.secondary100};
+			color: ${colors.secondary100};
+			background: ${colors.main100};
+			font-size: ${font.sizes.s18};
 
 			&:hover {
-				background: ${colors.secondary80};
+				background: ${colors.secondary20};
 			}
 
 			&:active::after {
-				content: '';
-				position: absolute;
-				top: 50%;
-				left: 50%;
-				width: 0;
-				height: 0;
-				border-radius: 50%;
-				transform: translate(-50%, -50%);
+				${varianStyles}
 				background-color: ${colors.secondary50};
-				animation: ripple 0.5s ease-out;
-			}
-
-			@keyframes ripple {
-				to {
-					width: 200%;
-					padding-bottom: 200%;
-					opacity: 0;
-				}
 			}
 
 			&:disabled,
