@@ -59,6 +59,7 @@ const font = {
 		h2: '18px',
 		icon: '64px',
 		notFound: '128px',
+		s10: '10px',
 		s12: '12px',
 		s14: '14px',
 		s16: '16px',

@@ -10,7 +10,7 @@ interface DropdownComponentProps {
 export const DropdownComponent = styled.div<DropdownComponentProps>`
 	position: relative;
 
-	${({ dropdownWith = '200px' }) =>
+	${({ dropdownWith = '220px' }) =>
 		css`
 			min-width: ${dropdownWith};
 		`}
@@ -35,7 +35,7 @@ export const DropdownMenuComponent = styled.div<DropdownComponentProps>`
 		}
 	}
 
-	${({ theme: { colors }, dropdownContentWith = '200px' }) =>
+	${({ theme: { colors }, dropdownContentWith = '220px' }) =>
 		css`
 			padding: 0;
 			background: ${colors.secondary100};

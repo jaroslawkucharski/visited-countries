@@ -5,6 +5,9 @@ interface ProgressBarComponentProps {
 	value: number
 }
 
+const barProgress = (value: number, limit: number) =>
+	`${value > limit ? 100 : (value / limit) * 100}%`
+
 export const ProgressBarComponent = styled.div<ProgressBarComponentProps>`
 	width: 100%;
 	height: 10px;
@@ -28,10 +31,20 @@ export const ProgressBarComponent = styled.div<ProgressBarComponentProps>`
 			}
 
 			.bar {
-				width: ${value > limit ? 100 : (value / limit) * 100}%;
+				width: ${barProgress(value, limit)};
 				height: 6px;
 				border-radius: 20px;
 				background: ${colors.main100};
+				animation: progressAnimation 1s;
+			}
+
+			@keyframes progressAnimation {
+				0% {
+					width: 0%;
+				}
+				[${barProgress(value, limit)}] {
+					width: ${barProgress(value, limit)};
+				}
 			}
 		`}
 `

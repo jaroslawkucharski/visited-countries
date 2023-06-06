@@ -22,6 +22,7 @@ import {
 	TbHelp,
 	TbLogout,
 	TbMapPin,
+	TbNews,
 	TbPlane,
 	TbSettings,
 	TbUser,
@@ -107,7 +108,52 @@ export const TopBar = () => {
 						hasChevron={false}
 						dropdownWith={100}
 					>
-						News
+						<VisitedSectionComponent>
+							<Paragraph type="dropdown">
+								<TbNews />
+								NOWOŚCI
+							</Paragraph>
+
+							<Spacer
+								space="mini"
+								type="vertical"
+							/>
+
+							<Paragraph
+								type="dropdown"
+								align="left"
+								size="s14"
+							>
+								Nowa funkcjonalność
+							</Paragraph>
+
+							<Spacer
+								space="mini"
+								type="vertical"
+							/>
+
+							<Paragraph
+								type="dropdown"
+								align="left"
+								size="s12"
+							>
+								Lorem ipsum dolor sit amet consectetur, adipisicing elit. Suscipit vel, accusantium
+								sapiente.
+							</Paragraph>
+
+							<Spacer type="vertical" />
+						</VisitedSectionComponent>
+
+						<Break />
+
+						<DropdownItem
+							key={uuid()}
+							to={ROUTES.PROFILE}
+						>
+							<TbSettings />
+
+							{t('word.settings')}
+						</DropdownItem>
 					</Dropdown>
 
 					<Dropdown
@@ -130,28 +176,38 @@ export const TopBar = () => {
 						}
 					>
 						<VisitedSectionComponent>
+							<Paragraph type="dropdown">
+								<TbMapPin /> STATYSTYKI
+							</Paragraph>
+
+							<Spacer
+								space="mini"
+								type="vertical"
+							/>
+
 							<div className="quantity">
 								<Paragraph
 									type="dropdown"
-									size="s36"
+									align="left"
+									size="s12"
 								>
-									<TbMapPin />
+									{t('stats.countries.visited.title')}
 								</Paragraph>
 
 								<Paragraph
 									type="dropdown"
 									align="left"
-									size="s14"
+									size="s12"
 								>
-									{t('dropdown.countries.info', {
-										visited: countries.length,
-										countries: visitedList.length,
+									{t('stats.countries.visited.value', {
+										visited: visitedList.length,
+										countries: countries.length,
 									})}
 								</Paragraph>
 							</div>
 
 							<Spacer
-								space="tiny"
+								space="mini"
 								type="vertical"
 							/>
 
@@ -182,6 +238,67 @@ export const TopBar = () => {
 									100%
 								</Paragraph>
 							</div>
+
+							<Spacer
+								space="small"
+								type="vertical"
+							/>
+
+							<div className="quantity">
+								<Paragraph
+									type="dropdown"
+									align="left"
+									size="s12"
+								>
+									W tym roku:
+								</Paragraph>
+
+								<Paragraph
+									type="dropdown"
+									align="left"
+									size="s12"
+								>
+									2
+								</Paragraph>
+							</div>
+
+							<Spacer
+								space="mini"
+								type="vertical"
+							/>
+
+							<ProgressBar
+								limit={12}
+								value={2}
+							/>
+
+							<div className="quantity">
+								<Paragraph
+									type="dropdown"
+									size="s12"
+								>
+									Styczeń
+								</Paragraph>
+
+								<Paragraph
+									type="dropdown"
+									size="s12"
+								>
+									<TbPlane />
+								</Paragraph>
+
+								<Paragraph
+									type="dropdown"
+									size="s12"
+								>
+									Grudzień
+								</Paragraph>
+							</div>
+
+							<Spacer
+								space="small"
+								type="vertical"
+							/>
 						</VisitedSectionComponent>
 
 						<Break />

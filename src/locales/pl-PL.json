@@ -56,7 +56,8 @@
 	"modal.remove.image.content": "Czy na pewno chcesz usunąć zdjęcie profilowe?",
 	"word.visited": "Odwiedzone kraje",
 	"word.settings": "Ustawienia",
-	"dropdown.countries.info": "Odwiedziłeś/aś {visited} z {countries} krajów",
+	"stats.countries.visited.title": "Odwiedzone kraje:",
+	"stats.countries.visited.value": "{{visited}}/{{countries}}",
 	"errors": {
 		"empty.field": "Pole obowiązkowe",
 		"email": "Niepoprawny adres email",
