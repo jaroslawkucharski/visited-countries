@@ -1,6 +1,11 @@
 <div align='center'>
 
-# <img src='./src/assets/images/logo_dark.svg' width='400px' />
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="src/assets/images/logo_dark.svg">
+  <img src="src/assets/images/logo_light.svg" alt="NextShop" width="400px" />
+</picture>
+
+#
 
 <img src='./coverage/badges/badge-statements.svg' />
 <img src='./coverage/badges/badge-branches.svg' />
