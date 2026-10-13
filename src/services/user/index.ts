@@ -1,7 +1,6 @@
-import { auth, database, storage } from 'config/firebase'
+import { auth, database } from 'config/firebase'
 import { updateEmail, updatePassword, updateProfile } from 'firebase/auth'
 import { ref as databaseRef, remove, set } from 'firebase/database'
-import { deleteObject, getDownloadURL, ref as storageRef, uploadBytes } from 'firebase/storage'
 import i18next from 'i18next'
 import { toastNotify } from 'utils'
 
@@ -43,28 +42,22 @@ export const updateUserProfile = async (args: UpdateUserProfileTypes) => {
 	}
 }
 
-// Upload user avatar
-export const setUserAvatar = async (file: Blob) => {
+// Upload user avatar (stored as a base64 data URL in Realtime Database, Firebase Storage requires a paid plan)
+export const setUserAvatar = async (avatar: string) => {
 	const user = auth.currentUser
 
-	const fileRef = storageRef(storage, `images/avatar_${user?.uid}`)
-
-	await uploadBytes(fileRef, file)
-
-	const photoURL = await getDownloadURL(fileRef)
-
-	updateUserProfile({ photoURL })
+	if (user !== null) {
+		await set(databaseRef(database, `users/${user.uid}/avatar`), avatar)
+	}
 }
 
 // Remove user avatar
 export const removeUserAvatar = async () => {
 	const user = auth.currentUser
 
-	const fileRef = storageRef(storage, `images/avatar_${user?.uid}`)
-
-	await deleteObject(fileRef)
-
-	updateUserProfile({ photoURL: '' })
+	if (user !== null) {
+		await remove(databaseRef(database, `users/${user.uid}/avatar`))
+	}
 }
 
 // Update email
@@ -100,8 +93,6 @@ export const removeAccount = async () => {
 	try {
 		if (user !== null) {
 			await remove(databaseRef(database, `users/${user?.uid}`))
-
-			await removeUserAvatar()
 
 			await user.delete()
 		}
