@@ -1,6 +1,6 @@
 import NiceModal from '@ebay/nice-modal-react'
 
-import { describe, it, render, vi, waitFor } from '../../utils/tests-utils'
+import { describe, fireEvent, it, render, vi, waitFor } from '../../utils/tests-utils'
 import { Modal } from './Modal'
 
 describe('components/Modal', () => {
@@ -20,6 +20,31 @@ describe('components/Modal', () => {
 			NiceModal.show(Modal)
 
 			expect(getByTestId('modal')).toBeInTheDocument()
+		})
+	})
+})
+
+describe('components/Modal accessibility', () => {
+	it('should be a labelled dialog closed with Escape', async () => {
+		const { findByRole, queryByRole } = render(<div />)
+
+		NiceModal.show(Modal, {
+			id: 'a11y-modal',
+			title: 'Dialog title',
+			content: 'Content',
+			actionName: 'Save',
+			cancelName: 'Cancel',
+			action: vi.fn(),
+		})
+
+		const dialog = await findByRole('dialog', { name: 'Dialog title' })
+
+		expect(dialog).toHaveAttribute('aria-modal', 'true')
+
+		fireEvent.keyDown(document, { key: 'Escape' })
+
+		await waitFor(() => {
+			expect(queryByRole('dialog')).not.toBeInTheDocument()
 		})
 	})
 })

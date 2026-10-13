@@ -25,6 +25,7 @@ export const NewsDropdown = () => {
 			}
 			customButtonProps={{ variant: 'icon' }}
 			hasChevron={false}
+			ariaLabel={`${t('news.title')}${unreadNews.length ? ` (${unreadNews.length})` : ''}`}
 			dropdownWith={100}
 			dropdownContentWith="340px"
 		>

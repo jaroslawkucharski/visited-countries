@@ -69,13 +69,12 @@ export const IconBadgeComponent = styled.span`
 				height: 14px;
 				padding: 0 3px;
 				border-radius: 7px;
-				background: ${colors.error};
-				color: #fff;
+				background: ${colors.errorText};
+				color: ${colors.main};
 				font-size: 9px;
 				line-height: 14px;
 				text-align: center;
 			}
-
 		`}
 `
 
@@ -98,9 +97,9 @@ export const NewsListComponent = styled.ul`
 				gap: 2px;
 				padding: ${spaces.tiny} ${spaces.small};
 				border: none;
-				border-left: 3px solid ${colors.error};
+				border-left: 3px solid ${colors.errorText};
 				border-radius: 4px;
-				background: ${colors.main20};
+				background: ${colors.secondary80};
 				color: ${colors.main100};
 				font-family: inherit;
 				font-size: 12px;
@@ -109,7 +108,7 @@ export const NewsListComponent = styled.ul`
 				cursor: pointer;
 
 				&:hover {
-					background: ${colors.main50};
+					opacity: 0.85;
 				}
 			}
 
@@ -119,7 +118,7 @@ export const NewsListComponent = styled.ul`
 			}
 
 			.date {
-				opacity: 0.6;
+				opacity: 0.85;
 			}
 		`}
 `
@@ -181,7 +180,7 @@ export const FavoritesListComponent = styled.ul`
 				cursor: pointer;
 
 				&:hover {
-					color: ${colors.error};
+					color: ${colors.errorText};
 				}
 			}
 		`}

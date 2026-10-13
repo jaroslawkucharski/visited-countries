@@ -28,6 +28,7 @@ export const SearchCountries: FC<SearchCountriesProps> = ({ query, onChange }) =
 					onChange={(event: ChangeEvent<HTMLInputElement>) => onChange(event.target.value)}
 					hasFullWidth
 					hideError
+					ariaLabel={String(t('list.input.placeholder'))}
 					data-testid="countries-search"
 				/>
 
@@ -35,12 +36,16 @@ export const SearchCountries: FC<SearchCountriesProps> = ({ query, onChange }) =
 					<SearchIconComponent
 						onClick={() => onChange('')}
 						title={String(t('word.clear'))}
+						aria-label={String(t('word.clear'))}
 						data-testid="countries-search-clear"
 					>
 						<HiXCircle />
 					</SearchIconComponent>
 				) : (
-					<SearchIconComponent as="span">
+					<SearchIconComponent
+						as="span"
+						aria-hidden
+					>
 						<HiMagnifyingGlassCircle />
 					</SearchIconComponent>
 				)}

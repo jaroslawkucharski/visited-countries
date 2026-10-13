@@ -1,13 +1,13 @@
 import topology from 'assets/topology.json'
 import { CountriesListType, useCountriesListContext } from 'context/CountriesListContext'
-import { MouseEvent, useState } from 'react'
+import { KeyboardEvent, MouseEvent, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { ComposableMap, Geographies, Geography, ZoomableGroup } from 'react-simple-maps'
 
 import { useCountryActions } from 'hooks/useCountryActions'
 import { useWindowSize } from 'hooks/useWindowSize'
 
-import { MapTooltipComponent } from './Dashboard.styles'
+import { MapComponent, MapTooltipComponent } from './Dashboard.styles'
 
 interface MapTooltip {
 	code: string
@@ -66,7 +66,10 @@ export const Dashboard = () => {
 	}
 
 	return (
-		<div>
+		<MapComponent
+			role="region"
+			aria-label={String(t('map.label'))}
+		>
 			<ComposableMap style={{ width: '100%', height: 'calc(100vh - 84px)' }}>
 				<ZoomableGroup
 					center={[10, 10]}
@@ -99,6 +102,19 @@ export const Dashboard = () => {
 										onMouseEnter={handleTooltipMove(geo.id, geo.properties.name)}
 										onMouseMove={handleTooltipMove(geo.id, geo.properties.name)}
 										onMouseLeave={() => setTooltip(null)}
+										role="button"
+										aria-label={[
+											getCountryName(findCountry(geo.id, geo.properties.name)),
+											getCountryStatus(geo.id),
+										]
+											.filter(Boolean)
+											.join(', ')}
+										onKeyDown={(event: KeyboardEvent) => {
+											if (event.key !== 'Enter' && event.key !== ' ') return
+
+											event.preventDefault()
+											handleCountryClick(geo.id, geo.properties.name)
+										}}
 										style={mapStyle}
 									/>
 								)
@@ -122,6 +138,6 @@ export const Dashboard = () => {
 					)}
 				</MapTooltipComponent>
 			)}
-		</div>
+		</MapComponent>
 	)
 }

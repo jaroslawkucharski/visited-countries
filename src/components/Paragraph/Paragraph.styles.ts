@@ -31,7 +31,7 @@ const typeStyles = ({ colors }: DefaultTheme, type = 'label') =>
 			color: ${colors.color5};
 		`,
 		error: css`
-			color: ${colors.error};
+			color: ${colors.errorText};
 		`,
 	}[type])
 

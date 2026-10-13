@@ -20,6 +20,7 @@ export interface ParagraphProps {
 		| 's64'
 		| 's128'
 	align?: 'left' | 'center' | 'right'
+	id?: string
 	'data-testid'?: string
 }
 
@@ -28,12 +29,14 @@ export const Paragraph: FC<ParagraphProps> = ({
 	children,
 	size = 'medium',
 	align = 'center',
+	id,
 	'data-testid': dataTestId = 'paragraph',
 }) => (
 	<HeadingComponent
 		type={type}
 		size={size}
 		align={align}
+		id={id}
 		data-testid={dataTestId}
 	>
 		{children}

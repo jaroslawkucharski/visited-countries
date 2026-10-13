@@ -18,7 +18,7 @@ interface VisitedCountriesProps {
 export const VisitedCountries = ({ query = '' }: VisitedCountriesProps) => {
 	const { t, i18n } = useTranslation()
 	const { visitedList } = useCountriesListContext()
-	const { getVisitedAt, openEditModal, confirmRemoveCountry } = useCountryActions()
+	const { getVisitedAt, openEditModal, confirmRemoveCountry, getCountryName } = useCountryActions()
 
 	const filtered = (visitedList || []).filter(country =>
 		matchesCountry(country, query, i18n.language),
@@ -41,6 +41,7 @@ export const VisitedCountries = ({ query = '' }: VisitedCountriesProps) => {
 
 					<IconComponent
 						title={String(t('word.edit.date'))}
+						aria-label={`${t('word.edit.date')}: ${getCountryName(country)}`}
 						onClick={() => openEditModal(country)}
 					>
 						<HiPencil />
@@ -49,6 +50,7 @@ export const VisitedCountries = ({ query = '' }: VisitedCountriesProps) => {
 					<IconComponent
 						isRemoved
 						title={String(t('word.remove'))}
+						aria-label={`${t('word.remove')}: ${getCountryName(country)}`}
 						onClick={() => confirmRemoveCountry(country)}
 					>
 						<HiTrash />

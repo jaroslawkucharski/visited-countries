@@ -17,6 +17,9 @@ export interface CommonButtonProps {
 	hasFullWidth?: boolean
 	isLoading?: boolean
 	isDisabled?: boolean
+	'aria-label'?: string
+	'aria-expanded'?: boolean
+	'aria-haspopup'?: boolean | 'menu' | 'dialog'
 	'data-testid'?: string
 }
 

@@ -47,14 +47,19 @@ export const InputComponent = styled.input<InputComponentProps>`
 				border: solid 2px ${colors.secondary};
 			}
 
-			border: ${isError && `solid 2px ${colors.error}`};
+			border: ${isError && `solid 2px ${colors.errorText}`};
 			padding-right: ${isPassword && `calc(${spaces.big} + ${spaces.tiny})`};
 			border-radius: ${isDropdown && '15px 15px 0 0'};
 			display: ${type === 'file' && 'none'};
 		`}
 `
 
-export const IconComponent = styled.span`
+export const IconComponent = styled.button`
+	padding: 0;
+	border: none;
+	background: none;
+	color: inherit;
+	display: flex;
 	cursor: pointer;
 	top: 12.5px;
 	right: 20px;

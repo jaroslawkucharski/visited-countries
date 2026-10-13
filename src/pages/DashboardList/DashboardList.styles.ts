@@ -58,17 +58,20 @@ export const ActionsComponent = styled.div`
 		`}
 `
 
-export const IconComponent = styled.div<IconComponentProps>`
+export const IconComponent = styled.button.attrs({ type: 'button' })<IconComponentProps>`
 	${({ theme: { spaces, colors }, isRemoved, isFavorite }) =>
 		css`
 			cursor: pointer;
-			color: ${isFavorite ? colors.error : 'inherit'};
+			color: ${isFavorite ? colors.errorText : 'inherit'};
 			padding: ${spaces.tiny};
+			border: none;
+			background: none;
+			font-size: inherit;
 			display: flex;
 			flex-shrink: 0;
 
 			&:hover {
-				color: ${isRemoved ? colors.error : colors.success};
+				color: ${isRemoved ? colors.errorText : colors.success};
 			}
 		`}
 `
