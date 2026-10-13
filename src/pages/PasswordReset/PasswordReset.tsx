@@ -1,5 +1,5 @@
+import { passwordResetImage } from 'assets/images/pages'
 import { Heading, Layout, Spacer } from 'components'
-import passwordReset from 'assets/images/pages/password-reset.jpg'
 import { Link } from 'components'
 import { useTranslation } from 'react-i18next'
 
@@ -12,7 +12,7 @@ export const PasswordReset = () => {
 	const { t } = useTranslation()
 
 	return (
-		<Layout image={passwordReset}>
+		<Layout image={passwordResetImage}>
 			<Heading>{t('word.password.reset')}</Heading>
 
 			<Spacer

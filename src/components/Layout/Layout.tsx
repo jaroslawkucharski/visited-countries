@@ -1,10 +1,11 @@
+import type { ResponsiveImage } from 'assets/images/pages'
 import { FC, ReactNode } from 'react'
 
 import { ChildrenComponent, LayoutComponent, PresentionalComponent } from './Layout.styles'
 
 export interface LayoutProps {
 	children: ReactNode
-	image?: string
+	image?: ResponsiveImage
 	'data-testid'?: string
 }
 
