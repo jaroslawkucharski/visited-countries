@@ -41,6 +41,7 @@ interface InputProps {
 	isDropdown?: boolean
 	hideError?: boolean
 	onClick?: ReactEventHandler<HTMLInputElement>
+	ariaLabel?: string
 	'data-testid'?: string
 }
 
@@ -64,6 +65,7 @@ export const Input = forwardRef(
 			isDropdown = false,
 			hideError = false,
 			onClick,
+			ariaLabel,
 			'data-testid': dataTestId = 'input',
 		}: InputProps,
 		ref: Ref<HTMLInputElement>,
@@ -111,14 +113,20 @@ export const Input = forwardRef(
 						isDropdown={isDropdown}
 						onClick={onClick}
 						ref={ref}
+						aria-label={ariaLabel}
+						aria-invalid={isError}
+						aria-describedby={!hideError && isError ? `${id}-error` : undefined}
 					/>
 
 					{isPassword && (
 						<IconComponent
+							type="button"
 							onClick={handleShowPassword}
+							aria-label={String(t(showPassword ? 'word.password.hide' : 'word.password.show'))}
+							aria-pressed={showPassword}
 							data-testid="input-password"
 						>
-							{showPassword ? <HiEyeSlash /> : <HiEye />}
+							{showPassword ? <HiEyeSlash aria-hidden /> : <HiEye aria-hidden />}
 						</IconComponent>
 					)}
 
@@ -130,6 +138,7 @@ export const Input = forwardRef(
 						type="error"
 						size="small"
 						align="left"
+						id={`${id}-error`}
 						data-testid="input-error"
 					>
 						{isError ? t(`${errors[name]}`) : null}

@@ -25,4 +25,13 @@ i18next
 		detection: { lookupLocalStorage: 'language' },
 	})
 
+const setDocumentLanguage = (language: string) => {
+	const [code] = language.split('-')
+
+	document.documentElement.lang = code
+}
+
+setDocumentLanguage(i18next.language || 'en-US')
+i18next.on('languageChanged', setDocumentLanguage)
+
 export default i18next

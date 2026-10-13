@@ -21,3 +21,14 @@ export const MapTooltipComponent = styled.div`
 			}
 		`}
 `
+
+export const MapComponent = styled.div`
+	${({ theme: { colors } }) =>
+		css`
+			path:focus-visible {
+				outline: none;
+				stroke: ${colors.secondary};
+				stroke-width: 1;
+			}
+		`}
+`

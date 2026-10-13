@@ -21,7 +21,7 @@ export const FavoriteCountries = ({
 }: FavoriteCountriesProps) => {
 	const { t, i18n } = useTranslation()
 	const { favoriteList } = useCountriesListContext()
-	const { removeFromFavorites, openAddModal } = useCountryActions()
+	const { removeFromFavorites, openAddModal, getCountryName } = useCountryActions()
 
 	const filtered = (favoriteList || []).filter(country =>
 		matchesCountry(country, query, i18n.language),
@@ -46,6 +46,7 @@ export const FavoriteCountries = ({
 					<IconComponent
 						isFavorite
 						title={String(t('favorites.remove'))}
+						aria-label={`${t('favorites.remove')}: ${getCountryName(country)}`}
 						onClick={() => removeFromFavorites(String(country?.code))}
 					>
 						<HiHeart />
@@ -53,6 +54,7 @@ export const FavoriteCountries = ({
 
 					<IconComponent
 						title={String(t('word.add.country'))}
+						aria-label={`${t('word.add.country')}: ${getCountryName(country)}`}
 						onClick={() => openAddModal(country)}
 					>
 						<HiPlusCircle />

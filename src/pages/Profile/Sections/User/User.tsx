@@ -155,6 +155,7 @@ export const User = () => {
 						<Button
 							variant="icon"
 							onClick={showRemoveModal}
+							aria-label={String(t('modal.remove.image'))}
 						>
 							<HiTrash />
 						</Button>

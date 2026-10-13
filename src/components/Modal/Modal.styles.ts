@@ -29,6 +29,10 @@ export const ModalComponent = styled.div`
 			background-color: ${colors.main};
 			position: relative;
 
+			&:focus {
+				outline: none;
+			}
+
 			@media (max-width: ${breakpoints.mobile}px) {
 				width: 100%;
 			}
@@ -47,6 +51,16 @@ export const ModalHeadingComponent = styled.div`
 				cursor: pointer;
 				width: 30px;
 				height: 30px;
+				padding: 0;
+				border: none;
+				background: none;
+				color: inherit;
+
+				svg {
+					width: 100%;
+					height: 100%;
+				}
+
 				top: ${spaces.medium};
 				right: ${spaces.medium};
 				position: absolute;

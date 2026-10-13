@@ -55,6 +55,7 @@ export const Mobile = () => {
 				<Button
 					variant="icon"
 					onClick={handleThemeColorChange}
+					aria-label={String(t('word.theme.toggle'))}
 				>
 					{theme === 'dark' ? <HiSun /> : <HiMoon />}
 				</Button>
@@ -62,6 +63,7 @@ export const Mobile = () => {
 				<Button
 					variant="icon"
 					onClick={handleLanguageChangeToPL}
+					aria-label={String(t('word.language.toggle'))}
 				>
 					{getLanguageImage()}
 				</Button>

@@ -27,6 +27,7 @@ export const FavoritesDropdown = () => {
 			}
 			customButtonProps={{ variant: 'icon' }}
 			hasChevron={false}
+			ariaLabel={String(t('favorites.title'))}
 			dropdownWith={100}
 			dropdownContentWith="300px"
 		>
@@ -58,6 +59,7 @@ export const FavoritesDropdown = () => {
 									<button
 										type="button"
 										title={String(t('favorites.remove'))}
+										aria-label={`${t('favorites.remove')}: ${getCountryName(country)}`}
 										onClick={() => removeFromFavorites(String(country?.code))}
 									>
 										<TbHeartOff />
@@ -66,6 +68,7 @@ export const FavoritesDropdown = () => {
 									<button
 										type="button"
 										title={String(t('word.add.country'))}
+										aria-label={`${t('word.add.country')}: ${getCountryName(country)}`}
 										onClick={() => openAddModal(country)}
 										data-testid="favorite-add-visited"
 									>

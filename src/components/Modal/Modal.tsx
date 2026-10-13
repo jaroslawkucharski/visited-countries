@@ -1,6 +1,9 @@
 import NiceModal, { NiceModalHocProps, useModal } from '@ebay/nice-modal-react'
-import { FC, ReactNode } from 'react'
+import { FC, MouseEvent, ReactNode, useRef } from 'react'
+import { useTranslation } from 'react-i18next'
 import { HiXCircle } from 'react-icons/hi2'
+
+import { useFocusTrap } from 'hooks/useFocusTrap'
 
 import { Button } from '../Button'
 import { Heading } from '../Heading'
@@ -37,9 +40,16 @@ export const Modal: FC<ModalProps & NiceModalHocProps> = NiceModal.create(
 		cancelName,
 		'data-testid': dataTestId = 'modal',
 	}) => {
+		const { t } = useTranslation()
 		const modal = useModal()
+		const dialogRef = useRef<HTMLDivElement>(null)
 
 		const closeModal = () => modal.remove()
+
+		useFocusTrap(dialogRef, closeModal)
+
+		const handleBackdropClick = (event: MouseEvent<HTMLDivElement>) =>
+			event.target === event.currentTarget && closeModal()
 
 		const handleAction = () => {
 			action()
@@ -50,13 +60,21 @@ export const Modal: FC<ModalProps & NiceModalHocProps> = NiceModal.create(
 			<ModalContainerComponent
 				id={id}
 				data-testid={dataTestId}
+				onClick={handleBackdropClick}
 			>
-				<ModalComponent>
+				<ModalComponent
+					ref={dialogRef}
+					role="dialog"
+					aria-modal="true"
+					aria-labelledby={`${id}-title`}
+					tabIndex={-1}
+				>
 					<ModalHeadingComponent>
 						<div>
 							<Heading
 								level={3}
 								align="left"
+								id={`${id}-title`}
 							>
 								{title}
 							</Heading>
@@ -73,10 +91,15 @@ export const Modal: FC<ModalProps & NiceModalHocProps> = NiceModal.create(
 							)}
 						</div>
 
-						<HiXCircle
+						<button
+							type="button"
 							onClick={closeModal}
 							className="close-icon"
-						/>
+							aria-label={String(t('word.close'))}
+							data-testid="modal-close"
+						>
+							<HiXCircle aria-hidden />
+						</button>
 					</ModalHeadingComponent>
 
 					<Spacer type="vertical" />

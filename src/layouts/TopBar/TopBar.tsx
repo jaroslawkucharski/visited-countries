@@ -6,6 +6,7 @@ import {
 	Dropdown,
 	DropdownItem,
 	Image,
+	Link,
 	Paragraph,
 	ProgressBar,
 	Spacer,
@@ -84,16 +85,15 @@ export const TopBar = () => {
 
 	const handleSignUp = useCallback(() => navigate(ROUTES.SIGNUP), [navigate])
 
-	const handleNavigateToMainPage = useCallback(() => navigate(ROUTES.DASHBOARD), [navigate])
-
 	return hideLogo(pathname) && isMobile ? null : (
 		<TopBarComponent>
-			<Image
-				src={theme === THEME_COLORS.DARK ? LogoDark : LogoLight}
-				width={250}
-				alt={t('word.logo')}
-				onClick={handleNavigateToMainPage}
-			/>
+			<Link to={ROUTES.DASHBOARD}>
+				<Image
+					src={theme === THEME_COLORS.DARK ? LogoDark : LogoLight}
+					width={250}
+					alt={t('word.logo')}
+				/>
+			</Link>
 
 			{!userAuth && !isMobile && (
 				<SettingsComponent>
@@ -120,6 +120,7 @@ export const TopBar = () => {
 					<Button
 						variant="icon"
 						onClick={showHelpModal}
+						aria-label={String(t('word.help'))}
 						data-testid="button-help"
 					>
 						<TbHelp />

@@ -13,7 +13,7 @@ import { LOCALES } from 'constants/locales'
 import { WebMenuComponent, WebMenuItemComponent } from './WebMenu.style'
 
 export const WebMenu = () => {
-	const { i18n } = useTranslation()
+	const { t, i18n } = useTranslation()
 	const { theme, toggleTheme } = useThemeColorContext()
 
 	const [isOpen, setOpen] = useState<boolean>(false)
@@ -35,6 +35,8 @@ export const WebMenu = () => {
 			<Button
 				variant="icon"
 				onClick={handleOpenList}
+				aria-label={String(t(isOpen ? 'word.list.hide' : 'word.list.show'))}
+				aria-expanded={isOpen}
 			>
 				{isOpen ? <HiChevronDoubleLeft /> : <HiChevronDoubleRight />}
 			</Button>
@@ -51,6 +53,7 @@ export const WebMenu = () => {
 				<Button
 					variant="icon"
 					onClick={handleThemeColorChange}
+					aria-label={String(t('word.theme.toggle'))}
 				>
 					{theme === 'dark' ? <HiSun /> : <HiMoon />}
 				</Button>
@@ -63,6 +66,7 @@ export const WebMenu = () => {
 				<Button
 					variant="icon"
 					onClick={handleLanguageChangeToPL}
+					aria-label={String(t('word.language.toggle'))}
 				>
 					{getLanguageImage()}
 				</Button>

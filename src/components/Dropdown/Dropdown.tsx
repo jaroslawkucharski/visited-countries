@@ -1,5 +1,5 @@
 import { Button } from 'components'
-import { FC, ReactNode, useCallback, useRef, useState } from 'react'
+import { FC, ReactNode, useCallback, useEffect, useRef, useState } from 'react'
 import { HiChevronDown, HiChevronUp } from 'react-icons/hi2'
 
 import { useOnClickOutside } from 'hooks/useOnClickOutside'
@@ -14,6 +14,7 @@ export interface DropdownProps {
 	hasChevron?: boolean
 	dropdownWith?: number | string
 	dropdownContentWith?: number | string
+	ariaLabel?: string
 	'data-testid'?: string
 }
 
@@ -24,6 +25,7 @@ export const Dropdown: FC<DropdownProps> = ({
 	hasChevron = true,
 	dropdownWith,
 	dropdownContentWith,
+	ariaLabel,
 	'data-testid': dataTestId = 'dropdown',
 }) => {
 	const dropdownRef = useRef<HTMLDivElement>(null)
@@ -34,6 +36,21 @@ export const Dropdown: FC<DropdownProps> = ({
 
 	useOnClickOutside(dropdownRef, handleClose)
 	useScrollDetector(handleClose)
+
+	useEffect(() => {
+		if (!isOpen) return undefined
+
+		const handleKeyDown = (event: KeyboardEvent) => {
+			if (event.key !== 'Escape') return
+
+			setOpen(false)
+			dropdownRef.current?.querySelector<HTMLButtonElement>('button')?.focus()
+		}
+
+		document.addEventListener('keydown', handleKeyDown)
+
+		return () => document.removeEventListener('keydown', handleKeyDown)
+	}, [isOpen])
 
 	const renderChevron = isOpen ? <HiChevronUp /> : <HiChevronDown />
 
@@ -52,7 +69,13 @@ export const Dropdown: FC<DropdownProps> = ({
 			data-testid={dataTestId}
 			dropdownWith={dropdownWith}
 		>
-			<Button {...customButtonProps}>{buttonContent}</Button>
+			<Button
+				{...customButtonProps}
+				aria-label={ariaLabel}
+				aria-expanded={isOpen}
+			>
+				{buttonContent}
+			</Button>
 
 			{isOpen && (
 				<DropdownMenuComponent dropdownContentWith={dropdownContentWith}>

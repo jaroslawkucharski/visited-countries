@@ -17,7 +17,7 @@ interface UnvisitedCountriesProps {
 export const UnvisitedCountries = ({ query = '' }: UnvisitedCountriesProps) => {
 	const { t, i18n } = useTranslation()
 	const { unvisitedList } = useCountriesListContext()
-	const { isFavorite, toggleFavorite, openAddModal } = useCountryActions()
+	const { isFavorite, toggleFavorite, openAddModal, getCountryName } = useCountryActions()
 
 	const filtered = (unvisitedList || []).filter(country =>
 		matchesCountry(country, query, i18n.language),
@@ -40,6 +40,9 @@ export const UnvisitedCountries = ({ query = '' }: UnvisitedCountriesProps) => {
 						<IconComponent
 							isFavorite={favorite}
 							title={String(t(favorite ? 'favorites.remove' : 'favorites.add'))}
+							aria-label={`${t(favorite ? 'favorites.remove' : 'favorites.add')}: ${getCountryName(
+								country,
+							)}`}
 							onClick={() => toggleFavorite(String(country?.code))}
 							data-testid="toggle-favorite"
 						>
@@ -48,6 +51,7 @@ export const UnvisitedCountries = ({ query = '' }: UnvisitedCountriesProps) => {
 
 						<IconComponent
 							title={String(t('word.add.country'))}
+							aria-label={`${t('word.add.country')}: ${getCountryName(country)}`}
 							onClick={() => openAddModal(country)}
 						>
 							<HiPlusCircle />
