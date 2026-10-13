@@ -8,9 +8,7 @@ import {
 } from './VisitDateForm.styles'
 
 export interface VisitDateFormProps {
-	// "YYYY-MM", "YYYY", null (unknown date) or undefined (current month)
 	initialValue?: string | null
-	// called with "YYYY-MM", "YYYY" (whole year) or null (unknown date)
 	onChange: (visitedAt: string | null) => void
 	'data-testid'?: string
 }

@@ -45,6 +45,7 @@
 	"word.cancel": "Cancel",
 	"word.add.country": "Add country",
 	"word.remove": "Remove",
+	"word.remove.country": "Remove country",
 	"modal.remove.country": "Remove country",
 	"modal.remove.country.content": "Are you sure you want to remove this country from the list?",
 	"word.visited.list": "Your visited list:",

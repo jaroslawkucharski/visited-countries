@@ -55,7 +55,7 @@ export const VisitedSectionComponent = styled.div`
 	}
 `
 
-export const BellComponent = styled.span`
+export const IconBadgeComponent = styled.span`
 	${({ theme: { colors } }) =>
 		css`
 			position: relative;
@@ -76,15 +76,6 @@ export const BellComponent = styled.span`
 				text-align: center;
 			}
 
-			.dot {
-				position: absolute;
-				top: -2px;
-				right: -2px;
-				width: 8px;
-				height: 8px;
-				border-radius: 50%;
-				background: ${colors.error};
-			}
 		`}
 `
 

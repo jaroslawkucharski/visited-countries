@@ -10,7 +10,6 @@ interface SearchCountriesProps {
 	onChange: (query: string) => void
 }
 
-// Filters the visited, favorite and unvisited lists below
 export const SearchCountries: FC<SearchCountriesProps> = ({ query, onChange }) => {
 	const { t } = useTranslation()
 

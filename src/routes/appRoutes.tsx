@@ -99,7 +99,7 @@ const routes = [
 	{
 		path: ROUTES.FAVORITES,
 		route: PrivateRoute,
-		isOnlyForMobile: false,
+		isOnlyForMobile: true,
 		component: <Favorites />,
 	},
 	{

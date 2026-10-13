@@ -60,7 +60,6 @@ export const Tooltip: FC<TooltipProps> = ({
 							{...arrowProps}
 							backgroundColor={theme.colors.secondary}
 							size={6}
-							// react-laag types predate React 19, where these props became required in its picked SVG props
 							onPointerEnterCapture={undefined}
 							onPointerLeaveCapture={undefined}
 						/>

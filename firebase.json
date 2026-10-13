@@ -11,5 +11,8 @@
 			"port": 4000
 		},
 		"singleProjectMode": true
+	},
+	"database": {
+		"rules": "firebase/database.rules.json"
 	}
 }

@@ -10,9 +10,7 @@ import registerLarge from './register-large.webp'
 import registerSmall from './register-small.webp'
 
 export interface ResponsiveImage {
-	// up to tablet breakpoint (1280px wide)
 	small: string
-	// desktop (1920px wide)
 	large: string
 }
 

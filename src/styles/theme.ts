@@ -22,7 +22,6 @@ export const colors = {
 	Orange200: '#F18F5D',
 	Yellow100: '#DECC56',
 	Yellow200: '#E4CF49',
-	// Green100: '#D7E66D',
 	Green200: '#D6E560',
 	Green300: '#8EE296',
 	Green400: '#83DF8C',

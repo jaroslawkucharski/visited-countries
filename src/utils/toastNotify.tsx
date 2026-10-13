@@ -5,8 +5,6 @@ import { BREAKPOINTS } from '../constants/breakpoints'
 
 type ToastType = 'success' | 'error' | 'warning' | 'info'
 
-// react-toastify v11 no longer wraps the icon and message in a body element,
-// so the markup expected by ToastStyles is rendered here to keep the original look.
 const ToastBody = ({ text, type }: { text: ReactNode; type: ToastType }) => (
 	<div className="Toastify__toast-body">
 		<div className="Toastify__toast-icon Toastify--animate-icon Toastify__zoom-enter">

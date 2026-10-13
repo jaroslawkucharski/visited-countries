@@ -3,7 +3,6 @@ import { onAuthStateChanged } from 'firebase/auth'
 import { onValue, ref } from 'firebase/database'
 import { useEffect, useState } from 'react'
 
-// Live user avatar (base64 data URL stored in Realtime Database at users/{uid}/avatar)
 export const useUserAvatar = () => {
 	const [avatar, setAvatar] = useState<string | null>(null)
 

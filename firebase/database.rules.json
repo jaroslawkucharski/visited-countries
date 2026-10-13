@@ -1,0 +1,22 @@
+{
+	"rules": {
+		".read": false,
+		".write": false,
+		"news": {
+			".read": "auth != null",
+			".write": false,
+			".indexOn": [
+				"date"
+			]
+		},
+		"users": {
+			"$user_id": {
+				".read": "$user_id === auth.uid",
+				".write": "$user_id === auth.uid",
+				"avatar": {
+					".validate": "newData.isString() && newData.val().beginsWith('data:image/') && newData.val().length < 100000"
+				}
+			}
+		}
+	}
+}

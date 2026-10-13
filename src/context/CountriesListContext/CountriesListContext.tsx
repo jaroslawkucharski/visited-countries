@@ -19,7 +19,6 @@ import { LOCALES } from 'constants/locales'
 export interface VisitedCountriesType {
 	country: string
 	uid: string
-	// "YYYY-MM", "YYYY" or undefined when the visit date is unknown
 	visitedAt?: string
 }
 
@@ -50,7 +49,6 @@ const useCountriesList = () => {
 	const { i18n } = useTranslation()
 	const isEnglish = i18n.language === LOCALES.EN
 
-	// sorted alphabetically by the name in the current language
 	const countries = data
 		?.map(item => ({
 			nameEN: item.name.common,
@@ -73,7 +71,6 @@ const useCountriesList = () => {
 		({ code }) => !visitedCountries.find(({ uid }) => code === uid),
 	)
 
-	// codes of countries the user wants to visit (stored at users/{uid}/favorites/{code})
 	const [favorites, setFavorites] = useState<string[]>([])
 
 	const favoriteList = favorites

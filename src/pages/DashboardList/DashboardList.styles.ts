@@ -8,6 +8,7 @@ interface IconComponentProps {
 export const ProfileColumnComponent = styled.div`
 	${({ theme: { spaces, breakpoints } }) =>
 		css`
+			width: 100%;
 			margin: 0 auto;
 			padding: 0 0 0 ${spaces.big};
 			align-items: center;
@@ -78,10 +79,14 @@ export const SearchComponent = styled.div`
 	top: 0;
 	z-index: 1;
 
-	${({ theme: { colors, spaces } }) =>
+	${({ theme: { colors, spaces, breakpoints } }) =>
 		css`
 			padding: ${spaces.tiny} 0;
 			background: ${colors.main};
+
+			@media (max-width: ${breakpoints.mobile}px) {
+				padding: ${spaces.medium} 0 ${spaces.small};
+			}
 		`}
 
 	input {

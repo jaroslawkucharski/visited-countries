@@ -2,7 +2,6 @@ import { CountriesListType } from 'context/CountriesListContext'
 
 import { LOCALES } from 'constants/locales'
 
-// lower case without diacritics, so "lodz" finds "Łódź" and "osterreich" finds "Österreich"
 export const normalizeText = (text = '') =>
 	text
 		.normalize('NFD')
@@ -12,7 +11,6 @@ export const normalizeText = (text = '') =>
 		.toLowerCase()
 		.trim()
 
-// matches the country name in the current language
 export const matchesCountry = (
 	country: CountriesListType | undefined,
 	query: string,
