@@ -12,13 +12,14 @@ import {
 } from 'components'
 import { auth } from 'config/firebase'
 import { useAuthContext } from 'context/AuthContext'
-import { useCountriesListContext } from 'context/CountriesListContext'
+import { CountriesListType, useCountriesListContext } from 'context/CountriesListContext'
 import { useThemeColorContext } from 'context/ThemeContext'
 import { CHANGELOG } from 'data/changelog'
 import { useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
 import {
 	TbBell,
+	TbCirclePlus,
 	TbEdit,
 	TbHeart,
 	TbHeartOff,
@@ -32,14 +33,14 @@ import {
 } from 'react-icons/tb'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { logout } from 'services/auth'
-import { removeFavorite } from 'services/user'
-import { showHelpModal, toastNotify } from 'utils'
+import { removeFavorite, setCountry } from 'services/user'
+import { showAddCountryModal, showHelpModal, toastNotify } from 'utils'
 import { v4 as uuid } from 'uuid'
 
 import { hideLogo } from 'helpers/hideLogo'
 import { languageDetector } from 'helpers/languageDetector'
 
-import { useLocalStorage } from 'hooks/useLocalstorage'
+import { useReadNews } from 'hooks/useReadNews'
 import { useService } from 'hooks/useService'
 import { useUserAvatar } from 'hooks/useUserAvatar'
 import { useWindowSize } from 'hooks/useWindowSize'
@@ -52,7 +53,7 @@ import {
 	BellComponent,
 	FavoritesListComponent,
 	MonthsComponent,
-	NewsEntryComponent,
+	NewsListComponent,
 	SettingsComponent,
 	TopBarComponent,
 	VisitedSectionComponent,
@@ -93,9 +94,27 @@ export const TopBar = () => {
 
 	const handleLogout = () => request()
 
-	const [seenNewsId, setSeenNewsId] = useLocalStorage<string | null>('news-seen')
-	const hasUnreadNews = CHANGELOG.length > 0 && seenNewsId !== CHANGELOG[0].id
-	const markNewsAsSeen = () => CHANGELOG.length > 0 && setSeenNewsId(CHANGELOG[0].id)
+	const { readIds, markAsRead, markAllAsRead } = useReadNews()
+	const unreadNews = CHANGELOG.filter(({ id }) => !readIds.includes(id))
+	const newsLocale = i18n.language === LOCALES.EN ? 'en' : 'pl'
+
+	const showAddFavoriteToVisited = (country?: CountriesListType) =>
+		country?.code &&
+		showAddCountryModal({
+			icon: country.icon,
+			name: String(languageDetector(country.nameEN, country.namePL)),
+			onConfirm: async visitedAt => {
+				try {
+					await setCountry(country.code as string, String(country.nameEN), visitedAt)
+
+					toastNotify(t('toasts.add.country'), 'success')
+
+					fetchCountriesList()
+				} catch {
+					toastNotify(t('toasts.error'), 'error')
+				}
+			},
+		})
 
 	const visitedPercent = countries?.length
 		? Math.round((1000 * visitedList.length) / countries.length) / 10
@@ -172,7 +191,7 @@ export const TopBar = () => {
 						customButtonProps={{ variant: 'icon' }}
 						hasChevron={false}
 						dropdownWith={100}
-						dropdownContentWith="280px"
+						dropdownContentWith="300px"
 					>
 						<VisitedSectionComponent>
 							<Paragraph type="dropdown">
@@ -193,20 +212,31 @@ export const TopBar = () => {
 									{t('favorites.empty')}
 								</Paragraph>
 							) : (
-								<FavoritesListComponent>
+								<FavoritesListComponent data-testid="favorites-dropdown">
 									{favoriteList.map(country => (
 										<li key={country?.code}>
 											<span>
 												{`${country?.icon} ${languageDetector(country?.nameEN, country?.namePL)}`}
 											</span>
 
-											<button
-												type="button"
-												title={String(t('favorites.remove'))}
-												onClick={() => handleRemoveFavorite(country?.code)}
-											>
-												<TbHeartOff />
-											</button>
+											<div className="actions">
+												<button
+													type="button"
+													title={String(t('favorites.remove'))}
+													onClick={() => handleRemoveFavorite(country?.code)}
+												>
+													<TbHeartOff />
+												</button>
+
+												<button
+													type="button"
+													title={String(t('word.add.country'))}
+													onClick={() => showAddFavoriteToVisited(country)}
+													data-testid="favorite-add-visited"
+												>
+													<TbCirclePlus />
+												</button>
+											</div>
 										</li>
 									))}
 								</FavoritesListComponent>
@@ -218,26 +248,28 @@ export const TopBar = () => {
 
 					<Dropdown
 						label={
-							<BellComponent
-								onClick={markNewsAsSeen}
-								data-testid="button-news"
-							>
+							<BellComponent data-testid="button-news">
 								<TbBell />
 
-								{hasUnreadNews && <span className="dot" />}
+								{unreadNews.length > 0 && <span className="count">{unreadNews.length}</span>}
 							</BellComponent>
 						}
 						customButtonProps={{ variant: 'icon' }}
 						hasChevron={false}
 						dropdownWith={100}
-						dropdownContentWith="320px"
+						dropdownContentWith="340px"
 					>
 						<VisitedSectionComponent>
 							<Paragraph type="dropdown">
 								<TbNews /> {t('news.title').toUpperCase()}
 							</Paragraph>
 
-							{CHANGELOG.length === 0 && (
+							<Spacer
+								space="mini"
+								type="vertical"
+							/>
+
+							{unreadNews.length === 0 ? (
 								<Paragraph
 									type="dropdown"
 									align="left"
@@ -245,42 +277,49 @@ export const TopBar = () => {
 								>
 									{t('news.empty')}
 								</Paragraph>
+							) : (
+								<>
+									<Paragraph
+										type="dropdown"
+										align="left"
+										size="s12"
+									>
+										{t('news.hint')}
+									</Paragraph>
+
+									<NewsListComponent data-testid="news-list">
+										{unreadNews.map(entry => (
+											<li key={entry.id}>
+												<button
+													type="button"
+													onClick={event => {
+														event.stopPropagation()
+														markAsRead(entry.id)
+													}}
+													data-testid="news-entry"
+												>
+													<strong>{entry.title[newsLocale]}</strong>
+
+													<span className="date">
+														{new Date(entry.date).toLocaleDateString(i18n.language)}
+													</span>
+
+													<span>{entry.text[newsLocale]}</span>
+												</button>
+											</li>
+										))}
+									</NewsListComponent>
+
+									<button
+										type="button"
+										className="mark-all"
+										onClick={() => markAllAsRead(unreadNews.map(({ id }) => id))}
+										data-testid="news-mark-all"
+									>
+										{t('news.mark.all')}
+									</button>
+								</>
 							)}
-
-							{CHANGELOG.map(entry => {
-								const locale = i18n.language === LOCALES.EN ? 'en' : 'pl'
-
-								return (
-									<NewsEntryComponent key={entry.id}>
-										<Spacer
-											space="mini"
-											type="vertical"
-										/>
-
-										<Paragraph
-											type="dropdown"
-											align="left"
-											size="s14"
-										>
-											{entry.title[locale]}
-										</Paragraph>
-
-										<Paragraph
-											type="dropdown"
-											align="left"
-											size="s12"
-										>
-											{new Date(entry.date).toLocaleDateString(i18n.language)}
-										</Paragraph>
-
-										<ul>
-											{entry.items[locale].map(item => (
-												<li key={item}>{item}</li>
-											))}
-										</ul>
-									</NewsEntryComponent>
-								)
-							})}
 
 							<Spacer type="vertical" />
 						</VisitedSectionComponent>

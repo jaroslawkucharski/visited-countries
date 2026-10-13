@@ -14,9 +14,7 @@ export const ProfileColumnComponent = styled.div`
 
 			@media (max-width: ${breakpoints.mobile}px) {
 				width: 100%;
-				padding: 0;
-				height: calc(100vh - 172px);
-				overflow: none;
+				padding: 0 0 120px;
 			}
 		`}
 `
@@ -71,5 +69,47 @@ export const IconComponent = styled.div<IconComponentProps>`
 			&:hover {
 				color: ${isRemoved ? colors.error : colors.success};
 			}
+		`}
+`
+
+export const SearchComponent = styled.div`
+	width: 100%;
+	position: sticky;
+	top: 0;
+	z-index: 1;
+
+	${({ theme: { colors, spaces } }) =>
+		css`
+			padding: ${spaces.tiny} 0;
+			background: ${colors.main};
+		`}
+
+	input {
+		padding-right: 48px;
+	}
+`
+
+export const SearchIconComponent = styled.button`
+	${({ theme: { colors } }) =>
+		css`
+			position: absolute;
+			top: 50%;
+			right: 14px;
+			transform: translateY(-50%);
+			display: flex;
+			padding: 0;
+			border: none;
+			background: none;
+			color: ${colors.secondary};
+			font-size: 22px;
+			cursor: pointer;
+		`}
+`
+
+export const EmptyResultsComponent = styled.p`
+	${({ theme: { colors, spaces } }) =>
+		css`
+			padding: ${spaces.small} 0;
+			color: ${colors.color5};
 		`}
 `

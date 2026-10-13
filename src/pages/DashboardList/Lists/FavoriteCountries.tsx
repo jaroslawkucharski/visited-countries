@@ -5,15 +5,34 @@ import { HiHeart, HiPlusCircle } from 'react-icons/hi2'
 import { removeFavorite, setCountry } from 'services/user'
 import { showAddCountryModal, toastNotify } from 'utils'
 
+import { matchesCountry } from 'helpers/countrySearch'
 import { languageDetector } from 'helpers/languageDetector'
 
-import { ActionsComponent, IconComponent, ListItemComponent } from '../DashboardList.styles'
+import {
+	ActionsComponent,
+	EmptyResultsComponent,
+	IconComponent,
+	ListItemComponent,
+} from '../DashboardList.styles'
 
 // Countries the user wants to visit
-export const FavoriteCountries = () => {
-	const { t } = useTranslation()
+interface FavoriteCountriesProps {
+	query?: string
+	// shows a hint instead of hiding the section when there are no favorites
+	showEmptyMessage?: boolean
+}
+
+export const FavoriteCountries = ({
+	query = '',
+	showEmptyMessage = false,
+}: FavoriteCountriesProps) => {
+	const { t, i18n } = useTranslation()
 
 	const { favoriteList, fetchCountriesList } = useCountriesListContext()
+
+	const filtered = (favoriteList || []).filter(country =>
+		matchesCountry(country, query, i18n.language),
+	)
 
 	const handleRemoveFavorite = async (code: string) => {
 		try {
@@ -39,8 +58,10 @@ export const FavoriteCountries = () => {
 		}
 	}
 
-	if (favoriteList.length === 0) {
-		return null
+	if (filtered.length === 0) {
+		return showEmptyMessage ? (
+			<EmptyResultsComponent>{t('favorites.empty')}</EmptyResultsComponent>
+		) : null
 	}
 
 	return (
@@ -53,7 +74,7 @@ export const FavoriteCountries = () => {
 			/>
 
 			<ul data-testid="favorites-list">
-				{favoriteList.map(country => {
+				{filtered.map(country => {
 					const name = languageDetector(country?.nameEN, country?.namePL)
 
 					return (

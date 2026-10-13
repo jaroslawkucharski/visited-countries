@@ -6,14 +6,23 @@ import { addFavorite, removeFavorite, setCountry } from 'services/user'
 import { showAddCountryModal, toastNotify } from 'utils'
 import { v4 as uuid } from 'uuid'
 
+import { matchesCountry } from 'helpers/countrySearch'
 import { languageDetector } from 'helpers/languageDetector'
 
 import { ActionsComponent, IconComponent, ListItemComponent } from '../DashboardList.styles'
 
-export const UnvisitedCountries = () => {
-	const { t } = useTranslation()
+interface UnvisitedCountriesProps {
+	query?: string
+}
+
+export const UnvisitedCountries = ({ query = '' }: UnvisitedCountriesProps) => {
+	const { t, i18n } = useTranslation()
 
 	const { unvisitedList, fetchCountriesList, isFavorite } = useCountriesListContext()
+
+	const filtered = (unvisitedList || []).filter(country =>
+		matchesCountry(country, query, i18n.language),
+	)
 
 	const handleToggleFavorite = async (code: string) => {
 		try {
@@ -45,6 +54,10 @@ export const UnvisitedCountries = () => {
 		}
 	}
 
+	if (query && filtered.length === 0) {
+		return null
+	}
+
 	return (
 		<>
 			<Paragraph size="big">{t('word.unvisited.list')}</Paragraph>
@@ -55,7 +68,7 @@ export const UnvisitedCountries = () => {
 			/>
 
 			<ul>
-				{unvisitedList?.map(country => {
+				{filtered.map(country => {
 					const name = languageDetector(country?.nameEN, country?.namePL)
 
 					return (

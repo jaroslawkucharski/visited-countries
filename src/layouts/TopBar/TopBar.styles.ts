@@ -34,6 +34,18 @@ export const VisitedSectionComponent = styled.div`
 	width: 100%;
 	padding: 10px 20px;
 
+	.mark-all {
+		margin-top: 10px;
+		padding: 0;
+		border: none;
+		background: none;
+		color: inherit;
+		font-family: inherit;
+		font-size: 12px;
+		text-decoration: underline;
+		cursor: pointer;
+	}
+
 	.quantity {
 		padding: 0 2px;
 		display: flex;
@@ -76,17 +88,47 @@ export const BellComponent = styled.span`
 		`}
 `
 
-export const NewsEntryComponent = styled.div`
-	${({ theme: { spaces, colors } }) =>
+export const NewsListComponent = styled.ul`
+	${({ theme: { colors, spaces } }) =>
 		css`
-			ul {
+			margin: ${spaces.tiny} 0 0;
+			padding: 0;
+			list-style: none;
+			max-height: 360px;
+			overflow-y: auto;
+			display: flex;
+			flex-direction: column;
+			gap: ${spaces.tiny};
+
+			button {
+				width: 100%;
+				display: flex;
+				flex-direction: column;
+				gap: 2px;
+				padding: ${spaces.tiny} ${spaces.small};
+				border: none;
+				border-left: 3px solid ${colors.error};
+				border-radius: 4px;
+				background: ${colors.main20};
 				color: ${colors.main100};
-				list-style: disc;
-				margin: ${spaces.mini} 0 0;
-				padding-left: ${spaces.medium};
+				font-family: inherit;
 				font-size: 12px;
-				line-height: 1.5;
+				line-height: 1.4;
 				text-align: left;
+				cursor: pointer;
+
+				&:hover {
+					background: ${colors.main50};
+				}
+			}
+
+			strong {
+				font-size: 14px;
+				font-weight: 600;
+			}
+
+			.date {
+				opacity: 0.6;
 			}
 		`}
 `
@@ -131,6 +173,11 @@ export const FavoritesListComponent = styled.ul`
 				align-items: center;
 				gap: ${spaces.tiny};
 				padding: ${spaces.mini} 0;
+			}
+
+			.actions {
+				flex-shrink: 0;
+				display: flex;
 			}
 
 			button {

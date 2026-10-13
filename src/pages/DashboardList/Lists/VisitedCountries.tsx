@@ -6,14 +6,23 @@ import { removeCountry, setVisitDate } from 'services/user'
 import { modalShow, showAddCountryModal, toastNotify } from 'utils'
 import { v4 as uuid } from 'uuid'
 
+import { matchesCountry } from 'helpers/countrySearch'
 import { languageDetector } from 'helpers/languageDetector'
 
 import { ActionsComponent, IconComponent, ListItemComponent } from '../DashboardList.styles'
 
-export const VisitedCountries = () => {
-	const { t } = useTranslation()
+interface VisitedCountriesProps {
+	query?: string
+}
+
+export const VisitedCountries = ({ query = '' }: VisitedCountriesProps) => {
+	const { t, i18n } = useTranslation()
 
 	const { visitedList, visitedCountries, fetchCountriesList } = useCountriesListContext()
+
+	const filtered = (visitedList || []).filter(country =>
+		matchesCountry(country, query, i18n.language),
+	)
 
 	const getVisitedAt = (code?: string) =>
 		visitedCountries.find(({ uid }) => uid === code)?.visitedAt
@@ -64,6 +73,10 @@ export const VisitedCountries = () => {
 			variant: 'alert',
 		})
 
+	if (query && filtered.length === 0) {
+		return null
+	}
+
 	return (
 		<>
 			<Paragraph size="big">{t('word.visited.list')}</Paragraph>
@@ -74,7 +87,7 @@ export const VisitedCountries = () => {
 			/>
 
 			<ul>
-				{visitedList?.map(country => {
+				{filtered.map(country => {
 					const name = languageDetector(country?.nameEN, country?.namePL)
 
 					return (
