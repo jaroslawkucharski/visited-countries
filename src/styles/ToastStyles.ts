@@ -111,7 +111,6 @@ export const ToastStyles = createGlobalStyle`
 				font-family: var(--toastify-font-family);
 				cursor: default;
 				direction: ltr;
-				/* webkit only issue #791 */
 				z-index: 0;
 			}
 			.Toastify__toast--rtl {

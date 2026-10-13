@@ -1,75 +1,68 @@
 import topology from 'assets/topology.json'
-import { Spacer } from 'components'
 import { CountriesListType, useCountriesListContext } from 'context/CountriesListContext'
+import { MouseEvent, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { ComposableMap, Geographies, Geography, ZoomableGroup } from 'react-simple-maps'
-import { removeCountry, setCountry } from 'services/user'
-import { modalShow, toastNotify } from 'utils'
 
-import { languageDetector } from 'helpers/languageDetector'
-
+import { useCountryActions } from 'hooks/useCountryActions'
 import { useWindowSize } from 'hooks/useWindowSize'
+
+import { MapTooltipComponent } from './Dashboard.styles'
+
+interface MapTooltip {
+	code: string
+	name: string
+	x: number
+	y: number
+}
+
+const MAP_COLORS = {
+	VISITED: '#8EE296',
+	FAVORITE: '#F2B8B5',
+	DEFAULT: '#D6D6DA',
+	HOVER: '#797979',
+	PRESSED: '#E42',
+}
 
 export const Dashboard = () => {
 	const { t } = useTranslation()
 	const { isMobile } = useWindowSize()
 
-	const { visitedList, visitedCountries, fetchCountriesList } = useCountriesListContext()
+	const { countries } = useCountriesListContext()
+	const { getCountryName, isVisited, isFavorite, openAddModal, openEditModal } = useCountryActions()
 
-	const handleAddCountry = async (code: string, country: string) => {
-		try {
-			await setCountry(code, country)
+	const [tooltip, setTooltip] = useState<MapTooltip | null>(null)
 
-			toastNotify(t('toasts.add.country'), 'success')
+	const findCountry = (code: string, name: string): CountriesListType =>
+		countries?.find(item => item?.code === code) || { code, nameEN: name, namePL: name, icon: '' }
 
-			fetchCountriesList()
-		} catch {
-			toastNotify(t('toasts.error'), 'error')
-		}
+	const getCountryFill = (code: string) => {
+		if (isVisited(code)) return MAP_COLORS.VISITED
+		if (isFavorite(code)) return MAP_COLORS.FAVORITE
+
+		return MAP_COLORS.DEFAULT
 	}
 
-	const handleRemoveCountry = async (uid: string) => {
-		try {
-			await removeCountry(uid)
+	const getCountryStatus = (code: string) => {
+		if (isVisited(code)) return t('word.visited.status')
+		if (isFavorite(code)) return t('word.favorite')
 
-			toastNotify(t('toasts.remove.country'), 'success')
-
-			fetchCountriesList()
-		} catch {
-			toastNotify(t('toasts.error'), 'error')
-		}
+		return ''
 	}
 
-	const showRemoveModal = (code: string, countryData: CountriesListType[]) =>
-		modalShow({
-			id: 'remove-country',
-			title: t('modal.remove.country'),
-			content: (
-				<>
-					{t('modal.remove.country.content')}
-					<Spacer
-						type="vertical"
-						space="tiny"
-					/>
+	const handleTooltipMove = (code: string, name: string) => (event: MouseEvent) =>
+		!isMobile && setTooltip({ code, name, x: event.clientX, y: event.clientY })
 
-					{`${countryData[0].icon} ${languageDetector(
-						countryData[0].nameEN,
-						countryData[0].namePL,
-					)}`}
-				</>
-			),
-			actionName: t('word.remove'),
-			cancelName: t('word.cancel'),
-			action: () => handleRemoveCountry(code),
-			variant: 'alert',
-		})
+	const handleCountryClick = (code: string, name: string) => {
+		const country = findCountry(code, name)
 
-	const handleCountryAction = (code: string, country: string) => {
-		const countryData = visitedList.filter(item => item?.code === code)
+		if (isVisited(code)) {
+			openEditModal(country)
 
-		visitedCountries.some(item => item.uid === code)
-			? showRemoveModal(code, countryData as CountriesListType[])
-			: handleAddCountry(code, country)
+			return
+		}
+
+		openAddModal(country, true)
 	}
 
 	return (
@@ -82,9 +75,7 @@ export const Dashboard = () => {
 					<Geographies geography={topology}>
 						{({ geographies }) =>
 							geographies.map(geo => {
-								const fillCountry = visitedList.some(item => item?.code === geo.id)
-									? '#8EE296'
-									: '#D6D6DA'
+								const fillCountry = getCountryFill(geo.id)
 								const mapStyle = {
 									default: {
 										fill: fillCountry,
@@ -92,11 +83,11 @@ export const Dashboard = () => {
 										height: '100vh',
 									},
 									hover: {
-										fill: '#797979',
+										fill: MAP_COLORS.HOVER,
 										outline: 'none',
 									},
 									pressed: {
-										fill: '#E42',
+										fill: MAP_COLORS.PRESSED,
 										outline: 'none',
 									},
 								}
@@ -104,7 +95,10 @@ export const Dashboard = () => {
 									<Geography
 										key={geo.rsmKey}
 										geography={geo}
-										onClick={() => handleCountryAction(geo.id, geo.properties.name)}
+										onClick={() => handleCountryClick(geo.id, geo.properties.name)}
+										onMouseEnter={handleTooltipMove(geo.id, geo.properties.name)}
+										onMouseMove={handleTooltipMove(geo.id, geo.properties.name)}
+										onMouseLeave={() => setTooltip(null)}
 										style={mapStyle}
 									/>
 								)
@@ -113,6 +107,21 @@ export const Dashboard = () => {
 					</Geographies>
 				</ZoomableGroup>
 			</ComposableMap>
+
+			{tooltip && (
+				<MapTooltipComponent
+					style={{ left: tooltip.x + 14, top: tooltip.y + 14 }}
+					data-testid="map-tooltip"
+				>
+					{`${findCountry(tooltip.code, tooltip.name).icon} ${getCountryName(
+						findCountry(tooltip.code, tooltip.name),
+					)}`.trim()}
+
+					{getCountryStatus(tooltip.code) && (
+						<span className="status">{getCountryStatus(tooltip.code)}</span>
+					)}
+				</MapTooltipComponent>
+			)}
 		</div>
 	)
 }

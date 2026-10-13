@@ -10,6 +10,7 @@ export const ModalContainerComponent = styled.div`
 			top: 0;
 			display: grid;
 			place-items: center;
+			z-index: 10;
 			background-color: ${colors.secondary_opacity};
 
 			@media (max-width: ${breakpoints.mobile}px) {

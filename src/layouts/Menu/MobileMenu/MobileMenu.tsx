@@ -1,5 +1,5 @@
 import { Link } from 'components'
-import { TbListDetails, TbMapPin, TbUser } from 'react-icons/tb'
+import { TbHeart, TbListDetails, TbMapPin, TbUser } from 'react-icons/tb'
 
 import { ROUTES } from 'constants/routes'
 
@@ -13,6 +13,10 @@ export const MobileMenu = () => (
 
 		<Link to={ROUTES.DASHBOARD_LIST}>
 			<TbListDetails />
+		</Link>
+
+		<Link to={ROUTES.FAVORITES}>
+			<TbHeart />
 		</Link>
 
 		<Link to={ROUTES.PROFILE}>

@@ -1,4 +1,3 @@
-// Resize and center-crop an image file to a square data URL (base64), so it can be stored as text in the database
 export const resizeImage = (file: Blob, size = 128, quality = 0.8): Promise<string> =>
 	new Promise((resolve, reject) => {
 		const objectUrl = URL.createObjectURL(file)

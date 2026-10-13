@@ -1,10 +1,11 @@
-import { Break, Button, Link, Spacer } from 'components'
+import { Break, Button, Spacer } from 'components'
 import { useThemeColorContext } from 'context/ThemeContext'
 import { useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
 import { HiMoon, HiSun } from 'react-icons/hi2'
 import { useNavigate } from 'react-router-dom'
 import { logout } from 'services/auth'
+import { showHelpModal } from 'utils'
 
 import { getLanguageImage } from 'helpers/languageDetector'
 
@@ -27,6 +28,8 @@ export const Mobile = () => {
 	})
 
 	const handleLogout = () => request()
+
+	const handleOpenSettings = useCallback(() => navigate(ROUTES.SETTINGS), [navigate])
 
 	const handleLanguageChangeToPL = useCallback(
 		() =>
@@ -74,17 +77,31 @@ export const Mobile = () => {
 			/>
 
 			<Button
+				variant="secondary"
+				onClick={handleOpenSettings}
+				hasFullWidth
+			>
+				{t('word.settings')}
+			</Button>
+
+			<Spacer type="vertical" />
+
+			<Button
+				variant="secondary"
+				onClick={showHelpModal}
+				hasFullWidth
+			>
+				{t('word.help')}
+			</Button>
+
+			<Spacer type="vertical" />
+
+			<Button
 				onClick={handleLogout}
 				hasFullWidth
 			>
 				{t('word.logout')}
 			</Button>
-
-			<Spacer type="vertical" />
-
-			<Link to={`mailto:${t('help.email')}?subject=${t('help.subject')}&body=${t('help.body')}`}>
-				{t('word.help')}
-			</Link>
 		</>
 	)
 }

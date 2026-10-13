@@ -34,6 +34,18 @@ export const VisitedSectionComponent = styled.div`
 	width: 100%;
 	padding: 10px 20px;
 
+	.mark-all {
+		margin-top: 10px;
+		padding: 0;
+		border: none;
+		background: none;
+		color: inherit;
+		font-family: inherit;
+		font-size: 12px;
+		text-decoration: underline;
+		cursor: pointer;
+	}
+
 	.quantity {
 		padding: 0 2px;
 		display: flex;
@@ -41,4 +53,136 @@ export const VisitedSectionComponent = styled.div`
 		align-items: top;
 		gap: 10px;
 	}
+`
+
+export const IconBadgeComponent = styled.span`
+	${({ theme: { colors } }) =>
+		css`
+			position: relative;
+			display: inline-flex;
+
+			.count {
+				position: absolute;
+				top: -6px;
+				right: -8px;
+				min-width: 14px;
+				height: 14px;
+				padding: 0 3px;
+				border-radius: 7px;
+				background: ${colors.error};
+				color: #fff;
+				font-size: 9px;
+				line-height: 14px;
+				text-align: center;
+			}
+
+		`}
+`
+
+export const NewsListComponent = styled.ul`
+	${({ theme: { colors, spaces } }) =>
+		css`
+			margin: ${spaces.tiny} 0 0;
+			padding: 0;
+			list-style: none;
+			max-height: 360px;
+			overflow-y: auto;
+			display: flex;
+			flex-direction: column;
+			gap: ${spaces.tiny};
+
+			button {
+				width: 100%;
+				display: flex;
+				flex-direction: column;
+				gap: 2px;
+				padding: ${spaces.tiny} ${spaces.small};
+				border: none;
+				border-left: 3px solid ${colors.error};
+				border-radius: 4px;
+				background: ${colors.main20};
+				color: ${colors.main100};
+				font-family: inherit;
+				font-size: 12px;
+				line-height: 1.4;
+				text-align: left;
+				cursor: pointer;
+
+				&:hover {
+					background: ${colors.main50};
+				}
+			}
+
+			strong {
+				font-size: 14px;
+				font-weight: 600;
+			}
+
+			.date {
+				opacity: 0.6;
+			}
+		`}
+`
+
+export const MonthsComponent = styled.div`
+	${({ theme: { colors } }) =>
+		css`
+			width: 100%;
+			height: 10px;
+			padding: 2px 3px;
+			display: grid;
+			grid-template-columns: repeat(12, 1fr);
+			gap: 3px;
+			border-radius: 20px;
+			background: ${colors.main20};
+
+			.month {
+				height: 6px;
+				border-radius: 20px;
+			}
+
+			.visited {
+				background: ${colors.main100};
+			}
+		`}
+`
+
+export const FavoritesListComponent = styled.ul`
+	${({ theme: { colors, spaces } }) =>
+		css`
+			margin: 0;
+			padding: 0;
+			list-style: none;
+			max-height: 260px;
+			overflow-y: auto;
+			color: ${colors.main100};
+			font-size: 14px;
+
+			li {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				gap: ${spaces.tiny};
+				padding: ${spaces.mini} 0;
+			}
+
+			.actions {
+				flex-shrink: 0;
+				display: flex;
+			}
+
+			button {
+				flex-shrink: 0;
+				display: flex;
+				padding: ${spaces.mini};
+				border: none;
+				background: none;
+				color: inherit;
+				cursor: pointer;
+
+				&:hover {
+					color: ${colors.error};
+				}
+			}
+		`}
 `

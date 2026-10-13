@@ -16,19 +16,10 @@ import { useCountriesListContext } from 'context/CountriesListContext'
 import { useThemeColorContext } from 'context/ThemeContext'
 import { useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
-import {
-	TbBell,
-	TbEdit,
-	TbHelp,
-	TbLogout,
-	TbMapPin,
-	TbNews,
-	TbPlane,
-	TbSettings,
-	TbUser,
-} from 'react-icons/tb'
+import { TbEdit, TbHelp, TbLogout, TbMapPin, TbPlane, TbSettings, TbUser } from 'react-icons/tb'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { logout } from 'services/auth'
+import { showHelpModal } from 'utils'
 import { v4 as uuid } from 'uuid'
 
 import { hideLogo } from 'helpers/hideLogo'
@@ -40,14 +31,22 @@ import { useWindowSize } from 'hooks/useWindowSize'
 import { ROUTES } from 'constants/routes'
 import { THEME_COLORS } from 'constants/theme'
 
-import { SettingsComponent, TopBarComponent, VisitedSectionComponent } from './TopBar.styles'
+import { FavoritesDropdown } from './FavoritesDropdown'
+import { NewsDropdown } from './NewsDropdown'
+import {
+	MonthsComponent,
+	SettingsComponent,
+	TopBarComponent,
+	VisitedSectionComponent,
+} from './TopBar.styles'
 
 export const TopBar = () => {
-	const { t } = useTranslation()
+	const { t, i18n } = useTranslation()
 
 	const { theme } = useThemeColorContext()
 	const { userAuth } = useAuthContext()
-	const { countries, visitedList } = useCountriesListContext()
+	const { countries, visitedList, visitedCountries } = useCountriesListContext()
+
 	const navigate = useNavigate()
 	const { pathname } = useLocation()
 
@@ -61,6 +60,25 @@ export const TopBar = () => {
 	})
 
 	const handleLogout = () => request()
+
+	const visitedPercent = countries?.length
+		? Math.round((1000 * visitedList.length) / countries.length) / 10
+		: 0
+
+	const currentYear = String(new Date().getFullYear())
+	const visitedThisYear = visitedCountries.filter(({ visitedAt }) =>
+		visitedAt?.startsWith(currentYear),
+	)
+	const monthsWithVisits = Array.from({ length: 12 }, (_, index) =>
+		visitedThisYear.some(
+			({ visitedAt }) => visitedAt === `${currentYear}-${String(index + 1).padStart(2, '0')}`,
+		),
+	)
+	const monthLabel = (index: number) => {
+		const label = new Date(2000, index, 1).toLocaleDateString(i18n.language, { month: 'long' })
+
+		return label.charAt(0).toUpperCase() + label.slice(1)
+	}
 
 	const handleSignIn = useCallback(() => navigate(ROUTES.SIGNIN), [navigate])
 
@@ -99,63 +117,17 @@ export const TopBar = () => {
 
 			{userAuth && !isMobile && (
 				<SettingsComponent>
-					<Button variant="icon">
+					<Button
+						variant="icon"
+						onClick={showHelpModal}
+						data-testid="button-help"
+					>
 						<TbHelp />
 					</Button>
 
-					<Dropdown
-						label={<TbBell />}
-						customButtonProps={{ variant: 'icon' }}
-						hasChevron={false}
-						dropdownWith={100}
-					>
-						<VisitedSectionComponent>
-							<Paragraph type="dropdown">
-								<TbNews />
-								NOWOŚCI
-							</Paragraph>
+					<FavoritesDropdown />
 
-							<Spacer
-								space="mini"
-								type="vertical"
-							/>
-
-							<Paragraph
-								type="dropdown"
-								align="left"
-								size="s14"
-							>
-								Nowa funkcjonalność
-							</Paragraph>
-
-							<Spacer
-								space="mini"
-								type="vertical"
-							/>
-
-							<Paragraph
-								type="dropdown"
-								align="left"
-								size="s12"
-							>
-								Lorem ipsum dolor sit amet consectetur, adipisicing elit. Suscipit vel, accusantium
-								sapiente.
-							</Paragraph>
-
-							<Spacer type="vertical" />
-						</VisitedSectionComponent>
-
-						<Break />
-
-						<DropdownItem
-							key={uuid()}
-							to={ROUTES.PROFILE}
-						>
-							<TbSettings />
-
-							{t('word.settings')}
-						</DropdownItem>
-					</Dropdown>
+					<NewsDropdown />
 
 					<Dropdown
 						label={
@@ -178,7 +150,7 @@ export const TopBar = () => {
 					>
 						<VisitedSectionComponent>
 							<Paragraph type="dropdown">
-								<TbMapPin /> STATYSTYKI
+								<TbMapPin /> {t('stats.title').toUpperCase()}
 							</Paragraph>
 
 							<Spacer
@@ -222,7 +194,7 @@ export const TopBar = () => {
 									type="dropdown"
 									size="s12"
 								>
-									{`${(100 * visitedList.length) / countries.length}%`}
+									{`${visitedPercent}%`}
 								</Paragraph>
 
 								<Paragraph
@@ -251,7 +223,7 @@ export const TopBar = () => {
 									align="left"
 									size="s12"
 								>
-									W tym roku:
+									{t('stats.this.year')}
 								</Paragraph>
 
 								<Paragraph
@@ -259,7 +231,7 @@ export const TopBar = () => {
 									align="left"
 									size="s12"
 								>
-									2
+									{visitedThisYear.length}
 								</Paragraph>
 							</div>
 
@@ -268,17 +240,23 @@ export const TopBar = () => {
 								type="vertical"
 							/>
 
-							<ProgressBar
-								limit={12}
-								value={2}
-							/>
+							<MonthsComponent data-testid="months-bar">
+								{monthsWithVisits.map((hasVisit, index) => (
+									<span
+										// eslint-disable-next-line react/no-array-index-key
+										key={index}
+										className={hasVisit ? 'month visited' : 'month'}
+										title={monthLabel(index)}
+									/>
+								))}
+							</MonthsComponent>
 
 							<div className="quantity">
 								<Paragraph
 									type="dropdown"
 									size="s12"
 								>
-									Styczeń
+									{monthLabel(0)}
 								</Paragraph>
 
 								<Paragraph
@@ -292,7 +270,7 @@ export const TopBar = () => {
 									type="dropdown"
 									size="s12"
 								>
-									Grudzień
+									{monthLabel(11)}
 								</Paragraph>
 							</div>
 
@@ -315,7 +293,7 @@ export const TopBar = () => {
 
 						<DropdownItem
 							key={uuid()}
-							to={ROUTES.PROFILE}
+							to={ROUTES.SETTINGS}
 						>
 							<TbSettings />
 

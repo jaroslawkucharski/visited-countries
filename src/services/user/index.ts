@@ -6,30 +6,48 @@ import { toastNotify } from 'utils'
 
 import { ERRORS } from 'constants/errors'
 
-// Update user profile props
 type UpdateUserProfileTypes = {
 	displayName?: string
 	photoURL?: string
 }
 
-// Upload country
-export const setCountry = (uid: string, country: string) => {
+export const setCountry = async (uid: string, country: string, visitedAt: string | null = null) => {
 	const user = auth.currentUser
 
-	set(databaseRef(database, `users/${user?.uid}/countries/${uid}`), {
+	await set(databaseRef(database, `users/${user?.uid}/countries/${uid}`), {
 		country,
 		uid,
+		...(visitedAt ? { visitedAt } : {}),
 	})
+
+	await remove(databaseRef(database, `users/${user?.uid}/favorites/${uid}`))
 }
 
-// Remove country
+export const setVisitDate = (uid: string, visitedAt: string | null) => {
+	const user = auth.currentUser
+	const visitedAtRef = databaseRef(database, `users/${user?.uid}/countries/${uid}/visitedAt`)
+
+	return visitedAt ? set(visitedAtRef, visitedAt) : remove(visitedAtRef)
+}
+
+export const addFavorite = (uid: string) => {
+	const user = auth.currentUser
+
+	return set(databaseRef(database, `users/${user?.uid}/favorites/${uid}`), true)
+}
+
+export const removeFavorite = (uid: string) => {
+	const user = auth.currentUser
+
+	return remove(databaseRef(database, `users/${user?.uid}/favorites/${uid}`))
+}
+
 export const removeCountry = (uid: string) => {
 	const user = auth.currentUser
 
-	remove(databaseRef(database, `users/${user?.uid}/countries/${uid}`))
+	return remove(databaseRef(database, `users/${user?.uid}/countries/${uid}`))
 }
 
-// Update user profile
 export const updateUserProfile = async (args: UpdateUserProfileTypes) => {
 	const user = auth.currentUser
 
@@ -42,7 +60,6 @@ export const updateUserProfile = async (args: UpdateUserProfileTypes) => {
 	}
 }
 
-// Upload user avatar (stored as a base64 data URL in Realtime Database, Firebase Storage requires a paid plan)
 export const setUserAvatar = async (avatar: string) => {
 	const user = auth.currentUser
 
@@ -51,7 +68,6 @@ export const setUserAvatar = async (avatar: string) => {
 	}
 }
 
-// Remove user avatar
 export const removeUserAvatar = async () => {
 	const user = auth.currentUser
 
@@ -60,7 +76,6 @@ export const removeUserAvatar = async () => {
 	}
 }
 
-// Update email
 export const updateUserEmail = async (email: string) => {
 	const user = auth.currentUser
 
@@ -73,7 +88,6 @@ export const updateUserEmail = async (email: string) => {
 	}
 }
 
-// Update password
 export const updateUserPassword = async (password: string) => {
 	const user = auth.currentUser
 
@@ -86,7 +100,6 @@ export const updateUserPassword = async (password: string) => {
 	}
 }
 
-// Remove account
 export const removeAccount = async () => {
 	const user = auth.currentUser
 
