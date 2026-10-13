@@ -1,15 +1,20 @@
 import styled, { css } from 'styled-components'
 
-export const IconBadgeComponent = styled.span`
-	${({ theme: { colors } }) =>
+interface IconBadgeComponentProps {
+	placement: 'corner' | 'outside'
+}
+
+export const IconBadgeComponent = styled.span<IconBadgeComponentProps>`
+	${({ theme: { colors }, placement }) =>
 		css`
 			position: relative;
 			display: inline-flex;
 
 			.count {
 				position: absolute;
-				top: -8px;
-				left: calc(100% + 1px);
+				top: ${placement === 'outside' ? '-8px' : '-6px'};
+				right: ${placement === 'outside' ? 'auto' : '-8px'};
+				left: ${placement === 'outside' ? 'calc(100% + 1px)' : 'auto'};
 				min-width: 14px;
 				height: 14px;
 				padding: 0 3px;

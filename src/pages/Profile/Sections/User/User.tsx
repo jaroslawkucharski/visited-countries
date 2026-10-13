@@ -108,7 +108,7 @@ export const User = () => {
 					size="big"
 					align="right"
 				>
-					{t('word.visited')}
+					{t('stats.countries.visited.title')}
 				</Paragraph>
 
 				<Spacer
