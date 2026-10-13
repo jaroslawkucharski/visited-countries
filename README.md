@@ -154,5 +154,4 @@ COMING<strong>SOON</strong>
 > - Country subdivisions: voivodeships, German states (Länder), US states and more
 
 </div>
-
 </div>
