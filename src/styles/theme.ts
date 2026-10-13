@@ -95,6 +95,7 @@ const breakpoints = {
 }
 
 export const lightTheme = {
+	colorScheme: 'light' as 'light' | 'dark',
 	colors: {
 		main: colors.White100,
 		secondary: colors.Grey100,
@@ -132,6 +133,7 @@ export const lightTheme = {
 }
 
 export const darkTheme = {
+	colorScheme: 'dark' as 'light' | 'dark',
 	colors: {
 		main: colors.Grey100,
 		secondary: colors.White300,

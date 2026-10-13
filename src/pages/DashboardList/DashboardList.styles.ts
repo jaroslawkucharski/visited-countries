@@ -43,6 +43,8 @@ export const IconComponent = styled.div<IconComponentProps>`
 		css`
 			cursor: pointer;
 			padding: ${spaces.tiny};
+			display: flex;
+			flex-shrink: 0;
 
 			&:hover {
 				color: ${isRemoved ? colors.error : colors.success};

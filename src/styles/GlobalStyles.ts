@@ -7,7 +7,7 @@ import PoppinsSemiBoldWoff2 from 'assets/fonts/PoppinsSemiBold.woff2'
 import { createGlobalStyle, css } from 'styled-components'
 
 export const GlobalStyles = createGlobalStyle`
-	${({ theme: { font, colors } }) =>
+	${({ theme: { font, colors, colorScheme } }) =>
 		css`
 		@font-face {
 			font-family: Poppins;
@@ -31,6 +31,7 @@ export const GlobalStyles = createGlobalStyle`
 		}
 	
 		:root {
+			color-scheme: ${colorScheme};
 			font-family: 'Poppins', sans-serif;
 			font-weight: ${font.weights.regular};
 		}
