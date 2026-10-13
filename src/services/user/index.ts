@@ -12,13 +12,14 @@ type UpdateUserProfileTypes = {
 	photoURL?: string
 }
 
-// Upload country
-export const setCountry = (uid: string, country: string) => {
+// Upload country (visitedAt: "YYYY-MM", "YYYY" or null when the visit date is unknown)
+export const setCountry = (uid: string, country: string, visitedAt: string | null = null) => {
 	const user = auth.currentUser
 
-	set(databaseRef(database, `users/${user?.uid}/countries/${uid}`), {
+	return set(databaseRef(database, `users/${user?.uid}/countries/${uid}`), {
 		country,
 		uid,
+		...(visitedAt ? { visitedAt } : {}),
 	})
 }
 

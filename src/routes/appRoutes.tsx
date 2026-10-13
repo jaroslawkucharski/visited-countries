@@ -33,6 +33,10 @@ const Profile = lazy(async () => ({
 	default: (await import('pages')).Profile,
 }))
 
+const Settings = lazy(async () => ({
+	default: (await import('pages')).Settings,
+}))
+
 const PageNotFound = lazy(async () => ({
 	default: (await import('pages')).PageNotFound,
 }))
@@ -81,6 +85,12 @@ const routes = [
 		route: PrivateRoute,
 		isOnlyForMobile: false,
 		component: <Profile />,
+	},
+	{
+		path: ROUTES.SETTINGS,
+		route: PrivateRoute,
+		isOnlyForMobile: false,
+		component: <Settings />,
 	},
 	{
 		path: ROUTES.PAGE_NOT_FOUND,

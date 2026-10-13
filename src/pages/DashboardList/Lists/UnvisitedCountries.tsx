@@ -3,7 +3,7 @@ import { useCountriesListContext } from 'context/CountriesListContext'
 import { useTranslation } from 'react-i18next'
 import { HiPlusCircle } from 'react-icons/hi2'
 import { setCountry } from 'services/user'
-import { toastNotify } from 'utils'
+import { showAddCountryModal, toastNotify } from 'utils'
 import { v4 as uuid } from 'uuid'
 
 import { languageDetector } from 'helpers/languageDetector'
@@ -15,9 +15,9 @@ export const UnvisitedCountries = () => {
 
 	const { unvisitedList, fetchCountriesList } = useCountriesListContext()
 
-	const handleAddCountry = async (code: string, country: string) => {
+	const handleAddCountry = async (code: string, country: string, visitedAt: string | null) => {
 		try {
-			await setCountry(code, country)
+			await setCountry(code, country, visitedAt)
 
 			toastNotify(t('toasts.add.country'), 'success')
 
@@ -49,7 +49,14 @@ export const UnvisitedCountries = () => {
 							<Spacer space="small" />
 
 							<IconComponent
-								onClick={() => handleAddCountry(country?.code as string, name as string)}
+								onClick={() =>
+									showAddCountryModal({
+										icon: country?.icon,
+										name: String(name),
+										onConfirm: visitedAt =>
+											handleAddCountry(country?.code as string, name as string, visitedAt),
+									})
+								}
 							>
 								<HiPlusCircle />
 							</IconComponent>

@@ -16,6 +16,8 @@ import { useCountries } from 'hooks/useCountries'
 export interface VisitedCountriesType {
 	country: string
 	uid: string
+	// "YYYY-MM", "YYYY" or undefined when the visit date is unknown
+	visitedAt?: string
 }
 
 export interface CountriesListType {

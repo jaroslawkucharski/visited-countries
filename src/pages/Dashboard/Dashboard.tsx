@@ -4,7 +4,7 @@ import { CountriesListType, useCountriesListContext } from 'context/CountriesLis
 import { useTranslation } from 'react-i18next'
 import { ComposableMap, Geographies, Geography, ZoomableGroup } from 'react-simple-maps'
 import { removeCountry, setCountry } from 'services/user'
-import { modalShow, toastNotify } from 'utils'
+import { modalShow, showAddCountryModal, toastNotify } from 'utils'
 
 import { languageDetector } from 'helpers/languageDetector'
 
@@ -14,11 +14,11 @@ export const Dashboard = () => {
 	const { t } = useTranslation()
 	const { isMobile } = useWindowSize()
 
-	const { visitedList, visitedCountries, fetchCountriesList } = useCountriesListContext()
+	const { countries, visitedList, visitedCountries, fetchCountriesList } = useCountriesListContext()
 
-	const handleAddCountry = async (code: string, country: string) => {
+	const handleAddCountry = async (code: string, country: string, visitedAt: string | null) => {
 		try {
-			await setCountry(code, country)
+			await setCountry(code, country, visitedAt)
 
 			toastNotify(t('toasts.add.country'), 'success')
 
@@ -67,9 +67,19 @@ export const Dashboard = () => {
 	const handleCountryAction = (code: string, country: string) => {
 		const countryData = visitedList.filter(item => item?.code === code)
 
-		visitedCountries.some(item => item.uid === code)
-			? showRemoveModal(code, countryData as CountriesListType[])
-			: handleAddCountry(code, country)
+		if (visitedCountries.some(item => item.uid === code)) {
+			showRemoveModal(code, countryData as CountriesListType[])
+
+			return
+		}
+
+		const countryInfo = countries.find(item => item?.code === code)
+
+		showAddCountryModal({
+			icon: countryInfo?.icon,
+			name: String(languageDetector(countryInfo?.nameEN, countryInfo?.namePL) || country),
+			onConfirm: visitedAt => handleAddCountry(code, country, visitedAt),
+		})
 	}
 
 	return (

@@ -3,7 +3,7 @@ import { useCountriesListContext } from 'context/CountriesListContext'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { setCountry } from 'services/user'
-import { toastNotify } from 'utils'
+import { showAddCountryModal, toastNotify } from 'utils'
 
 import { languageDetector } from 'helpers/languageDetector'
 
@@ -24,15 +24,11 @@ export const SelectCountries = () => {
 		}
 	})
 
-	const handleAddCountry = async (country: string) => {
+	const addCountry = async (code: string, country: string, visitedAt: string | null) => {
 		setLoading(true)
 
 		try {
-			const serchedCountry = unvisitedList?.find(
-				item => country === item?.nameEN || country === item?.namePL,
-			)
-
-			setCountry(serchedCountry?.code as string, serchedCountry?.nameEN as string)
+			await setCountry(code, country, visitedAt)
 
 			toastNotify(t('toasts.add.country'), 'success')
 
@@ -42,6 +38,23 @@ export const SelectCountries = () => {
 		} finally {
 			setLoading(false)
 		}
+	}
+
+	const handleAddCountry = (country: string) => {
+		const serchedCountry = unvisitedList?.find(
+			item => country === item?.nameEN || country === item?.namePL,
+		)
+
+		if (!serchedCountry?.code) {
+			return
+		}
+
+		showAddCountryModal({
+			icon: serchedCountry.icon,
+			name: String(languageDetector(serchedCountry.nameEN, serchedCountry.namePL)),
+			onConfirm: visitedAt =>
+				addCountry(serchedCountry.code as string, serchedCountry.nameEN as string, visitedAt),
+		})
 	}
 
 	return (
