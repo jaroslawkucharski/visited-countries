@@ -34,6 +34,7 @@ import { v4 as uuid } from 'uuid'
 import { hideLogo } from 'helpers/hideLogo'
 
 import { useService } from 'hooks/useService'
+import { useUserAvatar } from 'hooks/useUserAvatar'
 import { useWindowSize } from 'hooks/useWindowSize'
 
 import { ROUTES } from 'constants/routes'
@@ -52,7 +53,7 @@ export const TopBar = () => {
 
 	const { isMobile } = useWindowSize()
 
-	const { currentUser } = auth
+	const avatar = useUserAvatar()
 
 	const { request } = useService({
 		service: logout,
@@ -159,9 +160,9 @@ export const TopBar = () => {
 					<Dropdown
 						label={
 							<>
-								{currentUser?.photoURL ? (
+								{avatar ? (
 									<Image
-										src={currentUser?.photoURL}
+										src={avatar}
 										alt={t('word.avatar')}
 										variant="avatar"
 										width={18}
