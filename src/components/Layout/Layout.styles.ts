@@ -1,11 +1,12 @@
+import type { ResponsiveImage } from 'assets/images/pages'
 import styled, { css } from 'styled-components'
 
 interface LayoutComponentProps {
-	image?: string
+	image?: ResponsiveImage
 }
 
 interface PresentionalComponentProps {
-	image?: string
+	image?: ResponsiveImage
 }
 
 export const LayoutComponent = styled.div<LayoutComponentProps>`
@@ -13,7 +14,7 @@ export const LayoutComponent = styled.div<LayoutComponentProps>`
 		css`
 			width: 100%;
 			min-height: calc(100vh - 84px);
-			background-image: url(${image});
+			background-image: ${image ? `url(${image.large})` : 'none'};
 			background-position: center;
 			background-repeat: no-repeat;
 			background-size: cover;
@@ -22,6 +23,10 @@ export const LayoutComponent = styled.div<LayoutComponentProps>`
 			align-items: flex-start;
 			overflow-y: auto;
 			position: relative;
+
+			@media (max-width: ${breakpoints.tablet}px) {
+				background-image: ${image ? `url(${image.small})` : 'none'};
+			}
 
 			@media (max-width: ${breakpoints.mobile}px) {
 				width: 100%;

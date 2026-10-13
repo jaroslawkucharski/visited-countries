@@ -1,4 +1,4 @@
-import profile from 'assets/images/pages/profile.jpg'
+import { profileImage } from 'assets/images/pages'
 import { Button, Heading, Layout, Spacer } from 'components'
 import { auth } from 'config/firebase'
 import { useTranslation } from 'react-i18next'
@@ -28,7 +28,7 @@ export const Profile = () => {
 		})
 
 	return (
-		<Layout image={profile}>
+		<Layout image={profileImage}>
 			<Heading>{t('word.profile')}</Heading>
 
 			<Spacer

@@ -1,5 +1,5 @@
+import { loginImage } from 'assets/images/pages'
 import { Heading, Layout, Paragraph, Spacer } from 'components'
-import login from 'assets/images/pages/login.jpg'
 import { Link } from 'components'
 import { useTranslation } from 'react-i18next'
 
@@ -12,7 +12,7 @@ export const Login = () => {
 	const { t } = useTranslation()
 
 	return (
-		<Layout image={login}>
+		<Layout image={loginImage}>
 			<Heading>{t('word.signin')}</Heading>
 
 			<Spacer

@@ -1,5 +1,5 @@
+import { registerImage } from 'assets/images/pages'
 import { Heading, Layout, Paragraph, Spacer } from 'components'
-import register from 'assets/images/pages/register.jpg'
 import { Link } from 'components'
 import { useTranslation } from 'react-i18next'
 
@@ -12,7 +12,7 @@ export const Register = () => {
 	const { t } = useTranslation()
 
 	return (
-		<Layout image={register}>
+		<Layout image={registerImage}>
 			<Heading>{t('word.signup')}</Heading>
 
 			<Spacer
