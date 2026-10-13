@@ -2,7 +2,7 @@
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="src/assets/images/logo_dark.svg">
-  <img src="src/assets/images/logo_light.svg" alt="NextShop" width="400px" />
+  <img src="src/assets/images/logo_light.svg" alt="VisitedCountries" width="400px" />
 </picture>
 
 #
@@ -30,7 +30,6 @@ TECH<strong>STACK</strong>
 ![](https://img.shields.io/badge/.ENV-ECD53F.svg?style=for-the-badge&logo=dotenv&logoColor=black)
 ![](https://img.shields.io/badge/i18next-26A69A.svg?style=for-the-badge&logo=i18next&logoColor=white)
 ![](https://img.shields.io/badge/styledcomponents-DB7093.svg?style=for-the-badge&logo=styled-components&logoColor=white)
-![](https://img.shields.io/badge/Axios-5A29E4.svg?style=for-the-badge&logo=Axios&logoColor=white)
 ![](https://img.shields.io/badge/React%20Router-CA4245.svg?style=for-the-badge&logo=React-Router&logoColor=white)
 ![](https://img.shields.io/badge/Redux-764ABC.svg?style=for-the-badge&logo=Redux&logoColor=white)
 ![](https://img.shields.io/badge/React_Simple_Maps-61DAFB.svg?style=for-the-badge&logo=React&logoColor=black)
@@ -39,6 +38,24 @@ TECH<strong>STACK</strong>
 ![](https://img.shields.io/badge/Toastify-61DAFB.svg?style=for-the-badge&logo=React&logoColor=black)
 ![](https://img.shields.io/badge/ESLint-4B32C3.svg?style=for-the-badge&logo=ESLint&logoColor=white)
 ![](https://img.shields.io/badge/Prettier-F7B93E.svg?style=for-the-badge&logo=Prettier&logoColor=black)
+
+##
+
+APP<strong>FEATURES</strong>
+
+<div align='left'>
+
+> - Mark visited countries on an interactive world map or in a searchable list
+> - Optional visit date (month and year) with “this year” statistics
+> - Favorite countries you want to visit, with a counter in the top bar and mobile menu
+> - Notifications managed in Firebase, marked as read per user
+> - Profile with avatar, account details and password change
+> - Settings with dark / light theme and Polish / English language
+> - Help window with a contact link
+> - Mobile-first layout, installable as a PWA
+> - Accessible (WCAG 2.1 AA): keyboard navigation, screen reader labels, focus management
+
+</div>
 
 ##
 
@@ -59,38 +76,41 @@ APP<strong>CONFIG</strong>
 
 > <i>1. Clone this repository and install dependencies</i>
 >
-> `git clone https://github.com/jaroslaw91/visited-countries.git`
+> `git clone https://github.com/jaroslawkucharski/visited-countries.git`
 >
 > `cd visited-countries`
 >
-> `pnpm install`
+> `pnpm install` (pnpm 10 or newer)
 
 </div>
 
 <div align='left'>
 
-> <i>2. Configure your firebase (https://cloud.google.com/firestore/docs/client/get-firebase)</i>
+> <i>2. Configure your firebase (https://firebase.google.com/docs/web/setup)</i>
 >
 > - Add <b>Authentication</b> and Sign-in method with <b>Email/Password</b>
 >
-> - Create <b>Realtime Database</b> and add rules:
+> - Create <b>Realtime Database</b> and add rules from `firebase/database.rules.json`
+>
+>   (paste them in the console or run `firebase deploy --only database`)
+>
+> - Add notifications to the <b>news</b> node in Realtime Database:
 >
 >   > ```
 >   > {
->   >  "rules": {
->   >    ".read": false,
->   >    ".write": false,
->   >    "users": {
->   >      "$user_id": {
->   >         ".read": "$user_id === auth.uid",
->   >        	".write": "$user_id === auth.uid"
->   >      }
->   >    }
->   >  }
+>   >   "news": {
+>   >     "2026-10-example": {
+>   >       "date": "2026-10-13",
+>   >       "title": { "pl": "Tytuł", "en": "Title" },
+>   >       "text": { "pl": "Treść powiadomienia", "en": "Notification text" }
+>   >     }
+>   >   }
 >   > }
 >   > ```
 >
-> - Create <b>Storage</b> and create <b>images/</b> catalog
+>   Each user can mark a notification as read, it is saved in `users/{uid}/newsRead`.
+>
+> - Firebase Storage is not needed, the free Spark plan is enough
 
 </div>
 
@@ -117,9 +137,22 @@ APP<strong>CONFIG</strong>
 <div align='left'>
 
 > <i>4. Fire up the app with `pnpm dev` and... Enjoy!</i>
+>
+> Other scripts: `pnpm test`, `pnpm lint`, `pnpm build`
 
 </div>
 
 <img src='./src/assets/images/mocks/mockup-app.png' />
+
+##
+
+COMING<strong>SOON</strong>
+
+<div align='left'>
+
+> - Multiple visits to the same country, each with its own date
+> - Country subdivisions: voivodeships, German states (Länder), US states and more
+
+</div>
 
 </div>

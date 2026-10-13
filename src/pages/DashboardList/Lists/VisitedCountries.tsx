@@ -1,9 +1,9 @@
-import { formatVisitedAt } from 'components'
 import { useCountriesListContext } from 'context/CountriesListContext'
 import { useTranslation } from 'react-i18next'
 import { HiPencil, HiTrash } from 'react-icons/hi2'
 
 import { matchesCountry } from 'helpers/countrySearch'
+import { formatVisitedAt } from 'helpers/visitDate'
 
 import { useCountryActions } from 'hooks/useCountryActions'
 

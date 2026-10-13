@@ -16,9 +16,7 @@
 		"lint": "eslint --fix ./src",
 		"format": "prettier --write ./src",
 		"ios": "rm -rf ./ios && npx cap add ios && npx cap open ios",
-		"android": "rm -rf ./android && npx cap add android && npx cap open android",
-		"storybook": "storybook dev -p ./static .storybook watch-css ./src 6006",
-		"build-storybook": "storybook build"
+		"android": "rm -rf ./android && npx cap add android && npx cap open android"
 	},
 	"dependencies": {
 		"@capacitor/android": "^4.6.3",
@@ -32,7 +30,6 @@
 		"@types/i18next-browser-languagedetector": "^3.0.0",
 		"@types/react-simple-maps": "^3.0.0",
 		"@types/styled-components": "^5.1.26",
-		"axios": "^1.3.4",
 		"firebase": "^9.17.1",
 		"formik": "^2.2.9",
 		"i18next": "^22.4.10",
@@ -43,13 +40,11 @@
 		"react-i18next": "^12.2.0",
 		"react-icons": "^4.7.1",
 		"react-is": "^18.2.0",
-		"react-laag": "^2.0.5",
 		"react-redux": "^9.3.0",
 		"react-router-dom": "^6.8.1",
 		"react-simple-maps": "^3.0.0",
 		"react-toastify": "^11.1.0",
 		"styled-components": "^5.3.6",
-		"swr": "^2.5.1",
 		"uuid": "^9.0.0",
 		"yup": "^1.0.0"
 	},

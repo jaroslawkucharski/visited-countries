@@ -1,10 +1,7 @@
 import { auth, database } from 'config/firebase'
 import { updateEmail, updatePassword, updateProfile } from 'firebase/auth'
 import { ref as databaseRef, remove, set } from 'firebase/database'
-import i18next from 'i18next'
-import { toastNotify } from 'utils'
-
-import { ERRORS } from 'constants/errors'
+import { notifyError } from 'utils'
 
 type UpdateUserProfileTypes = {
 	displayName?: string
@@ -55,8 +52,8 @@ export const updateUserProfile = async (args: UpdateUserProfileTypes) => {
 		if (user !== null) {
 			await updateProfile(user, args)
 		}
-	} catch ({ code }: any) {
-		toastNotify(i18next.t(ERRORS[code as string] || 'toasts.error'), 'error')
+	} catch (error) {
+		notifyError(error)
 	}
 }
 
@@ -83,8 +80,8 @@ export const updateUserEmail = async (email: string) => {
 		if (user !== null) {
 			await updateEmail(user, email)
 		}
-	} catch ({ code }: any) {
-		toastNotify(i18next.t(ERRORS[code as string] || 'toasts.error'), 'error')
+	} catch (error) {
+		notifyError(error)
 	}
 }
 
@@ -95,8 +92,8 @@ export const updateUserPassword = async (password: string) => {
 		if (user !== null) {
 			await updatePassword(user, password)
 		}
-	} catch ({ code }: any) {
-		toastNotify(i18next.t(ERRORS[code as string] || 'toasts.error'), 'error')
+	} catch (error) {
+		notifyError(error)
 	}
 }
 
@@ -109,7 +106,7 @@ export const removeAccount = async () => {
 
 			await user.delete()
 		}
-	} catch ({ code }: any) {
-		toastNotify(i18next.t(ERRORS[code as string] || 'toasts.error'), 'error')
+	} catch (error) {
+		notifyError(error)
 	}
 }

@@ -6,7 +6,7 @@ import { DropdownItem } from './DropdownItem'
 describe('components/Dropdown', () => {
 	it('should be in the document', async () => {
 		const { getByTestId } = render(
-			<Dropdown text="Drop me">
+			<Dropdown label="Drop me">
 				<DropdownItem
 					to="/1"
 					data-testid="item1"
@@ -16,7 +16,7 @@ describe('components/Dropdown', () => {
 				<DropdownItem
 					to="/2"
 					data-testid="item2"
-					islastitem={true}
+					islastitem
 				>
 					Click me 2
 				</DropdownItem>
