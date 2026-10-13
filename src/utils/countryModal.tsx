@@ -1,8 +1,10 @@
 import NiceModal from '@ebay/nice-modal-react'
-import { Button, Paragraph, Spacer, VisitDateForm, currentVisitedAt } from 'components'
+import { Button, Paragraph, Spacer, VisitDateForm } from 'components'
 import i18next from 'i18next'
 import { ReactNode } from 'react'
 import { HiHeart, HiOutlineHeart, HiTrash } from 'react-icons/hi2'
+
+import { currentVisitedAt } from 'helpers/visitDate'
 
 import { Modal } from '../components/Modal'
 import { modalShow } from './modalShow'

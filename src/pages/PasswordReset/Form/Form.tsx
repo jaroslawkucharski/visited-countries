@@ -9,8 +9,9 @@ import { useService } from 'hooks/useService'
 
 import { ROUTES } from 'constants/routes'
 
+import { FormComponent } from 'styles/layout'
+
 import { formSchema } from './Form.schema'
-import { FormComponent } from './Form.styles'
 
 interface FormValues {
 	email: string

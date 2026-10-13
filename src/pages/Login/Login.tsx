@@ -1,12 +1,12 @@
 import { loginImage } from 'assets/images/pages'
-import { Heading, Layout, Paragraph, Spacer } from 'components'
-import { Link } from 'components'
+import { Heading, Layout, Link, Paragraph, Spacer } from 'components'
 import { useTranslation } from 'react-i18next'
 
 import { ROUTES } from 'constants/routes'
 
+import { RowComponent } from 'styles/layout'
+
 import { Form } from './Form'
-import { LoginRowComponent } from './Login.styles'
 
 export const Login = () => {
 	const { t } = useTranslation()
@@ -27,9 +27,9 @@ export const Login = () => {
 				space="small"
 			/>
 
-			<LoginRowComponent>
+			<RowComponent>
 				<Form />
-			</LoginRowComponent>
+			</RowComponent>
 
 			<Spacer type="vertical" />
 
@@ -40,13 +40,13 @@ export const Login = () => {
 				space="tiny"
 			/>
 
-			<LoginRowComponent>
+			<RowComponent>
 				<Paragraph>{t('login.create.account')}</Paragraph>
 
 				<Spacer space="tiny" />
 
 				<Link to={ROUTES.SIGNUP}>{t('word.signup')}</Link>
-			</LoginRowComponent>
+			</RowComponent>
 		</Layout>
 	)
 }

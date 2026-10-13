@@ -101,6 +101,7 @@ export const lightTheme = {
 	colors: {
 		main: colors.White100,
 		secondary: colors.Grey100,
+		secondary_opacity: 'rgba(9, 9, 9, 0.5)',
 		color1: colors.Grey300,
 		color2: colors.Grey200,
 		color3: colors.White200,
@@ -140,6 +141,7 @@ export const darkTheme = {
 	colors: {
 		main: colors.Grey100,
 		secondary: colors.White300,
+		secondary_opacity: 'rgba(0, 0, 0, 0.6)',
 		color1: colors.White100,
 		color2: colors.White200,
 		color3: colors.Grey200,

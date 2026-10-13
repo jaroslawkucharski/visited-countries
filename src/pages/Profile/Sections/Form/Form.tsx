@@ -7,8 +7,9 @@ import { useNavigate } from 'react-router-dom'
 import { updateUserEmail, updateUserPassword, updateUserProfile } from 'services/user'
 import { v4 as uuid } from 'uuid'
 
+import { FormComponent } from 'styles/layout'
+
 import { formSchema } from './Form.schema'
-import { FormComponent } from './Form.styles'
 
 interface FormValues {
 	name: string

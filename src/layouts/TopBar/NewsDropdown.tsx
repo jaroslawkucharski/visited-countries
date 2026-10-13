@@ -1,27 +1,27 @@
-import { Dropdown, Paragraph, Spacer } from 'components'
+import { Dropdown } from 'components'
 import { useTranslation } from 'react-i18next'
 import { TbBell, TbNews } from 'react-icons/tb'
 
+import { languageDetector } from 'helpers/languageDetector'
+
 import { useNews } from 'hooks/useNews'
 
-import { LOCALES } from 'constants/locales'
-
-import { IconBadgeComponent, NewsListComponent, VisitedSectionComponent } from './TopBar.styles'
+import { DropdownSection, DropdownText } from './DropdownSection'
+import { IconBadge } from './IconBadge'
+import { NewsListComponent } from './TopBar.styles'
 
 export const NewsDropdown = () => {
 	const { t, i18n } = useTranslation()
 	const { unreadNews, markAsRead, markAllAsRead } = useNews()
 
-	const newsLocale = i18n.language === LOCALES.EN ? 'en' : 'pl'
-
 	return (
 		<Dropdown
 			label={
-				<IconBadgeComponent data-testid="button-news">
-					<TbBell />
-
-					{unreadNews.length > 0 && <span className="count">{unreadNews.length}</span>}
-				</IconBadgeComponent>
+				<IconBadge
+					icon={<TbBell />}
+					count={unreadNews.length}
+					data-testid="button-news"
+				/>
 			}
 			customButtonProps={{ variant: 'icon' }}
 			hasChevron={false}
@@ -29,33 +29,15 @@ export const NewsDropdown = () => {
 			dropdownWith={100}
 			dropdownContentWith="340px"
 		>
-			<VisitedSectionComponent>
-				<Paragraph type="dropdown">
-					<TbNews /> {t('news.title').toUpperCase()}
-				</Paragraph>
-
-				<Spacer
-					space="mini"
-					type="vertical"
-				/>
-
+			<DropdownSection
+				icon={<TbNews />}
+				title={String(t('news.title'))}
+			>
 				{unreadNews.length === 0 ? (
-					<Paragraph
-						type="dropdown"
-						align="left"
-						size="s12"
-					>
-						{t('news.empty')}
-					</Paragraph>
+					<DropdownText>{t('news.empty')}</DropdownText>
 				) : (
 					<>
-						<Paragraph
-							type="dropdown"
-							align="left"
-							size="s12"
-						>
-							{t('news.hint')}
-						</Paragraph>
+						<DropdownText>{t('news.hint')}</DropdownText>
 
 						<NewsListComponent data-testid="news-list">
 							{unreadNews.map(entry => (
@@ -68,13 +50,13 @@ export const NewsDropdown = () => {
 										}}
 										data-testid="news-entry"
 									>
-										<strong>{entry.title[newsLocale]}</strong>
+										<strong>{languageDetector(entry.title.en, entry.title.pl)}</strong>
 
 										<span className="date">
 											{new Date(entry.date).toLocaleDateString(i18n.language)}
 										</span>
 
-										<span>{entry.text[newsLocale]}</span>
+										<span>{languageDetector(entry.text.en, entry.text.pl)}</span>
 									</button>
 								</li>
 							))}
@@ -90,9 +72,7 @@ export const NewsDropdown = () => {
 						</button>
 					</>
 				)}
-
-				<Spacer type="vertical" />
-			</VisitedSectionComponent>
+			</DropdownSection>
 		</Dropdown>
 	)
 }

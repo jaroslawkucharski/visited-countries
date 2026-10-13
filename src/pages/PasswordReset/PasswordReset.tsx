@@ -1,12 +1,12 @@
 import { passwordResetImage } from 'assets/images/pages'
-import { Heading, Layout, Spacer } from 'components'
-import { Link } from 'components'
+import { Heading, Layout, Link, Spacer } from 'components'
 import { useTranslation } from 'react-i18next'
 
 import { ROUTES } from 'constants/routes'
 
+import { RowComponent } from 'styles/layout'
+
 import { Form } from './Form'
-import { LoginRowComponent } from './PasswordReset.styles'
 
 export const PasswordReset = () => {
 	const { t } = useTranslation()
@@ -27,9 +27,9 @@ export const PasswordReset = () => {
 				space="small"
 			/>
 
-			<LoginRowComponent>
+			<RowComponent>
 				<Form />
-			</LoginRowComponent>
+			</RowComponent>
 
 			<Spacer type="vertical" />
 

@@ -1,11 +1,10 @@
-import { ChangeEvent, FC, useState } from 'react'
+import { FC, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
-import {
-	FieldComponent,
-	SelectFieldComponent,
-	VisitDateFormComponent,
-} from './VisitDateForm.styles'
+import { currentVisitedAt, getMonthName, toMonthValue, toVisitedAt } from 'helpers/visitDate'
+
+import { SelectField } from '../SelectField'
+import { VisitDateFormComponent } from './VisitDateForm.styles'
 
 export interface VisitDateFormProps {
 	initialValue?: string | null
@@ -16,26 +15,6 @@ export interface VisitDateFormProps {
 const FIRST_YEAR = 1950
 const UNKNOWN = ''
 
-export const toVisitedAt = (year: string, month: string) => {
-	if (!year) return null
-
-	return month ? `${year}-${month}` : year
-}
-
-export const currentVisitedAt = () => {
-	const now = new Date()
-
-	return `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}`
-}
-
-export const formatVisitedAt = (visitedAt?: string | null) => {
-	if (!visitedAt) return null
-
-	const [year, month] = visitedAt.split('-')
-
-	return month ? `${month}.${year}` : year
-}
-
 export const VisitDateForm: FC<VisitDateFormProps> = ({
 	initialValue,
 	onChange,
@@ -43,81 +22,59 @@ export const VisitDateForm: FC<VisitDateFormProps> = ({
 }) => {
 	const { t, i18n } = useTranslation()
 
-	const now = new Date()
 	const [initialYear = UNKNOWN, initialMonth = UNKNOWN] = (
 		initialValue === undefined ? currentVisitedAt() : initialValue || ''
 	).split('-')
 	const [year, setYear] = useState(initialYear)
 	const [month, setMonth] = useState(initialMonth)
 
-	const years = Array.from({ length: now.getFullYear() - FIRST_YEAR + 1 }, (_, index) =>
-		String(now.getFullYear() - index),
-	)
+	const currentYear = new Date().getFullYear()
 
-	const monthFormatter = new Intl.DateTimeFormat(i18n.language, { month: 'long' })
-	const months = Array.from({ length: 12 }, (_, index) => ({
-		value: String(index + 1).padStart(2, '0'),
-		label: monthFormatter.format(new Date(2000, index, 1)),
-	}))
+	const yearOptions = [
+		{ value: UNKNOWN, label: String(t('visit.date.unknown')) },
+		...Array.from({ length: currentYear - FIRST_YEAR + 1 }, (_, index) => {
+			const value = String(currentYear - index)
 
-	const handleYearChange = (event: ChangeEvent<HTMLSelectElement>) => {
-		const { value } = event.target
+			return { value, label: value }
+		}),
+	]
 
+	const monthOptions = [
+		{ value: UNKNOWN, label: String(t('visit.date.any.month')) },
+		...Array.from({ length: 12 }, (_, index) => ({
+			value: toMonthValue(index),
+			label: getMonthName(index, i18n.language),
+		})),
+	]
+
+	const handleYearChange = (value: string) => {
 		setYear(value)
 		onChange(toVisitedAt(value, month))
 	}
 
-	const handleMonthChange = (event: ChangeEvent<HTMLSelectElement>) => {
-		const { value } = event.target
-
+	const handleMonthChange = (value: string) => {
 		setMonth(value)
 		onChange(toVisitedAt(year, value))
 	}
 
 	return (
 		<VisitDateFormComponent data-testid={dataTestId}>
-			<FieldComponent>
-				{t('visit.date.month')}
+			<SelectField
+				label={String(t('visit.date.month'))}
+				value={month}
+				options={monthOptions}
+				onChange={handleMonthChange}
+				isDisabled={year === UNKNOWN}
+				data-testid="visit-date-month"
+			/>
 
-				<SelectFieldComponent
-					value={month}
-					onChange={handleMonthChange}
-					disabled={year === UNKNOWN}
-					data-testid="visit-date-month"
-				>
-					<option value={UNKNOWN}>{t('visit.date.any.month')}</option>
-
-					{months.map(({ value, label }) => (
-						<option
-							key={value}
-							value={value}
-						>
-							{label.charAt(0).toUpperCase() + label.slice(1)}
-						</option>
-					))}
-				</SelectFieldComponent>
-			</FieldComponent>
-
-			<FieldComponent>
-				{t('visit.date.year')}
-
-				<SelectFieldComponent
-					value={year}
-					onChange={handleYearChange}
-					data-testid="visit-date-year"
-				>
-					<option value={UNKNOWN}>{t('visit.date.unknown')}</option>
-
-					{years.map(value => (
-						<option
-							key={value}
-							value={value}
-						>
-							{value}
-						</option>
-					))}
-				</SelectFieldComponent>
-			</FieldComponent>
+			<SelectField
+				label={String(t('visit.date.year'))}
+				value={year}
+				options={yearOptions}
+				onChange={handleYearChange}
+				data-testid="visit-date-year"
+			/>
 		</VisitDateFormComponent>
 	)
 }

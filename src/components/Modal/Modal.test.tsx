@@ -12,7 +12,7 @@ describe('components/Modal', () => {
 				content="Content"
 				actionName="Remove"
 				cancelName="Cancel"
-				onClick={() => vi.fn()}
+				action={vi.fn()}
 			/>,
 		)
 

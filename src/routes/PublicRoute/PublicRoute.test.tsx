@@ -1,4 +1,4 @@
-import { describe, it, render, screen, waitFor } from 'utils/tests-utils'
+import { describe, it, render, waitFor } from 'utils/tests-utils'
 
 import { PublicRoute } from './PublicRoute'
 

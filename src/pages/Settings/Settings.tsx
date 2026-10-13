@@ -1,26 +1,75 @@
 import { profileImage } from 'assets/images/pages'
 import { Button, Heading, Layout, Paragraph, Spacer } from 'components'
-import { useThemeColorContext } from 'context/ThemeContext'
+import { ReactNode } from 'react'
 import { useTranslation } from 'react-i18next'
 import { HiArrowLeft, HiMoon, HiSun } from 'react-icons/hi2'
 import { useNavigate } from 'react-router-dom'
 
+import { usePreferences } from 'hooks/usePreferences'
 import { useWindowSize } from 'hooks/useWindowSize'
 
 import { LOCALES } from 'constants/locales'
 import { ROUTES } from 'constants/routes'
-import { THEME_COLORS } from 'constants/theme'
 
 import { SettingsRowComponent, SettingsSectionComponent } from './Settings.styles'
 
-export const Settings = () => {
-	const { t, i18n } = useTranslation()
-	const { theme, toggleTheme } = useThemeColorContext()
+interface SettingsOption {
+	label: ReactNode
+	isSelected: boolean
+	onSelect: () => void
+	testId: string
+}
 
+export const Settings = () => {
+	const { t } = useTranslation()
 	const { isMobile } = useWindowSize()
 	const navigate = useNavigate()
+	const { isDark, setDarkTheme, language, changeLanguage } = usePreferences()
 
-	const isDark = theme === THEME_COLORS.DARK
+	const sections: { title: string; options: SettingsOption[] }[] = [
+		{
+			title: String(t('word.appearance')),
+			options: [
+				{
+					label: (
+						<>
+							<HiMoon /> {t('word.theme.dark')}
+						</>
+					),
+					isSelected: isDark,
+					onSelect: () => setDarkTheme(true),
+					testId: 'theme-dark',
+				},
+				{
+					label: (
+						<>
+							<HiSun /> {t('word.theme.light')}
+						</>
+					),
+					isSelected: !isDark,
+					onSelect: () => setDarkTheme(false),
+					testId: 'theme-light',
+				},
+			],
+		},
+		{
+			title: String(t('word.language')),
+			options: [
+				{
+					label: 'Polski',
+					isSelected: language === LOCALES.PL,
+					onSelect: () => changeLanguage(LOCALES.PL),
+					testId: 'language-pl',
+				},
+				{
+					label: 'English',
+					isSelected: language === LOCALES.EN,
+					onSelect: () => changeLanguage(LOCALES.EN),
+					testId: 'language-en',
+				},
+			],
+		},
+	]
 
 	return (
 		<Layout image={profileImage}>
@@ -29,59 +78,31 @@ export const Settings = () => {
 			<Spacer type="vertical" />
 
 			<SettingsSectionComponent>
-				<Paragraph
-					type="label"
-					align="left"
-				>
-					{t('word.appearance')}
-				</Paragraph>
+				{sections.map(({ title, options }) => (
+					<SettingsSectionComponent key={title}>
+						<Paragraph
+							type="label"
+							align="left"
+						>
+							{title}
+						</Paragraph>
 
-				<SettingsRowComponent>
-					<Button
-						variant={isDark ? 'primary' : 'secondary'}
-						onClick={() => !isDark && toggleTheme()}
-						data-testid="theme-dark"
-						hasFullWidth
-					>
-						<HiMoon /> {t('word.theme.dark')}
-					</Button>
-
-					<Button
-						variant={isDark ? 'secondary' : 'primary'}
-						onClick={() => isDark && toggleTheme()}
-						data-testid="theme-light"
-						hasFullWidth
-					>
-						<HiSun /> {t('word.theme.light')}
-					</Button>
-				</SettingsRowComponent>
-
-				<Paragraph
-					type="label"
-					align="left"
-				>
-					{t('word.language')}
-				</Paragraph>
-
-				<SettingsRowComponent>
-					<Button
-						variant={i18n.language === LOCALES.PL ? 'primary' : 'secondary'}
-						onClick={() => i18n.changeLanguage(LOCALES.PL)}
-						data-testid="language-pl"
-						hasFullWidth
-					>
-						Polski
-					</Button>
-
-					<Button
-						variant={i18n.language === LOCALES.EN ? 'primary' : 'secondary'}
-						onClick={() => i18n.changeLanguage(LOCALES.EN)}
-						data-testid="language-en"
-						hasFullWidth
-					>
-						English
-					</Button>
-				</SettingsRowComponent>
+						<SettingsRowComponent>
+							{options.map(({ label, isSelected, onSelect, testId }) => (
+								<Button
+									key={testId}
+									variant={isSelected ? 'primary' : 'secondary'}
+									onClick={onSelect}
+									aria-pressed={isSelected}
+									data-testid={testId}
+									hasFullWidth
+								>
+									{label}
+								</Button>
+							))}
+						</SettingsRowComponent>
+					</SettingsSectionComponent>
+				))}
 			</SettingsSectionComponent>
 
 			{isMobile && (

@@ -19,6 +19,7 @@ export interface CommonButtonProps {
 	isDisabled?: boolean
 	'aria-label'?: string
 	'aria-expanded'?: boolean
+	'aria-pressed'?: boolean
 	'aria-haspopup'?: boolean | 'menu' | 'dialog'
 	'data-testid'?: string
 }
@@ -30,7 +31,7 @@ type IconVariantProps = {
 }
 
 type DefaultVariantProps = {
-	variant?: 'primary' | 'secondary'
+	variant?: 'primary' | 'secondary' | 'alert'
 	width?: string | number
 	hasFullWidth?: boolean
 }
