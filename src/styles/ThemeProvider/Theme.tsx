@@ -1,6 +1,6 @@
 import NiceModal from '@ebay/nice-modal-react'
 import { FC, ReactNode } from 'react'
-import { ToastContainer } from 'react-toastify'
+import { ToastContainer } from 'react-toastify/unstyled'
 import { ThemeProvider } from 'styled-components'
 
 import { GlobalStyles } from '../GlobalStyles'
