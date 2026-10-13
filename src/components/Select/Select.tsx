@@ -38,7 +38,7 @@ export const Select: FC<SelectProps> = ({
 	buttonIsLoading,
 	'data-testid': dataTestId = 'select',
 }) => {
-	const selectRef = useRef(null)
+	const selectRef = useRef<HTMLDivElement>(null)
 
 	const { t } = useTranslation()
 

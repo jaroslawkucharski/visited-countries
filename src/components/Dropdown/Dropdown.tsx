@@ -26,7 +26,7 @@ export const Dropdown: FC<DropdownProps> = ({
 	dropdownContentWith,
 	'data-testid': dataTestId = 'dropdown',
 }) => {
-	const dropdownRef = useRef(null)
+	const dropdownRef = useRef<HTMLDivElement>(null)
 	const [isOpen, setOpen] = useState<boolean>(false)
 
 	const handleOpenToggle = useCallback(() => setOpen(!isOpen), [isOpen])
