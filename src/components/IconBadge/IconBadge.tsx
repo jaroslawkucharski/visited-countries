@@ -1,6 +1,6 @@
 import { FC, ReactNode } from 'react'
 
-import { IconBadgeComponent } from './TopBar.styles'
+import { IconBadgeComponent } from './IconBadge.styles'
 
 interface IconBadgeProps {
 	icon: ReactNode
@@ -15,3 +15,5 @@ export const IconBadge: FC<IconBadgeProps> = ({ icon, count, 'data-testid': data
 		{count > 0 && <span className="count">{count}</span>}
 	</IconBadgeComponent>
 )
+
+IconBadge.displayName = 'IconBadge'

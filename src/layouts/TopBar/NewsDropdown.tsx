@@ -1,4 +1,4 @@
-import { Dropdown } from 'components'
+import { Dropdown, IconBadge } from 'components'
 import { useTranslation } from 'react-i18next'
 import { TbBell, TbNews } from 'react-icons/tb'
 
@@ -7,7 +7,6 @@ import { languageDetector } from 'helpers/languageDetector'
 import { useNews } from 'hooks/useNews'
 
 import { DropdownSection, DropdownText } from './DropdownSection'
-import { IconBadge } from './IconBadge'
 import { NewsListComponent } from './TopBar.styles'
 
 export const NewsDropdown = () => {

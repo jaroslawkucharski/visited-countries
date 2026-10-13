@@ -1,4 +1,5 @@
-import { Link } from 'components'
+import { IconBadge, Link } from 'components'
+import { useCountriesListContext } from 'context/CountriesListContext'
 import { useTranslation } from 'react-i18next'
 import { TbHeart, TbListDetails, TbMapPin, TbUser } from 'react-icons/tb'
 
@@ -8,6 +9,7 @@ import { MobileMenuComponent } from './MobileMenu.style'
 
 export const MobileMenu = () => {
 	const { t } = useTranslation()
+	const { favoriteList } = useCountriesListContext()
 
 	return (
 		<MobileMenuComponent
@@ -30,9 +32,15 @@ export const MobileMenu = () => {
 
 			<Link
 				to={ROUTES.FAVORITES}
-				ariaLabel={String(t('favorites.title'))}
+				ariaLabel={`${t('favorites.title')}${
+					favoriteList.length ? ` (${favoriteList.length})` : ''
+				}`}
 			>
-				<TbHeart />
+				<IconBadge
+					icon={<TbHeart />}
+					count={favoriteList.length}
+					data-testid="menu-favorites"
+				/>
 			</Link>
 
 			<Link

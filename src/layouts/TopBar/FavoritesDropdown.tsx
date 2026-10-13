@@ -1,4 +1,4 @@
-import { Dropdown } from 'components'
+import { Dropdown, IconBadge } from 'components'
 import { useCountriesListContext } from 'context/CountriesListContext'
 import { useTranslation } from 'react-i18next'
 import { TbCirclePlus, TbHeart, TbHeartOff } from 'react-icons/tb'
@@ -6,7 +6,6 @@ import { TbCirclePlus, TbHeart, TbHeartOff } from 'react-icons/tb'
 import { useCountryActions } from 'hooks/useCountryActions'
 
 import { DropdownSection, DropdownText } from './DropdownSection'
-import { IconBadge } from './IconBadge'
 import { FavoritesListComponent } from './TopBar.styles'
 
 export const FavoritesDropdown = () => {
