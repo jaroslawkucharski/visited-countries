@@ -10,8 +10,11 @@ import {
 	useLayoutEffect,
 	useState,
 } from 'react'
+import { useTranslation } from 'react-i18next'
 
 import { useCountries } from 'hooks/useCountries'
+
+import { LOCALES } from 'constants/locales'
 
 export interface VisitedCountriesType {
 	country: string
@@ -34,6 +37,9 @@ interface CountriesListContextType {
 	visitedList: (CountriesListType | undefined)[]
 	unvisitedList: (CountriesListType | undefined)[]
 	fetchCountriesList: () => void
+	favorites: string[]
+	favoriteList: (CountriesListType | undefined)[]
+	isFavorite: (code?: string) => boolean
 }
 
 const CountriesListContext = createContext<CountriesListContextType | null>(null)
@@ -41,12 +47,23 @@ const CountriesListContext = createContext<CountriesListContextType | null>(null
 const useCountriesList = () => {
 	const { data } = useCountries()
 
-	const countries = data?.map(item => ({
-		nameEN: item.name.common,
-		namePL: item.translations.pol.common,
-		icon: item.flag,
-		code: item.cca3,
-	}))
+	const { i18n } = useTranslation()
+	const isEnglish = i18n.language === LOCALES.EN
+
+	// sorted alphabetically by the name in the current language
+	const countries = data
+		?.map(item => ({
+			nameEN: item.name.common,
+			namePL: item.translations.pol.common,
+			icon: item.flag,
+			code: item.cca3,
+		}))
+		.sort((a, b) =>
+			(isEnglish ? a.nameEN : a.namePL).localeCompare(
+				isEnglish ? b.nameEN : b.namePL,
+				i18n.language,
+			),
+		)
 
 	const [visitedCountries, setVisitedCountries] = useState<VisitedCountriesType[]>([])
 
@@ -56,14 +73,30 @@ const useCountriesList = () => {
 		({ code }) => !visitedCountries.find(({ uid }) => code === uid),
 	)
 
+	// codes of countries the user wants to visit (stored at users/{uid}/favorites/{code})
+	const [favorites, setFavorites] = useState<string[]>([])
+
+	const favoriteList = favorites
+		.map(favorite => countries?.find(({ code }) => code === favorite))
+		.filter(Boolean)
+
+	const isFavorite = (code?: string) => !!code && favorites.includes(code)
+
 	const fetchCountriesList = () => {
 		const tasksRef = ref(database, `users/${auth.currentUser?.uid}/countries`)
+		const favoritesRef = ref(database, `users/${auth.currentUser?.uid}/favorites`)
 
 		get(tasksRef)
 			.then(snapshot => {
 				setVisitedCountries(Object.values(snapshot.val()))
 			})
 			.catch(() => setVisitedCountries([]))
+
+		get(favoritesRef)
+			.then(snapshot => {
+				setFavorites(Object.keys(snapshot.val() || {}))
+			})
+			.catch(() => setFavorites([]))
 	}
 
 	useLayoutEffect(() => {
@@ -78,6 +111,9 @@ const useCountriesList = () => {
 			visitedList,
 			unvisitedList,
 			fetchCountriesList,
+			favorites,
+			favoriteList,
+			isFavorite,
 		},
 	}
 }

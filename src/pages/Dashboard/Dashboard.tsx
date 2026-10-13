@@ -1,20 +1,68 @@
 import topology from 'assets/topology.json'
 import { Spacer } from 'components'
 import { CountriesListType, useCountriesListContext } from 'context/CountriesListContext'
+import { MouseEvent, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { ComposableMap, Geographies, Geography, ZoomableGroup } from 'react-simple-maps'
-import { removeCountry, setCountry } from 'services/user'
+import { addFavorite, removeCountry, removeFavorite, setCountry } from 'services/user'
 import { modalShow, showAddCountryModal, toastNotify } from 'utils'
 
 import { languageDetector } from 'helpers/languageDetector'
 
 import { useWindowSize } from 'hooks/useWindowSize'
 
+import { MapTooltipComponent } from './Dashboard.styles'
+
 export const Dashboard = () => {
 	const { t } = useTranslation()
 	const { isMobile } = useWindowSize()
 
-	const { countries, visitedList, visitedCountries, fetchCountriesList } = useCountriesListContext()
+	const { countries, visitedList, visitedCountries, fetchCountriesList, isFavorite } =
+		useCountriesListContext()
+
+	const [tooltip, setTooltip] = useState<{
+		code: string
+		name: string
+		x: number
+		y: number
+	} | null>(null)
+
+	const handleToggleFavorite = async (code: string) => {
+		try {
+			if (isFavorite(code)) {
+				await removeFavorite(code)
+
+				toastNotify(t('toasts.favorite.removed'), 'success')
+			} else {
+				await addFavorite(code)
+
+				toastNotify(t('toasts.favorite.added'), 'success')
+			}
+
+			fetchCountriesList()
+		} catch {
+			toastNotify(t('toasts.error'), 'error')
+		}
+	}
+
+	const getCountryFill = (code: string) => {
+		if (visitedList.some(item => item?.code === code)) return '#8EE296'
+		if (isFavorite(code)) return '#F2B8B5'
+
+		return '#D6D6DA'
+	}
+
+	const handleTooltipMove = (code: string, name: string) => (event: MouseEvent) =>
+		!isMobile && setTooltip({ code, name, x: event.clientX, y: event.clientY })
+
+	const tooltipCountry = tooltip ? countries?.find(item => item?.code === tooltip.code) : undefined
+	const tooltipStatus = () => {
+		if (!tooltip) return ''
+		if (visitedCountries.some(item => item.uid === tooltip.code)) return t('word.visited.status')
+		if (isFavorite(tooltip.code)) return t('word.favorite')
+
+		return ''
+	}
 
 	const handleAddCountry = async (code: string, country: string, visitedAt: string | null) => {
 		try {
@@ -79,6 +127,8 @@ export const Dashboard = () => {
 			icon: countryInfo?.icon,
 			name: String(languageDetector(countryInfo?.nameEN, countryInfo?.namePL) || country),
 			onConfirm: visitedAt => handleAddCountry(code, country, visitedAt),
+			isFavorite: isFavorite(code),
+			onToggleFavorite: () => handleToggleFavorite(code),
 		})
 	}
 
@@ -92,9 +142,7 @@ export const Dashboard = () => {
 					<Geographies geography={topology}>
 						{({ geographies }) =>
 							geographies.map(geo => {
-								const fillCountry = visitedList.some(item => item?.code === geo.id)
-									? '#8EE296'
-									: '#D6D6DA'
+								const fillCountry = getCountryFill(geo.id)
 								const mapStyle = {
 									default: {
 										fill: fillCountry,
@@ -115,6 +163,9 @@ export const Dashboard = () => {
 										key={geo.rsmKey}
 										geography={geo}
 										onClick={() => handleCountryAction(geo.id, geo.properties.name)}
+										onMouseEnter={handleTooltipMove(geo.id, geo.properties.name)}
+										onMouseMove={handleTooltipMove(geo.id, geo.properties.name)}
+										onMouseLeave={() => setTooltip(null)}
 										style={mapStyle}
 									/>
 								)
@@ -123,6 +174,22 @@ export const Dashboard = () => {
 					</Geographies>
 				</ZoomableGroup>
 			</ComposableMap>
+
+			{tooltip && (
+				<MapTooltipComponent
+					style={{ left: tooltip.x + 14, top: tooltip.y + 14 }}
+					data-testid="map-tooltip"
+				>
+					{tooltipCountry
+						? `${tooltipCountry.icon} ${languageDetector(
+								tooltipCountry.nameEN,
+								tooltipCountry.namePL,
+						  )}`
+						: tooltip.name}
+
+					{tooltipStatus() && <span className="status">{tooltipStatus()}</span>}
+				</MapTooltipComponent>
+			)}
 		</div>
 	)
 }

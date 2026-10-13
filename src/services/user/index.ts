@@ -13,14 +13,39 @@ type UpdateUserProfileTypes = {
 }
 
 // Upload country (visitedAt: "YYYY-MM", "YYYY" or null when the visit date is unknown)
-export const setCountry = (uid: string, country: string, visitedAt: string | null = null) => {
+// A visited country is removed from favorites (countries to visit)
+export const setCountry = async (uid: string, country: string, visitedAt: string | null = null) => {
 	const user = auth.currentUser
 
-	return set(databaseRef(database, `users/${user?.uid}/countries/${uid}`), {
+	await set(databaseRef(database, `users/${user?.uid}/countries/${uid}`), {
 		country,
 		uid,
 		...(visitedAt ? { visitedAt } : {}),
 	})
+
+	await remove(databaseRef(database, `users/${user?.uid}/favorites/${uid}`))
+}
+
+// Change visit date of an already visited country
+export const setVisitDate = (uid: string, visitedAt: string | null) => {
+	const user = auth.currentUser
+	const visitedAtRef = databaseRef(database, `users/${user?.uid}/countries/${uid}/visitedAt`)
+
+	return visitedAt ? set(visitedAtRef, visitedAt) : remove(visitedAtRef)
+}
+
+// Add country to favorites (countries to visit)
+export const addFavorite = (uid: string) => {
+	const user = auth.currentUser
+
+	return set(databaseRef(database, `users/${user?.uid}/favorites/${uid}`), true)
+}
+
+// Remove country from favorites
+export const removeFavorite = (uid: string) => {
+	const user = auth.currentUser
+
+	return remove(databaseRef(database, `users/${user?.uid}/favorites/${uid}`))
 }
 
 // Remove country

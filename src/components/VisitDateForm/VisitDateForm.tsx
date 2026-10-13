@@ -8,6 +8,8 @@ import {
 } from './VisitDateForm.styles'
 
 export interface VisitDateFormProps {
+	// "YYYY-MM", "YYYY", null (unknown date) or undefined (current month)
+	initialValue?: string | null
 	// called with "YYYY-MM", "YYYY" (whole year) or null (unknown date)
 	onChange: (visitedAt: string | null) => void
 	'data-testid'?: string
@@ -22,15 +24,33 @@ export const toVisitedAt = (year: string, month: string) => {
 	return month ? `${year}-${month}` : year
 }
 
+export const currentVisitedAt = () => {
+	const now = new Date()
+
+	return `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}`
+}
+
+export const formatVisitedAt = (visitedAt?: string | null) => {
+	if (!visitedAt) return null
+
+	const [year, month] = visitedAt.split('-')
+
+	return month ? `${month}.${year}` : year
+}
+
 export const VisitDateForm: FC<VisitDateFormProps> = ({
+	initialValue,
 	onChange,
 	'data-testid': dataTestId = 'visit-date-form',
 }) => {
 	const { t, i18n } = useTranslation()
 
 	const now = new Date()
-	const [year, setYear] = useState(String(now.getFullYear()))
-	const [month, setMonth] = useState(String(now.getMonth() + 1).padStart(2, '0'))
+	const [initialYear = UNKNOWN, initialMonth = UNKNOWN] = (
+		initialValue === undefined ? currentVisitedAt() : initialValue || ''
+	).split('-')
+	const [year, setYear] = useState(initialYear)
+	const [month, setMonth] = useState(initialMonth)
 
 	const years = Array.from({ length: now.getFullYear() - FIRST_YEAR + 1 }, (_, index) =>
 		String(now.getFullYear() - index),

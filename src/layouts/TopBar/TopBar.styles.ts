@@ -49,6 +49,21 @@ export const BellComponent = styled.span`
 			position: relative;
 			display: inline-flex;
 
+			.count {
+				position: absolute;
+				top: -6px;
+				right: -8px;
+				min-width: 14px;
+				height: 14px;
+				padding: 0 3px;
+				border-radius: 7px;
+				background: ${colors.error};
+				color: #fff;
+				font-size: 9px;
+				line-height: 14px;
+				text-align: center;
+			}
+
 			.dot {
 				position: absolute;
 				top: -2px;
@@ -95,6 +110,41 @@ export const MonthsComponent = styled.div`
 
 			.visited {
 				background: ${colors.main100};
+			}
+		`}
+`
+
+export const FavoritesListComponent = styled.ul`
+	${({ theme: { colors, spaces } }) =>
+		css`
+			margin: 0;
+			padding: 0;
+			list-style: none;
+			max-height: 260px;
+			overflow-y: auto;
+			color: ${colors.main100};
+			font-size: 14px;
+
+			li {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				gap: ${spaces.tiny};
+				padding: ${spaces.mini} 0;
+			}
+
+			button {
+				flex-shrink: 0;
+				display: flex;
+				padding: ${spaces.mini};
+				border: none;
+				background: none;
+				color: inherit;
+				cursor: pointer;
+
+				&:hover {
+					color: ${colors.error};
+				}
 			}
 		`}
 `

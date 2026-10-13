@@ -81,6 +81,20 @@
 	"stats.this.year": "W tym roku:",
 	"news.title": "Co nowego",
 	"news.empty": "Brak nowości.",
+	"word.save": "Zapisz",
+	"word.edit.date": "Zmień datę wizyty",
+	"word.visited.status": "odwiedzony",
+	"word.favorite": "ulubiony",
+	"visit.date.edit": "Zmień datę wizyty",
+	"visit.date.none": "bez daty",
+	"favorites.title": "Ulubione",
+	"favorites.list": "Ulubione kraje do odwiedzenia:",
+	"favorites.add": "Dodaj do ulubionych",
+	"favorites.remove": "Usuń z ulubionych",
+	"favorites.empty": "Nie masz jeszcze ulubionych krajów. Dodaj je sercem przy kraju na liście albo klikając kraj na mapie.",
+	"guide.step.tooltip": "Najedź kursorem na kraj na mapie, żeby zobaczyć jego nazwę.",
+	"guide.step.favorites": "Kraje, które chcesz odwiedzić, dodaj do ulubionych sercem na liście albo w oknie po kliknięciu kraju na mapie. Znajdziesz je pod sercem na górnym pasku i na liście. Po dodaniu kraju do odwiedzonych sam znika z ulubionych.",
+	"guide.step.edit.date": "Datę wizyty zmienisz ołówkiem przy kraju na liście odwiedzonych.",
 	"errors": {
 		"empty.field": "Pole obowiązkowe",
 		"email": "Niepoprawny adres email",
@@ -95,7 +109,10 @@
 		"exist.email": "Konto z takim adresem email już istnieje",
 		"exist.number": "Numer telefonu istnieje już w bazie",
 		"add.country": "Dodano nowy kraj",
-		"remove.country": "Usunięto kraj z listy"
+		"remove.country": "Usunięto kraj z listy",
+		"favorite.added": "Dodano do ulubionych",
+		"favorite.removed": "Usunięto z ulubionych",
+		"date.saved": "Zapisano datę wizyty"
 	},
 	"help": {
 		"email": "jaroslawkucharski91@gmail.com",

@@ -28,7 +28,10 @@ const HelpContent = () => (
 		<ul>
 			<li>{i18next.t('guide.step.map')}</li>
 			<li>{i18next.t('guide.step.list')}</li>
+			<li>{i18next.t('guide.step.tooltip')}</li>
 			<li>{i18next.t('guide.step.date')}</li>
+			<li>{i18next.t('guide.step.edit.date')}</li>
+			<li>{i18next.t('guide.step.favorites')}</li>
 			<li>{i18next.t('guide.step.settings')}</li>
 		</ul>
 

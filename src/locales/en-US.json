@@ -82,6 +82,20 @@
 	"stats.this.year": "This year:",
 	"news.title": "What's new",
 	"news.empty": "Nothing new yet.",
+	"word.save": "Save",
+	"word.edit.date": "Change visit date",
+	"word.visited.status": "visited",
+	"word.favorite": "favorite",
+	"visit.date.edit": "Change visit date",
+	"visit.date.none": "no date",
+	"favorites.title": "Favorites",
+	"favorites.list": "Favorite countries to visit:",
+	"favorites.add": "Add to favorites",
+	"favorites.remove": "Remove from favorites",
+	"favorites.empty": "You have no favorite countries yet. Add them with the heart next to a country in the list or by clicking a country on the map.",
+	"guide.step.tooltip": "Hover over a country on the map to see its name.",
+	"guide.step.favorites": "Add countries you want to visit to favorites with the heart in the list or in the window after clicking a country on the map. You'll find them under the heart in the top bar and in the list. Once you mark a country as visited, it's removed from favorites.",
+	"guide.step.edit.date": "Change a visit date with the pencil next to a country in the visited list.",
 	"errors": {
 		"empty.field": "Field is required",
 		"email": "Invalid email",
@@ -96,7 +110,10 @@
 		"exist.email": "An account with this email address already exists",
 		"exist.number": "The phone number already exists in the database",
 		"add.country": "New country added",
-		"remove.country": "Country removed from list"
+		"remove.country": "Country removed from list",
+		"favorite.added": "Added to favorites",
+		"favorite.removed": "Removed from favorites",
+		"date.saved": "Visit date saved"
 	},
 	"help": {
 		"email": "jaroslawkucharski91@gmail.com",

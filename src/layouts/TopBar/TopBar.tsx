@@ -20,6 +20,8 @@ import { useTranslation } from 'react-i18next'
 import {
 	TbBell,
 	TbEdit,
+	TbHeart,
+	TbHeartOff,
 	TbHelp,
 	TbLogout,
 	TbMapPin,
@@ -30,10 +32,12 @@ import {
 } from 'react-icons/tb'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { logout } from 'services/auth'
-import { showHelpModal } from 'utils'
+import { removeFavorite } from 'services/user'
+import { showHelpModal, toastNotify } from 'utils'
 import { v4 as uuid } from 'uuid'
 
 import { hideLogo } from 'helpers/hideLogo'
+import { languageDetector } from 'helpers/languageDetector'
 
 import { useLocalStorage } from 'hooks/useLocalstorage'
 import { useService } from 'hooks/useService'
@@ -46,6 +50,7 @@ import { THEME_COLORS } from 'constants/theme'
 
 import {
 	BellComponent,
+	FavoritesListComponent,
 	MonthsComponent,
 	NewsEntryComponent,
 	SettingsComponent,
@@ -58,7 +63,22 @@ export const TopBar = () => {
 
 	const { theme } = useThemeColorContext()
 	const { userAuth } = useAuthContext()
-	const { countries, visitedList, visitedCountries } = useCountriesListContext()
+	const { countries, visitedList, visitedCountries, favoriteList, fetchCountriesList } =
+		useCountriesListContext()
+
+	const handleRemoveFavorite = async (code?: string) => {
+		if (!code) return
+
+		try {
+			await removeFavorite(code)
+
+			toastNotify(t('toasts.favorite.removed'), 'success')
+
+			fetchCountriesList()
+		} catch {
+			toastNotify(t('toasts.error'), 'error')
+		}
+	}
 	const navigate = useNavigate()
 	const { pathname } = useLocation()
 
@@ -140,6 +160,61 @@ export const TopBar = () => {
 					>
 						<TbHelp />
 					</Button>
+
+					<Dropdown
+						label={
+							<BellComponent data-testid="button-favorites">
+								<TbHeart />
+
+								{favoriteList.length > 0 && <span className="count">{favoriteList.length}</span>}
+							</BellComponent>
+						}
+						customButtonProps={{ variant: 'icon' }}
+						hasChevron={false}
+						dropdownWith={100}
+						dropdownContentWith="280px"
+					>
+						<VisitedSectionComponent>
+							<Paragraph type="dropdown">
+								<TbHeart /> {t('favorites.title').toUpperCase()}
+							</Paragraph>
+
+							<Spacer
+								space="mini"
+								type="vertical"
+							/>
+
+							{favoriteList.length === 0 ? (
+								<Paragraph
+									type="dropdown"
+									align="left"
+									size="s12"
+								>
+									{t('favorites.empty')}
+								</Paragraph>
+							) : (
+								<FavoritesListComponent>
+									{favoriteList.map(country => (
+										<li key={country?.code}>
+											<span>
+												{`${country?.icon} ${languageDetector(country?.nameEN, country?.namePL)}`}
+											</span>
+
+											<button
+												type="button"
+												title={String(t('favorites.remove'))}
+												onClick={() => handleRemoveFavorite(country?.code)}
+											>
+												<TbHeartOff />
+											</button>
+										</li>
+									))}
+								</FavoritesListComponent>
+							)}
+
+							<Spacer type="vertical" />
+						</VisitedSectionComponent>
+					</Dropdown>
 
 					<Dropdown
 						label={
