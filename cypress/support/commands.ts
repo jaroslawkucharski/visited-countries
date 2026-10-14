@@ -1,4 +1,23 @@
 /// <reference types="cypress" />
+
+declare global {
+	namespace Cypress {
+		interface Chainable {
+			login(): Chainable<void>
+		}
+	}
+}
+
+Cypress.Commands.add('login', () => {
+	const email = Cypress.env('TEST_USER_EMAIL') || 'cypress_test_account@visitedcountries.com'
+	const password = Cypress.env('TEST_USER_PASSWORD') || '12345678'
+
+	cy.visit('/signin')
+	cy.get('input[name=email]').type(email)
+	cy.get('input[name=password]').type(password)
+	cy.get('button[type=submit]').click()
+	cy.location('pathname', { timeout: 10000 }).should('eq', '/')
+})
 // ***********************************************
 // This example commands.ts shows you how to
 // create various custom commands and overwrite
