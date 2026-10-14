@@ -3,13 +3,16 @@
 		"auth": {
 			"port": 9099
 		},
-		"firestore": {
-			"port": 7070
+		"database": {
+			"port": 9000
 		},
 		"ui": {
 			"enabled": true,
 			"port": 4000
 		},
 		"singleProjectMode": true
+	},
+	"database": {
+		"rules": "firebase/database.rules.json"
 	}
 }
