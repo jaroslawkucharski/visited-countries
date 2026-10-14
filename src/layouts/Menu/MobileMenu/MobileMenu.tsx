@@ -39,7 +39,6 @@ export const MobileMenu = () => {
 				<IconBadge
 					icon={<TbHeart />}
 					count={favoriteList.length}
-					placement="outside"
 					data-testid="menu-favorites"
 				/>
 			</Link>

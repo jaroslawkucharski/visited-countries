@@ -3,7 +3,6 @@ import { FC, ReactEventHandler, ReactNode } from 'react'
 
 import { colors } from 'styles/theme'
 
-// eslint-disable-next-line import/no-cycle
 import { ButtonComponent } from './Button.styles'
 
 export type ButtonVariants = 'primary' | 'secondary' | 'icon' | 'alert'

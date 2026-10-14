@@ -1,5 +1,5 @@
 import { profileImage } from 'assets/images/pages'
-import { Button, Heading, Layout, Spacer } from 'components'
+import { Break, Button, Heading, Layout, PreferencesButtons, Spacer } from 'components'
 import { auth } from 'config/firebase'
 import { useTranslation } from 'react-i18next'
 import { removeAccount } from 'services/user'
@@ -49,6 +49,18 @@ export const Profile = () => {
 			>
 				{t('word.remove.account')}
 			</Button>
+
+			<Spacer type="vertical" />
+
+			<Break />
+
+			<Spacer type="vertical" />
+
+			<PreferencesButtons />
+
+			<Spacer type="vertical" />
+
+			<Break />
 
 			{isMobile && <Mobile />}
 		</Layout>

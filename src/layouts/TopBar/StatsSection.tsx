@@ -19,10 +19,9 @@ const StatRow: FC<{ label: ReactNode; value: ReactNode }> = ({ label, value }) =
 
 const ScaleLabels: FC<{ start: ReactNode; end: ReactNode }> = ({ start, end }) => (
 	<div className="quantity">
-		{[start, <TbPlane key="plane" />, end].map((text, index) => (
+		{[start, <TbPlane key="plane" />, end].map(text => (
 			<Paragraph
-				// eslint-disable-next-line react/no-array-index-key
-				key={index}
+				key={String(text)}
 				type="dropdown"
 				size="s12"
 			>
