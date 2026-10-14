@@ -1,7 +1,6 @@
 import styled, { DefaultTheme, css } from 'styled-components'
 
-// eslint-disable-next-line import/no-cycle
-import { CommonButtonProps } from './Button'
+import type { CommonButtonProps } from './Button'
 
 const varianStyles = css`
 	content: '';

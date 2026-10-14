@@ -30,6 +30,12 @@
 		"no-unused-vars": "error",
 		"@typescript-eslint/no-unused-vars": "error",
 		"react/jsx-props-no-spreading": "off",
-		"@typescript-eslint/no-unused-expressions": "off"
+		"@typescript-eslint/no-unused-expressions": "off",
+		"import/no-extraneous-dependencies": [
+			"error",
+			{
+				"devDependencies": ["**/*.test.ts", "**/*.test.tsx", "**/config/tests.tsx", "**/utils/tests-utils.tsx"]
+			}
+		]
 	}
 }

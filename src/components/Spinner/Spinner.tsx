@@ -1,6 +1,5 @@
 import { FC } from 'react'
 
-// eslint-disable-next-line import/no-cycle
 import { SpinnerComponent, SpinnerComponentWrapper } from './Spinner.styles'
 
 export interface SpinnerProps {

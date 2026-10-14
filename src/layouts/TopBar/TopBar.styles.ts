@@ -12,7 +12,7 @@ export const TopBarComponent = styled.div`
 			background: ${colors.main100};
 
 			@media (max-width: ${breakpoints.mobile}px) {
-				padding: ${spaces.big} ${spaces.big} calc(${spaces.medium} + ${spaces.tiny}) ${spaces.big};
+				padding: ${spaces.medium} ${spaces.big} ${spaces.medium} ${spaces.big};
 				justify-content: center;
 				flex-direction: column;
 			}

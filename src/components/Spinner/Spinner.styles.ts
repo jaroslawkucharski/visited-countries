@@ -1,7 +1,6 @@
 import styled, { css } from 'styled-components'
 
-// eslint-disable-next-line import/no-cycle
-import { SpinnerProps } from './Spinner'
+import type { SpinnerProps } from './Spinner'
 
 export const SpinnerComponentWrapper = styled.span<SpinnerProps>`
 	cursor: wait;
