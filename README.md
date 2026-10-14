@@ -63,7 +63,7 @@ APP<strong>DEMO</strong>
 
 <a href="https://visited-countries.vercel.app/" style='color: red;'>`https://visited-countries.vercel.app`</a>
 
-<img src='./src/assets/images/mocks/mockup-login.png' />
+<img src='./src/assets/images/mocks/visited-countries-mobile.webp' />
 
 <br />
 <br />
@@ -142,16 +142,8 @@ APP<strong>CONFIG</strong>
 
 </div>
 
-<img src='./src/assets/images/mocks/mockup-app.png' />
+<img src='./src/assets/images/mocks/visited-countries-dark.webp' />
 
-##
+<img src='./src/assets/images/mocks/visited-countries-light.webp' />
 
-COMING<strong>SOON</strong>
-
-<div align='left'>
-
-> - Multiple visits to the same country, each with its own date
-> - Country subdivisions: voivodeships, German states (Länder), US states and more
-
-</div>
 </div>
