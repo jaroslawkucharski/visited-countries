@@ -2,20 +2,20 @@ import styled, { css } from 'styled-components'
 
 interface IconComponentProps {
 	isRemoved?: boolean
+	isFavorite?: boolean
 }
 
 export const ProfileColumnComponent = styled.div`
 	${({ theme: { spaces, breakpoints } }) =>
 		css`
+			width: 100%;
 			margin: 0 auto;
 			padding: 0 0 0 ${spaces.big};
 			align-items: center;
 
 			@media (max-width: ${breakpoints.mobile}px) {
 				width: 100%;
-				padding: 0;
-				height: calc(100vh - 172px);
-				overflow: none;
+				padding: 0 0 120px;
 			}
 		`}
 `
@@ -36,16 +36,88 @@ export const ListItemComponent = styled.li`
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
+
+	.name {
+		flex: 1;
+		min-width: 0;
+	}
 `
 
-export const IconComponent = styled.div<IconComponentProps>`
-	${({ theme: { spaces, colors }, isRemoved }) =>
+export const ActionsComponent = styled.div`
+	${({ theme: { colors } }) =>
+		css`
+			display: flex;
+			align-items: center;
+			flex-shrink: 0;
+
+			.date {
+				font-size: 12px;
+				color: ${colors.color5};
+				white-space: nowrap;
+			}
+		`}
+`
+
+export const IconComponent = styled.button.attrs({ type: 'button' })<IconComponentProps>`
+	${({ theme: { spaces, colors }, isRemoved, isFavorite }) =>
 		css`
 			cursor: pointer;
+			color: ${isFavorite ? colors.errorText : 'inherit'};
 			padding: ${spaces.tiny};
+			border: none;
+			background: none;
+			font-size: inherit;
+			display: flex;
+			flex-shrink: 0;
 
 			&:hover {
-				color: ${isRemoved ? colors.error : colors.success};
+				color: ${isRemoved ? colors.errorText : colors.success};
 			}
+		`}
+`
+
+export const SearchComponent = styled.div`
+	width: 100%;
+	position: sticky;
+	top: 0;
+	z-index: 1;
+
+	${({ theme: { colors, spaces, breakpoints } }) =>
+		css`
+			padding: ${spaces.tiny} 0;
+			background: ${colors.main};
+
+			@media (max-width: ${breakpoints.mobile}px) {
+				padding: ${spaces.medium} 0 ${spaces.small};
+			}
+		`}
+
+	input {
+		padding-right: 48px;
+	}
+`
+
+export const SearchIconComponent = styled.button`
+	${({ theme: { colors } }) =>
+		css`
+			position: absolute;
+			top: 50%;
+			right: 14px;
+			transform: translateY(-50%);
+			display: flex;
+			padding: 0;
+			border: none;
+			background: none;
+			color: ${colors.secondary};
+			font-size: 22px;
+			cursor: pointer;
+		`}
+`
+
+export const EmptyResultsComponent = styled.p`
+	${({ theme: { colors, spaces } }) =>
+		css`
+			padding: ${spaces.small} 0;
+			color: ${colors.color5};
 		`}
 `

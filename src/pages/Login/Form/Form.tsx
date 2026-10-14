@@ -1,5 +1,4 @@
-import { Button, Spacer } from '@jaroslaw91/novelui'
-import { Input } from 'components'
+import { Button, Input, Spacer } from 'components'
 import { useFormik } from 'formik'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
@@ -10,8 +9,9 @@ import { useService } from 'hooks/useService'
 
 import { ROUTES } from 'constants/routes'
 
+import { FormComponent } from 'styles/layout'
+
 import { formSchema } from './Form.schema'
-import { FormComponent } from './Form.styles'
 
 interface FormValues {
 	email: string

@@ -1,70 +1,63 @@
-import { Break, Button, Image } from '@jaroslaw91/novelui'
 import LogoDark from 'assets/images/logo_dark.svg'
 import LogoLight from 'assets/images/logo_light.svg'
-import { Dropdown, DropdownItem } from 'components'
-import { auth } from 'config/firebase'
+import { Button, Image, Link } from 'components'
 import { useAuthContext } from 'context/AuthContext'
-import { useThemeColorContext } from 'context/ThemeContext'
 import { useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
-import { HiArrowRightOnRectangle, HiQuestionMarkCircle, HiUserCircle } from 'react-icons/hi2'
+import { TbHelp } from 'react-icons/tb'
 import { useLocation, useNavigate } from 'react-router-dom'
-import { logout } from 'services/auth'
-import { v4 as uuid } from 'uuid'
+import { showHelpModal } from 'utils'
 
 import { hideLogo } from 'helpers/hideLogo'
 
-import { useService } from 'hooks/useService'
+import { usePreferences } from 'hooks/usePreferences'
 import { useWindowSize } from 'hooks/useWindowSize'
 
 import { ROUTES } from 'constants/routes'
-import { THEME_COLORS } from 'constants/theme'
 
+import { AccountDropdown } from './AccountDropdown'
+import { FavoritesDropdown } from './FavoritesDropdown'
+import { NewsDropdown } from './NewsDropdown'
 import { SettingsComponent, TopBarComponent } from './TopBar.styles'
 
 export const TopBar = () => {
 	const { t } = useTranslation()
-	const { theme } = useThemeColorContext()
+
+	const { isDark } = usePreferences()
 	const { userAuth } = useAuthContext()
+
 	const navigate = useNavigate()
 	const { pathname } = useLocation()
 
 	const { isMobile } = useWindowSize()
 
-	const { request } = useService({
-		service: logout,
-		successCallback: () => navigate(ROUTES.SIGNIN),
-	})
-
-	const handleLogout = () => request()
-
 	const handleSignIn = useCallback(() => navigate(ROUTES.SIGNIN), [navigate])
 
 	const handleSignUp = useCallback(() => navigate(ROUTES.SIGNUP), [navigate])
 
-	const handleNavigateToMainPage = useCallback(() => navigate(ROUTES.DASHBOARD), [navigate])
-
 	return hideLogo(pathname) && isMobile ? null : (
 		<TopBarComponent>
-			<Image
-				src={theme === THEME_COLORS.DARK ? LogoDark : LogoLight}
-				width={250}
-				alt={t('word.logo')}
-				onClick={handleNavigateToMainPage}
-			/>
+			<Link to={ROUTES.DASHBOARD}>
+				<Image
+					src={isDark ? LogoDark : LogoLight}
+					width={250}
+					alt={t('word.logo')}
+				/>
+			</Link>
 
 			{!userAuth && !isMobile && (
 				<SettingsComponent>
 					<Button
 						variant="primary"
-						action={handleSignIn}
+						onClick={handleSignIn}
 						data-testid="button-signin"
 					>
 						{t('word.signin')}
 					</Button>
+
 					<Button
 						variant="secondary"
-						action={handleSignUp}
+						onClick={handleSignUp}
 						data-testid="button-signup"
 					>
 						{t('word.signup')}
@@ -73,31 +66,22 @@ export const TopBar = () => {
 			)}
 
 			{userAuth && !isMobile && (
-				<Dropdown text={auth?.currentUser?.displayName || t('word.account')}>
-					<DropdownItem
-						key={uuid()}
-						to={ROUTES.PROFILE}
+				<SettingsComponent>
+					<Button
+						variant="icon"
+						onClick={showHelpModal}
+						aria-label={String(t('word.help'))}
+						data-testid="button-help"
 					>
-						<HiUserCircle /> {t('word.profile')}
-					</DropdownItem>
+						<TbHelp />
+					</Button>
 
-					<DropdownItem
-						key={uuid()}
-						to={`mailto:${t('help.email')}?subject=${t('help.subject')}&body=${t('help.body')}`}
-					>
-						<HiQuestionMarkCircle /> {t('word.help')}
-					</DropdownItem>
+					<FavoritesDropdown />
 
-					<Break />
+					<NewsDropdown />
 
-					<DropdownItem
-						key={uuid()}
-						action={handleLogout}
-						islastitem
-					>
-						<HiArrowRightOnRectangle /> {t('word.logout')}
-					</DropdownItem>
-				</Dropdown>
+					<AccountDropdown />
+				</SettingsComponent>
 			)}
 		</TopBarComponent>
 	)

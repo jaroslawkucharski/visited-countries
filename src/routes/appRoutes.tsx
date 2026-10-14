@@ -1,4 +1,4 @@
-import { Loader } from '@jaroslaw91/novelui'
+import { Loader } from 'components'
 import { ErrorBoundary } from 'layouts'
 import { Suspense, createElement, lazy } from 'react'
 import { Route } from 'react-router-dom'
@@ -31,6 +31,10 @@ const DashboardList = lazy(async () => ({
 
 const Profile = lazy(async () => ({
 	default: (await import('pages')).Profile,
+}))
+
+const Favorites = lazy(async () => ({
+	default: (await import('pages')).Favorites,
 }))
 
 const PageNotFound = lazy(async () => ({
@@ -81,6 +85,12 @@ const routes = [
 		route: PrivateRoute,
 		isOnlyForMobile: false,
 		component: <Profile />,
+	},
+	{
+		path: ROUTES.FAVORITES,
+		route: PrivateRoute,
+		isOnlyForMobile: true,
+		component: <Favorites />,
 	},
 	{
 		path: ROUTES.PAGE_NOT_FOUND,

@@ -1,6 +1,6 @@
-import { Image } from '@jaroslaw91/novelui'
 import en from 'assets/images/locales/en.svg'
 import pl from 'assets/images/locales/pl.svg'
+import { Image } from 'components'
 import i18next from 'i18next'
 import { ReactNode, createElement } from 'react'
 

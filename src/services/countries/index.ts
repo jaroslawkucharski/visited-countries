@@ -1,3 +1,3 @@
-import { client } from 'config/client'
+import countries from 'data/countries.json'
 
-export const getCountries = () => client.get('https://restcountries.com/v3.1/all')
+export const getCountries = () => Promise.resolve(countries)

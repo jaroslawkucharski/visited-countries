@@ -1,36 +1,50 @@
-import { toastNotify } from '@jaroslaw91/novelui'
-import { auth, database, storage } from 'config/firebase'
+import { auth, database } from 'config/firebase'
 import { updateEmail, updatePassword, updateProfile } from 'firebase/auth'
 import { ref as databaseRef, remove, set } from 'firebase/database'
-import { deleteObject, getDownloadURL, ref as storageRef, uploadBytes } from 'firebase/storage'
-import i18next from 'i18next'
+import { notifyError } from 'utils'
 
-import { ERRORS } from 'constants/errors'
-
-// Update user profile props
 type UpdateUserProfileTypes = {
 	displayName?: string
 	photoURL?: string
 }
 
-// Upload country
-export const setCountry = (uid: string, country: string) => {
+export const setCountry = async (uid: string, country: string, visitedAt: string | null = null) => {
 	const user = auth.currentUser
 
-	set(databaseRef(database, `users/${user?.uid}/countries/${uid}`), {
+	await set(databaseRef(database, `users/${user?.uid}/countries/${uid}`), {
 		country,
 		uid,
+		...(visitedAt ? { visitedAt } : {}),
 	})
+
+	await remove(databaseRef(database, `users/${user?.uid}/favorites/${uid}`))
 }
 
-// Remove country
+export const setVisitDate = (uid: string, visitedAt: string | null) => {
+	const user = auth.currentUser
+	const visitedAtRef = databaseRef(database, `users/${user?.uid}/countries/${uid}/visitedAt`)
+
+	return visitedAt ? set(visitedAtRef, visitedAt) : remove(visitedAtRef)
+}
+
+export const addFavorite = (uid: string) => {
+	const user = auth.currentUser
+
+	return set(databaseRef(database, `users/${user?.uid}/favorites/${uid}`), true)
+}
+
+export const removeFavorite = (uid: string) => {
+	const user = auth.currentUser
+
+	return remove(databaseRef(database, `users/${user?.uid}/favorites/${uid}`))
+}
+
 export const removeCountry = (uid: string) => {
 	const user = auth.currentUser
 
-	remove(databaseRef(database, `users/${user?.uid}/countries/${uid}`))
+	return remove(databaseRef(database, `users/${user?.uid}/countries/${uid}`))
 }
 
-// Update user profile
 export const updateUserProfile = async (args: UpdateUserProfileTypes) => {
 	const user = auth.currentUser
 
@@ -38,36 +52,27 @@ export const updateUserProfile = async (args: UpdateUserProfileTypes) => {
 		if (user !== null) {
 			await updateProfile(user, args)
 		}
-	} catch ({ code }: any) {
-		toastNotify(i18next.t(ERRORS[code as string] || 'toasts.error'), 'error')
+	} catch (error) {
+		notifyError(error)
 	}
 }
 
-// Upload user avatar
-export const setUserAvatar = async (file: Blob) => {
+export const setUserAvatar = async (avatar: string) => {
 	const user = auth.currentUser
 
-	const fileRef = storageRef(storage, `images/avatar_${user?.uid}`)
-
-	await uploadBytes(fileRef, file)
-
-	const photoURL = await getDownloadURL(fileRef)
-
-	updateUserProfile({ photoURL })
+	if (user !== null) {
+		await set(databaseRef(database, `users/${user.uid}/avatar`), avatar)
+	}
 }
 
-// Remove user avatar
 export const removeUserAvatar = async () => {
 	const user = auth.currentUser
 
-	const fileRef = storageRef(storage, `images/avatar_${user?.uid}`)
-
-	await deleteObject(fileRef)
-
-	updateUserProfile({ photoURL: '' })
+	if (user !== null) {
+		await remove(databaseRef(database, `users/${user.uid}/avatar`))
+	}
 }
 
-// Update email
 export const updateUserEmail = async (email: string) => {
 	const user = auth.currentUser
 
@@ -75,12 +80,11 @@ export const updateUserEmail = async (email: string) => {
 		if (user !== null) {
 			await updateEmail(user, email)
 		}
-	} catch ({ code }: any) {
-		toastNotify(i18next.t(ERRORS[code as string] || 'toasts.error'), 'error')
+	} catch (error) {
+		notifyError(error)
 	}
 }
 
-// Update password
 export const updateUserPassword = async (password: string) => {
 	const user = auth.currentUser
 
@@ -88,12 +92,11 @@ export const updateUserPassword = async (password: string) => {
 		if (user !== null) {
 			await updatePassword(user, password)
 		}
-	} catch ({ code }: any) {
-		toastNotify(i18next.t(ERRORS[code as string] || 'toasts.error'), 'error')
+	} catch (error) {
+		notifyError(error)
 	}
 }
 
-// Remove account
 export const removeAccount = async () => {
 	const user = auth.currentUser
 
@@ -101,11 +104,9 @@ export const removeAccount = async () => {
 		if (user !== null) {
 			await remove(databaseRef(database, `users/${user?.uid}`))
 
-			await removeUserAvatar()
-
 			await user.delete()
 		}
-	} catch ({ code }: any) {
-		toastNotify(i18next.t(ERRORS[code as string] || 'toasts.error'), 'error')
+	} catch (error) {
+		notifyError(error)
 	}
 }

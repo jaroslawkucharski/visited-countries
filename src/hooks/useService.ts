@@ -1,10 +1,6 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import { toastNotify } from '@jaroslaw91/novelui'
 import { UserCredential } from 'firebase/auth'
-import i18next from 'i18next'
 import { ReactNode, useCallback, useEffect, useMemo, useState } from 'react'
-
-import { ERRORS } from 'constants/errors'
+import { getErrorMessage, toastNotify } from 'utils'
 
 interface ServiceProps {
 	autoFetch?: boolean
@@ -54,8 +50,8 @@ export const useService = ({
 				}
 
 				successCallback?.()
-			} catch ({ code }: any) {
-				toastNotify(errorToast || i18next.t(ERRORS[code as string] || 'toasts.error'), 'error')
+			} catch (error) {
+				toastNotify(errorToast || getErrorMessage(error), 'error')
 
 				errorCallback?.()
 			} finally {

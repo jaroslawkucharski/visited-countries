@@ -1,5 +1,5 @@
-import { Button, Layout, Paragraph, Spacer } from '@jaroslaw91/novelui'
-import pageNotFound from 'assets/images/pages/404.jpg'
+import { pageNotFoundImage } from 'assets/images/pages'
+import { Button, Layout, Paragraph, Spacer } from 'components'
 import { useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
 import { HiArrowLeft } from 'react-icons/hi2'
@@ -14,7 +14,7 @@ export const PageNotFound = () => {
 	const handleBack = useCallback(() => navigate(ROUTES.SIGNIN), [navigate])
 
 	return (
-		<Layout image={pageNotFound}>
+		<Layout image={pageNotFoundImage}>
 			<Paragraph size="huge">{t('word.404')}</Paragraph>
 
 			<Paragraph size="big">{t('word.page.not.found')}</Paragraph>
@@ -25,7 +25,7 @@ export const PageNotFound = () => {
 			/>
 
 			<Button
-				action={handleBack}
+				onClick={handleBack}
 				data-testid="button-back"
 			>
 				<HiArrowLeft />

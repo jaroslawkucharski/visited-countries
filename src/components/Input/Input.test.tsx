@@ -1,5 +1,4 @@
-import { describe, fireEvent, it, render, vi, waitFor } from 'utils/tests-utils'
-
+import { describe, fireEvent, it, render, vi, waitFor } from '../../utils/tests-utils'
 import { Input } from './Input'
 
 const onChange = vi.fn()

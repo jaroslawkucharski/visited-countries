@@ -1,0 +1,69 @@
+import { Spinner } from 'components'
+import { FC, ReactEventHandler, ReactNode } from 'react'
+
+import { colors } from 'styles/theme'
+
+import { ButtonComponent } from './Button.styles'
+
+export type ButtonVariants = 'primary' | 'secondary' | 'icon' | 'alert'
+
+export interface CommonButtonProps {
+	variant?: ButtonVariants
+	children: ReactNode
+	type?: 'button' | 'submit' | 'reset'
+	onClick?: ReactEventHandler<HTMLButtonElement>
+	width?: string
+	hasFullWidth?: boolean
+	isLoading?: boolean
+	isDisabled?: boolean
+	'aria-label'?: string
+	'aria-expanded'?: boolean
+	'aria-pressed'?: boolean
+	'aria-haspopup'?: boolean | 'menu' | 'dialog'
+	'data-testid'?: string
+}
+
+type IconVariantProps = {
+	variant: 'icon'
+	width?: never
+	hasFullWidth?: never
+}
+
+type DefaultVariantProps = {
+	variant?: 'primary' | 'secondary' | 'alert'
+	width?: string | number
+	hasFullWidth?: boolean
+}
+
+type ConditionalProps = DefaultVariantProps | IconVariantProps
+
+export type ButtonProps = ConditionalProps & CommonButtonProps
+
+export const Button: FC<ButtonProps> = ({
+	variant = 'primary',
+	children,
+	type = 'button',
+	onClick,
+	width = 'auto',
+	hasFullWidth = false,
+	isLoading = false,
+	isDisabled = false,
+	'data-testid': dataTestId = 'button',
+	...restProps
+}) => (
+	<ButtonComponent
+		variant={variant}
+		type={type}
+		onClick={onClick}
+		width={width}
+		hasFullWidth={hasFullWidth}
+		isLoading={isLoading}
+		disabled={isDisabled}
+		data-testid={dataTestId}
+		{...restProps}
+	>
+		{isLoading ? <Spinner color={variant === 'secondary' ? '' : colors.dark100} /> : children}
+	</ButtonComponent>
+)
+
+Button.displayName = 'novelUI/Components/Button'

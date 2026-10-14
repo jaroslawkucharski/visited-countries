@@ -1,10 +1,5 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-
-/* eslint-disable @typescript-eslint/ban-types */
-
-/* eslint-disable import/no-extraneous-dependencies */
-import { Theme } from '@jaroslaw91/novelui'
-import { configureStore } from '@reduxjs/toolkit'
+import { EnhancedStore, configureStore } from '@reduxjs/toolkit'
+import '@testing-library/jest-dom'
 import { RenderOptions, render as rtlRender, screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { AuthProvider } from 'context/AuthContext'
@@ -18,12 +13,13 @@ import { CountriesSlice } from 'store/features/countriesSlice'
 import { ThemeProvider } from 'styled-components'
 import { describe, it, vi } from 'vitest'
 
+import { Theme } from 'styles/ThemeProvider'
 import { darkTheme } from 'styles/theme'
 
 import i18n from '../config/i18n'
 
 interface ExtendedRenderOptions extends Omit<RenderOptions, 'queries'> {
-	store?: any
+	store?: EnhancedStore
 	screenWidth?: number
 }
 
@@ -38,7 +34,7 @@ const render = (
 		...renderOptions
 	}: ExtendedRenderOptions = {},
 ) => {
-	const AppProviders = ({ children }: PropsWithChildren<{}>) => (
+	const AppProviders = ({ children }: PropsWithChildren) => (
 		<Provider store={store}>
 			<I18nextProvider i18n={i18n}>
 				<MemoryRouter initialEntries={['/']}>

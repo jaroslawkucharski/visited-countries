@@ -1,5 +1,7 @@
 import styled, { css } from 'styled-components'
 
+import { fieldStyles } from 'styles/mixins'
+
 interface InputComponentProps {
 	type?: string
 	hasFullWidth?: boolean
@@ -30,31 +32,25 @@ export const InputWrapperComponent = styled.div`
 `
 
 export const InputComponent = styled.input<InputComponentProps>`
-	min-height: 44px;
 	max-height: 44px;
-	border-radius: 15px;
 
-	${({ theme: { colors, spaces }, hasFullWidth, isError, isPassword, isDropdown, type }) =>
+	${({ theme, hasFullWidth, isError, isPassword, isDropdown, type }) =>
 		css`
+			${fieldStyles(theme)}
 			width: ${hasFullWidth && '100%'};
-			background: ${colors.color3};
-			border: solid 2px ${colors.color4};
-			padding: ${spaces.small} ${spaces.medium};
-			color: ${colors.secondary};
-
-			&:focus {
-				outline: none;
-				border: solid 2px ${colors.secondary};
-			}
-
-			border: ${isError && `solid 2px ${colors.error}`};
-			padding-right: ${isPassword && `calc(${spaces.big} + ${spaces.tiny})`};
+			border: ${isError && `solid 2px ${theme.colors.errorText}`};
+			padding-right: ${isPassword && `calc(${theme.spaces.big} + ${theme.spaces.tiny})`};
 			border-radius: ${isDropdown && '15px 15px 0 0'};
 			display: ${type === 'file' && 'none'};
 		`}
 `
 
-export const IconComponent = styled.span`
+export const IconComponent = styled.button`
+	padding: 0;
+	border: none;
+	background: none;
+	color: inherit;
+	display: flex;
 	cursor: pointer;
 	top: 12.5px;
 	right: 20px;

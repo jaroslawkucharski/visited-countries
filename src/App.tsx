@@ -1,4 +1,3 @@
-import { Theme } from '@jaroslaw91/novelui'
 import { AuthProvider } from 'context/AuthContext'
 import { CountriesListProvider } from 'context/CountriesListContext'
 import { useThemeColorContext } from 'context/ThemeContext'
@@ -6,6 +5,8 @@ import { ErrorBoundary, Menu, TopBar } from 'layouts'
 import { Routes } from 'react-router-dom'
 import { appRoutes } from 'routes'
 import { ThemeProvider } from 'styled-components'
+
+import { Theme } from 'styles/ThemeProvider'
 
 const App = () => {
 	const { theme, themeColor } = useThemeColorContext()

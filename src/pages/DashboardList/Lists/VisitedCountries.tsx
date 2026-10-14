@@ -1,88 +1,62 @@
-import { Paragraph, Spacer, modalShow, toastNotify } from '@jaroslaw91/novelui'
 import { useCountriesListContext } from 'context/CountriesListContext'
 import { useTranslation } from 'react-i18next'
-import { HiTrash } from 'react-icons/hi2'
-import { removeCountry } from 'services/user'
-import { v4 as uuid } from 'uuid'
+import { HiPencil, HiTrash } from 'react-icons/hi2'
 
-import { languageDetector } from 'helpers/languageDetector'
+import { matchesCountry } from 'helpers/countrySearch'
+import { formatVisitedAt } from 'helpers/visitDate'
 
-import { IconComponent, ListItemComponent } from '../DashboardList.styles'
+import { useCountryActions } from 'hooks/useCountryActions'
 
-export const VisitedCountries = () => {
-	const { t } = useTranslation()
+import { IconComponent } from '../DashboardList.styles'
+import { CountriesSection } from './CountriesSection'
+import { CountryListItem } from './CountryListItem'
 
-	const { visitedList, fetchCountriesList } = useCountriesListContext()
+interface VisitedCountriesProps {
+	query?: string
+}
 
-	const handleRemoveCountry = async (code: string) => {
-		try {
-			await removeCountry(code)
+export const VisitedCountries = ({ query = '' }: VisitedCountriesProps) => {
+	const { t, i18n } = useTranslation()
+	const { visitedList } = useCountriesListContext()
+	const { getVisitedAt, openEditModal, confirmRemoveCountry, getCountryName } = useCountryActions()
 
-			toastNotify(t('toasts.remove.country'), 'success')
+	const filtered = (visitedList || []).filter(country =>
+		matchesCountry(country, query, i18n.language),
+	)
 
-			fetchCountriesList()
-		} catch {
-			toastNotify(t('toasts.error'), 'error')
-		}
+	if (query && filtered.length === 0) {
+		return null
 	}
 
-	const showRemoveModal = (code: string, country: string, icon: string) =>
-		modalShow({
-			id: 'remove-country',
-			title: t('modal.remove.country'),
-			content: (
-				<>
-					{t('modal.remove.country.content')}
-
-					<Spacer
-						type="vertical"
-						space="tiny"
-					/>
-
-					{`${icon} ${country}`}
-				</>
-			),
-			actionName: t('word.remove'),
-			cancelName: t('word.cancel'),
-			action: () => handleRemoveCountry(code),
-			variant: 'alert',
-		})
-
 	return (
-		<>
-			<Paragraph size="big">{t('word.visited.list')}</Paragraph>
+		<CountriesSection title={t('word.visited.list')}>
+			{filtered.map(country => (
+				<CountryListItem
+					key={country?.code}
+					country={country}
+				>
+					<span className="date">
+						{formatVisitedAt(getVisitedAt(country?.code)) || t('visit.date.none')}
+					</span>
 
-			<Spacer
-				type="vertical"
-				space="tiny"
-			/>
+					<IconComponent
+						title={String(t('word.edit.date'))}
+						aria-label={`${t('word.edit.date')}: ${getCountryName(country)}`}
+						onClick={() => openEditModal(country)}
+					>
+						<HiPencil />
+					</IconComponent>
 
-			<ul>
-				{visitedList?.map(country => {
-					const name = languageDetector(country?.nameEN, country?.namePL)
-
-					return (
-						<ListItemComponent key={uuid()}>
-							{`${country?.icon} `}
-
-							{name}
-
-							<Spacer space="small" />
-
-							<IconComponent
-								isRemoved
-								onClick={() =>
-									showRemoveModal(country?.code as string, name as string, country?.icon as string)
-								}
-							>
-								<HiTrash />
-							</IconComponent>
-						</ListItemComponent>
-					)
-				})}
-			</ul>
-
-			<Spacer type="vertical" />
-		</>
+					<IconComponent
+						isRemoved
+						title={String(t('word.remove'))}
+						aria-label={`${t('word.remove')}: ${getCountryName(country)}`}
+						onClick={() => confirmRemoveCountry(country)}
+					>
+						<HiTrash />
+					</IconComponent>
+				</CountryListItem>
+			))}
+		</CountriesSection>
 	)
 }

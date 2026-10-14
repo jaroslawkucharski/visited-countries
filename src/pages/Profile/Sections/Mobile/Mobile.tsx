@@ -1,93 +1,34 @@
-import { Break, Button, Spacer } from '@jaroslaw91/novelui'
-import { Link } from 'components'
-import { useThemeColorContext } from 'context/ThemeContext'
-import { useCallback } from 'react'
+import { Button, Spacer } from 'components'
 import { useTranslation } from 'react-i18next'
-import { HiMoon, HiSun } from 'react-icons/hi2'
-import { useNavigate } from 'react-router-dom'
-import { logout } from 'services/auth'
+import { showHelpModal } from 'utils'
 
-import { getLanguageImage } from 'helpers/languageDetector'
-
-import { useService } from 'hooks/useService'
-
-import { LOCALES } from 'constants/locales'
-import { ROUTES } from 'constants/routes'
-
-import { MobileComponent } from './Mobile.styles'
+import { useLogout } from 'hooks/useLogout'
 
 export const Mobile = () => {
-	const { t, i18n } = useTranslation()
-	const navigate = useNavigate()
+	const { t } = useTranslation()
 
-	const { theme, toggleTheme } = useThemeColorContext()
-
-	const { request } = useService({
-		service: logout,
-		successCallback: () => navigate(ROUTES.SIGNIN),
-	})
-
-	const handleLogout = () => request()
-
-	const handleLanguageChangeToPL = useCallback(
-		() =>
-			i18n.language === LOCALES.EN
-				? i18n.changeLanguage(LOCALES.PL)
-				: i18n.changeLanguage(LOCALES.EN),
-		[i18n],
-	)
-
-	const handleThemeColorChange = useCallback(() => toggleTheme(), [toggleTheme])
+	const handleLogout = useLogout()
 
 	return (
 		<>
-			<Spacer
-				type="vertical"
-				space="big"
-			/>
-
-			<Break />
-
 			<Spacer type="vertical" />
-			<MobileComponent>
-				<Button
-					variant="secondary"
-					action={handleThemeColorChange}
-					hasOnlyIcon
-				>
-					{theme === 'dark' ? <HiSun /> : <HiMoon />}
-				</Button>
-
-				<Button
-					variant="secondary"
-					action={handleLanguageChangeToPL}
-					hasOnlyIcon
-				>
-					{getLanguageImage()}
-				</Button>
-			</MobileComponent>
-
-			<Spacer type="vertical" />
-
-			<Break />
-
-			<Spacer
-				type="vertical"
-				space="big"
-			/>
 
 			<Button
-				action={handleLogout}
+				variant="secondary"
+				onClick={showHelpModal}
 				hasFullWidth
 			>
-				{t('word.logout')}
+				{t('word.help')}
 			</Button>
 
 			<Spacer type="vertical" />
 
-			<Link to={`mailto:${t('help.email')}?subject=${t('help.subject')}&body=${t('help.body')}`}>
-				{t('word.help')}
-			</Link>
+			<Button
+				onClick={handleLogout}
+				hasFullWidth
+			>
+				{t('word.logout')}
+			</Button>
 		</>
 	)
 }

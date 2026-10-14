@@ -1,11 +1,12 @@
-import { Button, Image, Paragraph, Spacer, modalShow } from '@jaroslaw91/novelui'
-import { Input } from 'components'
-import { auth } from 'config/firebase'
+import { Button, Image, Input, Paragraph, Spacer } from 'components'
 import { useCountriesListContext } from 'context/CountriesListContext'
 import { ChangeEvent, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { HiCloudArrowUp, HiTrash, HiUserCircle } from 'react-icons/hi2'
 import { removeUserAvatar, setUserAvatar } from 'services/user'
+import { modalShow, resizeImage, toastNotify } from 'utils'
+
+import { useUserAvatar } from 'hooks/useUserAvatar'
 
 import { FILE_SIZES } from 'constants/fileSizes'
 
@@ -14,10 +15,8 @@ import { AvatarComponent, ImageComponent, UserComponent } from './User.styles'
 export const User = () => {
 	const { t } = useTranslation()
 
-	const { currentUser } = auth
-
 	const [isError, setError] = useState(false)
-	const [avatarImage, setAvatarImage] = useState(currentUser?.photoURL)
+	const avatarImage = useUserAvatar()
 	const [isLoading, setLoading] = useState(false)
 
 	const inputRef = useRef(null)
@@ -51,24 +50,25 @@ export const User = () => {
 
 			setError(false)
 
-			await setUserAvatar(file)
+			try {
+				const avatar = await resizeImage(file)
 
-			const reader = new FileReader()
-
-			reader.onload = () => {
-				setAvatarImage(reader.result as string)
+				await setUserAvatar(avatar)
+			} catch {
+				toastNotify(t('toasts.error'), 'error')
+			} finally {
+				setLoading(false)
+				target.value = ''
 			}
-
-			reader.readAsDataURL(file)
-
-			setLoading(false)
 		}
 	}
 
 	const handleRemoveUserAvatar = async () => {
-		await removeUserAvatar()
-
-		setAvatarImage(null)
+		try {
+			await removeUserAvatar()
+		} catch {
+			toastNotify(t('toasts.error'), 'error')
+		}
 	}
 
 	const showRemoveModal = () =>
@@ -108,7 +108,7 @@ export const User = () => {
 					size="big"
 					align="right"
 				>
-					{t('word.visited')}
+					{t('stats.countries.visited.title')}
 				</Paragraph>
 
 				<Spacer
@@ -135,7 +135,7 @@ export const User = () => {
 
 			<ImageComponent>
 				<Button
-					action={handleUploadImage}
+					onClick={handleUploadImage}
 					isLoading={isLoading}
 					isDisabled={isLoading}
 					hasFullWidth
@@ -153,9 +153,9 @@ export const User = () => {
 						/>
 
 						<Button
-							variant="secondary"
-							action={showRemoveModal}
-							hasOnlyIcon
+							variant="icon"
+							onClick={showRemoveModal}
+							aria-label={String(t('modal.remove.image'))}
 						>
 							<HiTrash />
 						</Button>

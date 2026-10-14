@@ -1,18 +1,18 @@
-import { Heading, Layout, Paragraph, Spacer } from '@jaroslaw91/novelui'
-import register from 'assets/images/pages/register.jpg'
-import { Link } from 'components'
+import { registerImage } from 'assets/images/pages'
+import { Heading, Layout, Link, Paragraph, Spacer } from 'components'
 import { useTranslation } from 'react-i18next'
 
 import { ROUTES } from 'constants/routes'
 
+import { RowComponent } from 'styles/layout'
+
 import { Form } from './Form'
-import { RegisterRowComponent } from './Register.styles'
 
 export const Register = () => {
 	const { t } = useTranslation()
 
 	return (
-		<Layout image={register}>
+		<Layout image={registerImage}>
 			<Heading>{t('word.signup')}</Heading>
 
 			<Spacer
@@ -24,19 +24,19 @@ export const Register = () => {
 
 			<Spacer type="vertical" />
 
-			<RegisterRowComponent>
+			<RowComponent>
 				<Form />
-			</RegisterRowComponent>
+			</RowComponent>
 
 			<Spacer type="vertical" />
 
-			<RegisterRowComponent>
+			<RowComponent>
 				<Paragraph>{t('register.already.account')}</Paragraph>
 
 				<Spacer space="tiny" />
 
 				<Link to={ROUTES.SIGNIN}>{t('word.signin')}</Link>
-			</RegisterRowComponent>
+			</RowComponent>
 		</Layout>
 	)
 }

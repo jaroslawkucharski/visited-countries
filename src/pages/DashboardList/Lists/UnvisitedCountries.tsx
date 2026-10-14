@@ -1,61 +1,64 @@
-import { Paragraph, Spacer, toastNotify } from '@jaroslaw91/novelui'
 import { useCountriesListContext } from 'context/CountriesListContext'
 import { useTranslation } from 'react-i18next'
-import { HiPlusCircle } from 'react-icons/hi2'
-import { setCountry } from 'services/user'
-import { v4 as uuid } from 'uuid'
+import { HiHeart, HiOutlineHeart, HiPlusCircle } from 'react-icons/hi2'
 
-import { languageDetector } from 'helpers/languageDetector'
+import { matchesCountry } from 'helpers/countrySearch'
 
-import { IconComponent, ListItemComponent } from '../DashboardList.styles'
+import { useCountryActions } from 'hooks/useCountryActions'
 
-export const UnvisitedCountries = () => {
-	const { t } = useTranslation()
+import { IconComponent } from '../DashboardList.styles'
+import { CountriesSection } from './CountriesSection'
+import { CountryListItem } from './CountryListItem'
 
-	const { unvisitedList, fetchCountriesList } = useCountriesListContext()
+interface UnvisitedCountriesProps {
+	query?: string
+}
 
-	const handleAddCountry = async (code: string, country: string) => {
-		try {
-			await setCountry(code, country)
+export const UnvisitedCountries = ({ query = '' }: UnvisitedCountriesProps) => {
+	const { t, i18n } = useTranslation()
+	const { unvisitedList } = useCountriesListContext()
+	const { isFavorite, toggleFavorite, openAddModal, getCountryName } = useCountryActions()
 
-			toastNotify(t('toasts.add.country'), 'success')
+	const filtered = (unvisitedList || []).filter(country =>
+		matchesCountry(country, query, i18n.language),
+	)
 
-			fetchCountriesList()
-		} catch {
-			toastNotify(t('toasts.error'), 'error')
-		}
+	if (query && filtered.length === 0) {
+		return null
 	}
 
 	return (
-		<>
-			<Paragraph size="big">{t('word.unvisited.list')}</Paragraph>
+		<CountriesSection title={t('word.unvisited.list')}>
+			{filtered.map(country => {
+				const favorite = isFavorite(country?.code)
 
-			<Spacer
-				type="vertical"
-				space="tiny"
-			/>
+				return (
+					<CountryListItem
+						key={country?.code}
+						country={country}
+					>
+						<IconComponent
+							isFavorite={favorite}
+							title={String(t(favorite ? 'favorites.remove' : 'favorites.add'))}
+							aria-label={`${t(favorite ? 'favorites.remove' : 'favorites.add')}: ${getCountryName(
+								country,
+							)}`}
+							onClick={() => toggleFavorite(String(country?.code))}
+							data-testid="toggle-favorite"
+						>
+							{favorite ? <HiHeart /> : <HiOutlineHeart />}
+						</IconComponent>
 
-			<ul>
-				{unvisitedList?.map(country => {
-					const name = languageDetector(country?.nameEN, country?.namePL)
-
-					return (
-						<ListItemComponent key={uuid()}>
-							{`${country?.icon} `}
-
-							{name}
-
-							<Spacer space="small" />
-
-							<IconComponent
-								onClick={() => handleAddCountry(country?.code as string, name as string)}
-							>
-								<HiPlusCircle />
-							</IconComponent>
-						</ListItemComponent>
-					)
-				})}
-			</ul>
-		</>
+						<IconComponent
+							title={String(t('word.add.country'))}
+							aria-label={`${t('word.add.country')}: ${getCountryName(country)}`}
+							onClick={() => openAddModal(country)}
+						>
+							<HiPlusCircle />
+						</IconComponent>
+					</CountryListItem>
+				)
+			})}
+		</CountriesSection>
 	)
 }

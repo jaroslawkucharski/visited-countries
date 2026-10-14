@@ -1,0 +1,55 @@
+import { Heading, Input, Spacer } from 'components'
+import { ChangeEvent, FC } from 'react'
+import { useTranslation } from 'react-i18next'
+import { HiMagnifyingGlassCircle, HiXCircle } from 'react-icons/hi2'
+
+import { SearchComponent, SearchIconComponent } from '../DashboardList.styles'
+
+interface SearchCountriesProps {
+	query: string
+	onChange: (query: string) => void
+}
+
+export const SearchCountries: FC<SearchCountriesProps> = ({ query, onChange }) => {
+	const { t } = useTranslation()
+
+	return (
+		<>
+			<Heading>{t('word.list')}</Heading>
+
+			<Spacer type="vertical" />
+
+			<SearchComponent>
+				<Input
+					id="countries-search"
+					name="countries-search"
+					placeholder={`${t('list.input.placeholder')}`}
+					value={query}
+					onChange={(event: ChangeEvent<HTMLInputElement>) => onChange(event.target.value)}
+					hasFullWidth
+					hideError
+					ariaLabel={String(t('list.input.placeholder'))}
+					data-testid="countries-search"
+				/>
+
+				{query ? (
+					<SearchIconComponent
+						onClick={() => onChange('')}
+						title={String(t('word.clear'))}
+						aria-label={String(t('word.clear'))}
+						data-testid="countries-search-clear"
+					>
+						<HiXCircle />
+					</SearchIconComponent>
+				) : (
+					<SearchIconComponent
+						as="span"
+						aria-hidden
+					>
+						<HiMagnifyingGlassCircle />
+					</SearchIconComponent>
+				)}
+			</SearchComponent>
+		</>
+	)
+}
