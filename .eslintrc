@@ -34,7 +34,7 @@
 		"import/no-extraneous-dependencies": [
 			"error",
 			{
-				"devDependencies": ["**/config/tests.tsx", "**/utils/tests-utils.tsx"]
+				"devDependencies": ["**/*.test.ts", "**/*.test.tsx", "**/config/tests.tsx", "**/utils/tests-utils.tsx"]
 			}
 		]
 	}
