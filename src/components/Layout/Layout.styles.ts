@@ -56,7 +56,7 @@ export const PresentionalComponent = styled.div<PresentionalComponentProps>`
 export const ChildrenComponent = styled.div`
 	${({ theme: { spaces, colors, breakpoints } }) =>
 		css`
-			width: 400px;
+			width: 550px;
 			min-height: calc(100vh - 84px);
 			margin: 0 auto;
 			padding: ${spaces.huge} ${spaces.big};

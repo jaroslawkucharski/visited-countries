@@ -6,11 +6,10 @@ interface IconComponentProps {
 }
 
 export const ProfileColumnComponent = styled.div`
-	${({ theme: { spaces, breakpoints } }) =>
+	${({ theme: { breakpoints } }) =>
 		css`
 			width: 100%;
 			margin: 0 auto;
-			padding: 0 0 0 ${spaces.big};
 			align-items: center;
 
 			@media (max-width: ${breakpoints.mobile}px) {

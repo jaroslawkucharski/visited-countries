@@ -23,12 +23,12 @@ export const WebMenuItemComponent = styled.div`
 
 	${({ theme: { spaces, colors } }) =>
 		css`
-			padding: 0 ${spaces.medium};
+			padding: 0 0 0 ${spaces.large};
 			display: flex;
 			flex-direction: column;
 			justify-content: space-between;
 			align-items: space-between;
-			background: ${colors.color3};
+			background: ${colors.main};
 			position: fixed;
 			top: 84px;
 			left: 0;
