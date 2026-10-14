@@ -4,7 +4,6 @@ export const IconBadgeComponent = styled.span`
 	${({ theme: { colors } }) =>
 		css`
 			position: relative;
-			display: inline-flex;
 
 			.count {
 				position: absolute;
