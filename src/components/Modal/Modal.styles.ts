@@ -28,6 +28,9 @@ export const ModalComponent = styled.div`
 			border-radius: 10px;
 			background-color: ${colors.main};
 			position: relative;
+			max-height: 90vh;
+			display: flex;
+			flex-direction: column;
 
 			&:focus {
 				outline: none;
@@ -70,6 +73,11 @@ export const ModalHeadingComponent = styled.div`
 				}
 			}
 		`}
+`
+
+export const ModalContentComponent = styled.div`
+	overflow-y: auto;
+	flex: 1;
 `
 
 export const ModalActionsComponent = styled.div`
