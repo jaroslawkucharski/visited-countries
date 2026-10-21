@@ -37,6 +37,19 @@ export const Register = () => {
 
 				<Link to={ROUTES.SIGNIN}>{t('word.signin')}</Link>
 			</RowComponent>
+
+			<Spacer
+				type="vertical"
+				space="small"
+			/>
+
+			<RowComponent>
+				<Paragraph>{t('register.privacy')}</Paragraph>
+
+				<Spacer space="tiny" />
+
+				<Link to={ROUTES.PRIVACY}>{t('register.privacy.link')}</Link>
+			</RowComponent>
 		</Layout>
 	)
 }

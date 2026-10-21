@@ -8,4 +8,5 @@ export const ROUTES = {
 	FAVORITES: '/favorites',
 	HELP: '/help',
 	PAGE_NOT_FOUND: '*',
+	PRIVACY: '/privacy',
 }
