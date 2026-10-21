@@ -21,7 +21,7 @@ export const User = () => {
 
 	const inputRef = useRef(null)
 
-	const { visitedList } = useCountriesListContext()
+	const { visitedList, countries } = useCountriesListContext()
 
 	const handleUploadImage = () => {
 		if (inputRef.current !== null) {
@@ -99,28 +99,16 @@ export const User = () => {
 					)}
 				</AvatarComponent>
 
-				<Spacer
-					type="horizontal"
-					space="tiny"
-				/>
+				<Spacer type="horizontal" />
 
 				<Paragraph
 					size="big"
-					align="right"
-				>
-					{t('stats.countries.visited.title')}
-				</Paragraph>
-
-				<Spacer
-					type="horizontal"
-					space="small"
-				/>
-
-				<Paragraph
-					size="large"
 					align="center"
 				>
-					{visitedList.length}
+					{t('stats.countries.visited.title', {
+						visited: visitedList.length,
+						countries: countries?.length || 0,
+					})}
 				</Paragraph>
 			</ImageComponent>
 
