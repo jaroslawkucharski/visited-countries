@@ -105,7 +105,8 @@ export const User = () => {
 					size="big"
 					align="center"
 				>
-					{t('stats.countries.visited.title', {
+					{t('stats.countries.visited.title')}{' '}
+					{t('stats.countries.visited.value', {
 						visited: visitedList.length,
 						countries: countries?.length || 0,
 					})}
