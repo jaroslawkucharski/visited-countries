@@ -7,7 +7,7 @@ export const UserComponent = styled.div`
 export const ImageComponent = styled.div`
 	width: 100%;
 	display: flex;
-	justify-content: center;
+	justify-content: space-around;
 `
 
 export const AvatarComponent = styled.div`

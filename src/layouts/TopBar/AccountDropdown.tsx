@@ -1,7 +1,7 @@
 import { Break, Dropdown, DropdownItem, Image } from 'components'
 import { auth } from 'config/firebase'
 import { useTranslation } from 'react-i18next'
-import { TbEdit, TbLogout, TbUser } from 'react-icons/tb'
+import { TbEdit, TbLock, TbLogout, TbUser } from 'react-icons/tb'
 
 import { useLogout } from 'hooks/useLogout'
 import { useUserAvatar } from 'hooks/useUserAvatar'
@@ -43,6 +43,12 @@ export const AccountDropdown = () => {
 				<TbEdit />
 
 				{t('word.profile')}
+			</DropdownItem>
+
+			<DropdownItem to={ROUTES.PRIVACY}>
+				<TbLock />
+
+				{t('privacy.title')}
 			</DropdownItem>
 
 			<Break />

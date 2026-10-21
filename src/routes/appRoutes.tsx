@@ -41,6 +41,10 @@ const PageNotFound = lazy(async () => ({
 	default: (await import('pages')).PageNotFound,
 }))
 
+const Privacy = lazy(async () => ({
+	default: (await import('pages')).Privacy,
+}))
+
 const routes = [
 	{
 		path: ROUTES.SIGNIN,
@@ -91,6 +95,11 @@ const routes = [
 		route: PrivateRoute,
 		isOnlyForMobile: true,
 		component: <Favorites />,
+	},
+	{
+		path: ROUTES.PRIVACY,
+		isOnlyForMobile: false,
+		component: <Privacy />,
 	},
 	{
 		path: ROUTES.PAGE_NOT_FOUND,

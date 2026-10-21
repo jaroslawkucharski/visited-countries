@@ -13,6 +13,7 @@ import {
 	ModalActionsComponent,
 	ModalComponent,
 	ModalContainerComponent,
+	ModalContentComponent,
 	ModalHeadingComponent,
 } from './Modal.styles'
 
@@ -104,7 +105,7 @@ export const Modal: FC<ModalProps & NiceModalHocProps> = NiceModal.create(
 
 					<Spacer type="vertical" />
 
-					<div>{content}</div>
+					<ModalContentComponent>{content}</ModalContentComponent>
 
 					<Spacer
 						type="vertical"
